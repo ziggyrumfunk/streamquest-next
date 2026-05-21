@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CreatorClips from "@/app/components/CreatorClips";
 import FloatingDiscord from "@/app/components/FloatingDiscord";
 import type { Metadata } from "next";
 
@@ -382,7 +383,8 @@ export default function StreamersPage() {
           </Reveal>
         </div>
       </section>
-          <FloatingDiscord />
+          <CreatorClips />
+      <FloatingDiscord />
       </div>
   );
 }

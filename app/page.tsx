@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Reveal from "./components/Reveal";
 import FloatingDiscord from "./components/FloatingDiscord";
+import CreatorClips from "./components/CreatorClips";
 import PolaroidField from "./components/PolaroidField";
 import SteamGrowthCounter from "./components/SteamGrowthCounter";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
@@ -665,6 +666,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ============ CREATOR CLIPS — live streams ============ */}
+      <CreatorClips />
 
       {/* ============ FINAL CTA (floating 3:4 tiles) ============ */}
       <section className="rd-final">

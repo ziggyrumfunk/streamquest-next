@@ -169,6 +169,7 @@ const goodHeavensCase = {
   studio: "Nowhere Studios and Rocketride Games",
   service: "Indie marketing studio (no creator activation)",
   keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).png",
+  logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).png",
   trailer: "lXPPZyEKGtM",
   screenshots: [
     "/firebase-public/GoodHeavensRPG/gameplay (1).jpg",
@@ -604,10 +605,10 @@ export default function PitchPage() {
 
       {/* ============ CASE STUDY: TAXI CHAOS 2 ============ */}
       <section className="pitch-case-section">
-        {/* Full-bleed image strip uses one of the new screenshots */}
+        {/* Full-bleed image strip uses the proper key art for crisp rendering */}
         <div className="pitch-case-strip" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={taxiCase.screenshots[0]} alt="" loading="lazy" />
+          <img src={taxiCase.keyart} alt="" loading="lazy" />
           <div className="pitch-case-strip-veil" />
         </div>
 
@@ -717,7 +718,12 @@ export default function PitchPage() {
             <div className="pitch-case-keyart">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={goodHeavensCase.keyart} alt={`${goodHeavensCase.name} key art`} loading="lazy" />
-
+              {goodHeavensCase.logo && (
+                <div className="pitch-case-keyart-logo">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={goodHeavensCase.logo} alt={goodHeavensCase.name} />
+                </div>
+              )}
             </div>
           </Reveal>
 
