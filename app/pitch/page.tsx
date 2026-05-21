@@ -88,10 +88,12 @@ const questModel: { name: string; body: string; clip: QuestModelClip }[] = [
 ];
 
 const steps = [
-  { n: "Submit", title: "Submit your brief", sub: "Define your main objectives, stream hours, and any bonus side quests like wishlists, surveys, or reviews." },
-  { n: "Build", title: "We build the quest", sub: "Configure your campaign, set objectives, validate streamers, assign keys, track rewards and progress." },
-  { n: "Activate", title: "Streamers activate", sub: "Qualified micro-creators join the quest, stream the game, and complete tasks to earn XP." },
-  { n: "Report", title: "You get the report", sub: "Full campaign report with content links, engagement metrics, feedback, and unused credit returns." },
+  { n: "Brief",      title: "Submit your brief",        sub: "You define the main objectives, stream hours, side quests, key milestones, and what proof you want from creators." },
+  { n: "Build",      title: "We build the quest",      sub: "We configure the campaign, set objectives, define payout tiers, validate streamers, and record a mission brief video for creators." },
+  { n: "Launch",     title: "We push the launch",     sub: "We push the quest across our creator community and StreamQuest socials so the right micro-streamers see it first." },
+  { n: "Activate",   title: "Creators stream",        sub: "Curated micro-creators join the quest, stream the game live, and complete side quests across socials and storefronts." },
+  { n: "Manage",     title: "Hands-on management",    sub: "Our team handles Discord coordination, reminders, approvals, key delivery, VOD and proof verification, and direct creator payouts." },
+  { n: "Report",     title: "You get the final report", sub: "Full report with VODs, content links, proof, KPI metrics, creator feedback, and any unused credits returned where applicable." },
 ];
 
 const usps = [
@@ -267,10 +269,10 @@ export default function PitchPage() {
           </Reveal>
           <Reveal delay={0.2}>
             <p className="pitch-sub">
-              StreamQuest activates 50+ trusted micro-streamers per campaign and runs the
-              indie marketing layer around it. Storefronts, social, content, community,
-              creator activations, paid ads, media kits, reporting.
-              Boutique service, transparent KPIs, performance-based spend.
+              StreamQuest has two pillars. <strong>Creator activation</strong> runs paid
+              campaigns through our quest platform, with hands-on management on top.
+              <strong> Marketing support</strong> covers storefronts, social, content,
+              community, and ads. Hire either one on its own, or run both together.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
@@ -301,17 +303,18 @@ export default function PitchPage() {
             <div className="pitch-intro-text">
               <span className="rd-section-tag">What is StreamQuest</span>
               <h2>
-                A platform that turns marketing <span className="grad">into quests</span>.
+                Gaming is <span className="grad">not one big audience</span>.
               </h2>
               <p>
-                We connect small streamers with video game publishers and developers
-                through gamified quests. Affiliate Twitch streamers get real sponsorships,
-                earn money, and grow their communities. Brands get authentic access to loyal
-                micro-audiences without the agency overhead.
+                Gaming is a network of smaller communities. StreamQuest helps studios spread
+                the budget of one large influencer across up to 50 trusted micro-creators,
+                creating more consistent visibility, social proof, and verified reporting.
               </p>
               <p>
-                Instead of chasing mega-influencers, we activate the overlooked 95% of
-                streamers and turn passion into impact for the studios paying for it.
+                Our edge is that we combine platform structure with agency-style personal
+                management. Quests, approvals, reminders, proof checks, payouts, and
+                reporting are all handled hands-on by our team in Discord, not left to a
+                self-serve dashboard.
               </p>
             </div>
           </Reveal>
@@ -495,26 +498,26 @@ export default function PitchPage() {
             <div className="pitch-head-wide">
               <span className="rd-section-tag">Two services, separately or together</span>
               <h2>
-                Creator activation <span className="grad">or</span> a full indie marketing studio.
+                Two pillars. <span className="grad">Either one</span>, or both.
               </h2>
               <p>
-                These are two distinct offerings. Creator activation is our gamified StreamQuest
-                quest model. The marketing studio is content, storefronts, social, community, paid ads,
-                and reporting. Hire one without the other, or run both together.
+                StreamQuest is not a single bundled service. Creator activation runs your
+                campaign on our platform with hands-on agency management. Marketing support
+                covers everything else around the launch. Each pillar stands on its own.
               </p>
             </div>
           </Reveal>
           <Reveal>
             <div className="pitch-tracks">
               <div className="pitch-track pitch-track-a">
-                <span className="pitch-track-eyebrow">Track 1</span>
+                <span className="pitch-track-eyebrow">Pillar 1</span>
                 <h3>Creator activation</h3>
-                <p>50+ vetted micro-streamers per campaign. Mission briefs, payouts, KPI reporting, all under the gamified StreamQuest model. Independent of any other marketing work.</p>
+                <p>Platform plus hands-on management. We activate curated micro-creators through the quest model and run them like an agency: Discord, approvals, reminders, proof checks, payouts, reporting. Hireable on its own.</p>
               </div>
               <div className="pitch-track pitch-track-b">
-                <span className="pitch-track-eyebrow">Track 2</span>
-                <h3>Indie marketing studio</h3>
-                <p>Storefronts, social media, community, content, paid ads, media kits, reporting, launch ops. Full marketing partnership or single sprints. No creator activation required.</p>
+                <span className="pitch-track-eyebrow">Pillar 2</span>
+                <h3>Marketing support</h3>
+                <p>Storefront optimization, social media, content, community management, paid ads, and broader campaign support. Works alongside creator activation, but never bundled into it. Hireable on its own.</p>
               </div>
             </div>
           </Reveal>
@@ -526,7 +529,7 @@ export default function PitchPage() {
         <div className="rd-shell">
           <Reveal>
             <div className="pitch-head-wide">
-              <span className="rd-section-tag">Track 1 — Creator activation</span>
+              <span className="rd-section-tag">Pillar 1 — Creator activation</span>
               <h2>
                 What is included in a <span className="grad">StreamQuest campaign</span>.
               </h2>
@@ -555,7 +558,7 @@ export default function PitchPage() {
         <div className="rd-shell">
           <Reveal>
             <div className="pitch-head-wide">
-              <span className="rd-section-tag">Track 2 — Indie marketing studio</span>
+              <span className="rd-section-tag">Pillar 2 — Marketing support</span>
               <h2>
                 Branding, social, storefronts, <span className="grad">community</span>, and more.
               </h2>

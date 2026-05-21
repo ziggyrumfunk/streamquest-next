@@ -362,8 +362,8 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px 24px;
 }
 .pitch-rail-step { padding: 0 22px; }
 .pitch-rail-step:first-child { padding-left: 0; }
@@ -391,6 +391,7 @@
   box-shadow: 0 0 14px rgba(178, 240, 72, 0.6);
 }
 .pitch-rail-line {
+  display: none;
   position: absolute;
   left: 14px; right: -22px; top: 50%;
   height: 1px;
@@ -405,7 +406,7 @@
   margin: 0;
 }
 @media (max-width: 900px) {
-  .pitch-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 24px; }
+  .pitch-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pitch-rail-step { padding: 0; }
   .pitch-rail-line { display: none; }
 }
