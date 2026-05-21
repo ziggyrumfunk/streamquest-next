@@ -2,7 +2,7 @@ import Link from "next/link";
 import Reveal from "./components/Reveal";
 import PolaroidField from "./components/PolaroidField";
 import SteamGrowthCounter from "./components/SteamGrowthCounter";
-import { activeQuests as activeQuestsData, quests as allQuests } from "@/data/quests";
+import { getQuestsWithLiveStatus } from "@/lib/questStatus";
 import "./redesign.css";
 
 /* ============================================================
@@ -20,22 +20,8 @@ const partners = [
   "Play Fusion", "Sad Cat Studios",
 ];
 
-// Active quests come from data/quests.ts. The first one is the feature card.
-const activeQuests = activeQuestsData.map((q, i) => ({
-  slug: q.slug,
-  title: q.title,
-  tagline: q.tagline,
-  cover: q.cover,
-  feature: i === 0,
-}));
-
-// Library = every quest. Active first, then completed (already sorted in data file).
-const library = allQuests.map((q) => ({
-  slug: q.slug,
-  title: q.title,
-  cover: q.portrait || q.cover,
-  status: q.status === "active" ? ("Active" as const) : undefined,
-}));
+// activeQuests + library are derived per-request from the live status helper,
+// so admin flips show up here without a rebuild. See HomePage() below.
 
 /** Floating mixed-media tiles in the hero — big game art at the corners,
     medium gameplay screenshots on the sides, small circular streamer avatars scattered. */
@@ -198,7 +184,23 @@ const orgJsonLd = {
 
 /* ===== PAGE ===== */
 
-export default function HomePage() {
+export default async function HomePage() {
+  const all = await getQuestsWithLiveStatus();
+  const activeQuests = all
+    .filter((q) => q.status === "active")
+    .map((q, i) => ({
+      slug: q.slug,
+      title: q.title,
+      tagline: q.tagline,
+      cover: q.cover,
+      feature: i === 0,
+    }));
+  const library = all.map((q) => ({
+    slug: q.slug,
+    title: q.title,
+    cover: q.portrait || q.cover,
+    status: q.status === "active" ? ("Active" as const) : undefined,
+  }));
   return (
     <div className="rd">
       <script

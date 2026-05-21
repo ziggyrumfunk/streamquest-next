@@ -1,0 +1,284 @@
+/* ============================================================
+   STREAMQUEST ADMIN — minimal, no-frills control surface.
+   Square corners (matches the rest of the site).
+   ============================================================ */
+
+.admin-root {
+  background: #050913;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-jost), system-ui, sans-serif;
+  min-height: calc(100dvh - var(--header-h));
+}
+
+/* ---- Login page ---- */
+.admin-shell {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+}
+.admin-card {
+  width: min(420px, 100%);
+  background: rgba(8, 31, 52, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 36px 32px;
+}
+.admin-card h1 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 8px;
+}
+.admin-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0 0 24px;
+}
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.admin-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.admin-input {
+  height: 46px;
+  padding: 0 14px;
+  background: rgba(5, 13, 21, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.admin-input:focus {
+  border-color: rgba(178, 240, 72, 0.55);
+}
+.admin-error {
+  color: #ff7c7c;
+  font-size: 13px;
+  margin: 0;
+}
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 22px;
+  background: var(--rd-lime, #B2F048);
+  color: #061018;
+  border: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.18s;
+}
+.admin-btn:hover {
+  background: #D5FF78;
+  transform: translateY(-1px);
+}
+.admin-btn-ghost {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.admin-btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--rd-lime, #B2F048);
+  color: var(--rd-lime, #B2F048);
+}
+.admin-btn-toggle {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 11px;
+}
+
+/* ---- Main admin page ---- */
+.admin-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+.admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 32px;
+}
+.admin-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  color: #fff;
+}
+.admin-topbar-sub {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+.admin-topbar-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.admin-link {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(178, 240, 72, 0.85);
+  padding: 0 6px;
+  transition: color 0.18s;
+}
+.admin-link:hover { color: #fff; }
+
+.admin-toast {
+  padding: 12px 16px;
+  font-size: 13px;
+  border: 1px solid transparent;
+  margin-bottom: 24px;
+}
+.admin-toast-ok {
+  background: rgba(178, 240, 72, 0.1);
+  border-color: rgba(178, 240, 72, 0.35);
+  color: #d8ff95;
+}
+.admin-toast-err {
+  background: rgba(255, 100, 100, 0.08);
+  border-color: rgba(255, 100, 100, 0.35);
+  color: #ffb0b0;
+}
+
+.admin-section { margin-top: 40px; }
+.admin-section-title {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-count {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(178, 240, 72, 0.85);
+  background: rgba(178, 240, 72, 0.08);
+  border: 1px solid rgba(178, 240, 72, 0.3);
+  padding: 3px 8px;
+}
+
+.admin-empty {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 14px 0;
+}
+
+.admin-quests {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.admin-quest {
+  display: grid;
+  grid-template-columns: 56px 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  background: rgba(8, 31, 52, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.18s, border-color 0.18s;
+}
+.admin-quest:hover {
+  background: rgba(8, 31, 52, 0.7);
+  border-color: rgba(178, 240, 72, 0.25);
+}
+.admin-quest-thumb {
+  width: 56px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #050913;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.admin-quest-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.admin-quest-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
+  transition: color 0.18s;
+}
+.admin-quest-title:hover { color: var(--rd-lime, #B2F048); }
+.admin-quest-studio {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  margin: 0;
+}
+.admin-quest-cat {
+  font-size: 11px;
+  color: rgba(178, 240, 72, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 2px 0 0;
+}
+.admin-status {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+}
+.admin-status-active {
+  background: rgba(178, 240, 72, 0.1);
+  border-color: rgba(178, 240, 72, 0.4);
+  color: var(--rd-lime, #B2F048);
+}
+.admin-status-completed {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+}
+.admin-toggle { margin: 0; }
+
+@media (max-width: 720px) {
+  .admin-quest {
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto auto;
+  }
+  .admin-status { grid-column: 2; }
+  .admin-toggle { grid-column: 1 / -1; }
+  .admin-btn-toggle { width: 100%; }
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { activeQuests as activeQuestsData, completedQuests } from "@/data/quests";
+import { getQuestsWithLiveStatus } from "@/lib/questStatus";
 
 const primaryNav = [
   { href: "/", label: "Home" },
@@ -9,22 +9,26 @@ const primaryNav = [
   { href: "/quests-guide", label: "Quests Guide" },
 ];
 
-const activeQuests = activeQuestsData.map((q) => ({
-  href: `/quests/${q.slug}`,
-  title: q.title,
-  studio: q.studio,
-  category: q.category,
-  cover: q.portrait || q.cover,
-}));
+export default async function Header() {
+  const all = await getQuestsWithLiveStatus();
+  const activeQuests = all
+    .filter((q) => q.status === "active")
+    .map((q) => ({
+      href: `/quests/${q.slug}`,
+      title: q.title,
+      studio: q.studio,
+      category: q.category,
+      cover: q.portrait || q.cover,
+    }));
+  const pastQuests = all
+    .filter((q) => q.status === "completed")
+    .map((q) => ({
+      href: `/quests/${q.slug}`,
+      title: q.title,
+      studio: q.studio,
+      cover: q.portrait || q.cover,
+    }));
 
-const pastQuests = completedQuests.map((q) => ({
-  href: `/quests/${q.slug}`,
-  title: q.title,
-  studio: q.studio,
-  cover: q.portrait || q.cover,
-}));
-
-export default function Header() {
   return (
     <header
       className="fixed top-0 left-0 right-0 z-[150] backdrop-blur-xl"
@@ -47,9 +51,7 @@ export default function Header() {
         </Link>
 
         <nav className="flex-1 min-w-0" aria-label="Primary site navigation">
-          <ul
-            className="flex items-center gap-6 list-none whitespace-nowrap"
-          >
+          <ul className="flex items-center gap-6 list-none whitespace-nowrap">
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <Link
