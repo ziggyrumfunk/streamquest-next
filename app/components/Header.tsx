@@ -147,6 +147,15 @@ export default async function Header() {
                 FAQ
               </Link>
             </li>
+
+            <li>
+              <Link
+                href="/news"
+                className="text-[14px] font-semibold text-white/95 hover:text-lime transition-colors py-2"
+              >
+                News
+              </Link>
+            </li>
           </ul>
         </nav>
 

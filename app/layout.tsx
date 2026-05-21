@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jost } from "next/font/google";
 import Header from "./components/Header";
+import LoadingSplash from "./components/LoadingSplash";
 import Footer from "./components/Footer";
 import "./globals.css";
 
@@ -73,6 +74,7 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Skip to content
         </a>
+        <LoadingSplash />
         <Header />
         <main id="main">{children}</main>
         <Footer />

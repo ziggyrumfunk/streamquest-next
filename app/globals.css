@@ -548,3 +548,132 @@ p {
   .floating-discord { animation: none; }
   .floating-discord-cta::before { animation: none; }
 }
+
+/* ============================================================
+   LOADING SPLASH — first-visit intro overlay with Questy + bar.
+   ============================================================ */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.38s ease;
+  overflow: hidden;
+}
+.splash.is-fading {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 50% 50% at 30% 30%, rgba(178, 240, 72, 0.18), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 70% 70%, rgba(145, 70, 255, 0.18), transparent 60%);
+  filter: blur(40px);
+  animation: splash-aura 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes splash-aura {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(20px, -10px, 0) scale(1.06); }
+}
+
+/* Subtle dot pattern hint to match the rest of the site */
+.splash::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(178, 240, 72, 0.18) 1.4px, transparent 1.4px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, transparent 30%, black 80%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 55% at 50% 50%, transparent 30%, black 80%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.splash-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.splash-mascot {
+  width: clamp(180px, 22vw, 260px);
+  height: auto;
+  filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.55));
+  animation: splash-bob 1.6s ease-in-out infinite;
+  user-select: none;
+  pointer-events: none;
+}
+@keyframes splash-bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-10px) rotate(3deg); }
+}
+
+.splash-brand {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.42em;
+  color: var(--lime);
+  text-shadow: 0 0 24px rgba(178, 240, 72, 0.42);
+  padding-left: 0.42em; /* compensate trailing letter-spacing for true centering */
+}
+
+.splash-bar {
+  position: relative;
+  width: min(320px, 70vw);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+.splash-bar-fill {
+  position: absolute;
+  inset: 0 100% 0 0;
+  background: linear-gradient(90deg, var(--lime), var(--lime-2));
+  box-shadow: 0 0 14px rgba(178, 240, 72, 0.65);
+  animation: splash-fill 1.3s cubic-bezier(0.45, 0.05, 0.25, 1) forwards;
+}
+@keyframes splash-fill {
+  from { right: 100%; }
+  to   { right: 0%; }
+}
+
+.splash-label {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.splash-label::after {
+  content: " ";
+  display: inline-block;
+  width: 1ch;
+  animation: splash-dots 1.3s steps(4, end) infinite;
+}
+@keyframes splash-dots {
+  0%   { content: "."; }
+  25%  { content: ".."; }
+  50%  { content: "..."; }
+  75%  { content: "...."; }
+  100% { content: "."; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash { display: none !important; }
+}
