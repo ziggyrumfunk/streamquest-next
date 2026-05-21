@@ -187,7 +187,7 @@ const goodHeavensCase = {
     "Steam storefront support for events, capsules, and announcements.",
   ],
   status: "Ongoing pre-launch programme. Results pending.",
-  landingPage: "https://www.goodheavensrpg.co",
+  landingPage: "https://www.goodheavensrpg.com",
   links: [
     { label: "Steam",      href: "https://store.steampowered.com/app/1617120/Good_Heavens/" },
     { label: "Instagram",  href: "https://www.instagram.com/goodheavensrpg/" },
@@ -768,7 +768,7 @@ export default function PitchPage() {
               >
                 <span className="pitch-case-landing-eyebrow">Landing page we built</span>
                 <span className="pitch-case-landing-title">
-                  Visit <span className="grad">goodheavensrpg.co</span>
+                  Visit <span className="grad">goodheavensrpg.com</span>
                 </span>
                 <span className="pitch-case-landing-arrow" aria-hidden="true">→</span>
               </a>
