@@ -168,10 +168,8 @@ const goodHeavensCase = {
   name: "Good Heavens",
   studio: "Nowhere Studios and Rocketride Games",
   service: "Indie marketing studio (no creator activation)",
-  keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).png",
-  logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).png",
-  hero: "/firebase-public/GoodHeavensRPG/main art background.jpg",
-  highlightVideo: "/firebase-public/GoodHeavensRPG/d&n_optimized.webm",
+  keyart: "/firebase-public/GoodHeavensRPG/pitch deck cover.png",
+  trailer: "lXPPZyEKGtM",
   screenshots: [
     "/firebase-public/GoodHeavensRPG/gameplay (1).jpg",
     "/firebase-public/GoodHeavensRPG/gameplay (2).jpg",
@@ -718,27 +716,19 @@ export default function PitchPage() {
             <div className="pitch-case-keyart">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={goodHeavensCase.keyart} alt={`${goodHeavensCase.name} key art`} loading="lazy" />
-              {goodHeavensCase.logo && (
-                <div className="pitch-case-keyart-logo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={goodHeavensCase.logo} alt={goodHeavensCase.name} />
-                </div>
-              )}
+
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="pitch-case-video">
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                aria-hidden="true"
-              >
-                <source src={goodHeavensCase.highlightVideo} type="video/webm" />
-              </video>
+            <div className="pitch-video-wrap">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${goodHeavensCase.trailer}?rel=0&modestbranding=1`}
+                title={`${goodHeavensCase.name} trailer`}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
             </div>
           </Reveal>
 
