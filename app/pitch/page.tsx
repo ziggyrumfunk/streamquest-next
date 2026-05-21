@@ -569,9 +569,7 @@ export default function PitchPage() {
           <Reveal delay={0.15}>
             <div className="pitch-mini-aside">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/firebase-public/Game Cover Art/good heavens key art.jpg" alt="" loading="lazy"
-                onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/firebase-public/Game Screenshots/GOOD HEAVENS.jpg"; }}
-              />
+              <img src="/firebase-public/Game Screenshots/GOOD HEAVENS.jpg" alt="" loading="lazy" />
             </div>
           </Reveal>
         </div>
