@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Reveal from "./components/Reveal";
+import FloatingDiscord from "./components/FloatingDiscord";
 import PolaroidField from "./components/PolaroidField";
 import SteamGrowthCounter from "./components/SteamGrowthCounter";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
@@ -699,6 +700,8 @@ export default async function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      <FloatingDiscord />
     </div>
   );
 }

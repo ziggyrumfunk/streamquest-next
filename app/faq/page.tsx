@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FloatingDiscord from "@/app/components/FloatingDiscord";
 import type { Metadata } from "next";
 
 import Reveal from "@/app/components/Reveal";
@@ -225,6 +226,7 @@ export default function FaqPage() {
           </Reveal>
         </div>
       </section>
-    </div>
+          <FloatingDiscord />
+      </div>
   );
 }

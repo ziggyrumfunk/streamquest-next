@@ -19,6 +19,7 @@ export default function Footer() {
             <li><Link href="/streamers" className="hover:text-lime">Streamers</Link></li>
             <li><Link href="/quests-guide" className="hover:text-lime">Quests Guide</Link></li>
             <li><Link href="/testimonials" className="hover:text-lime">Testimonials</Link></li>
+            <li><Link href="/news" className="hover:text-lime">News</Link></li>
           </ul>
         </div>
 
