@@ -217,12 +217,14 @@ export default async function HomePage() {
         <PolaroidField tiles={heroTiles} className="rd-polaroids" intensity={85} />
 
         <div className="rd-hero-inner">
-          <Reveal>
-            <span className="eyebrow">
-              <span className="pulse" />
-              {activeQuests.length} active campaigns running now
-            </span>
-          </Reveal>
+          {activeQuests.length > 0 && (
+            <Reveal>
+              <span className="eyebrow">
+                <span className="pulse" />
+                {activeQuests.length} active campaigns running now
+              </span>
+            </Reveal>
+          )}
 
           <Reveal delay={0.1}>
             <h1>
@@ -320,7 +322,8 @@ export default async function HomePage() {
         </Reveal>
       </section>
 
-      {/* ============ ACTIVE CAMPAIGNS ============ */}
+      {/* ============ ACTIVE CAMPAIGNS (only if any) ============ */}
+      {activeQuests.length > 0 && (
       <section className="rd-section tight-top">
         <div className="rd-shell-wide">
           <Reveal>
@@ -357,6 +360,7 @@ export default async function HomePage() {
 
         </div>
       </section>
+      )}
 
       {/* ============ TESTIMONIALS (real streamer quotes) ============ */}
       <section className="rd-testimonials">

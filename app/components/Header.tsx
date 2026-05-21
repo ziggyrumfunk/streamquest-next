@@ -63,6 +63,7 @@ export default async function Header() {
               </li>
             ))}
 
+            {activeQuests.length > 0 && (
             <li className="relative group nav-dd">
               <button
                 type="button"
@@ -102,6 +103,7 @@ export default async function Header() {
                 </div>
               </div>
             </li>
+            )}
 
             <li className="relative group nav-dd">
               <button
