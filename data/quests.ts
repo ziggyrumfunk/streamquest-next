@@ -1,0 +1,685 @@
+/**
+ * StreamQuest — single source of truth for every quest.
+ *
+ * Adding a new quest? Just append an entry below.
+ * Flipping active → completed? Change `status`.
+ *
+ * The homepage active-cards + library grid AND the header's
+ * Active/Past dropdowns both read from this file.
+ */
+
+export type QuestTier = {
+  name: string;                  // "Bronze", "Silver"
+  payout: string;                // headline "€10"
+  rate?: string;                 // "€10 / hr"
+  rateNote?: string;             // "€20 total (2 × €10)"
+  requirement: string;           // "Stream 1 hour, 5 CCV"
+  sideQuestsRequired?: boolean;
+  freeCopy?: boolean;
+};
+
+export type QuestStatus = "active" | "completed";
+
+/** Named side quest with description, optional XP value for rich active-quest cards. */
+export type SideQuestDetail = { name: string; desc: string; xp?: number };
+
+/** Two YouTube IDs that drive the tabbed video player on the brief. */
+export type QuestVideos = { trailer?: string; brief?: string };
+
+/** One TL;DR card. `stat` is the big number ("€10", "50", "5d"). */
+export type QuestTldrItem = { stat: string; label: string; sub?: string };
+
+/** Social icon platform handled by the icon mapper in the brief. */
+export type QuestSocialType =
+  | "instagram" | "tiktok" | "youtube" | "discord"
+  | "x" | "website" | "bluesky" | "twitch" | "twitter";
+
+export type QuestSocialLink = { type: QuestSocialType; href: string };
+
+/** A grouped brand card (StreamQuest, REPLACED, Thunderful) with its social handles. */
+export type QuestAccount = { name: string; hint: string; links: QuestSocialLink[] };
+
+/** A storefront / press / press-hub link with icon. */
+export type QuestStoreLink = {
+  name: string;
+  sub: string;
+  href: string;
+  icon?: "steam" | "xbox" | "website" | "epic" | "gog";
+};
+
+/** One rules paragraph with a header. */
+export type QuestRuleBlock = { heading: string; body: string };
+
+/** A How To Join step. Numbering is dropped per design system, only title + sub render. */
+export type QuestStep = { title: string; sub: string };
+
+/** Generic key/value pair shown in the hero meta strip ("Duration · 2 weeks"). */
+export type QuestHeroMetaItem = { label: string; value: string };
+
+export type Quest = {
+  slug: string;                  // URL: /quests/[slug]
+  title: string;
+  status: QuestStatus;
+  studio: string;                // e.g. "Thunderful × Sad Cat Studios"
+  studioLogo?: string;
+  tagline: string;               // 1 line pitch for cards
+  category?: string;             // genre tag
+  cover: string;                 // landscape hero image
+  portrait?: string;             // 3:4 library-grid image (defaults to cover)
+  description?: string;          // 2-3 sentence paragraph
+  about?: string;                // longer "about the game" paragraph
+  keyFeatures?: string[];        // game-feature bullets shown on the brief
+  tiers?: QuestTier[];
+  /** Simple side quests for completed/legacy quests. */
+  sideQuests?: string[];
+  /** Named side quest cards for active quests (Social Agent, Completionist, etc). */
+  sideQuestDetails?: SideQuestDetail[];
+  rules?: string[];
+  freeCopy?: boolean;
+  links?: {
+    steam?: string;
+    trailer?: string;
+    official?: string;
+    twitch?: string;
+    wishlist?: string;
+  };
+  dates?: { start?: string; end?: string };
+
+  /* ---- Rich active-quest content (all optional, sections render when present) ---- */
+  videos?: QuestVideos;
+  heroMeta?: QuestHeroMetaItem[];
+  tldr?: QuestTldrItem[];
+  tldrFootnotes?: string[];
+  screenshots?: string[];               // horizontal screenshot strip
+  storyParagraphs?: string[];           // multi-paragraph story block
+  storyPull?: string;                   // pull-quote string
+  storyAside?: string;                  // image URL for split-layout aside
+  storyAsideCaption?: string;
+  shortDescription?: string;            // longer "short description" paragraph
+  sideQuestIntro?: string;              // intro paragraph for side quest section
+  sideQuestOutro?: string;              // optional outro after side quest grid
+  trackedWishlistUrl?: string;
+  trackedWishlistNote?: string;
+  gallery?: { wide?: string; thumbs: string[] };
+  officialAccounts?: QuestAccount[];
+  storeLinks?: QuestStoreLink[];
+  platforms?: string[];
+  rulesContent?: QuestRuleBlock[];      // richer than `rules: string[]`
+  howToJoin?: QuestStep[];              // optional override; defaults to standard six
+  rating?: string;                      // "ESRB M (17+) / PEGI 16"
+  slots?: number;
+  duration?: string;                    // "2 weeks"
+};
+
+/* ============================================================
+   ACTIVE QUESTS — full detail, fully render on /quests/[slug]
+   ============================================================ */
+
+export const quests: Quest[] = [
+  {
+    slug: "replaced",
+    title: "REPLACED",
+    status: "active",
+    studio: "Thunderful × Sad Cat Studios",
+    tagline: "Cinematic 2.5D cyberpunk action-platformer launch window.",
+    category: "Cyberpunk action platformer",
+    cover: "/firebase-public/Replaced/sq-replaced-keyart-landscape-2400.webp",
+    portrait: "/firebase-public/Replaced/sq-replaced-keyart-portrait-1080.webp",
+    description:
+      "Paid creator campaign for the launch of REPLACED, a cinematic 2.5D cyberpunk action platformer by Thunderful and Sad Cat Studios. Built for Twitch creators who love standout indie games and want to help drive visibility during a major release moment.",
+    about:
+      "If your content leans into atmospheric games, narrative experiences, cyberpunk worlds, or visually striking action titles, this is a very strong fit.",
+    keyFeatures: [
+      "Phoenix-City: corruption, outlaws, and nuclear scars. A strong visual read for thumbnails.",
+      "R.E.A.C.H. is an AI trapped in a human body. Moral sci-fi stakes and mystery that carry a whole stream.",
+      "Free-flow melee and ranged combat, readable for viewers and great for clips.",
+      "Hand-crafted 2.5D art and a moody synth-driven soundtrack that sells tone instantly.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        requirement: "Stream REPLACED for at least 1 hour in your counted session",
+        freeCopy: true,
+      },
+      {
+        name: "Silver",
+        payout: "€10",
+        rate: "€10 / hr",
+        rateNote: "€20 total (2 × €10), at least 1 side quest required",
+        requirement: "Stream REPLACED for at least 2 hours counted toward this tier",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Social Agent",
+        xp: 50,
+        desc: "Post a clip or share your tracked wishlist link on social. Tag @REPLACED and @StreamQuest with the exact handles for each platform. Prefer your tracked link in the caption.",
+      },
+      {
+        name: "Completionist",
+        xp: 100,
+        desc: "Finish the game. Submit a screenshot of credits or the end-state screen. Keep titles VOD-friendly with no big spoilers.",
+      },
+      {
+        name: "Growing Together",
+        xp: 50,
+        desc: "Follow at least 1 official StreamQuest, 1 REPLACED, and 1 Thunderful account. Submit screenshots showing each follow.",
+      },
+    ],
+    rules: [
+      "Use the REPLACED Twitch category and keep gameplay clearly visible.",
+      "Complete at least 1 side quest and submit your VOD plus proof.",
+      "Silver with zero side quests is treated as Bronze if Bronze stream length is met.",
+      "Extra stream time does not add to payout for Bronze or Silver.",
+    ],
+    freeCopy: true,
+    links: {
+      steam: "https://store.steampowered.com/app/1663850/REPLACED/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=REPLACED&utm_content=wishlist_cta",
+      official: "https://streamquest.io/replaced",
+    },
+
+    /* -------- Rich brief content -------- */
+    duration: "2 weeks",
+    slots: 50,
+    rating: "ESRB M (17+) / PEGI 16",
+    platforms: ["PC (Steam)", "Xbox Series X|S", "Xbox Game Pass", "PC (Epic)", "PC (GOG)"],
+
+    videos: {
+      trailer: "YheMqHoeHVc",
+      brief: "pYxgYoaJL9M",
+    },
+
+    heroMeta: [
+      { label: "Applications", value: "Creator Dashboard" },
+      { label: "Duration", value: "2 weeks" },
+      { label: "Slots", value: "50 creators" },
+      { label: "Free copy", value: "Both tiers" },
+    ],
+
+    tldr: [
+      { stat: "€10", label: "Bronze tier", sub: "1h stream, 5 CCV, 300 followers" },
+      { stat: "€20", label: "Silver tier", sub: "2h, €10/h, 15 CCV, 500 followers" },
+      { stat: "50", label: "Creator slots", sub: "Curated, not first come first served" },
+      { stat: "5 days", label: "Payout turnaround", sub: "After VOD verification via Twitch setup" },
+    ],
+    tldrFootnotes: [
+      "Free game copy included for all approved creators.",
+      "Complete at least 1 side quest or the run does not count toward payout.",
+      "Use your tracked wishlist link on stream so we can measure community impact.",
+    ],
+
+    screenshots: [
+      "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-Thumbnails_Screenshot1.png",
+      "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-Thumbnails_Screenshot2-1.png",
+      "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-Thumbnails_Screenshot5NoUI-1.png",
+      "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-ThumbnailsScreenshot4NoCar-scaled.png",
+      "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/433973ec3838085b46d3b3fe898811bd9d662a0d/ss_433973ec3838085b46d3b3fe898811bd9d662a0d.1920x1080.jpg",
+    ],
+
+    storyParagraphs: [
+      "StreamQuest is teaming up with Thunderful and Sad Cat Studios for a paid creator campaign around the launch of REPLACED. This campaign is built for Twitch creators who enjoy standout indie games and want to help drive visibility during a major release moment.",
+      "If your content leans into atmospheric games, narrative experiences, cyberpunk worlds, or visually striking action titles, this is a very strong fit.",
+      "REPLACED is a cinematic 2.5D action platformer and cyberpunk thriller where you play as R.E.A.C.H., an AI trapped in a human body in an alternate 1980s America scarred by nuclear catastrophe. Set in Phoenix-City, one of Phoenix Corporation's corrupt strongholds, the game blends exploration, platforming, fluid combat, and a slow-burning mystery around identity, control, and the truth behind your creation. The retro-futuristic world is brought to life with handcrafted pixel art, modern visual effects, and a moody synth-driven atmosphere.",
+    ],
+    storyPull:
+      "Your quest: make REPLACED impossible to ignore. Sell the tone, keep combat readable on camera, and drive wishlists with your tracked link.",
+    storyAside:
+      "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-Thumbnails_Screenshot2-1.png",
+    storyAsideCaption: "R.E.A.C.H. in Phoenix-City",
+    shortDescription:
+      "REPLACED is a cinematic 2.5D action platformer wrapped in a cyberpunk thriller, where you step into the role of R.E.A.C.H., an AI trapped against its will in a human body. Set in an alternate 1980s America devastated by nuclear disaster, the game takes you through the corrupt streets of Phoenix-City as you uncover the hidden agenda behind Phoenix Corporation and the reason for your own existence. With fluid movement, fast responsive combat, cinematic exploration, and striking pixel art enhanced by modern visual effects, REPLACED is a strong fit for creators whose audiences enjoy atmospheric indies, dystopian worlds, and story-driven action.",
+
+    sideQuestIntro:
+      "Each quest is self-contained. Social Agent needs tags plus a clip or wishlist share. Growing Together needs follows plus screenshots. Use your tracked wishlist link wherever it fits.",
+    sideQuestOutro:
+      "The best runs do not stop at Twitch. Push the game on social too and use the StreamQuest UTM link when asking for wishlists.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/1663850/REPLACED/?utm_source=StreamQuest&utm_medium=wishlist&utm_campaign=REPLACED&utm_content=tracked",
+    trackedWishlistNote:
+      "Use this for side quest proof and on-stream CTAs so we can measure impact. If you receive a unique link in Discord, prefer that one.",
+
+    gallery: {
+      wide: "/firebase-public/Replaced/sq-replaced-screenshot-01.webp",
+      thumbs: [
+        "/firebase-public/Replaced/sq-replaced-screenshot-02.webp",
+        "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1663850/433973ec3838085b46d3b3fe898811bd9d662a0d/ss_433973ec3838085b46d3b3fe898811bd9d662a0d.1920x1080.jpg",
+        "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-ThumbnailsScreenshot4NoCar-scaled.png",
+        "https://thunderfulgames.com/wp-content/uploads/2025/08/REPLACED_SadCatStudios_Screenshots-Thumbnails_Screenshot1.png",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest, clip and wishlist posts",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "REPLACED",
+        hint: "Official game and studio accounts for tags and follows",
+        links: [
+          { type: "website", href: "https://playreplaced.com" },
+          { type: "instagram", href: "https://www.instagram.com/replaced_game/" },
+          { type: "x", href: "https://x.com/REPLACEDGame" },
+          { type: "youtube", href: "https://www.youtube.com/@sadcatstudios" },
+          { type: "tiktok", href: "https://www.tiktok.com/@replacedgame" },
+        ],
+      },
+      {
+        name: "Thunderful",
+        hint: "Publisher socials for follows and cross-platform tagging",
+        links: [
+          { type: "website", href: "https://thunderfulgames.com" },
+          { type: "instagram", href: "https://www.instagram.com/thunderfulgames/" },
+          { type: "x", href: "https://twitter.com/thunderfulgames" },
+          { type: "youtube", href: "https://www.youtube.com/c/thunderful" },
+          { type: "tiktok", href: "https://www.tiktok.com/@thunderfulgames?lang=en" },
+          { type: "bluesky", href: "https://bsky.app/profile/thunderfulgames.bsky.social" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Store page",
+        href: "https://store.steampowered.com/app/1663850/REPLACED/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=REPLACED&utm_content=storefront",
+        icon: "steam",
+      },
+      {
+        name: "Xbox Store",
+        sub: "xbox.com",
+        href: "https://www.xbox.com/Search?q=REPLACED&utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=REPLACED&utm_content=xbox_store",
+        icon: "xbox",
+      },
+      {
+        name: "Official site",
+        sub: "playreplaced.com",
+        href: "https://playreplaced.com/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=REPLACED&utm_content=website",
+        icon: "website",
+      },
+      {
+        name: "Press hub",
+        sub: "playreplaced.com",
+        href: "https://playreplaced.com",
+        icon: "website",
+      },
+      {
+        name: "Screenshots",
+        sub: "High-res on Steam",
+        href: "https://store.steampowered.com/app/1663850/REPLACED/",
+        icon: "steam",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Goals",
+        body: "We coordinate many small creators in the same window so REPLACED shows up across Twitch and social feeds. Real visibility, real storefront movement.",
+      },
+      {
+        heading: "Selection",
+        body: "Not first come, first served. We optimize for a diverse creator pool across content fit, audience, region, and quality. StreamQuest may refuse any application. If you are stuck on Pending, join Discord. Keys and coordination happen there.",
+      },
+      {
+        heading: "Keys",
+        body: "Keys ship after approval via Discord. YouTube-first creators, ping us in Discord for setup help.",
+      },
+      {
+        heading: "Rating",
+        body: "REPLACED is ESRB M (17+) and PEGI 16. Set stream labels and chat rules accordingly.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard" },
+      { title: "Join Discord", sub: "Required for keys" },
+      { title: "Receive your key", sub: "Sent after approval" },
+      { title: "Stream", sub: "Bronze or Silver plus at least 1 side quest" },
+      { title: "Submit", sub: "VOD plus proof" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
+
+  {
+    slug: "aska",
+    title: "ASKA",
+    status: "active",
+    studio: "Sand Sailor Studio × Thunderful",
+    tagline: "Hearth & Honey update push. Steam Medieval Fest discount window.",
+    category: "Viking village builder · survival",
+    cover: "/firebase-public/Game Cover Art/aska key art.jpg",
+    description:
+      "Paid Twitch creator campaign built around ASKA's Early Access journey, the new Hearth & Honey update, and a 20% Steam Medieval Fest discount. By Sand Sailor Studio × Thunderful.",
+    about:
+      "ASKA is a Viking village builder with survival mechanics, ranged combat, base building, and a clan of villagers you grow from a frozen shore into a beating settlement.",
+    keyFeatures: [
+      "Track down Wild Beehives, build Bee Houses, and turn Honey into Mead in the new Brewery for a full Hearth & Honey production line.",
+      "Upgrade the Tavern House to Tier 3 so villagers can drink mead and your settlement gains real personality.",
+      "Use the new Settlement Storage Statistics to manage resources while hunters head into the mines to hunt crawlers.",
+      "Lead a living village where AI villagers have roles, schedules, and needs that decide if your tribe thrives or collapses.",
+      "Play solo or run co-op with up to 4 friends to build a Viking settlement from scratch.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        requirement: "Stream ASKA for at least 1 hour in your counted session",
+        freeCopy: true,
+      },
+      {
+        name: "Silver",
+        payout: "€10",
+        rate: "€10 / hr",
+        rateNote: "€20 total (2 × €10) · ≥1 side quest required",
+        requirement: "Stream ASKA for at least 2 hours · ≥1 side quest required",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Mead Hall Rising",
+        desc: "Upgrade your Tavern House to Tier 3 in-game and submit a screenshot as proof. It is the cleanest way to show off Hearth & Honey and the new village happiness loop.",
+      },
+      {
+        name: "Raise the Horn",
+        desc: "Share the 20% Steam Medieval Fest discount on your socials using your unique StreamQuest tracked link, and tag the official accounts where it fits.",
+      },
+      {
+        name: "Skald's Highlight",
+        desc: "Post a clip of you playing ASKA with friends that highlights any of the new features, like beekeeping, brewing mead, tavern life, or crawler hunting.",
+      },
+    ],
+    rules: [
+      "Use the ASKA Twitch category.",
+      "Gameplay must be clearly visible (no facecam-only).",
+      "Silver requires at least one side quest completed.",
+    ],
+    freeCopy: true,
+    links: {
+      steam: "https://store.steampowered.com/app/1898300/ASKA/?utm_source=SQ&utm_medium=social&utm_campaign=aska_medieval_fest&utm_content=discount_share",
+      official: "https://streamquest.io/aska",
+    },
+  },
+
+  {
+    slug: "temtem",
+    title: "Temtem: Swarm",
+    status: "active",
+    studio: "Crema",
+    tagline: "Full-release launch quest built for co-op visibility and storefront traffic.",
+    category: "Co-op survivor",
+    cover: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).jpg",
+    description:
+      "Paid creator campaign supporting the full release of Temtem: Swarm by Crema. Co-op survivor energy, indie launch framing that feels community-led.",
+    about:
+      "Temtem: Swarm is a chaotic co-op survivor where you battle endless waves of Tems with up to three friends. Stack abilities, evolve your team, and survive bullet-heaven stages full of bosses.",
+    keyFeatures: [
+      "Battle Tem swarms solo or with up to three friends online, sharing resources and combining builds for co-op chaos.",
+      "Fight mini-bosses and stage bosses, including iconic Temtem, across hand-crafted bullet-heaven stages.",
+      "Trigger Ultimates on every Tem and unlock new Traits as you collect more creatures and master different playstyles.",
+      "Earn XP, level up your Tems, and push toward final evolutions for stronger and longer survivor-like runs.",
+      "Use Ghost Mode to keep supporting fallen teammates in co-op until they can revive and rejoin the fight.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        requirement: "Stream 1 hour, 5 CCV",
+        freeCopy: true,
+      },
+      {
+        name: "Silver",
+        payout: "€25",
+        requirement: "Stream 2 hours, 15 CCV",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Temtem Up",
+        desc: "Squad up with a friend or another creator and finish at least one full co-op run together on stream.",
+      },
+      {
+        name: "Swarm Signal",
+        desc: "Post a clip from your Temtem Swarm stream on socials and tag #Crema plus #StreamQuest.",
+      },
+      {
+        name: "Wishlist Spreader",
+        desc: "Share the tracked StreamQuest wishlist link on socials or during your stream to push launch traffic to Steam.",
+      },
+    ],
+    freeCopy: true,
+    links: {
+      steam: "https://store.steampowered.com/app/2510960/Temtem_Swarm/?utm_source=streamquest",
+      official: "https://streamquest.io/quest-temtem",
+    },
+  },
+
+  {
+    slug: "gridbeat",
+    title: "GRIDbeat",
+    status: "active",
+    studio: "Amber Studios",
+    tagline: "Demo-to-launch quest focused on awareness and wishlist lift.",
+    category: "Rhythm action",
+    cover: "/firebase-public/Game Cover Art/gridbeat key art.jpg",
+    description:
+      "Rhythm-heavy activation built for demo visibility, launch-day repetition, and social-friendly creator output. Streamers captured live moments that translated directly into wishlists.",
+    about:
+      "GRIDbeat is a top-down rhythm action game where every move, attack, and dodge happens on the beat. Navigate cyber labyrinths, dodge security traps, and break Cyber.Mind bosses with timing and pattern reading.",
+    keyFeatures: [
+      "Movement, combat, and interaction all happen on the beat, so timing is everything and rhythm equals survival.",
+      "Navigate top-down cyber labyrinths packed with hidden paths, security traps, firewalls, and system hazards.",
+      "Unlock evolving abilities and power-ups that let you adapt your rhythm and survive harder encounters.",
+      "Face corrupted AI constructs and Cyber.Mind bosses built around pattern recognition and tight timing.",
+      "Recovery moments, boss patterns, and flashy encounters make it built for clips and live chat reactions.",
+    ],
+    tiers: [
+      { name: "Bronze", payout: "€10", requirement: "Stream 1 hour, 5 CCV", freeCopy: true },
+      { name: "Silver", payout: "€25", requirement: "Stream 2 hours, 15 CCV", sideQuestsRequired: true, freeCopy: true },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Link Sync",
+        desc: "Get a friend to download and play GRIDbeat with you, then submit image proof of their session.",
+      },
+      {
+        name: "Signal Boost",
+        desc: "Share a GRIDbeat clip on social media outside of Twitch and submit the link in your VOD form.",
+      },
+      {
+        name: "Launch Sequence",
+        desc: "Support the launch by streaming on March 26. If you already streamed the demo and return for the full game, you can unlock a free key.",
+      },
+    ],
+    freeCopy: true,
+    links: {
+      steam: "https://store.steampowered.com/app/3243370/GRIDbeat/?utm_source=streamquest",
+      official: "https://streamquest.io/quest-gridbeat",
+    },
+  },
+
+  {
+    slug: "astroburn",
+    title: "Astro Burn",
+    status: "active",
+    studio: "Pixel Doors × Beyond The Pixels",
+    tagline: "Score-chasing bullet-hell cute-em-up. Physical-copy prize for top score.",
+    category: "Bullet-hell co-op",
+    cover: "/media/astroburn/Vertical Capsule.webp",
+    description:
+      "Score-chasing bullet-hell cute-em-up with co-op chaos and giant adorable bosses. By Pixel Doors × Beyond The Pixels. Physical copy prize for the highest score.",
+    about:
+      "Astro Burn is a 16-bit arcade tribute starring Astro the space cat and robot sidekick AL. Stack weapons, trigger Catnip specials, and chase the leaderboard across surreal stages with screen-filling bosses.",
+    keyFeatures: [
+      "A bright, chaotic retro-inspired cute-em-up that is instantly readable on stream and perfect for fast clip moments.",
+      "Play as Astro the space cat with robot sidekick AL, a duo full of personality that sells the game at first glance.",
+      "Stack multiple weapons, fire them all at once, and trigger anime-style Catnip specials for big chat wake-up moments.",
+      "Chase a high-score leaderboard with mastery loops. A physical copy of the game goes to the top score during the campaign.",
+      "Face giant screen-filling bosses and surreal enemies in a 16-bit arcade tribute built for solo or co-op runs.",
+    ],
+    tiers: [
+      { name: "Bronze", payout: "€10", requirement: "Stream 1 hour, 5 CCV", freeCopy: true },
+      { name: "Silver", payout: "€10", rate: "€10 / hr", rateNote: "€20 total (2 × €10)", requirement: "Stream 2+ hours", sideQuestsRequired: true, freeCopy: true },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Meowments of Mayhem",
+        desc: "Share a clip from your Astro Burn stream outside Twitch on X, YouTube, Instagram, or TikTok, and tag the official accounts. One strong moment is enough to give the campaign a second life.",
+      },
+      {
+        name: "Wishlist Spreader",
+        desc: "Share your StreamQuest tracked Astro Burn wishlist link on stream, in your creator surfaces, or in social posts so wishlists land through the campaign URL.",
+      },
+      {
+        name: "Highest High Score",
+        desc: "Submit your best Astro Burn score screenshot via Discord. The creator with the highest score during the campaign wins a physical copy of the game.",
+      },
+    ],
+    freeCopy: true,
+    links: {
+      steam: "https://store.steampowered.com/app/3810660/Astro_Burn/?utm_source=SQ&utm_medium=wishlist&utm_campaign=AstroBurn&utm_content=tracked",
+      official: "https://streamquest.io/astroburn",
+    },
+  },
+
+  /* ============================================================
+     COMPLETED QUESTS — minimum-viable data, page still renders.
+     Flesh out later from squarespace-baseline/pages/*.html
+     ============================================================ */
+
+  {
+    slug: "planetoflana2",
+    title: "Planet of Lana 2",
+    status: "completed",
+    studio: "Thunderful × Sand Sailor Studio",
+    tagline: "Cinematic indie storytelling. Wishlist-focused launch campaign.",
+    category: "Cinematic adventure",
+    cover: "/firebase-public/Game Cover Art/planet of lana 2 key art.jpg",
+    description: "Paid Twitch launch campaign for Planet of Lana II in partnership with Thunderful. Bronze and Silver streaming tiers with side quests to drive Steam wishlists during the launch window.",
+    about: "Cinematic, story-rich indie adventure. Built for creators who lean into atmospheric, narrative-driven games and want to support indie launches at scale.",
+  },
+  {
+    slug: "ascendant",
+    title: "Ascendant",
+    status: "completed",
+    studio: "Wildcard Alliance",
+    tagline: "Multiplayer arena push for early-access visibility.",
+    category: "PvP arena",
+    cover: "/firebase-public/Game Cover Art/ascendant key art.jpg",
+    description: "Demo activation campaign for Ascendant during PvP Fest. 50-slot Bronze and Silver creator activation across a one-week February window on Steam.",
+    about: "Continuation of earlier playtests and closed creator sessions. The official Ascendant StreamQuest quest brought the project to a wider creator audience during PvP Fest.",
+  },
+  {
+    slug: "godbreakers",
+    title: "Godbreakers",
+    status: "completed",
+    studio: "Thunderful × Misty Whale",
+    tagline: "Demo update push for Steam Next Fest. Co-op action with side quests.",
+    category: "Co-op action",
+    cover: "/firebase-public/Game Cover Art/godbreakers key art.jpg",
+    description: "Follow-up Godbreakers campaign timed to a major demo update for Steam Next Fest. New biomes, enemies, Tangles modifiers, and cosmetics. Creators came back from the first run and pushed it again.",
+    about: "Co-op action with structured side quests. The first Godbreakers quest ran long, co-op sessions went wild, and the feedback was clear — everyone wanted more. This was the sequel quest.",
+  },
+  {
+    slug: "taxichaos2",
+    title: "Taxi Chaos 2",
+    status: "completed",
+    studio: "Focuspoint Studios × Current Games",
+    tagline: "Steam Next Fest demo with exclusive creator early access.",
+    category: "Arcade racing",
+    cover: "/firebase-public/Game Cover Art/taxi chaos 2 key art.jpg",
+    description: "Steam Next Fest demo activation for Taxi Chaos 2 with Focuspoint Studios. Exclusive creator early access weekend before the public demo dropped — one-hour arcade taxi joyrides on stream.",
+    about: "Choose a vehicle type — Heavy, Sport, or Drift — race through vibrant city streets, drift around corners, and deliver passengers on time. Pure arcade-style chaos, themed around the original Taxi Chaos returning in a wild new form.",
+  },
+  {
+    slug: "drilldelve",
+    title: "Drill and Delve",
+    status: "completed",
+    studio: "Goose Byte",
+    tagline: "Demo discovery push around procedurally generated mining runs.",
+    category: "Mining exploration",
+    cover: "/firebase-public/Game Cover Art/drill and delve key art.jpg",
+    description: "Demo discovery push for Drill and Delve — a mining and exploration game set deep underground. Procedurally generated runs and competitive leaderboards drove the streamer-friendly loop.",
+    about: "You play as a miner in the far future, working for a mega-mining corporation. A normal day on the job goes wrong, leaving you trapped inside a vast, crumbling mine. The only way out is to dig.",
+  },
+  {
+    slug: "signal",
+    title: "Signal",
+    status: "completed",
+    studio: "Goose Byte",
+    tagline: "Open-world survival activation timed to a Kickstarter push.",
+    category: "Open-world survival",
+    cover: "/firebase-public/Game Cover Art/signal key art.jpg",
+    description: "Goose Byte's atmospheric open-world survival game The Signal stepped into a Kickstarter campaign alongside this StreamQuest activation. Creators became part of the launch push.",
+    about: "Stranded on Sirenis. The Signal is an ambitious indie open-world survival project that Goose Byte self-funded for years before bringing it to community-backed development.",
+  },
+  {
+    slug: "wildcard",
+    title: "Wildcard",
+    status: "completed",
+    studio: "The Wildcard Alliance",
+    tagline: "Two-week Early Access launch for a 2v2 card-action game.",
+    category: "Card battler",
+    cover: "/firebase-public/Game Cover Art/wildcard key art.jpg",
+    description: "Early Access launch campaign for Wildcard — a 2v2 free-to-play collectible card action game where deckbuilding meets real-time arena combat. Two-week activation in October across 50 creator slots.",
+    about: "Choose your Champion, summon your allies, and battle your way to victory while streaming. Bronze tier €10 flat; Silver tier €15 per hour, paid on verified gameplay.",
+  },
+  {
+    slug: "orbyss",
+    title: "Orbyss",
+    status: "completed",
+    studio: "Misty Whale Studio",
+    tagline: "Indie puzzle spotlight. Logic and light converge.",
+    category: "Indie puzzle",
+    cover: "/firebase-public/Game Cover Art/orbyss key art.jpg",
+    description: "Indie puzzle game spotlight in partnership with Misty Whale Studio. Logic and light converge in a mesmerizing puzzle format reimagined around rhythm, precision, and visual flow.",
+    about: "Developed by a small French studio led by Yannick Audéoud. Orbyss takes the classic puzzle format and reshapes it into an experience of rhythm and pure visual flow.",
+  },
+  {
+    slug: "tableflip",
+    title: "TableFlip Simulator",
+    status: "completed",
+    studio: "Misty Whale Studio",
+    tagline: "Viral-friendly clip campaign. Streamable on first contact.",
+    category: "Physics sandbox",
+    cover: "/firebase-public/Game Cover Art/tableflip key art.jpg",
+    description: "Two-week Bronze and Silver campaign for Table Flip Simulator. 50-slot creator activation across a February to March 2026 window on Steam.",
+    about: "Physics-powered chaos therapy. De-stress by destroying everyday life situations without real-world consequences. Viral clip-friendly out of the box.",
+  },
+  {
+    slug: "cyberclutch",
+    title: "CyberClutch",
+    status: "completed",
+    studio: "1 Minus 1",
+    tagline: "Competitive PvP playtest activation with full launch run.",
+    category: "Competitive PvP",
+    cover: "/firebase-public/Game Cover Art/cyberclutch key art.jpg",
+    description: "Competitive PvP activation for CyberClutch by 1 Minus 1. Creators stress-tested the gameplay loop, server stability, and content during the live activation window.",
+    about: "Boutique-managed campaign with hands-on creator support throughout launch. Quoted by Sarah Newton (Operations Manager at 1 Minus 1) as a campaign where the streamers genuinely enjoyed themselves and it came through in the content.",
+  },
+];
+
+/* ============================================================
+   HELPERS — used by homepage, header, quest template, etc.
+   ============================================================ */
+
+export const activeQuests = quests.filter((q) => q.status === "active");
+export const completedQuests = quests.filter((q) => q.status === "completed");
+
+export const getQuestBySlug = (slug: string): Quest | undefined =>
+  quests.find((q) => q.slug === slug);
+
+export const allQuestSlugs = (): string[] => quests.map((q) => q.slug);

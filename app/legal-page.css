@@ -1,0 +1,231 @@
+/* ============================================================
+   LEGAL PAGES — Privacy Policy + Terms and Conditions
+   Compact docs-style hero, sectioned article body, TOC.
+   ============================================================ */
+
+/* ===== HERO ===== */
+.lp-hero {
+  position: relative;
+  padding-top: calc(var(--header-h) + 56px);
+  padding-bottom: 56px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.lp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 50% at 15% 25%, rgba(178, 240, 72, 0.10), transparent 65%),
+    radial-gradient(ellipse 50% 50% at 85% 75%, rgba(145, 70, 255, 0.10), transparent 65%);
+  z-index: -1;
+  pointer-events: none;
+}
+.lp-hero-inner {
+  width: min(calc(100% - 32px), 920px);
+  margin: 0 auto;
+}
+.lp-hero-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+  margin-bottom: 14px;
+}
+.lp-hero h1 {
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 16px;
+}
+.lp-hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 720px;
+  font-weight: 400;
+  margin: 0 0 18px;
+}
+.lp-hero-meta {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+.lp-hero-meta strong { color: rgba(255, 255, 255, 0.85); font-weight: 700; }
+
+.lp-hero-sep {
+  width: min(calc(100% - 32px), 920px);
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rd-line) 30%, var(--rd-line) 70%, transparent);
+}
+
+/* ===== ARTICLE BODY ===== */
+.lp-section {
+  padding: 64px 0 120px;
+  position: relative;
+}
+.lp-layout {
+  width: min(calc(100% - 32px), 1200px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.lp-article {
+  max-width: 760px;
+  min-width: 0;
+}
+.lp-article h1 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 18px;
+}
+.lp-article h2 {
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin: 48px 0 16px;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+  font-weight: 700;
+  text-transform: none;
+}
+.lp-article h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  color: var(--rd-lime);
+  margin: 28px 0 10px;
+  font-weight: 700;
+  text-transform: none;
+  font-family: var(--font-jost), system-ui, sans-serif;
+}
+.lp-article p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.75;
+  margin: 0 0 14px;
+  font-weight: 400;
+}
+.lp-article ul {
+  margin: 6px 0 18px;
+  padding: 0;
+  list-style: none;
+}
+.lp-article ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+.lp-article ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rd-lime);
+}
+.lp-article hr {
+  border: none;
+  border-top: 1px solid var(--rd-line);
+  margin: 32px 0;
+}
+
+/* ===== TABLE OF CONTENTS (left rail) ===== */
+.lp-toc {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  font-size: 12px;
+}
+.lp-toc-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rd-line);
+}
+.lp-toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: toc;
+  display: grid;
+  gap: 8px;
+}
+.lp-toc li { counter-increment: toc; }
+.lp-toc a {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.45;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  margin-left: -14px;
+}
+.lp-toc a:hover {
+  color: var(--rd-lime);
+  border-left-color: rgba(178, 240, 72, 0.5);
+}
+.lp-toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.4);
+  min-width: 22px;
+  flex-shrink: 0;
+}
+
+/* ===== INTRO BLOCK (above sections) ===== */
+.lp-intro {
+  margin-bottom: 16px;
+}
+.lp-intro p {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+@media (max-width: 1024px) {
+  .lp-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .lp-toc {
+    position: relative;
+    top: auto;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rd-line);
+  }
+}
+
+/* ===== FOOTER NOTE ===== */
+.lp-footer-note {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rd-line);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+}
+.lp-footer-note a { color: var(--rd-lime); }
+.lp-footer-note a:hover { color: var(--rd-lime-2); }

@@ -1,0 +1,416 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lime: #B2F048;
+  --lime-2: #D5FF78;
+  --twitch: #9146FF;
+  --twitch-soft: rgba(145, 70, 255, 0.22);
+  --lime-dim: rgba(178, 240, 72, 0.15);
+  --navy: #081F34;
+  --ink: #0B1723;
+  --deep: #050D15;
+  --white: #FFFFFF;
+  --offwhite: #E1DFD9;
+  --text: rgba(255, 255, 255, 0.93);
+  --muted: rgba(225, 223, 217, 0.84);
+  --soft: rgba(225, 223, 217, 0.62);
+  --border: rgba(225, 223, 217, 0.1);
+  --border-lime: rgba(178, 240, 72, 0.25);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-2: rgba(255, 255, 255, 0.09);
+  --max: 1320px;
+  --header-h: 92px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  background: var(--deep);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  letter-spacing: 0.01em;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  line-height: 1.05;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+p {
+  font-weight: 300;
+}
+
+.shell {
+  width: min(calc(100% - 40px), var(--max));
+  margin: 0 auto;
+}
+
+.hl {
+  color: var(--lime);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 28px;
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.btn-lime {
+  background: var(--lime);
+  color: var(--ink);
+}
+.btn-lime:hover {
+  background: var(--lime-2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(178, 240, 72, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--lime);
+  border: 1.5px solid var(--border-lime);
+}
+.btn-outline:hover {
+  background: var(--lime-dim);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--border-lime);
+  color: var(--lime);
+}
+
+/* See-through neon button (used in header + selected CTAs) */
+.btn-neon {
+  background: rgba(178, 240, 72, 0.05);
+  color: var(--lime);
+  border: 1.5px solid rgba(178, 240, 72, 0.6);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow:
+    0 0 14px rgba(178, 240, 72, 0.32),
+    inset 0 0 14px rgba(178, 240, 72, 0.05);
+  animation: btn-neon-pulse 2.6s ease-in-out infinite;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+.btn-neon:hover {
+  background: rgba(178, 240, 72, 0.14);
+  border-color: rgba(178, 240, 72, 1);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 30px rgba(178, 240, 72, 0.55),
+    inset 0 0 18px rgba(178, 240, 72, 0.1);
+}
+@keyframes btn-neon-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 14px rgba(178, 240, 72, 0.32),
+      inset 0 0 14px rgba(178, 240, 72, 0.05);
+  }
+  50% {
+    box-shadow:
+      0 0 24px rgba(178, 240, 72, 0.5),
+      inset 0 0 18px rgba(178, 240, 72, 0.1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-neon { animation: none !important; }
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  z-index: 999;
+  padding: 12px 20px;
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ============================================================
+   HEADER NAV — Active / Past Quests visual mega-dropdown
+   ============================================================ */
+.nav-dd {
+  position: relative;
+}
+
+/* Tiny lime pulse next to "Active Quests" so the live count is obvious */
+.nav-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--lime);
+  box-shadow: 0 0 10px rgba(178, 240, 72, 0.85);
+  animation: nav-pulse-blink 1.8s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes nav-pulse-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-pulse { animation: none; }
+}
+
+/* Invisible hover bridge so the panel stays open while the cursor
+   crosses the gap between the trigger button and the floating panel. */
+.nav-dd-bridge {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 220px;
+  height: 16px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.nav-dd:hover .nav-dd-bridge,
+.nav-dd:focus-within .nav-dd-bridge {
+  pointer-events: auto;
+}
+
+.nav-dd-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: rgba(6, 15, 24, 0.97);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(178, 240, 72, 0.22);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(0, 0, 0, 0.4);
+  padding: 18px 18px 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  z-index: 160;
+}
+.nav-dd:hover .nav-dd-panel,
+.nav-dd:focus-within .nav-dd-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dd-panel--active {
+  width: min(820px, calc(100vw - 32px));
+  border-color: rgba(178, 240, 72, 0.28);
+}
+.nav-dd-panel--past {
+  width: min(720px, calc(100vw - 32px));
+  border-color: rgba(145, 70, 255, 0.32);
+}
+
+.nav-dd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.nav-dd-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+.nav-dd-eyebrow--past {
+  color: rgba(190, 160, 255, 0.95);
+}
+.nav-dd-all {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+  transition: color 0.2s ease;
+}
+.nav-dd-all:hover {
+  color: var(--lime);
+}
+
+.nav-dd-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+.nav-dd-grid--past {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+@media (max-width: 900px) {
+  .nav-dd-grid,
+  .nav-dd-grid--past { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .nav-dd-grid,
+  .nav-dd-grid--past { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.nav-dd-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-width: 0;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.2s ease;
+}
+.nav-dd-card:hover {
+  border-color: rgba(178, 240, 72, 0.55);
+  background: rgba(178, 240, 72, 0.06);
+  transform: translateY(-2px);
+}
+.nav-dd-card--past:hover {
+  border-color: rgba(145, 70, 255, 0.55);
+  background: rgba(145, 70, 255, 0.08);
+}
+
+.nav-dd-thumb {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #050d15;
+  width: 100%;
+}
+.nav-dd-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  filter: brightness(0.88) saturate(1.05);
+}
+.nav-dd-card:hover .nav-dd-thumb img {
+  transform: scale(1.06);
+  filter: brightness(1) saturate(1.1);
+}
+.nav-dd-tagstrip {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  background: rgba(178, 240, 72, 0.95);
+  color: var(--ink);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.nav-dd-tagstrip::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--ink);
+  animation: nav-pulse-blink 1.8s ease-in-out infinite;
+}
+.nav-dd-tagstrip::after {
+  content: "LIVE";
+}
+
+.nav-dd-meta {
+  padding: 10px 10px 12px;
+}
+.nav-dd-title {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-dd-studio {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.nav-dd-cat {
+  margin-top: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(178, 240, 72, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
