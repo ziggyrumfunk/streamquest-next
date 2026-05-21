@@ -130,10 +130,10 @@ const taxiCase = {
   keyart: "/firebase-public/TaxiChaos2/key art.jpg",
   trailer: "odR4CLlU5NY",
   screenshots: [
+    "/firebase-public/TaxiChaos2/screenshot-4.png",
     "/firebase-public/TaxiChaos2/screenshot-1.jpg",
     "/firebase-public/TaxiChaos2/screenshot-2.jpg",
     "/firebase-public/TaxiChaos2/screenshot-3.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-4.png",
     "/firebase-public/TaxiChaos2/screenshot-5.jpg",
     "/firebase-public/TaxiChaos2/screenshot-6.jpg",
     "/firebase-public/TaxiChaos2/screenshot-7.jpg",
@@ -168,7 +168,7 @@ const goodHeavensCase = {
   name: "Good Heavens",
   studio: "Nowhere Studios and Rocketride Games",
   service: "Indie marketing studio (no creator activation)",
-  keyart: "/firebase-public/GoodHeavensRPG/pitch deck cover.png",
+  keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).png",
   trailer: "lXPPZyEKGtM",
   screenshots: [
     "/firebase-public/GoodHeavensRPG/gameplay (1).jpg",
@@ -186,6 +186,7 @@ const goodHeavensCase = {
     "Steam storefront support for events, capsules, and announcements.",
   ],
   status: "Ongoing pre-launch programme. Results pending.",
+  landingPage: "https://www.goodheavensrpg.co",
   links: [
     { label: "Steam",      href: "https://store.steampowered.com/app/1617120/Good_Heavens/" },
     { label: "Instagram",  href: "https://www.instagram.com/goodheavensrpg/" },
@@ -750,6 +751,23 @@ export default function PitchPage() {
               ))}
             </div>
           </Reveal>
+
+          {goodHeavensCase.landingPage && (
+            <Reveal>
+              <a
+                href={goodHeavensCase.landingPage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pitch-case-landing"
+              >
+                <span className="pitch-case-landing-eyebrow">Landing page we built</span>
+                <span className="pitch-case-landing-title">
+                  Visit <span className="grad">goodheavensrpg.co</span>
+                </span>
+                <span className="pitch-case-landing-arrow" aria-hidden="true">→</span>
+              </a>
+            </Reveal>
+          )}
 
           <Reveal>
             <div className="pitch-case-links">
