@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode, type ElementType } from "react";
 
 type RevealProps = {
   children: ReactNode;
@@ -19,13 +19,12 @@ export default function Reveal({
   className,
   as: Tag = "div",
 }: RevealProps) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    // Prefers-reduced-motion users: show immediately.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(true);
       return;
@@ -43,19 +42,21 @@ export default function Reveal({
     return () => obs.disconnect();
   }, []);
 
+  const TagAny = Tag as unknown as ElementType;
+  const transition = "opacity 0.7s ease " + delay + "s, transform 0.7s ease " + delay + "s";
+
   return (
-    // @ts-expect-error generic JSX tag type
-    <Tag
+    <TagAny
       ref={ref}
       className={className}
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
+        transition,
         willChange: "opacity, transform",
       }}
     >
       {children}
-    </Tag>
+    </TagAny>
   );
 }
