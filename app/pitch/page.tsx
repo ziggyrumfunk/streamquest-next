@@ -127,10 +127,9 @@ const taxiCase = {
   name: "Taxi Chaos 2",
   studio: "Current Games and Focuspoint Studios",
   service: "Full marketing partnership",
-  keyart: "/firebase-public/TaxiChaos2/key art.jpg",
+  keyart: "/firebase-public/TaxiChaos2/screenshot-4.png",
   trailer: "odR4CLlU5NY",
   screenshots: [
-    "/firebase-public/TaxiChaos2/screenshot-4.png",
     "/firebase-public/TaxiChaos2/screenshot-1.jpg",
     "/firebase-public/TaxiChaos2/screenshot-2.jpg",
     "/firebase-public/TaxiChaos2/screenshot-3.jpg",
@@ -138,6 +137,7 @@ const taxiCase = {
     "/firebase-public/TaxiChaos2/screenshot-6.jpg",
     "/firebase-public/TaxiChaos2/screenshot-7.jpg",
     "/firebase-public/TaxiChaos2/screenshot-8.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-9.jpg",
   ],
   stats: [
     { num: "7.79M", label: "Owned channel views" },
