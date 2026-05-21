@@ -66,6 +66,7 @@ export type Quest = {
   category?: string;             // genre tag
   cover: string;                 // landscape hero image
   portrait?: string;             // 3:4 library-grid image (defaults to cover)
+  logo?: string;                 // optional game logo (transparent PNG) for hero-card overlay
   description?: string;          // 2-3 sentence paragraph
   about?: string;                // longer "about the game" paragraph
   keyFeatures?: string[];        // game-feature bullets shown on the brief
@@ -359,6 +360,7 @@ export const quests: Quest[] = [
     category: "Event quest · virtual expo",
     cover: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
     portrait: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
+    logo: "/firebase-public/Logos Partner/Endix.png",
     description:
       "This is a special event quest, not a default game quest. Your mission is to guide your audience through Endix, visit the required areas, highlight the participating games, and drive wishlists through the campaign link.",
     about:

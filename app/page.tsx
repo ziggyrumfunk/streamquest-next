@@ -193,6 +193,7 @@ export default async function HomePage() {
       title: q.title,
       tagline: q.tagline,
       cover: q.cover,
+      logo: q.logo,
       feature: i === 0,
     }));
   const library = all.map((q) => ({
@@ -335,21 +336,25 @@ export default async function HomePage() {
           </Reveal>
 
           <Reveal>
-            <div className="rd-active-featured">
+            <div className={`rd-active-featured${activeQuests.length === 1 ? " is-single" : ""}`}>
               {activeQuests.map((q) => (
                 <Link
                   key={q.slug}
                   href={`/quests/${q.slug}`}
-                  className={`rd-active-card ${q.feature ? "feature" : ""}`}
+                  className={`rd-active-card is-active ${q.feature ? "feature" : ""}${q.logo ? " has-logo" : ""}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={q.cover} alt={`${q.title} key art`} loading="lazy" />
+                  {q.logo && (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img src={q.logo} alt={q.title} className="rd-active-logo" loading="lazy" />
+                  )}
                   <div className="rd-active-body">
                     <div className="rd-active-status">
                       <span className="pd" />
                       Active
                     </div>
-                    <h3>{q.title}</h3>
+                    {!q.logo && <h3>{q.title}</h3>}
                     <p className="rd-active-tag">{q.tagline}</p>
                     <span className="rd-active-cta">Mission brief →</span>
                   </div>
