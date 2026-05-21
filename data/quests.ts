@@ -351,6 +351,223 @@ export const quests: Quest[] = [
   },
 
   {
+    slug: "endix",
+    title: "Endix May Showcase",
+    status: "active",
+    studio: "Endix Expo",
+    tagline: "Special StreamQuest event quest inside the Endix virtual expo.",
+    category: "Event quest · virtual expo",
+    cover: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
+    portrait: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
+    description:
+      "This is a special event quest, not a default game quest. Your mission is to guide your audience through Endix, visit the required areas, highlight the participating games, and drive wishlists through the campaign link.",
+    about:
+      "Treat Endix like walking through a convention with your community, not loading into a random multiplayer lobby. Explain what Endix is, invite viewers to join for free, visit the required areas, highlight games and booths, and make natural wishlist callouts using the provided link.",
+    keyFeatures: [
+      "Virtual expo space full of booths, mini-games, and live activations to walk through with chat.",
+      "THQ Nordic Island, Dave the Diver Activation, Frozen District, Alienware Climb Trial, and two booth floors to explore.",
+      "Wishlist driven main goal that fits naturally into commentary and overlays.",
+      "Free for viewers to download and join, making it easy to invite chat to follow along.",
+      "Streamable on first contact since the showcase format does most of the storytelling for you.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        requirement: "Complete the Endix route with at least 1 hour of stream coverage and valid proof. Bronze rank required.",
+        freeCopy: false,
+      },
+      {
+        name: "Silver",
+        payout: "€20",
+        rate: "€10 / hr",
+        rateNote: "€20 total · Silver rank required",
+        requirement: "Complete the Endix route with at least 2 hours of stream coverage and valid proof. Silver rank required.",
+        sideQuestsRequired: false,
+        freeCopy: false,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "StreamQuest Booth Photo",
+        xp: 50,
+        desc: "Take a screenshot in front of the StreamQuest booth inside Endix and submit it with your proof.",
+      },
+      {
+        name: "Wishlist Signal",
+        xp: 50,
+        desc: "Make a social post explaining that Endix is free to join and include the wishlist or sale page link.",
+      },
+      {
+        name: "Expo Clip",
+        xp: 50,
+        desc: "Share a clip showing a booth, mini-game, giveaway, community moment, or wishlist callout.",
+      },
+    ],
+    rules: [
+      "Stream in the Endix Twitch category and add Endix to your stream title.",
+      "Use the wishlist link on stream via chatbot, panels, or commands and call it out naturally.",
+      "Visit all 6 required areas: THQ Nordic Island, Dave the Diver Activation, Frozen District, First Floor, Second Floor, Alienware Climb Trial.",
+      "Publish 1 social post with the campaign link, hashtag Endix, and tag @Endix_Expo where possible.",
+      "Submit a VOD plus the Twitch stream summary printscreen with Unique Viewers visible. No Excel sheet for this quest.",
+      "Bronze and Silver rewards are based on your unlocked StreamQuest rank. You cannot manually choose Silver if your rank has not unlocked it.",
+      "No double dipping: creators already activated for this Endix beat outside StreamQuest are not eligible.",
+    ],
+    freeCopy: false,
+    links: {
+      steam: "https://store.steampowered.com/app/4356840/Endix/",
+      official: "https://streamquest.io/endix",
+    },
+
+    duration: "Event window",
+    slots: 50,
+    platforms: ["PC (Steam)", "PC (Epic Games Store)"],
+
+    heroMeta: [
+      { label: "Applications", value: "Creator Dashboard" },
+      { label: "Slots", value: "Max 50 creators" },
+      { label: "Main goal", value: "Wishlists" },
+      { label: "Proof", value: "Area screenshots required" },
+    ],
+
+    tldr: [
+      { stat: "€10", label: "Bronze tier", sub: "1h stream, Bronze rank required" },
+      { stat: "€20", label: "Silver tier", sub: "2h stream at €10/h, Silver rank required" },
+      { stat: "50", label: "Creator slots", sub: "Curated, not first come first served" },
+      { stat: "6", label: "Required areas", sub: "Visit all 6 inside Endix" },
+    ],
+    tldrFootnotes: [
+      "Special event quest, not a default game quest.",
+      "Main goal is wishlists for participating games.",
+      "Submit a Twitch stream summary printscreen with Unique Viewers visible. No Excel sheet for this quest.",
+    ],
+
+    screenshots: [
+      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
+      "/firebase-public/Endix May 2026/505 Games outside.jpg",
+      "/firebase-public/Endix May 2026/Gothic.png",
+      "/firebase-public/Endix May 2026/Sea of Rifts.png",
+      "/firebase-public/Endix May 2026/Akatori.jpg",
+      "/firebase-public/Endix May 2026/Alpha Nomos.jpg",
+    ],
+
+    storyParagraphs: [
+      "Endix is a special StreamQuest event quest built around the May beat of the virtual expo. Selected creators stream the showcase, walk viewers through the required areas, and push wishlists for the participating games using the campaign link.",
+      "Your main mission is to make Endix understandable and exciting for your viewers. Treat it like walking through a convention with your community, not loading into a random multiplayer lobby. Explain what Endix is, invite viewers to join for free, visit the required areas, highlight games and booths, and make natural wishlist callouts.",
+      "The win condition is simple. Make viewers care enough to open the Endix sale page and wishlist participating titles.",
+    ],
+    storyPull:
+      "Your quest: turn Endix into an event your viewers want to walk through with you, not background noise behind your facecam.",
+    storyAside:
+      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
+    storyAsideCaption: "Expo Center, explore together with viewers",
+    shortDescription:
+      "Endix is a virtual game expo platform. The StreamQuest May Showcase quest pays Bronze and Silver creators to walk their community through the event, visit six required areas, and drive wishlists for participating games via the campaign link.",
+
+    sideQuestIntro:
+      "Each side quest is +50 XP, self contained, and stackable. Submit proof screenshots alongside your main VOD.",
+    sideQuestOutro:
+      "Side quests boost your run but the main mission and proof submission still drive your reward tier.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/4356840/Endix/?utm_source=StreamQuest&utm_medium=wishlist&utm_campaign=Endix_May2026&utm_content=tracked",
+    trackedWishlistNote:
+      "Use this for on-stream callouts and in your social proof post. If StreamQuest gives you a per-creator link in Discord, prefer that one.",
+
+    gallery: {
+      wide: "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
+      thumbs: [
+        "/firebase-public/Endix May 2026/505 Games outside.jpg",
+        "/firebase-public/Endix May 2026/Akatori.jpg",
+        "/firebase-public/Endix May 2026/Alpha Nomos.jpg",
+        "/firebase-public/Endix May 2026/Gothic.png",
+        "/firebase-public/Endix May 2026/Sea of Rifts.png",
+        "/firebase-public/Endix May 2026/Hela.jpg",
+        "/firebase-public/Endix May 2026/Inferius.jpg",
+        "/firebase-public/Endix May 2026/Mexican Ninja.jpg",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest, clip and wishlist posts",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "Endix",
+        hint: "Tag @Endix_Expo on social, use hashtag Endix",
+        links: [
+          { type: "website", href: "https://endix.app" },
+          { type: "x", href: "https://x.com/Endix_Expo" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Download Endix",
+        href: "https://store.steampowered.com/app/4356840/Endix/",
+        icon: "steam",
+      },
+      {
+        name: "Epic Games Store",
+        sub: "Download Endix",
+        href: "https://store.epicgames.com/en-US/p/endix-9f1da1",
+        icon: "epic",
+      },
+      {
+        name: "Twitch category",
+        sub: "twitch.tv/directory/category/endix",
+        href: "https://www.twitch.tv/directory/category/endix",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Selection",
+        body: "Curated, max 50 creators, not first come first served. StreamQuest selects for fit, quality, region and language spread, rank access, and whether the creator can actually help make the event visible.",
+      },
+      {
+        heading: "Rank gating",
+        body: "Your reward tier is based on your unlocked StreamQuest rank. Bronze and Silver are not a manual choice. Apply at the rank you currently hold.",
+      },
+      {
+        heading: "Required route",
+        body: "Visit all 6 required areas inside Endix: THQ Nordic Island plus 5 games, Dave the Diver Activation, Frozen District, First Floor with 6 booths, Second Floor with 6 booths, and the Alienware Climb Trial. Capture a recognizable screenshot for each.",
+      },
+      {
+        heading: "Proof",
+        body: "Submit your Twitch VOD, the Twitch stream summary printscreen with Unique Viewers visible, screenshots for each required area, your social post URL with hashtag Endix and tag @Endix_Expo, and proof that the wishlist link was on stream (chatbot, command, panel, or VOD timestamp).",
+      },
+      {
+        heading: "Settings tips",
+        body: "Mute all voice chat via Escape, Settings, Audio, Voice Chat Output Volume zero. Hide other players or name tags via Escape, Settings, General if the event gets crowded. Press E near QR codes so viewers can scan them on stream.",
+      },
+      {
+        heading: "No double dipping",
+        body: "Creators already activated for this Endix beat outside StreamQuest are not eligible for this StreamQuest quest.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard" },
+      { title: "Wait for selection", sub: "Curated list, max 50 creators" },
+      { title: "Join Discord", sub: "Selected creators are briefed and supported there" },
+      { title: "Download Endix", sub: "Steam or Epic Games Store" },
+      { title: "Stream the route", sub: "Endix category plus all 6 required areas" },
+      { title: "Submit proof", sub: "VOD, area screenshots, social URL, stream summary" },
+    ],
+  },
+
+  {
     slug: "aska",
     title: "ASKA",
     status: "active",
