@@ -62,24 +62,28 @@ const compareRows = [
   { label: "Longevity", a: "High odds to continue streaming the game after contractual obligations.", b: "Unlikely to continue playing the game after contractual obligations." },
 ];
 
-const questModel = [
+type QuestModelClip = { mp4: string; poster?: string };
+const questModel: { name: string; body: string; clip: QuestModelClip }[] = [
   {
     name: "Main quest",
     body: "The primary objective for a campaign. The core task creators must complete to get paid and earn XP. Stream hours, category, side quest requirements.",
-    aside: "/firebase-public/Questy New Folder/Questy Regular Size (1).png",
-    asideKind: "questy",
+    clip: {
+      mp4:  "/media/clips/clip-1.mp4",
+    },
   },
   {
     name: "Side quests",
     body: "Optional extra challenges that unlock bonus XP. Post a gameplay clip, write a Steam review, share the wishlist link, complete a survey, finish the game.",
-    aside: "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
-    asideKind: "screenshot",
+    clip: {
+      mp4:  "/media/clips/clip-2.mp4",
+    },
   },
   {
     name: "XP and tiers",
     body: "Bronze (5+ average viewers, top 6% of Twitch), Silver (15+ average viewers, top 3%), Gold (top XP earners, custom rates). Creators level up across quests.",
-    aside: "/firebase-public/Questy New Folder/Questy Regular Size (5).png",
-    asideKind: "questy",
+    clip: {
+      mp4:  "/media/clips/clip-3.mp4",
+    },
   },
 ];
 
@@ -352,9 +356,18 @@ export default function PitchPage() {
                     <h3>{m.name}</h3>
                     <p>{m.body}</p>
                   </div>
-                  <div className={`pitch-zig-aside ${m.asideKind === "questy" ? "is-questy" : "is-shot"}`}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={m.aside} alt="" loading="lazy" />
+                  <div className="pitch-zig-aside is-clip">
+                    <video
+                      className="pitch-zig-video"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
+                      aria-hidden="true"
+                    >
+                      <source src={m.clip.mp4} type="video/mp4" />
+                    </video>
                   </div>
                 </div>
               </Reveal>

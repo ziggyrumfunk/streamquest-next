@@ -910,3 +910,40 @@
   max-width: 640px;
   margin: 0 auto 32px;
 }
+
+/* ---- Quest model: looping Twitch clip in the aside slot ---- */
+.pitch-zig-aside.is-clip {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--rd-line);
+  background: var(--rd-deep-2);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+.pitch-zig-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.95) saturate(1.05);
+  transition: filter 0.3s ease, transform 0.5s ease;
+}
+.pitch-zig-aside.is-clip:hover .pitch-zig-video {
+  filter: brightness(1.05) saturate(1.1);
+  transform: scale(1.02);
+}
+/* Lime overlay tint kept very subtle so the gameplay still reads cleanly */
+.pitch-zig-aside.is-clip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(5, 9, 19, 0.5) 100%);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pitch-zig-video { /* let browser handle autoplay; users with this set won't see motion anyway */
+    animation: none;
+  }
+}
