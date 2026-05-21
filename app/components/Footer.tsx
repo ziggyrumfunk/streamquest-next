@@ -26,6 +26,7 @@ export default function Footer() {
           <div className="text-white/95 font-bold mb-3 tracking-wide">For Studios</div>
           <ul className="space-y-2 text-white/70">
             <li><Link href="/brands" className="hover:text-lime">Brands</Link></li>
+            <li><Link href="/pitch" className="hover:text-lime">For partners</Link></li>
             <li><Link href="/faq" className="hover:text-lime">FAQ</Link></li>
           </ul>
         </div>
