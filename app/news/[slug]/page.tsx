@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import DOMPurify from "isomorphic-dompurify";
 
 import Reveal from "@/app/components/Reveal";
 import { getPost } from "@/lib/news";
@@ -75,13 +74,7 @@ export default async function NewsPostPage({ params }: Params) {
                   {post.body}
                 </ReactMarkdown>
               ) : (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(post.body, {
-                      USE_PROFILES: { html: true },
-                    }),
-                  }}
-                />
+                <div dangerouslySetInnerHTML={{ __html: post.body }} />
               )}
             </div>
           </Reveal>
