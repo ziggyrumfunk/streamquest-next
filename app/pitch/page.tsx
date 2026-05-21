@@ -103,10 +103,18 @@ const usps = [
   { t: "Indie made for indies", d: "Built by people with a background in games and streaming who understand indie challenges and treat every campaign like it matters." },
 ];
 
-const services = [
-  { t: "Storefront", d: "Steam page audit, copy, capsules, localization, event timing. Custom GIFs and short video loops on the storefront.", big: true },
-  { t: "Creator campaigns", d: "Vetted streamer activations through StreamQuest, mission briefs, payouts, KPI reporting baked in.", big: true },
-  { t: "Social and community", d: "Planning, publishing, optimization, multi-platform native content. Discord, Reddit, Steam Hub, comment moderation." },
+const creatorActivation = [
+  { t: "Quest design", d: "We translate your launch goals into a mission brief: stream hours, category, side quests, payout tiers, proof rules." },
+  { t: "Creator vetting", d: "Hand-picked micro-streamers per campaign. Manual review for content fit, audience, region, quality." },
+  { t: "Mission ops", d: "Approvals, key distribution, Discord coordination, VOD verification, side quest submissions, all handled by us." },
+  { t: "Payouts", d: "We pay creators directly via their Twitch donation setup. No invoices for them to chase. Unused credits are refunded to you." },
+  { t: "KPI reporting", d: "Monthly KPI deck with creator-level stats, peak viewers, watch-hours, social proof, and storefront UTM tracking." },
+];
+
+const marketingStudio = [
+  { t: "Storefront", d: "Steam page audit, copy, capsules, localization, event timing. Custom GIFs and short video loops on the storefront." },
+  { t: "Social media", d: "Planning, publishing, optimization, multi-platform native content. Native short-form per platform, not cross-posted." },
+  { t: "Community management", d: "Discord, Reddit, Steam Hub, comment moderation, weekly engagement, dev-to-community translation." },
   { t: "Content and trailers", d: "Short-form video, graphics, screenshots, trailers, key art support. In-game capture handled by us." },
   { t: "Paid ads", d: "Meta, Reddit, YouTube. Creative testing, region targeting, budget reallocation to top performers." },
   { t: "Media kit", d: "Press-ready media kits with key art, screenshots, logos, fact sheets, trailers, and embed-ready assets." },
@@ -114,12 +122,23 @@ const services = [
   { t: "Launch ops", d: "Daily monitoring, rapid replies, post-launch momentum, post-mortem." },
 ];
 
-/* Taxi Chaos 2 case study assets (the one in the user-supplied copy). */
+/* Taxi Chaos 2 case study assets. */
 const taxiCase = {
-  hero: "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
-  keyart: "/firebase-public/Game Cover Art/taxi chaos 2 key art.jpg",
-  altShot: "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
+  name: "Taxi Chaos 2",
+  studio: "Current Games and Focuspoint Studios",
+  service: "Full marketing partnership",
+  keyart: "/firebase-public/TaxiChaos2/key art.jpg",
   trailer: "odR4CLlU5NY",
+  screenshots: [
+    "/firebase-public/TaxiChaos2/screenshot-1.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-2.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-3.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-4.png",
+    "/firebase-public/TaxiChaos2/screenshot-5.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-6.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-7.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-8.jpg",
+  ],
   stats: [
     { num: "7.79M", label: "Owned channel views" },
     { num: "5.93M", label: "Reddit reach" },
@@ -133,10 +152,47 @@ const taxiCase = {
     "Custom Steam description content with bespoke animated GIFs and short video loops that live directly inside the storefront.",
     "In-game screenshot and clip capture. We play through builds ourselves to produce storefront imagery and social-ready content.",
     "Social media management across Instagram, TikTok, Facebook, X, and Reddit. Native short-form video, graphics, weekly publishing.",
-    "Influencer activation: vetted creator sourcing, onboarding, mission briefs, verified submissions, managed payouts.",
+    "Influencer activation through StreamQuest: vetted creator sourcing, onboarding, mission briefs, verified submissions, managed payouts.",
     "Paid ads: multi-region, multi-ad-set structure, creative A/B testing, budget reallocation, full CPC, CPM, CTR reporting.",
     "Community ops across Discord, Steam Hub, and Reddit with active moderation and engagement.",
     "Monthly KPI reporting with budget reconciliation and transparent close-out.",
+  ],
+  links: [
+    { label: "Instagram",  href: "https://www.instagram.com/current.games/" },
+    { label: "Watch trailer", href: "https://www.youtube.com/watch?v=odR4CLlU5NY" },
+  ],
+};
+
+/* Good Heavens case study assets. */
+const goodHeavensCase = {
+  name: "Good Heavens",
+  studio: "Nowhere Studios and Rocketride Games",
+  service: "Indie marketing studio (no creator activation)",
+  keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).png",
+  logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).png",
+  hero: "/firebase-public/GoodHeavensRPG/main art background.jpg",
+  highlightVideo: "/firebase-public/GoodHeavensRPG/d&n_optimized.webm",
+  screenshots: [
+    "/firebase-public/GoodHeavensRPG/gameplay (1).jpg",
+    "/firebase-public/GoodHeavensRPG/gameplay (2).jpg",
+    "/firebase-public/GoodHeavensRPG/gameplay (3).jpg",
+    "/firebase-public/GoodHeavensRPG/gameplay (4).jpg",
+    "/firebase-public/GoodHeavensRPG/Scholar City.jpg",
+    "/firebase-public/GoodHeavensRPG/War City 4.jpg",
+  ],
+  scope: [
+    "Active Discord community management: moderation, onboarding, weekly engagement, dev-to-community translation, event coordination.",
+    "Heavy organic Reddit growth focus. Long-form posts designed to spark discussion, with multiple posts reaching the top of the month on r/gameart, r/IndieDev, and r/pcgames.",
+    "Building familiarity with characters, mechanics, and world details well before Early Access launch, so launch day audiences already know what they are looking at.",
+    "Social presence across Instagram, TikTok, X, Facebook, YouTube, and Reddit. Content tailored per platform, not cross-posted.",
+    "Steam storefront support for events, capsules, and announcements.",
+  ],
+  status: "Ongoing pre-launch programme. Results pending.",
+  links: [
+    { label: "Steam",      href: "https://store.steampowered.com/app/1617120/Good_Heavens/" },
+    { label: "Instagram",  href: "https://www.instagram.com/goodheavensrpg/" },
+    { label: "TikTok",     href: "https://www.tiktok.com/@good.heavens64" },
+    { label: "Reddit",     href: "https://www.reddit.com/r/GoodHeavens/" },
   ],
 };
 
@@ -432,25 +488,87 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ============ SERVICES — asymmetric: 2 large featured + 6 smaller ============ */}
+      {/* ============ TWO TRACKS — intro ============ */}
       <section className="pitch-section">
         <div className="rd-shell">
           <Reveal>
             <div className="pitch-head-wide">
-              <span className="rd-section-tag">Marketing services</span>
+              <span className="rd-section-tag">Two services, separately or together</span>
               <h2>
-                One partner, <span className="grad">modular scope</span>.
+                Creator activation <span className="grad">or</span> a full indie marketing studio.
               </h2>
               <p>
-                Hire us for a single focused sprint, or plug us in as your external marketing team.
-                We adapt to your roadmap: Steam Next Fest, Early Access, full launch, post-launch updates.
+                These are two distinct offerings. Creator activation is our gamified StreamQuest
+                quest model. The marketing studio is content, storefronts, social, community, paid ads,
+                and reporting. Hire one without the other, or run both together.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="pitch-tracks">
+              <div className="pitch-track pitch-track-a">
+                <span className="pitch-track-eyebrow">Track 1</span>
+                <h3>Creator activation</h3>
+                <p>50+ vetted micro-streamers per campaign. Mission briefs, payouts, KPI reporting, all under the gamified StreamQuest model. Independent of any other marketing work.</p>
+              </div>
+              <div className="pitch-track pitch-track-b">
+                <span className="pitch-track-eyebrow">Track 2</span>
+                <h3>Indie marketing studio</h3>
+                <p>Storefronts, social media, community, content, paid ads, media kits, reporting, launch ops. Full marketing partnership or single sprints. No creator activation required.</p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ CREATOR ACTIVATION — service list ============ */}
+      <section className="pitch-section pitch-section-shaded">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="pitch-head-wide">
+              <span className="rd-section-tag">Track 1 — Creator activation</span>
+              <h2>
+                What is included in a <span className="grad">StreamQuest campaign</span>.
+              </h2>
+              <p>
+                Hand-picked micro-streamers play your game, hit measurable goals, and get paid per
+                completed activation. Setup, vetting, key delivery, payouts, and reporting are all on us.
               </p>
             </div>
           </Reveal>
           <Reveal>
             <div className="pitch-services">
-              {services.map((s) => (
-                <article key={s.t} className={`pitch-service${s.big ? " is-big" : ""}`}>
+              {creatorActivation.map((s) => (
+                <article key={s.t} className="pitch-service">
+                  <span className="pitch-service-mark" aria-hidden="true">+</span>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ INDIE MARKETING STUDIO — service list ============ */}
+      <section className="pitch-section">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="pitch-head-wide">
+              <span className="rd-section-tag">Track 2 — Indie marketing studio</span>
+              <h2>
+                Branding, social, storefronts, <span className="grad">community</span>, and more.
+              </h2>
+              <p>
+                Hire us for a single focused sprint or as your external marketing team. Each service
+                below can be scoped on its own. Creator activation is not required.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="pitch-services">
+              {marketingStudio.map((s) => (
+                <article key={s.t} className="pitch-service">
                   <span className="pitch-service-mark" aria-hidden="true">+</span>
                   <h3>{s.t}</h3>
                   <p>{s.d}</p>
@@ -487,34 +605,41 @@ export default function PitchPage() {
 
       {/* ============ CASE STUDY: TAXI CHAOS 2 ============ */}
       <section className="pitch-case-section">
-        {/* Full-bleed image strip */}
+        {/* Full-bleed image strip uses one of the new screenshots */}
         <div className="pitch-case-strip" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={taxiCase.hero} alt="" loading="lazy" />
+          <img src={taxiCase.screenshots[0]} alt="" loading="lazy" />
           <div className="pitch-case-strip-veil" />
         </div>
 
         <div className="rd-shell pitch-case-wrap">
           <Reveal>
             <div className="pitch-case-head">
-              <span className="rd-section-tag">Selected work</span>
+              <span className="rd-section-tag">Case study — {taxiCase.service}</span>
               <h2>
-                Full retainer, <span className="grad">trailer pickup on IGN</span>.
+                {taxiCase.name}: <span className="grad">trailer pickup on IGN</span>.
               </h2>
               <p>
-                Long-running marketing partnership across Steam, PlayStation 5, Xbox, Nintendo Switch,
-                and Epic Games Store. Trailer production, storefronts, social, paid ads, and creator
-                activation, all under one roof.
+                {taxiCase.studio}. Long-running marketing partnership across Steam, PlayStation 5,
+                Xbox, Nintendo Switch, and Epic Games Store. Trailer production, storefronts, social,
+                paid ads, and creator activation, all under one roof.
               </p>
             </div>
           </Reveal>
 
           <Reveal>
+            <div className="pitch-case-keyart">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={taxiCase.keyart} alt={`${taxiCase.name} key art`} loading="lazy" />
+            </div>
+          </Reveal>
+
+          <Reveal>
             <div className="pitch-stats-hero">
-              {taxiCase.stats.map((s, i) => (
-                <div key={s.label} className={`pitch-stat-hero${i === 0 ? " is-lead" : ""}`}>
-                  <div className="pitch-stat-num">{s.num}</div>
-                  <div className="pitch-stat-label">{s.label}</div>
+              {taxiCase.stats.map((stat, i) => (
+                <div key={stat.label} className={`pitch-stat-hero${i === 0 ? " is-lead" : ""}`}>
+                  <div className="pitch-stat-num">{stat.num}</div>
+                  <div className="pitch-stat-label">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -524,7 +649,7 @@ export default function PitchPage() {
             <div className="pitch-video-wrap">
               <iframe
                 src={`https://www.youtube-nocookie.com/embed/${taxiCase.trailer}?rel=0&modestbranding=1`}
-                title="Gameplay trailer picked up by IGN"
+                title={`${taxiCase.name} gameplay trailer picked up by IGN`}
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -532,57 +657,120 @@ export default function PitchPage() {
             </div>
           </Reveal>
 
-          <div className="pitch-case-split">
-            <Reveal>
-              <ul className="pitch-case-list">
-                {taxiCase.scope.map((s) => (
-                  <li key={s}>{s}</li>
+          <Reveal>
+            <ul className="pitch-case-list">
+              {taxiCase.scope.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal>
+            <div className="pitch-case-gallery">
+              {taxiCase.screenshots.slice(1).map((src) => (
+                <div key={src} className="pitch-case-shot">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="pitch-case-links">
+              <span className="pitch-case-links-label">Follow {taxiCase.name}</span>
+              <div className="pitch-case-links-row">
+                {taxiCase.links.map((l) => (
+                  <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="pitch-case-link">
+                    {l.label}
+                  </a>
                 ))}
-              </ul>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="pitch-case-imgs">
-                <div className="pitch-case-img pitch-case-img-keyart">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={taxiCase.keyart} alt="Taxi Chaos 2 key art" loading="lazy" />
-                </div>
-                <div className="pitch-case-img pitch-case-img-shot">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={taxiCase.altShot} alt="Taxi Chaos 2 in-game" loading="lazy" />
-                </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ SHORT CASE STUDY: PRE-LAUNCH SOCIAL ============ */}
-      <section className="pitch-section pitch-section-shaded">
-        <div className="rd-shell pitch-mini-case">
+      {/* ============ CASE STUDY: GOOD HEAVENS ============ */}
+      <section className="pitch-case-section pitch-section-shaded">
+        <div className="pitch-case-strip" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={goodHeavensCase.keyart} alt="" loading="lazy" />
+          <div className="pitch-case-strip-veil" />
+        </div>
+
+        <div className="rd-shell pitch-case-wrap">
           <Reveal>
-            <div className="pitch-mini-text">
-              <span className="rd-section-tag">Selected work</span>
-              <h3>
-                Pre-launch presence built for an <span className="grad">Early Access debut</span>.
-              </h3>
+            <div className="pitch-case-head">
+              <span className="rd-section-tag">Case study — {goodHeavensCase.service}</span>
+              <h2>
+                {goodHeavensCase.name}: <span className="grad">pre-launch presence</span> for an Early Access debut.
+              </h2>
               <p>
-                Ongoing pre-launch programme focused on building genuine familiarity with the game and its
-                systems before Early Access. Heavy organic Reddit growth: multiple posts hit top of the month
-                on r/gameart, r/IndieDev, and r/pcgames.
+                {goodHeavensCase.studio}. {goodHeavensCase.status} Marketing studio engagement only: no
+                creator activation in this scope. Heavy organic Reddit growth, with multiple posts hitting
+                top of the month on r/gameart, r/IndieDev, and r/pcgames.
               </p>
-              <ul className="pitch-case-list">
-                <li>Active Discord community management: moderation, onboarding, weekly engagement, dev-to-community translation, event coordination.</li>
-                <li>Heavy organic Reddit growth focus, long-form posts designed to spark discussion.</li>
-                <li>Familiarity-building: characters, mechanics, world details surfaced in digestible posts and clips.</li>
-                <li>Social presence across Instagram, TikTok, X, Facebook, YouTube, and Reddit, content tailored per platform.</li>
-                <li>Steam storefront support for events, capsules, and announcements.</li>
-              </ul>
             </div>
           </Reveal>
-          <Reveal delay={0.15}>
-            <div className="pitch-mini-aside">
+
+          <Reveal>
+            <div className="pitch-case-keyart">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/firebase-public/Game Screenshots/GOOD HEAVENS.jpg" alt="" loading="lazy" />
+              <img src={goodHeavensCase.keyart} alt={`${goodHeavensCase.name} key art`} loading="lazy" />
+              {goodHeavensCase.logo && (
+                <div className="pitch-case-keyart-logo">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={goodHeavensCase.logo} alt={goodHeavensCase.name} />
+                </div>
+              )}
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <div className="pitch-case-video">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+              >
+                <source src={goodHeavensCase.highlightVideo} type="video/webm" />
+              </video>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <ul className="pitch-case-list">
+              {goodHeavensCase.scope.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal>
+            <div className="pitch-case-gallery">
+              {goodHeavensCase.screenshots.map((src) => (
+                <div key={src} className="pitch-case-shot">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={src} alt="" loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="pitch-case-links">
+              <span className="pitch-case-links-label">Follow {goodHeavensCase.name}</span>
+              <div className="pitch-case-links-row">
+                {goodHeavensCase.links.map((l) => (
+                  <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="pitch-case-link">
+                    {l.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
