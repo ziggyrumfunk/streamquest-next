@@ -45,13 +45,13 @@ export async function createPostAction(formData: FormData) {
   const post = await createPost({ title, date, cover, format, body });
   revalidatePath("/news");
   revalidatePath(`/news/${post.slug}`);
-  redirect("/admin/news?ok=created");
+  redirect("/admin?ok=created");
 }
 
 export async function updatePostAction(formData: FormData) {
   requireAdminOrRedirect();
   const slug = String(formData.get("slug") ?? "").trim();
-  if (!slug) redirect("/admin/news");
+  if (!slug) redirect("/admin");
 
   const title = String(formData.get("title") ?? "").trim();
   const date = String(formData.get("date") ?? "").trim();
@@ -78,16 +78,16 @@ export async function updatePostAction(formData: FormData) {
   await updatePost(slug, { title, date, cover, format, body });
   revalidatePath("/news");
   revalidatePath(`/news/${slug}`);
-  redirect("/admin/news?ok=updated");
+  redirect("/admin?ok=updated");
 }
 
 export async function deletePostAction(formData: FormData) {
   requireAdminOrRedirect();
   const slug = String(formData.get("slug") ?? "").trim();
-  if (!slug) redirect("/admin/news");
+  if (!slug) redirect("/admin");
   await deletePost(slug);
   revalidatePath("/news");
-  redirect("/admin/news?ok=deleted");
+  redirect("/admin?ok=deleted");
 }
 
 /** Used by the inline image-upload helper inside the body editor. */

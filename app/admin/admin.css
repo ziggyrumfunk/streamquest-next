@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 24px;
+  padding: calc(var(--header-h) + 60px) 24px 80px;
 }
 .admin-card {
   width: min(420px, 100%);
@@ -110,7 +110,7 @@
 .admin-page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 56px 24px 96px;
+  padding: calc(var(--header-h) + 48px) 24px 96px;
 }
 .admin-topbar {
   display: flex;
@@ -434,4 +434,15 @@
   color: var(--rd-lime, #B2F048);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 11.5px;
+}
+
+/* Section title with an inline action button on the right */
+.admin-section-title-row {
+  justify-content: space-between;
+  gap: 12px;
+}
+.admin-section-title-row > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }

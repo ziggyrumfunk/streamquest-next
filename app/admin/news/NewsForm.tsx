@@ -117,7 +117,7 @@ export default function NewsForm({ mode, action, initial = {}, error }: Props) {
         <button type="submit" className="admin-btn">
           {mode === "new" ? "Publish post" : "Update post"}
         </button>
-        <Link href="/admin/news" className="admin-btn admin-btn-ghost">Cancel</Link>
+        <Link href="/admin" className="admin-btn admin-btn-ghost">Cancel</Link>
       </div>
     </form>
   );
