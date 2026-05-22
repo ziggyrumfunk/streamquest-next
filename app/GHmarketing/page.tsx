@@ -47,9 +47,16 @@ export default function GHmarketingPage({ searchParams }: Props) {
     <main className="ghm">
       {/* ============ HERO ============ */}
       <section className="ghm-hero">
-        <div className="ghm-hero-bg" aria-hidden="true">
+        <div className="ghm-hero-bg" aria-hidden="true" />
+        <div className="ghm-hero-chars" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={`${GH}/main art background.jpg`} alt="" />
+          <img className="ghm-char ghm-char-1" src={`${GH}/scholar mayor.png`} alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ghm-char ghm-char-2" src={`${GH}/alchemist.png`} alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ghm-char ghm-char-3" src={`${GH}/hunter.png`} alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ghm-char ghm-char-4" src={`${GH}/Fox sit.png`} alt="" />
         </div>
         <div className="ghm-hero-inner">
           <span className="ghm-eyebrow">
@@ -75,26 +82,44 @@ export default function GHmarketingPage({ searchParams }: Props) {
 
       {/* ============ OBJECTIVE ============ */}
       <section className="ghm-section">
-        <div className="ghm-shell">
+        <div className="ghm-shell ghm-obj-split">
           <div className="ghm-block">
             <span className="ghm-tag">Objective</span>
-            <h2>Continue the collaboration in a way that supports the team and protects the launch.</h2>
+            <h2>Continue as an execution layer around the team, not above it.</h2>
             <p>
-              Over the last weeks we have become closely involved with Good Heavens across Reddit, social,
-              Steam page improvements, content direction, creator thinking, and broader campaign planning.
-              We enjoy working with the team and there is clear value in continuing this support in a
-              structured way.
+              Over the past months, StreamQuest has become closely involved with Good Heavens across Reddit,
+              social media, Steam page improvements, content direction, creator thinking, and broader campaign
+              planning. This has gone beyond high-level advice. We have worked closely with Faruk and Gün on
+              content creation, supported the internal workflow, created additional content ourselves where
+              needed, and helped turn weekly ideas into posts, videos, Steam updates, and campaign actions.
             </p>
             <p>
-              Faruk and Gün are creating content, Burak is driving the broader direction, and PR conversations
-              are handled separately. StreamQuest stays close to the marketing team, turns weekly needs into
-              practical output, and makes sure the upcoming beats are connected instead of scattered.
+              The recent Reddit results show the value of this hands-on approach. By finding creative angles,
+              adapting posts to subreddit rules, and navigating communities carefully, we have reached several
+              number 1 positions across relevant niche subreddits. This kind of traction is not only about
+              posting more. It comes from understanding where the game fits, how each community behaves, and
+              how to frame Good Heavens in a way that feels native instead of promotional.
             </p>
             <p>
-              If the launch moves towards late August, it should not be treated as simply moving the date.
-              The extra runway should be used for pre-Gamescom preparation, Gamescom momentum, and a focused
-              post-Gamescom release push.
+              Going forward, StreamQuest can continue acting as an execution layer around the team. The Good
+              Heavens team remains in control of the game, roadmap, priorities, and launch decisions.
+              StreamQuest helps offset the marketing workload by staying close to the team, supporting weekly
+              execution, creating and adapting content where needed, managing ads, assisting with creator and
+              influencer outreach, coordinating with the selected PR partner, and making sure Steam, social,
+              Reddit, ads, creators, and PR are connected instead of scattered.
             </p>
+            <p>
+              This support is especially valuable because the team has limited time and many important
+              priorities ahead. By taking pressure off the recurring marketing execution, StreamQuest helps
+              the team focus on the work only they can do: improving the build, preparing better assets,
+              making key launch decisions, and delivering the most polished version of Good Heavens possible.
+            </p>
+          </div>
+          <div className="ghm-char-stack ghm-char-stack-tall" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ghm-stack-main" src={`${GH}/Rar.png`} alt="" loading="lazy" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ghm-stack-side" src={`${GH}/Keebr.png`} alt="" loading="lazy" />
           </div>
         </div>
       </section>
@@ -134,36 +159,45 @@ export default function GHmarketingPage({ searchParams }: Props) {
         <div className="ghm-shell ghm-pr-split">
           <div className="ghm-block">
             <span className="ghm-tag">PR scope</span>
-            <h2>PR stays separate. StreamQuest supports the marketing layer around it.</h2>
+            <h2>PR ownership stays with the team and their chosen partner. We support the execution layer around it.</h2>
             <p>
-              PR itself should remain with Critical Hit, Theofanis, or whichever PR partner the team chooses.
-              StreamQuest should not be positioned as the PR agency in this plan.
+              PR ownership remains with Critical Hit, Theofanis, or whichever PR partner the team chooses.
+              StreamQuest does not decide the PR direction or replace the PR partner. Our role is to support
+              the execution layer around the PR campaign so the selected partner and the Good Heavens team
+              have what they need, when they need it.
             </p>
             <p>
-              We support the PR push by making sure the marketing, creator, content, Steam page, and asset
-              side is ready to strengthen the PR effort.
+              This can include syncing with the PR partner, preparing or organizing the media kit, making
+              sure assets are delivered on time, following up on missing materials, helping avoid delays
+              caused by slow decision-making, and keeping PR activity aligned with Steam page updates, ads,
+              creators, Reddit, and social content.
             </p>
 
             <div className="ghm-note">
-              <strong>Pre-PR priority:</strong> prepare a strong media kit before the bigger PR push starts.
-              Updated screenshots and key art, fresh gameplay clips, trailer assets, Steam links, key
-              messaging, game descriptions, press-ready facts, and creator/influencer access information.
+              <strong>Why timing matters:</strong> Steam Next Fest and Gamescom are crowded marketing beats.
+              Many games will be pushing demos, press, creators, ads, and social at the same time. Because
+              of this, timing and execution matter. StreamQuest can help reduce the risk of missed beats by
+              keeping the campaign moving, making sure materials are ready, and supporting the chosen PR
+              partner with the assets and coordination they need.
             </div>
 
             <h3>StreamQuest PR support can include</h3>
             <ul className="ghm-list">
-              <li>Preparing or helping assemble the press/media kit</li>
-              <li>Making sure the PR partner receives the right assets and messaging</li>
-              <li>Supporting Burak with organic influencer outreach and negotiations</li>
-              <li>Helping position creator access as exclusive, especially around demo keys and embargo timing</li>
-              <li>Aligning Steam page updates with PR timing</li>
-              <li>Coordinating social, Reddit, ads, and creator activity around the same beats</li>
-              <li>Supporting the marketing team with practical weekly execution needs</li>
+              <li>Syncing with the PR partner and keeping a shared view of the upcoming beats</li>
+              <li>Preparing or organizing the press and media kit</li>
+              <li>Making sure assets, links, builds, and messaging reach the partner on time</li>
+              <li>Following up on missing materials and chasing decisions where things stall</li>
+              <li>Supporting Burak and the team with organic influencer outreach where useful</li>
+              <li>Helping position creator access around demo keys and embargo timing</li>
+              <li>Aligning Steam page updates, ads, Reddit, social, and creator activity with PR timing</li>
+              <li>Supporting the team with practical weekly execution needs</li>
             </ul>
           </div>
-          <div className="ghm-aside" aria-hidden="true">
+          <div className="ghm-char-stack ghm-char-stack-side" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`${GH}/Scholar City.jpg`} alt="" loading="lazy" />
+            <img className="ghm-stack-main" src={`${GH}/scholar mayor.png`} alt="" loading="lazy" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ghm-stack-side" src={`${GH}/enchanter.png`} alt="" loading="lazy" />
           </div>
         </div>
       </section>
@@ -384,9 +418,11 @@ export default function GHmarketingPage({ searchParams }: Props) {
 
           <div className="ghm-months">
             <article className="ghm-month">
-              <div className="ghm-month-art" aria-hidden="true">
+              <div className="ghm-month-art ghm-month-art-chars" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${GH}/gameplay (1).jpg`} alt="" loading="lazy" />
+                <img className="ghm-month-char ghm-month-char-main" src={`${GH}/hunter.png`} alt="" loading="lazy" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="ghm-month-char ghm-month-char-mini" src={`${GH}/Fox sit.png`} alt="" loading="lazy" />
               </div>
               <div className="ghm-month-body">
                 <span className="ghm-month-tag">June</span>
@@ -407,9 +443,11 @@ export default function GHmarketingPage({ searchParams }: Props) {
             </article>
 
             <article className="ghm-month">
-              <div className="ghm-month-art" aria-hidden="true">
+              <div className="ghm-month-art ghm-month-art-chars" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${GH}/gameplay (3).jpg`} alt="" loading="lazy" />
+                <img className="ghm-month-char ghm-month-char-main" src={`${GH}/alchemist.png`} alt="" loading="lazy" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="ghm-month-char ghm-month-char-mini" src={`${GH}/flying rat.png`} alt="" loading="lazy" />
               </div>
               <div className="ghm-month-body">
                 <span className="ghm-month-tag">July</span>
@@ -434,9 +472,11 @@ export default function GHmarketingPage({ searchParams }: Props) {
             </article>
 
             <article className="ghm-month">
-              <div className="ghm-month-art" aria-hidden="true">
+              <div className="ghm-month-art ghm-month-art-chars" aria-hidden="true">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${GH}/War City 4.jpg`} alt="" loading="lazy" />
+                <img className="ghm-month-char ghm-month-char-main" src={`${GH}/troll.png`} alt="" loading="lazy" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="ghm-month-char ghm-month-char-mini" src={`${GH}/rar floating.png`} alt="" loading="lazy" />
               </div>
               <div className="ghm-month-body">
                 <span className="ghm-month-tag">August</span>
@@ -493,9 +533,13 @@ export default function GHmarketingPage({ searchParams }: Props) {
                 creators, paid ads, and the broader late-August release push.
               </p>
             </div>
-            <div className="ghm-trailer-art" aria-hidden="true">
+            <div className="ghm-trailer-art ghm-trailer-art-chars" aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${GH}/library_hero (3840x1240).png`} alt="" loading="lazy" />
+              <img className="ghm-trailer-char ghm-trailer-char-main" src={`${GH}/player attack.png`} alt="" loading="lazy" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ghm-trailer-char ghm-trailer-char-side" src={`${GH}/drunk orc.png`} alt="" loading="lazy" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ghm-trailer-char ghm-trailer-char-mini" src={`${GH}/ant drone.png`} alt="" loading="lazy" />
             </div>
           </div>
         </div>
@@ -514,7 +558,6 @@ export default function GHmarketingPage({ searchParams }: Props) {
             </thead>
             <tbody>
               <tr><td>Reddit communication only</td><td className="ghm-price">€3,000 / month</td><td>Leanest continuation option</td></tr>
-              <tr><td>Marketing support retainer</td><td className="ghm-price">€4,500 / month</td><td>Recommended monthly support layer for June, July, and August</td></tr>
               <tr><td>StreamQuest Steam Next Fest creator campaign</td><td className="ghm-price">€2,500 one-off</td><td>Creator activation around Steam Next Fest</td></tr>
               <tr><td>Launch trailer production</td><td className="ghm-price">€7,000 one-off</td><td>Recommended if PR and late-August launch push move forward</td></tr>
               <tr><td>External PR partner</td><td className="ghm-price ghm-price-muted">Separate</td><td>Handled by Critical Hit, Theofanis, or selected partner</td></tr>
@@ -560,18 +603,25 @@ export default function GHmarketingPage({ searchParams }: Props) {
               Use June to test, July to prepare, <span className="grad">August to push</span>.
             </h2>
             <p>
-              Keep the plan practical and budget-aware while still giving Good Heavens the launch support it
-              needs. If the team only wants light continuation, the Reddit-only route is possible. If the
-              team wants to prepare properly for Steam Next Fest, the June essentials package is the better
-              route. If the launch moves to late August, continue the monthly support through the Gamescom
-              runway and align our work with the chosen PR partner.
+              Use June to test and prepare for Steam Next Fest, July to prepare the campaign and assets
+              before Gamescom, and August to use Gamescom momentum for a focused late-August and
+              post-Gamescom release push. The Good Heavens team keeps ownership of the key product and
+              launch decisions. StreamQuest supports the execution layer around them by reducing workload,
+              managing recurring marketing tasks, supporting content and ads, coordinating Reddit and
+              creator activity, helping with Steam page work, and making sure the PR partner receives the
+              materials needed to do their work properly.
+            </p>
+            <p>
+              The goal is not to take control away from the team. The goal is to create more breathing
+              room so the team can focus on delivering a polished game while the marketing layer keeps
+              moving.
             </p>
             <ul className="ghm-list ghm-list-recap">
               <li>June for Steam Next Fest visibility, ad testing, creator activity, and store page essentials</li>
               <li>July for pre-Gamescom preparation, press kit work, content planning, Steam page polish, and influencer outreach support</li>
               <li>August for Gamescom momentum and a focused late-August release push</li>
-              <li>Keep PR ownership with the chosen PR partner</li>
-              <li>Let StreamQuest support the marketing layer around PR with content, creators, ads, Reddit, Steam page work, and team support</li>
+              <li>The Good Heavens team keeps ownership of product, roadmap, priorities, and launch decisions</li>
+              <li>StreamQuest supports the execution layer with content, creators, ads, Reddit, Steam page work, and PR coordination</li>
               <li>Keep enough budget free for paid ads, Gamescom costs, PR, and launch execution</li>
             </ul>
           </div>
