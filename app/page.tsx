@@ -43,9 +43,10 @@ const partners = [
 /** Floating mixed-media tiles in the hero — big game art at the corners,
     medium gameplay screenshots on the sides, small circular streamer avatars scattered. */
 const heroTiles = [
-  // Top corners — big portrait game key art (anchors)
-  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp", className: "p1",  depth: 0.7, priority: true },
-  { src: "/firebase-public/Game Cover Art/aska key art.webp",             className: "p2",  depth: 0.6, priority: true },
+  // Top corners — big portrait game key art (anchors).
+  // priority dropped to false so the active-card cover (real LCP) wins bandwidth on mobile.
+  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp", className: "p1",  depth: 0.7 },
+  { src: "/firebase-public/Game Cover Art/aska key art.webp",             className: "p2",  depth: 0.6 },
 
   // Bottom corners — more big game key art (anchors)
   { src: "/firebase-public/Game Cover Art/godbreakers key art.webp",      className: "p7",  depth: 0.5 },

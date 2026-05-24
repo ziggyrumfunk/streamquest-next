@@ -102,6 +102,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={jost.variable}>
+      <head>
+        {/* Preconnect to Google Fonts so the Jost stylesheet/files start
+            their TCP+TLS handshake during HTML parse instead of after CSS. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </head>
       <body>
         <script
           type="application/ld+json"
