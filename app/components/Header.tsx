@@ -45,7 +45,7 @@ export default async function Header() {
         <Link href="/" aria-label="StreamQuest home" className="shrink-0 inline-flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/firebase-public/Logos Partner/streamquest logo.png"
+            src="/firebase-public/Logos Partner/streamquest logo.webp"
             alt="StreamQuest"
             style={{ height: 40, width: "auto", display: "block" }}
           />
@@ -168,15 +168,4 @@ export default async function Header() {
             aria-label="Open the StreamQuest creator dashboard"
           >
             Creator Dashboard
-          </a>
-        </div>
-
-        <MobileNav
-          primary={primaryNav}
-          activeQuests={activeQuests}
-          pastQuests={pastQuests}
-        />
-      </div>
-    </header>
-  );
-}
+   

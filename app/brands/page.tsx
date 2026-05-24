@@ -68,25 +68,25 @@ const studioTestimonials = [
     quote: "Working with StreamQuest was a great experience for our game and was incredibly efficient. Besides the initial set up call, Murat and his team managed the entire campaign for us. They were also able to achieve better results and rates than the agencies we've worked with in the past.",
     studio: "Wildcard Alliance",
     role: "Multiplayer arena PvP",
-    logo: "/firebase-public/Logos Partner/Acclaim.png",
+    logo: "/firebase-public/Logos Partner/Acclaim.webp",
   },
   {
     quote: "Murat offered a great client service and an amazing pool of creators who genuinely engaged with our digital event. StreamQuest was a fantastic partner for Endix.",
     studio: "Endix",
     role: "Industry expo event partner",
-    logo: "/firebase-public/Logos Partner/Endix.png",
+    logo: "/firebase-public/Logos Partner/Endix.webp",
   },
   {
     quote: "StreamQuest has been a great tool for our influencer marketing! Our clients loved working with Murat and his team.",
     studio: "Critical Hit PR",
     role: "Games marketing agency",
-    logo: "/firebase-public/Logos Partner/Critical Hit PR.png",
+    logo: "/firebase-public/Logos Partner/Critical Hit PR.webp",
   },
   {
     quote: "They were able to achieve better results and rates than the agencies we've worked with in the past. Would highly recommend working with them to help get streamer coverage for your indie game.",
     studio: "1 Minus 1",
     role: "Indie studio",
-    logo: "/firebase-public/Logos Partner/1Minus1.png",
+    logo: "/firebase-public/Logos Partner/1Minus1.webp",
   },
 ];
 
@@ -227,12 +227,12 @@ export default function BrandsPage() {
       <section className="br-break" aria-label="Performance-based pricing">
         <div className="br-break-bg" aria-hidden="true">
           {[
-            "/firebase-public/Game Screenshots/GODBREAKERS.jpg",
-            "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
-            "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",
-            "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",
-            "/firebase-public/Game Screenshots/ASKA.jpg",
-            "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
+            "/firebase-public/Game Screenshots/GODBREAKERS.webp",
+            "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",
+            "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",
+            "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",
+            "/firebase-public/Game Screenshots/ASKA.webp",
+            "/firebase-public/Game Screenshots/GRIDBEAT (1).webp",
           ].map((src) => (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img key={src} src={src} alt="" loading="lazy" decoding="async" />

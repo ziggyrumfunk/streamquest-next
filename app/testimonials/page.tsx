@@ -12,22 +12,22 @@ import "./testimonials.css";
    Rotated across three hero rows so each row shows a different segment. */
 const gameplayPool: string[] = [
   // Standard 1920x1080 gameplay screenshots
-  "/firebase-public/Game Screenshots/ASCENDANT.jpg",
-  "/firebase-public/Game Screenshots/ASKA.jpg",
-  "/firebase-public/Game Screenshots/ASTRO BURN.jpg",
-  "/firebase-public/Game Screenshots/CYBERCLUTCH.jpg",
-  "/firebase-public/Game Screenshots/DRILL AND DELVE.jpg",
-  "/firebase-public/Game Screenshots/ENDIX.jpg",
-  "/firebase-public/Game Screenshots/GODBREAKERS.jpg",
-  "/firebase-public/Game Screenshots/GOOD HEAVENS.jpg",
-  "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
-  "/firebase-public/Game Screenshots/MEXICAN NINJA.jpg",
-  "/firebase-public/Game Screenshots/ORBYSS.jpg",
-  "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",
-  "/firebase-public/Game Screenshots/SIGNAL.jpg",
-  "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
-  "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",
-  "/firebase-public/Game Screenshots/WILDCARD.jpg",
+  "/firebase-public/Game Screenshots/ASCENDANT.webp",
+  "/firebase-public/Game Screenshots/ASKA.webp",
+  "/firebase-public/Game Screenshots/ASTRO BURN.webp",
+  "/firebase-public/Game Screenshots/CYBERCLUTCH.webp",
+  "/firebase-public/Game Screenshots/DRILL AND DELVE.webp",
+  "/firebase-public/Game Screenshots/ENDIX.webp",
+  "/firebase-public/Game Screenshots/GODBREAKERS.webp",
+  "/firebase-public/Game Screenshots/GOOD HEAVENS.webp",
+  "/firebase-public/Game Screenshots/GRIDBEAT (1).webp",
+  "/firebase-public/Game Screenshots/MEXICAN NINJA.webp",
+  "/firebase-public/Game Screenshots/ORBYSS.webp",
+  "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",
+  "/firebase-public/Game Screenshots/SIGNAL.webp",
+  "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",
+  "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",
+  "/firebase-public/Game Screenshots/WILDCARD.webp",
   // REPLACED screenshots
   "/firebase-public/Replaced/sq-replaced-screenshot-01.webp",
   "/firebase-public/Replaced/sq-replaced-screenshot-02.webp",
@@ -216,7 +216,7 @@ const partners = [
     role: "Luke Jech · Marketing Lead",
     country: "United States",
     quote: "Working with StreamQuest was a great experience for our game and incredibly efficient. Murat and his team managed the entire campaign for us. They achieved better results and rates than the agencies we have worked with in the past. Would highly recommend them to help get streamer coverage for your indie game.",
-    logo: "/firebase-public/Logos Partner/Acclaim.png",
+    logo: "/firebase-public/Logos Partner/Acclaim.webp",
     website: "https://www.wildcardgame.com/",
   },
   {
@@ -224,7 +224,7 @@ const partners = [
     role: "Sarah Newton · Operations Manager",
     country: "United Kingdom",
     quote: "The streamers genuinely enjoyed themselves, and that came through in the content — natural, engaging, and fun to watch. The quality was higher than what we have seen on other small platforms, and the boutique way StreamQuest managed the campaign made a real difference. Clear, hands-on, and easy for us, even during a busy launch.",
-    logo: "/firebase-public/Logos Partner/1Minus1.png",
+    logo: "/firebase-public/Logos Partner/1Minus1.webp",
     website: "https://1minus1.com/",
   },
   {
@@ -232,7 +232,7 @@ const partners = [
     role: "Industry expo event partner",
     country: "Greece",
     quote: "Murat offered a great client service and an amazing pool of creators who genuinely engaged with our digital event. StreamQuest was a fantastic partner for Endix.",
-    logo: "/firebase-public/Logos Partner/Endix.png",
+    logo: "/firebase-public/Logos Partner/Endix.webp",
     website: "https://endix-expo.com/",
   },
   {
@@ -240,7 +240,7 @@ const partners = [
     role: "Games marketing agency",
     country: "Greece",
     quote: "StreamQuest has been a great tool for our influencer marketing. Our clients loved working with Murat and his team.",
-    logo: "/firebase-public/Logos Partner/Critical Hit PR.png",
+    logo: "/firebase-public/Logos Partner/Critical Hit PR.webp",
     website: "https://www.criticalhitpr.com/",
   },
 ];
@@ -427,10 +427,3 @@ export default function TestimonialsPage() {
               <Link href="/quests-guide" className="btn btn-secondary btn-xl">
                 Read the quests guide
               </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-    </div>
-  );
-}

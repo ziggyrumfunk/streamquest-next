@@ -31,20 +31,20 @@ const partnerDisplayName = (name: string) =>
   name === "Current Games (2)" ? "Current Games" : name;
 
 const mosaicImages = [
-  { src: "/firebase-public/Game Screenshots/GODBREAKERS.jpg", alt: "Godbreakers gameplay" },
-  { src: "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg", alt: "Planet of Lana 2 gameplay" },
-  { src: "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg", alt: "Taxi Chaos 2 gameplay" },
-  { src: "/firebase-public/Game Screenshots/ASKA.jpg", alt: "ASKA gameplay" },
-  { src: "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg", alt: "GRIDbeat gameplay" },
-  { src: "/firebase-public/Game Screenshots/ORBYSS.jpg", alt: "Orbyss gameplay" },
-  { src: "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg", alt: "Temtem Swarm gameplay" },
-  { src: "/firebase-public/Game Screenshots/WILDCARD.jpg", alt: "Wildcard gameplay" },
-  { src: "/firebase-public/Game Screenshots/ASCENDANT.jpg", alt: "Ascendant gameplay" },
-  { src: "/firebase-public/Game Screenshots/CYBERCLUTCH.jpg", alt: "CyberClutch gameplay" },
-  { src: "/firebase-public/Game Screenshots/DRILL AND DELVE.jpg", alt: "Drill and Delve gameplay" },
-  { src: "/firebase-public/Game Screenshots/SIGNAL.jpg", alt: "Signal gameplay" },
-  { src: "/firebase-public/Game Screenshots/ENDIX.jpg", alt: "Endix gameplay" },
-  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.jpg", alt: "Good Heavens gameplay" },
+  { src: "/firebase-public/Game Screenshots/GODBREAKERS.webp", alt: "Godbreakers gameplay" },
+  { src: "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp", alt: "Planet of Lana 2 gameplay" },
+  { src: "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp", alt: "Taxi Chaos 2 gameplay" },
+  { src: "/firebase-public/Game Screenshots/ASKA.webp", alt: "ASKA gameplay" },
+  { src: "/firebase-public/Game Screenshots/GRIDBEAT (1).webp", alt: "GRIDbeat gameplay" },
+  { src: "/firebase-public/Game Screenshots/ORBYSS.webp", alt: "Orbyss gameplay" },
+  { src: "/firebase-public/Game Screenshots/TEMTEM SWARM.webp", alt: "Temtem Swarm gameplay" },
+  { src: "/firebase-public/Game Screenshots/WILDCARD.webp", alt: "Wildcard gameplay" },
+  { src: "/firebase-public/Game Screenshots/ASCENDANT.webp", alt: "Ascendant gameplay" },
+  { src: "/firebase-public/Game Screenshots/CYBERCLUTCH.webp", alt: "CyberClutch gameplay" },
+  { src: "/firebase-public/Game Screenshots/DRILL AND DELVE.webp", alt: "Drill and Delve gameplay" },
+  { src: "/firebase-public/Game Screenshots/SIGNAL.webp", alt: "Signal gameplay" },
+  { src: "/firebase-public/Game Screenshots/ENDIX.webp", alt: "Endix gameplay" },
+  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.webp", alt: "Good Heavens gameplay" },
 ];
 
 const socials = [
@@ -59,7 +59,7 @@ const activeQuests = [
   {
     slug: "gridbeat",
     title: "GRIDbeat",
-    cover: "/firebase-public/Game Cover Art/gridbeat key art.jpg",
+    cover: "/firebase-public/Game Cover Art/gridbeat key art.webp",
     desc: "Demo-to-launch quest focused on awareness, launch momentum, and measurable wishlist lift.",
     tldr: ["Bronze: Stream 1 hour, 5 CCV, €10", "Silver: Stream 2 hours, 15 CCV, €25"],
     href: "/quests/gridbeat",
@@ -67,7 +67,7 @@ const activeQuests = [
   {
     slug: "temtem",
     title: "Temtem: Swarm",
-    cover: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).jpg",
+    cover: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).webp",
     desc: "Full-release launch quest built for co-op visibility, storefront traffic, and launch support.",
     tldr: ["Bronze: Stream 1 hour, 5 CCV, €10", "Silver: Stream 2 hours, 15 CCV, €25"],
     href: "/quests/temtem",
@@ -75,7 +75,7 @@ const activeQuests = [
   {
     slug: "aska",
     title: "ASKA",
-    cover: "/firebase-public/Game Cover Art/aska key art.jpg",
+    cover: "/firebase-public/Game Cover Art/aska key art.webp",
     desc: "Early Access momentum campaign built around ASKA's Hearth & Honey update and the Steam Medieval Fest 20% discount. By Sand Sailor Studio × Thunderful.",
     tldr: ["Bronze: 1h stream, 5 CCV, €10", "Silver: 2h stream, 15 CCV, €20 (€10/h)"],
     href: "/quests/aska",
@@ -91,7 +91,7 @@ const activeQuests = [
   {
     slug: "astroburn",
     title: "Astro Burn",
-    cover: "/firebase-public/Game Screenshots/ASTRO BURN.jpg",
+    cover: "/firebase-public/Game Screenshots/ASTRO BURN.webp",
     desc: "Score-chasing bullet-hell cute-em-up with co-op chaos and giant adorable bosses. By Pixel Doors × Beyond The Pixels. Physical copy prize for the highest score.",
     tldr: ["Bronze: 1h stream, 5 CCV, €10", "Silver: 2h+ at €10/h (e.g. €20 for 2h)"],
     href: "/quests/astroburn",
@@ -99,16 +99,16 @@ const activeQuests = [
 ];
 
 const completedQuests = [
-  { title: "Ascendant", cover: "/firebase-public/Game Cover Art/ascendant key art.jpg", href: "/quests/ascendant" },
-  { title: "CyberClutch", cover: "/firebase-public/Game Cover Art/cyberclutch key art.jpg", href: null },
-  { title: "Drill & Delve", cover: "/firebase-public/Game Cover Art/drill and delve key art.jpg", href: "/quests/drilldelve" },
-  { title: "Godbreakers", cover: "/firebase-public/Game Cover Art/godbreakers key art.jpg", href: "/quests/godbreakers" },
-  { title: "Orbyss", cover: "/firebase-public/Game Cover Art/orbyss key art.jpg", href: "/quests/orbyss" },
-  { title: "Planet of Lana 2", cover: "/firebase-public/Game Cover Art/planet of lana 2 key art.jpg", href: "/quests/planetoflana2" },
-  { title: "Signal", cover: "/firebase-public/Game Cover Art/signal key art.jpg", href: "/quests/signal" },
-  { title: "TableFlip Sim", cover: "/firebase-public/Game Cover Art/tableflip key art.jpg", href: "/quests/tableflip" },
-  { title: "Taxi Chaos 2", cover: "/firebase-public/Game Cover Art/taxi chaos 2 key art.jpg", href: "/quests/taxichaos2" },
-  { title: "Wildcard", cover: "/firebase-public/Game Cover Art/wildcard key art.jpg", href: "/quests/wildcard" },
+  { title: "Ascendant", cover: "/firebase-public/Game Cover Art/ascendant key art.webp", href: "/quests/ascendant" },
+  { title: "CyberClutch", cover: "/firebase-public/Game Cover Art/cyberclutch key art.webp", href: null },
+  { title: "Drill & Delve", cover: "/firebase-public/Game Cover Art/drill and delve key art.webp", href: "/quests/drilldelve" },
+  { title: "Godbreakers", cover: "/firebase-public/Game Cover Art/godbreakers key art.webp", href: "/quests/godbreakers" },
+  { title: "Orbyss", cover: "/firebase-public/Game Cover Art/orbyss key art.webp", href: "/quests/orbyss" },
+  { title: "Planet of Lana 2", cover: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp", href: "/quests/planetoflana2" },
+  { title: "Signal", cover: "/firebase-public/Game Cover Art/signal key art.webp", href: "/quests/signal" },
+  { title: "TableFlip Sim", cover: "/firebase-public/Game Cover Art/tableflip key art.webp", href: "/quests/tableflip" },
+  { title: "Taxi Chaos 2", cover: "/firebase-public/Game Cover Art/taxi chaos 2 key art.webp", href: "/quests/taxichaos2" },
+  { title: "Wildcard", cover: "/firebase-public/Game Cover Art/wildcard key art.webp", href: "/quests/wildcard" },
 ];
 
 const features = [
@@ -126,12 +126,12 @@ const stats = [
 ];
 
 const statBgImages = [
-  "/firebase-public/Game Screenshots/GODBREAKERS.jpg",
-  "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
-  "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",
-  "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",
-  "/firebase-public/Game Screenshots/ASKA.jpg",
-  "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
+  "/firebase-public/Game Screenshots/GODBREAKERS.webp",
+  "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",
+  "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",
+  "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",
+  "/firebase-public/Game Screenshots/ASKA.webp",
+  "/firebase-public/Game Screenshots/GRIDBEAT (1).webp",
 ];
 
 const streamerSteps = [
@@ -153,25 +153,25 @@ const studioSteps = [
 const pastCampaigns = [
   {
     title: "Planet of Lana 2",
-    img: "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",
+    img: "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",
     tags: ["Launch Campaign", "Story-Driven"],
     body: "A cinematic campaign built around indie storytelling, creator atmosphere, tracked wishlist pushes, and mission brief clarity.",
-    studioLogo: "/firebase-public/Logos Partner/SandSailorStudio.png",
+    studioLogo: "/firebase-public/Logos Partner/SandSailorStudio.webp",
     studioAlt: "Sand Sailor Studio",
     href: "/quests/planetoflana2",
   },
   {
     title: "GRIDbeat",
-    img: "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
+    img: "/firebase-public/Game Screenshots/GRIDBEAT (1).webp",
     tags: ["Launch Window", "Wishlist-Focused"],
     body: "A rhythm-heavy activation built for demo visibility, launch-day repetition, and social-friendly creator output.",
-    studioLogo: "/firebase-public/Logos Partner/Amber Studios.png",
+    studioLogo: "/firebase-public/Logos Partner/Amber Studios.webp",
     studioAlt: "Amber Studios",
     href: "/quests/gridbeat",
   },
   {
     title: "Temtem: Swarm",
-    img: "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",
+    img: "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",
     tags: ["Full Release", "Cross-Platform Hype"],
     body: "A release support setup designed around creator energy, visibility spikes, and indie launch framing that feels community-led.",
     studioLogo: "/firebase-public/TemTem/CREMA LOGO.png",
@@ -180,28 +180,28 @@ const pastCampaigns = [
   },
   {
     title: "ASKA",
-    img: "/firebase-public/Game Screenshots/ASKA.jpg",
+    img: "/firebase-public/Game Screenshots/ASKA.webp",
     tags: ["Update Push", "Community Growth"],
     body: "Campaigns that support updates, longer-tail discovery, and creator reactivation matter just as much as launch day.",
-    studioLogo: "/firebase-public/Logos Partner/Thunderful.png",
+    studioLogo: "/firebase-public/Logos Partner/Thunderful.webp",
     studioAlt: "Thunderful",
     href: "/quests/aska",
   },
   {
     title: "Taxi Chaos 2",
-    img: "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
+    img: "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",
     tags: ["Launch Support", "Flexible Scope"],
     body: "Streamer activation expanded into broader support: social content, storefront updates, ad testing, and community replies.",
-    studioLogo: "/firebase-public/Logos Partner/Current Games (2).png",
+    studioLogo: "/firebase-public/Logos Partner/Current Games (2).webp",
     studioAlt: "Current Games",
     href: "/quests/taxichaos2",
   },
   {
     title: "TableFlip Simulator",
-    img: "/firebase-public/Game Cover Art/tableflip key art.jpg",
+    img: "/firebase-public/Game Cover Art/tableflip key art.webp",
     tags: ["Viral-Friendly", "Clip Potential"],
     body: "Some games win because they are instantly streamable. Short quests, high shareability, massive clip output.",
-    studioLogo: "/firebase-public/Logos Partner/Misty Whale.png",
+    studioLogo: "/firebase-public/Logos Partner/Misty Whale.webp",
     studioAlt: "Misty Whale",
     href: "/quests/tableflip",
   },

@@ -358,9 +358,9 @@ export const quests: Quest[] = [
     studio: "Endix Expo",
     tagline: "Special StreamQuest event quest inside the Endix virtual expo.",
     category: "Event quest · virtual expo",
-    cover: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
-    portrait: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.png",
-    logo: "/firebase-public/Logos Partner/Endix.png",
+    cover: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.webp",
+    portrait: "/firebase-public/Endix May 2026/e7e3c12f2128bcfcc74f3f6b7cfb6e7a911a1ec3.webp",
+    logo: "/firebase-public/Logos Partner/Endix.webp",
     description:
       "This is a special event quest, not a default game quest. Your mission is to guide your audience through Endix, visit the required areas, highlight the participating games, and drive wishlists through the campaign link.",
     about:
@@ -445,12 +445,12 @@ export const quests: Quest[] = [
     ],
 
     screenshots: [
-      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
-      "/firebase-public/Endix May 2026/505 Games outside.jpg",
-      "/firebase-public/Endix May 2026/Gothic.png",
-      "/firebase-public/Endix May 2026/Sea of Rifts.png",
-      "/firebase-public/Endix May 2026/Akatori.jpg",
-      "/firebase-public/Endix May 2026/Alpha Nomos.jpg",
+      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.webp",
+      "/firebase-public/Endix May 2026/505 Games outside.webp",
+      "/firebase-public/Endix May 2026/Gothic.webp",
+      "/firebase-public/Endix May 2026/Sea of Rifts.webp",
+      "/firebase-public/Endix May 2026/Akatori.webp",
+      "/firebase-public/Endix May 2026/Alpha Nomos.webp",
     ],
 
     storyParagraphs: [
@@ -461,7 +461,7 @@ export const quests: Quest[] = [
     storyPull:
       "Your quest: turn Endix into an event your viewers want to walk through with you, not background noise behind your facecam.",
     storyAside:
-      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
+      "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.webp",
     storyAsideCaption: "Expo Center, explore together with viewers",
     shortDescription:
       "Endix is a virtual game expo platform. The StreamQuest May Showcase quest pays Bronze and Silver creators to walk their community through the event, visit six required areas, and drive wishlists for participating games via the campaign link.",
@@ -477,16 +477,16 @@ export const quests: Quest[] = [
       "Use this for on-stream callouts and in your social proof post. If StreamQuest gives you a per-creator link in Discord, prefer that one.",
 
     gallery: {
-      wide: "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.png",
+      wide: "/firebase-public/Endix May 2026/2025-11-30_21h3min3s_2560x1440.webp",
       thumbs: [
-        "/firebase-public/Endix May 2026/505 Games outside.jpg",
-        "/firebase-public/Endix May 2026/Akatori.jpg",
-        "/firebase-public/Endix May 2026/Alpha Nomos.jpg",
-        "/firebase-public/Endix May 2026/Gothic.png",
-        "/firebase-public/Endix May 2026/Sea of Rifts.png",
-        "/firebase-public/Endix May 2026/Hela.jpg",
-        "/firebase-public/Endix May 2026/Inferius.jpg",
-        "/firebase-public/Endix May 2026/Mexican Ninja.jpg",
+        "/firebase-public/Endix May 2026/505 Games outside.webp",
+        "/firebase-public/Endix May 2026/Akatori.webp",
+        "/firebase-public/Endix May 2026/Alpha Nomos.webp",
+        "/firebase-public/Endix May 2026/Gothic.webp",
+        "/firebase-public/Endix May 2026/Sea of Rifts.webp",
+        "/firebase-public/Endix May 2026/Hela.webp",
+        "/firebase-public/Endix May 2026/Inferius.webp",
+        "/firebase-public/Endix May 2026/Mexican Ninja.webp",
       ],
     },
 
@@ -576,7 +576,7 @@ export const quests: Quest[] = [
     studio: "Sand Sailor Studio × Thunderful",
     tagline: "Hearth & Honey update push. Steam Medieval Fest discount window.",
     category: "Viking village builder · survival",
-    cover: "/firebase-public/Game Cover Art/aska key art.jpg",
+    cover: "/firebase-public/Game Cover Art/aska key art.webp",
     description:
       "Paid Twitch creator campaign built around ASKA's Early Access journey, the new Hearth & Honey update, and a 20% Steam Medieval Fest discount. By Sand Sailor Studio × Thunderful.",
     about:
@@ -638,7 +638,7 @@ export const quests: Quest[] = [
     studio: "Crema",
     tagline: "Full-release launch quest built for co-op visibility and storefront traffic.",
     category: "Co-op survivor",
-    cover: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).jpg",
+    cover: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).webp",
     description:
       "Paid creator campaign supporting the full release of Temtem: Swarm by Crema. Co-op survivor energy, indie launch framing that feels community-led.",
     about:
@@ -693,7 +693,7 @@ export const quests: Quest[] = [
     studio: "Amber Studios",
     tagline: "Demo-to-launch quest focused on awareness and wishlist lift.",
     category: "Rhythm action",
-    cover: "/firebase-public/Game Cover Art/gridbeat key art.jpg",
+    cover: "/firebase-public/Game Cover Art/gridbeat key art.webp",
     description:
       "Rhythm-heavy activation built for demo visibility, launch-day repetition, and social-friendly creator output. Streamers captured live moments that translated directly into wishlists.",
     about:
@@ -786,7 +786,7 @@ export const quests: Quest[] = [
     studio: "Thunderful × Sand Sailor Studio",
     tagline: "Cinematic indie storytelling. Wishlist-focused launch campaign.",
     category: "Cinematic adventure",
-    cover: "/firebase-public/Game Cover Art/planet of lana 2 key art.jpg",
+    cover: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp",
     description: "Paid Twitch launch campaign for Planet of Lana II in partnership with Thunderful. Bronze and Silver streaming tiers with side quests to drive Steam wishlists during the launch window.",
     about: "Cinematic, story-rich indie adventure. Built for creators who lean into atmospheric, narrative-driven games and want to support indie launches at scale.",
   },
@@ -797,7 +797,7 @@ export const quests: Quest[] = [
     studio: "Wildcard Alliance",
     tagline: "Multiplayer arena push for early-access visibility.",
     category: "PvP arena",
-    cover: "/firebase-public/Game Cover Art/ascendant key art.jpg",
+    cover: "/firebase-public/Game Cover Art/ascendant key art.webp",
     description: "Demo activation campaign for Ascendant during PvP Fest. 50-slot Bronze and Silver creator activation across a one-week February window on Steam.",
     about: "Continuation of earlier playtests and closed creator sessions. The official Ascendant StreamQuest quest brought the project to a wider creator audience during PvP Fest.",
   },
@@ -808,7 +808,7 @@ export const quests: Quest[] = [
     studio: "Thunderful × Misty Whale",
     tagline: "Demo update push for Steam Next Fest. Co-op action with side quests.",
     category: "Co-op action",
-    cover: "/firebase-public/Game Cover Art/godbreakers key art.jpg",
+    cover: "/firebase-public/Game Cover Art/godbreakers key art.webp",
     description: "Follow-up Godbreakers campaign timed to a major demo update for Steam Next Fest. New biomes, enemies, Tangles modifiers, and cosmetics. Creators came back from the first run and pushed it again.",
     about: "Co-op action with structured side quests. The first Godbreakers quest ran long, co-op sessions went wild, and the feedback was clear — everyone wanted more. This was the sequel quest.",
   },
@@ -819,7 +819,7 @@ export const quests: Quest[] = [
     studio: "Focuspoint Studios × Current Games",
     tagline: "Steam Next Fest demo with exclusive creator early access.",
     category: "Arcade racing",
-    cover: "/firebase-public/Game Cover Art/taxi chaos 2 key art.jpg",
+    cover: "/firebase-public/Game Cover Art/taxi chaos 2 key art.webp",
     description: "Steam Next Fest demo activation for Taxi Chaos 2 with Focuspoint Studios. Exclusive creator early access weekend before the public demo dropped — one-hour arcade taxi joyrides on stream.",
     about: "Choose a vehicle type — Heavy, Sport, or Drift — race through vibrant city streets, drift around corners, and deliver passengers on time. Pure arcade-style chaos, themed around the original Taxi Chaos returning in a wild new form.",
   },
@@ -830,7 +830,7 @@ export const quests: Quest[] = [
     studio: "Goose Byte",
     tagline: "Demo discovery push around procedurally generated mining runs.",
     category: "Mining exploration",
-    cover: "/firebase-public/Game Cover Art/drill and delve key art.jpg",
+    cover: "/firebase-public/Game Cover Art/drill and delve key art.webp",
     description: "Demo discovery push for Drill and Delve — a mining and exploration game set deep underground. Procedurally generated runs and competitive leaderboards drove the streamer-friendly loop.",
     about: "You play as a miner in the far future, working for a mega-mining corporation. A normal day on the job goes wrong, leaving you trapped inside a vast, crumbling mine. The only way out is to dig.",
   },
@@ -841,7 +841,7 @@ export const quests: Quest[] = [
     studio: "Goose Byte",
     tagline: "Open-world survival activation timed to a Kickstarter push.",
     category: "Open-world survival",
-    cover: "/firebase-public/Game Cover Art/signal key art.jpg",
+    cover: "/firebase-public/Game Cover Art/signal key art.webp",
     description: "Goose Byte's atmospheric open-world survival game The Signal stepped into a Kickstarter campaign alongside this StreamQuest activation. Creators became part of the launch push.",
     about: "Stranded on Sirenis. The Signal is an ambitious indie open-world survival project that Goose Byte self-funded for years before bringing it to community-backed development.",
   },
@@ -852,7 +852,7 @@ export const quests: Quest[] = [
     studio: "The Wildcard Alliance",
     tagline: "Two-week Early Access launch for a 2v2 card-action game.",
     category: "Card battler",
-    cover: "/firebase-public/Game Cover Art/wildcard key art.jpg",
+    cover: "/firebase-public/Game Cover Art/wildcard key art.webp",
     description: "Early Access launch campaign for Wildcard — a 2v2 free-to-play collectible card action game where deckbuilding meets real-time arena combat. Two-week activation in October across 50 creator slots.",
     about: "Choose your Champion, summon your allies, and battle your way to victory while streaming. Bronze tier €10 flat; Silver tier €15 per hour, paid on verified gameplay.",
   },
@@ -863,7 +863,7 @@ export const quests: Quest[] = [
     studio: "Misty Whale Studio",
     tagline: "Indie puzzle spotlight. Logic and light converge.",
     category: "Indie puzzle",
-    cover: "/firebase-public/Game Cover Art/orbyss key art.jpg",
+    cover: "/firebase-public/Game Cover Art/orbyss key art.webp",
     description: "Indie puzzle game spotlight in partnership with Misty Whale Studio. Logic and light converge in a mesmerizing puzzle format reimagined around rhythm, precision, and visual flow.",
     about: "Developed by a small French studio led by Yannick Audéoud. Orbyss takes the classic puzzle format and reshapes it into an experience of rhythm and pure visual flow.",
   },
@@ -874,7 +874,7 @@ export const quests: Quest[] = [
     studio: "Misty Whale Studio",
     tagline: "Viral-friendly clip campaign. Streamable on first contact.",
     category: "Physics sandbox",
-    cover: "/firebase-public/Game Cover Art/tableflip key art.jpg",
+    cover: "/firebase-public/Game Cover Art/tableflip key art.webp",
     description: "Two-week Bronze and Silver campaign for Table Flip Simulator. 50-slot creator activation across a February to March 2026 window on Steam.",
     about: "Physics-powered chaos therapy. De-stress by destroying everyday life situations without real-world consequences. Viral clip-friendly out of the box.",
   },
@@ -885,7 +885,7 @@ export const quests: Quest[] = [
     studio: "1 Minus 1",
     tagline: "Competitive PvP playtest activation with full launch run.",
     category: "Competitive PvP",
-    cover: "/firebase-public/Game Cover Art/cyberclutch key art.jpg",
+    cover: "/firebase-public/Game Cover Art/cyberclutch key art.webp",
     description: "Competitive PvP activation for CyberClutch by 1 Minus 1. Creators stress-tested the gameplay loop, server stability, and content during the live activation window.",
     about: "Boutique-managed campaign with hands-on creator support throughout launch. Quoted by Sarah Newton (Operations Manager at 1 Minus 1) as a campaign where the streamers genuinely enjoyed themselves and it came through in the content.",
   },

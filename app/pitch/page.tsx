@@ -29,21 +29,21 @@ const partners = [
 /* PolaroidField hero tiles: a wide spread of game art + screenshots.
    Position classes mapped in pitch.css under .pitch-hero. */
 const heroTiles = [
-  { src: "/firebase-public/Game Cover Art/taxi chaos 2 key art.jpg",      className: "h1", depth: 0.7, priority: true },
-  { src: "/firebase-public/Game Cover Art/aska key art.jpg",              className: "h2", depth: 0.6, priority: true },
-  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.jpg",  className: "h3", depth: 0.55 },
-  { src: "/firebase-public/Game Cover Art/wildcard key art.jpg",          className: "h4", depth: 0.5 },
-  { src: "/firebase-public/Game Cover Art/godbreakers key art.jpg",       className: "h5", depth: 0.45 },
-  { src: "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",            className: "h6", depth: 0.6 },
-  { src: "/firebase-public/Game Screenshots/ENDIX.jpg",                   className: "h7", depth: 0.5 },
+  { src: "/firebase-public/Game Cover Art/taxi chaos 2 key art.webp",      className: "h1", depth: 0.7, priority: true },
+  { src: "/firebase-public/Game Cover Art/aska key art.webp",              className: "h2", depth: 0.6, priority: true },
+  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp",  className: "h3", depth: 0.55 },
+  { src: "/firebase-public/Game Cover Art/wildcard key art.webp",          className: "h4", depth: 0.5 },
+  { src: "/firebase-public/Game Cover Art/godbreakers key art.webp",       className: "h5", depth: 0.45 },
+  { src: "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",            className: "h6", depth: 0.6 },
+  { src: "/firebase-public/Game Screenshots/ENDIX.webp",                   className: "h7", depth: 0.5 },
 ];
 
 const finalTiles = [
-  { src: "/firebase-public/Game Cover Art/ascendant key art.jpg",        className: "f1", depth: 0.6 },
-  { src: "/firebase-public/Game Cover Art/cyberclutch key art.jpg",      className: "f2", depth: 0.7 },
-  { src: "/firebase-public/Game Screenshots/ASTRO BURN.jpg",             className: "f3", depth: 0.55 },
-  { src: "/firebase-public/Game Screenshots/MEXICAN NINJA.jpg",          className: "f4", depth: 0.5 },
-  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.jpg",           className: "f5", depth: 0.45 },
+  { src: "/firebase-public/Game Cover Art/ascendant key art.webp",        className: "f1", depth: 0.6 },
+  { src: "/firebase-public/Game Cover Art/cyberclutch key art.webp",      className: "f2", depth: 0.7 },
+  { src: "/firebase-public/Game Screenshots/ASTRO BURN.webp",             className: "f3", depth: 0.55 },
+  { src: "/firebase-public/Game Screenshots/MEXICAN NINJA.webp",          className: "f4", depth: 0.5 },
+  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.webp",           className: "f5", depth: 0.45 },
 ];
 
 const challenges = [
@@ -170,16 +170,16 @@ const goodHeavensCase = {
   name: "Good Heavens",
   studio: "Nowhere Studios and Rocketride Games",
   service: "Indie marketing studio (no creator activation)",
-  keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).png",
-  logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).png",
+  keyart: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).webp",
+  logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).webp",
   trailer: "lXPPZyEKGtM",
   screenshots: [
-    "/firebase-public/GoodHeavensRPG/gameplay (1).jpg",
-    "/firebase-public/GoodHeavensRPG/gameplay (2).jpg",
-    "/firebase-public/GoodHeavensRPG/gameplay (3).jpg",
-    "/firebase-public/GoodHeavensRPG/gameplay (4).jpg",
-    "/firebase-public/GoodHeavensRPG/Scholar City.jpg",
-    "/firebase-public/GoodHeavensRPG/War City 4.jpg",
+    "/firebase-public/GoodHeavensRPG/gameplay (1).webp",
+    "/firebase-public/GoodHeavensRPG/gameplay (2).webp",
+    "/firebase-public/GoodHeavensRPG/gameplay (3).webp",
+    "/firebase-public/GoodHeavensRPG/gameplay (4).webp",
+    "/firebase-public/GoodHeavensRPG/Scholar City.webp",
+    "/firebase-public/GoodHeavensRPG/War City 4.webp",
   ],
   scope: [
     "Active Discord community management: moderation, onboarding, weekly engagement, dev-to-community translation, event coordination.",

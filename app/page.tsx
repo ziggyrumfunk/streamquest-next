@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "./components/Reveal";
 import FloatingDiscord from "./components/FloatingDiscord";
-import CreatorClips from "./components/CreatorClips";
+import LazyCreatorClips from "./components/LazyCreatorClips";
 import PolaroidField from "./components/PolaroidField";
 import SteamGrowthCounter from "./components/SteamGrowthCounter";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
@@ -44,20 +44,20 @@ const partners = [
     medium gameplay screenshots on the sides, small circular streamer avatars scattered. */
 const heroTiles = [
   // Top corners — big portrait game key art (anchors)
-  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.jpg", className: "p1",  depth: 0.7, priority: true },
-  { src: "/firebase-public/Game Cover Art/aska key art.jpg",             className: "p2",  depth: 0.6, priority: true },
+  { src: "/firebase-public/Game Cover Art/planet of lana 2 key art.webp", className: "p1",  depth: 0.7, priority: true },
+  { src: "/firebase-public/Game Cover Art/aska key art.webp",             className: "p2",  depth: 0.6, priority: true },
 
   // Bottom corners — more big game key art (anchors)
-  { src: "/firebase-public/Game Cover Art/godbreakers key art.jpg",      className: "p7",  depth: 0.5 },
-  { src: "/firebase-public/Game Cover Art/wildcard key art.jpg",         className: "p8",  depth: 0.6 },
+  { src: "/firebase-public/Game Cover Art/godbreakers key art.webp",      className: "p7",  depth: 0.5 },
+  { src: "/firebase-public/Game Cover Art/wildcard key art.webp",         className: "p8",  depth: 0.6 },
 
   // Mid sides — landscape gameplay screenshots
-  { src: "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",       className: "p5",  depth: 0.55 },
-  { src: "/firebase-public/Game Screenshots/ASKA.jpg",                   className: "p6",  depth: 0.65 },
+  { src: "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",       className: "p5",  depth: 0.55 },
+  { src: "/firebase-public/Game Screenshots/ASKA.webp",                   className: "p6",  depth: 0.65 },
 
   // Bottom outer — landscape gameplay screenshots
-  { src: "/firebase-public/Game Screenshots/GODBREAKERS.jpg",            className: "p15", depth: 0.5 },
-  { src: "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",           className: "p16", depth: 0.55 },
+  { src: "/firebase-public/Game Screenshots/GODBREAKERS.webp",            className: "p15", depth: 0.5 },
+  { src: "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",           className: "p16", depth: 0.55 },
 
   // Small circular streamer avatars (8 of them, scattered)
   { src: "/firebase-public/Streamer Icons/CaedesEnder.png",              className: "p3 is-avatar",  depth: 0.4 },
@@ -72,14 +72,14 @@ const heroTiles = [
 
 /** Floating game-art tiles in the final CTA — 8 different ones. */
 const finalTiles = [
-  { src: "/firebase-public/Game Cover Art/ascendant key art.jpg",        className: "f1", depth: 0.6 },
-  { src: "/firebase-public/Game Cover Art/cyberclutch key art.jpg",      className: "f2", depth: 0.7 },
-  { src: "/firebase-public/Game Cover Art/drill and delve key art.jpg",  className: "f3", depth: 0.35 },
-  { src: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).jpg", className: "f4", depth: 0.45 },
-  { src: "/firebase-public/Game Screenshots/ASTRO BURN.jpg",             className: "f5", depth: 0.55 },
-  { src: "/firebase-public/Game Screenshots/MEXICAN NINJA.jpg",          className: "f6", depth: 0.65 },
-  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.jpg",           className: "f7", depth: 0.4 },
-  { src: "/firebase-public/Game Screenshots/ENDIX.jpg",                  className: "f8", depth: 0.5 },
+  { src: "/firebase-public/Game Cover Art/ascendant key art.webp",        className: "f1", depth: 0.6 },
+  { src: "/firebase-public/Game Cover Art/cyberclutch key art.webp",      className: "f2", depth: 0.7 },
+  { src: "/firebase-public/Game Cover Art/drill and delve key art.webp",  className: "f3", depth: 0.35 },
+  { src: "/firebase-public/Game Cover Art/Crema_Temtem_Swarm_KeyArt (1) (1).webp", className: "f4", depth: 0.45 },
+  { src: "/firebase-public/Game Screenshots/ASTRO BURN.webp",             className: "f5", depth: 0.55 },
+  { src: "/firebase-public/Game Screenshots/MEXICAN NINJA.webp",          className: "f6", depth: 0.65 },
+  { src: "/firebase-public/Game Screenshots/GOOD HEAVENS.webp",           className: "f7", depth: 0.4 },
+  { src: "/firebase-public/Game Screenshots/ENDIX.webp",                  className: "f8", depth: 0.5 },
 ];
 
 const features = [
@@ -361,10 +361,24 @@ export default async function HomePage() {
                   className={`rd-active-card is-active ${q.feature ? "feature" : ""}${q.logo ? " has-logo" : ""}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={q.cover} alt={`${q.title} key art`} loading="lazy" />
+                  <img
+                    src={q.cover}
+                    alt={`${q.title} key art`}
+                    width={1200}
+                    height={675}
+                    fetchPriority="high"
+                    decoding="async"
+                  />
                   {q.logo && (
                     /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={q.logo} alt={q.title} className="rd-active-logo" loading="lazy" />
+                    <img
+                      src={q.logo}
+                      alt={q.title}
+                      className="rd-active-logo"
+                      width={520}
+                      height={170}
+                      loading="lazy"
+                    />
                   )}
                   <div className="rd-active-body">
                     <div className="rd-active-status">
@@ -515,12 +529,12 @@ export default async function HomePage() {
       <section className="rd-stats" aria-label="StreamQuest platform statistics">
         <div className="rd-stats-bg" aria-hidden="true">
           {[
-            "/firebase-public/Game Screenshots/GODBREAKERS.jpg",
-            "/firebase-public/Game Screenshots/TAXI CHAOS 2.jpg",
-            "/firebase-public/Game Screenshots/PLANET OF LANA 2.jpg",
-            "/firebase-public/Game Screenshots/TEMTEM SWARM.jpg",
-            "/firebase-public/Game Screenshots/ASKA.jpg",
-            "/firebase-public/Game Screenshots/GRIDBEAT (1).jpg",
+            "/firebase-public/Game Screenshots/GODBREAKERS.webp",
+            "/firebase-public/Game Screenshots/TAXI CHAOS 2.webp",
+            "/firebase-public/Game Screenshots/PLANET OF LANA 2.webp",
+            "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",
+            "/firebase-public/Game Screenshots/ASKA.webp",
+            "/firebase-public/Game Screenshots/GRIDBEAT (1).webp",
           ].map((src) => (
             /* eslint-disable-next-line @next/next/no-img-element */
             <img key={src} src={src} alt="" loading="lazy" decoding="async" />
@@ -683,7 +697,7 @@ export default async function HomePage() {
       </section>
 
       {/* ============ CREATOR CLIPS — live streams ============ */}
-      <CreatorClips />
+      <LazyCreatorClips />
 
       {/* ============ FINAL CTA (floating 3:4 tiles) ============ */}
       <section className="rd-final">
@@ -702,25 +716,4 @@ export default async function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p>Whether you are a creator chasing your first paid stream or a studio ready to activate 50+ authentic creators, the door is open.</p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="rd-final-actions">
-              <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
-                Join Discord →
-              </a>
-              <a href="https://app.streamquest.io" className="btn btn-secondary btn-xl">
-                Become a paid streamer
-              </a>
-              <Link href="/brands" className="btn btn-twitch btn-xl">
-                Launch a campaign
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <FloatingDiscord />
-    </div>
-  );
-}
+            <p>Whether you are a creator chasing your first paid stream or a studio
