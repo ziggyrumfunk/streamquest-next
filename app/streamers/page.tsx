@@ -383,6 +383,10 @@ export default function StreamersPage() {
           </Reveal>
         </div>
       </section>
-          <LazyCreatorClips />
+
+      <LazyCreatorClips />
+
       <FloatingDiscord />
-      </
+    </div>
+  );
+}
