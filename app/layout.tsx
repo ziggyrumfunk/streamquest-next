@@ -7,10 +7,43 @@ import "./globals.css";
 
 const jost = Jost({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["300", "400", "700", "800"],
   variable: "--font-jost",
   display: "swap",
 });
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://streamquest.io";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "StreamQuest",
+  url: SITE_URL,
+  logo: `${SITE_URL}/firebase-public/Logos%20Partner/streamquest%20logo.png`,
+  description:
+    "Paid, quest-based Twitch streamer campaigns for indie and AA games.",
+  sameAs: [
+    "https://twitter.com/StreamQuest_io",
+    "https://app.streamquest.io",
+  ],
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer support",
+      email: "contact@streamquest.io",
+      availableLanguage: ["English"],
+    },
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "StreamQuest",
+  url: SITE_URL,
+  publisher: { "@type": "Organization", name: "StreamQuest" },
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -71,6 +104,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={jost.variable}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteSchema),
+          }}
+        />
         <a href="#main" className="skip-link">
           Skip to content
         </a>

@@ -282,6 +282,7 @@ export default function TestimonialsPage() {
         </div>
 
         <div className="tt-hero-inner" style={{ position: "relative", zIndex: 4 }}>
+          <h1 className="sr-only">StreamQuest testimonials from creators and studios</h1>
           <Reveal>
             <div className="tt-hero-eyebrow">
               <span className="eyebrow">

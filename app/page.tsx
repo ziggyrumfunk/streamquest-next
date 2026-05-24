@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "./components/Reveal";
 import FloatingDiscord from "./components/FloatingDiscord";
@@ -6,6 +7,20 @@ import PolaroidField from "./components/PolaroidField";
 import SteamGrowthCounter from "./components/SteamGrowthCounter";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
 import "./redesign.css";
+
+export const metadata: Metadata = {
+  title: "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
+  description:
+    "StreamQuest runs paid, quest-based Twitch streamer campaigns for indie and AA games. Manual verification, transparent payouts, and measurable KPI reporting for studios and micro-creators.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
+    description:
+      "Paid, quest-based Twitch streamer campaigns where streamers get paid in cash and studios get authentic, measurable creator coverage.",
+    url: "/",
+    type: "website",
+  },
+};
 
 /* ============================================================
    StreamQuest — HOMEPAGE v3

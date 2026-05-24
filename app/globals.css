@@ -795,3 +795,227 @@ p {
   transition: opacity 0.25s;
 }
 .creator-clip:hover::after { opacity: 0.4; }
+
+/* ============================================================
+   MOBILE NAV — hamburger + slide-in drawer (under 900px)
+   ============================================================ */
+
+/* Desktop nav: visible above 900px, hidden below */
+.desktop-nav { display: flex; }
+.desktop-cta { display: inline-flex; }
+
+@media (max-width: 900px) {
+  .desktop-nav { display: none; }
+  .desktop-cta { display: none; }
+}
+
+/* Burger button — only visible under 900px */
+.mnav-burger {
+  display: none;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.mnav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--lime);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.mnav-burger:hover { border-color: var(--lime); }
+@media (max-width: 900px) {
+  .mnav-burger { display: inline-flex; }
+}
+
+/* Drawer overlay */
+.mnav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+}
+.mnav-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.78);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.mnav-panel {
+  position: relative;
+  margin-left: auto;
+  width: min(380px, 92vw);
+  height: 100dvh;
+  background: #060c14;
+  border-left: 1px solid rgba(178, 240, 72, 0.18);
+  padding: 22px 22px 32px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: mnav-slide 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+@keyframes mnav-slide {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.mnav-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mnav-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+.mnav-close {
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mnav-close:hover { border-color: var(--lime); color: var(--lime); }
+
+/* Primary link list */
+.mnav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.mnav-link {
+  display: block;
+  padding: 14px 4px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: color 0.18s, padding-left 0.18s;
+}
+.mnav-link:hover,
+.mnav-link:focus {
+  color: var(--lime);
+  padding-left: 8px;
+}
+
+/* Quest sections */
+.mnav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mnav-section-head { display: flex; align-items: center; gap: 8px; }
+.mnav-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(190, 160, 255, 0.95);
+}
+.mnav-section-eyebrow--active { color: var(--lime); }
+.mnav-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--lime);
+  box-shadow: 0 0 8px rgba(178, 240, 72, 0.85);
+}
+
+.mnav-quest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.mnav-quest {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s, background 0.2s;
+}
+.mnav-quest:hover {
+  border-color: rgba(178, 240, 72, 0.5);
+  background: rgba(178, 240, 72, 0.05);
+}
+.mnav-quest img {
+  width: 54px;
+  height: 72px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #050d15;
+}
+.mnav-quest-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mnav-quest-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+.mnav-quest-studio {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Bottom CTA */
+.mnav-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.mnav-cta:hover { background: var(--lime-2); }

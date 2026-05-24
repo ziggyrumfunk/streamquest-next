@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
+import MobileNav from "./MobileNav";
 
 const primaryNav = [
   { href: "/", label: "Home" },
@@ -50,7 +51,7 @@ export default async function Header() {
           />
         </Link>
 
-        <nav className="flex-1 min-w-0" aria-label="Primary site navigation">
+        <nav className="desktop-nav flex-1 min-w-0" aria-label="Primary site navigation">
           <ul className="flex items-center gap-6 list-none whitespace-nowrap">
             {primaryNav.map((item) => (
               <li key={item.href}>
@@ -159,7 +160,7 @@ export default async function Header() {
           </ul>
         </nav>
 
-        <div className="shrink-0">
+        <div className="desktop-cta shrink-0">
           <a
             href="https://app.streamquest.io"
             rel="noopener"
@@ -169,6 +170,12 @@ export default async function Header() {
             Creator Dashboard
           </a>
         </div>
+
+        <MobileNav
+          primary={primaryNav}
+          activeQuests={activeQuests}
+          pastQuests={pastQuests}
+        />
       </div>
     </header>
   );
