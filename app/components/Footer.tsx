@@ -42,7 +42,18 @@ export default function Footer() {
       </div>
 
       <div className="shell mt-10 pt-6 border-t border-white/5 text-xs text-white/50 flex flex-wrap items-center justify-between gap-3">
-        <span>© {new Date().getFullYear()} StreamQuest. All rights reserved.</span>
+        <span>
+          © {new Date().getFullYear()} StreamQuest. All rights reserved. Built by{" "}
+          <a
+            href="https://www.rumfunk.nl"
+            className="hover:text-lime underline-offset-2 hover:underline"
+            target="_blank"
+            rel="noopener"
+          >
+            Rumfunk
+          </a>
+          .
+        </span>
         <a href="https://app.streamquest.io" className="hover:text-lime">
           app.streamquest.io
         </a>
