@@ -67,7 +67,7 @@ const featured = [
     name: "Findseloy",
     handle: "twitch.tv/findseloy",
     twitch: "https://www.twitch.tv/findseloy",
-    avatar: "/firebase-public/Streamer Icons/Findseloy.png",
+    avatar: "/firebase-public/Streamer Icons/Findseloy.webp",
   },
   {
     text: (
@@ -78,7 +78,7 @@ const featured = [
     name: "Paildry",
     handle: "twitch.tv/paildry",
     twitch: "https://twitch.tv/Paildry",
-    avatar: "/firebase-public/Streamer Icons/Paildry.png",
+    avatar: "/firebase-public/Streamer Icons/Paildry.webp",
   },
   {
     text: (
@@ -89,7 +89,7 @@ const featured = [
     name: "DrowsBicycle",
     handle: "twitch.tv/drowsybicycle",
     twitch: "https://www.twitch.tv/drowsybicycle",
-    avatar: "/firebase-public/Streamer Icons/Drowsbicycle.png",
+    avatar: "/firebase-public/Streamer Icons/Drowsbicycle.webp",
   },
 ];
 
@@ -98,7 +98,7 @@ const creators = [
   {
     name: "CaedesEnder",
     country: "United Kingdom",
-    avatar: "/firebase-public/Streamer Icons/CaedesEnder.png",
+    avatar: "/firebase-public/Streamer Icons/CaedesEnder.webp",
     twitch: "https://www.twitch.tv/caedesender",
     handle: "twitch.tv/caedesender",
     quote: "I stumbled upon StreamQuest just before the launch of their first campaign and I love that the impersonal 'apply and hear nothing back' problem just does not exist with this system. You know in advance if you are eligible for a quest with clearly defined tiers, know what is expected of your stream, and there is communication both with the founder and other streamers to help you out if needed.",
@@ -114,7 +114,7 @@ const creators = [
   {
     name: "ItsTsubaki",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/ItsTsubaki.png",
+    avatar: "/firebase-public/Streamer Icons/ItsTsubaki.webp",
     twitch: "https://linktr.ee/itstsubaki",
     handle: "linktr.ee/itstsubaki",
     quote: "Working with this platform has been a great experience. Being able to play games, go live, and share content while having fun made the experience genuinely enjoyable. The fair compensation is motivating. And thank you for accepting creators from other countries, since many paid platforms are usually limited to US-only or NA/EU.",
@@ -122,7 +122,7 @@ const creators = [
   {
     name: "Scorpinhoo",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/Scorphinhoo.png",
+    avatar: "/firebase-public/Streamer Icons/Scorphinhoo.webp",
     twitch: "https://twitch.tv/scorpinhoo",
     handle: "twitch.tv/scorpinhoo",
     quote: "Minha experiência com o StreamQuest tem sido excelente. Já completei 7 quests, todas com suporte impecável e pagamentos rigorosamente em dia. É uma plataforma que realmente valoriza o criador e cumpre o que promete.",
@@ -130,7 +130,7 @@ const creators = [
   {
     name: "Paildry",
     country: "Germany",
-    avatar: "/firebase-public/Streamer Icons/Paildry.png",
+    avatar: "/firebase-public/Streamer Icons/Paildry.webp",
     twitch: "https://twitch.tv/Paildry",
     handle: "twitch.tv/paildry",
     quote: "Since joining I have completed 10+ quests across several great games, and every payment arrived on time as promised. StreamQuest has been reliable and transparent in what it offers. I would definitely recommend it to others who meet the requirements.",
@@ -138,7 +138,7 @@ const creators = [
   {
     name: "John_Shinoda",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/John_Shinoda.png",
+    avatar: "/firebase-public/Streamer Icons/John_Shinoda.webp",
     twitch: "https://www.twitch.tv/john_shinoda",
     handle: "twitch.tv/john_shinoda",
     quote: "Minha jornada como criador de conteúdo com o StreamQuest está sendo EXCELENTE! Já completei 07 quests em distintas modalidades de jogos, todas com suporte impecável e pagamentos sempre pontuais. O StreamQuest realmente valoriza o criador e tem transparência nas propostas apresentadas.",
@@ -146,7 +146,7 @@ const creators = [
   {
     name: "Paschoalin",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/Paschaolin.jpeg",
+    avatar: "/firebase-public/Streamer Icons/Paschaolin.webp",
     twitch: "https://www.twitch.tv/paschoalin",
     handle: "twitch.tv/paschoalin",
     quote: "O StreamQuest tem um ponto diferencial com relação às outras plataformas: o suporte imediato e contato direto, com briefings bem detalhados. O sistema de qualificação e upgrade de tier por XP é motivante para nós criadores. Tenho várias missões completas e fico sempre muito animado para cobrir novas campanhas!",
@@ -154,7 +154,7 @@ const creators = [
   {
     name: "DrowsBicycle",
     country: "Australia",
-    avatar: "/firebase-public/Streamer Icons/Drowsbicycle.png",
+    avatar: "/firebase-public/Streamer Icons/Drowsbicycle.webp",
     twitch: "https://www.twitch.tv/drowsybicycle",
     handle: "twitch.tv/drowsybicycle",
     quote: "Stream Quest has made a fun and simple way to connect streamers and small developers to promote both game and stream. The small team behind Stream Quest go above and beyond to help with any issues, concerns or questions, day or night. 10/10.",
@@ -162,7 +162,7 @@ const creators = [
   {
     name: "Findseloy",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/Findseloy.png",
+    avatar: "/firebase-public/Streamer Icons/Findseloy.webp",
     twitch: "https://www.twitch.tv/findseloy",
     handle: "twitch.tv/findseloy",
     quote: "I have been here practically since the beginning and I have never seen a project so friendly to smaller creators. Everything has been and continues to be incredible. Very interesting games and the support is amazing.",
@@ -170,7 +170,7 @@ const creators = [
   {
     name: "ShrillGoblin",
     country: "United States",
-    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.png",
+    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.webp",
     twitch: "https://www.twitch.tv/shrillgoblin",
     handle: "twitch.tv/shrillgoblin",
     quote: "StreamQuest has been an excellent experience and I have been more than happy to recommend the program to several of my content creator friends. Administration is thorough and responsive, with quick turn arounds for quest completions. There is a wide variety of games to cover and I am proud and excited to be a Quester as it navigates the road ahead.",
@@ -178,7 +178,7 @@ const creators = [
   {
     name: "LunariValkyrie",
     country: "United States",
-    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.png",
+    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.webp",
     twitch: "https://www.twitch.tv/lunarivalkyrie",
     handle: "twitch.tv/lunarivalkyrie",
     quote: "My experience has been nothing but wonderful. After being treated so poorly on another platform, despite being a top performer, I was scared to try another. But I couldn't be happier here. Murat is so personable, and you can tell how much love, care, and work goes into each campaign. Easy to apply, simple to submit, and easy to get paid.",
@@ -186,7 +186,7 @@ const creators = [
   {
     name: "Fradda",
     country: "Australia",
-    avatar: "/firebase-public/Streamer Icons/Fradda.png",
+    avatar: "/firebase-public/Streamer Icons/Fradda.webp",
     twitch: "https://www.twitch.tv/fradda",
     handle: "twitch.tv/fradda",
     quote: "Easy to use platform with a highly engaged owner that cares about its content creators as much as the games and brands it works with.",
@@ -194,7 +194,7 @@ const creators = [
   {
     name: "Falamarkao",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/FalaMarkao.png",
+    avatar: "/firebase-public/Streamer Icons/FalaMarkao.webp",
     twitch: "https://www.twitch.tv/falamarkao",
     handle: "twitch.tv/falamarkao",
     quote: "My experience with the StreamQuest portal and team has been wonderful. They are always willing to help. Even though my channel is small and the audience is also small, the doors have always been open for me to stream the games and interact with the producers. The producers of Wildcard's Arena came to the live stream, gave tips and interacted with me.",
@@ -202,7 +202,7 @@ const creators = [
   {
     name: "Igorbay0",
     country: "Brazil",
-    avatar: "/firebase-public/Streamer Icons/igorbay0.png",
+    avatar: "/firebase-public/Streamer Icons/igorbay0.webp",
     twitch: "https://twitch.tv/igorbay0",
     handle: "twitch.tv/igorbay0",
     quote: "My experience with StreamQuest has been amazing. I have completed so many quests that I have honestly lost count. What really sets StreamQuest apart is that the project has soul. The support for creators is excellent, they always reply as quickly as possible, and payments are consistently on time and very transparent. Highly recommended.",
@@ -427,10 +427,3 @@ export default function TestimonialsPage() {
               <Link href="/quests-guide" className="btn btn-secondary btn-xl">
                 Read the quests guide
               </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-    </div>
-  );
-}

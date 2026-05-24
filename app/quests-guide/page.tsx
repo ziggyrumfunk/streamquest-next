@@ -44,10 +44,10 @@ const heroRowB: string[] = [...rotate(gameplayPool, 11), ...rotate(gameplayPool,
 
 /* Questy mascots floating around the final CTA section */
 const finalQuesties = [
-  { src: "/firebase-public/Questy New Folder/Questy Small Size (1).png", className: "f1", depth: 0.5 },
-  { src: "/firebase-public/Questy New Folder/Questy Small Size (2).png", className: "f2", depth: 0.6 },
-  { src: "/firebase-public/Questy New Folder/Questy Small Size (3).png", className: "f3", depth: 0.45 },
-  { src: "/firebase-public/Questy New Folder/Questy Small Size (4).png", className: "f4", depth: 0.55 },
+  { src: "/firebase-public/Questy New Folder/Questy Small Size (1).webp", className: "f1", depth: 0.5 },
+  { src: "/firebase-public/Questy New Folder/Questy Small Size (2).webp", className: "f2", depth: 0.6 },
+  { src: "/firebase-public/Questy New Folder/Questy Small Size (3).webp", className: "f3", depth: 0.45 },
+  { src: "/firebase-public/Questy New Folder/Questy Small Size (4).webp", className: "f4", depth: 0.55 },
 ];
 
 const criteria = [
@@ -124,7 +124,7 @@ export default function QuestsGuidePage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="qg-hero-mascot"
-              src="/firebase-public/Questy New Folder/Questy Regular Size (1).png"
+              src="/firebase-public/Questy New Folder/Questy Regular Size (1).webp"
               alt=""
               aria-hidden="true"
               loading="eager"
@@ -290,7 +290,7 @@ export default function QuestsGuidePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="qg-tier-questy"
-                  src="/firebase-public/Questy New Folder/Questy Small Size (1).png"
+                  src="/firebase-public/Questy New Folder/Questy Small Size (1).webp"
                   alt="Questy Bronze"
                   loading="lazy"
                 />
@@ -305,7 +305,7 @@ export default function QuestsGuidePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   className="qg-tier-questy"
-                  src="/firebase-public/Questy New Folder/Questy Small Size (8).png"
+                  src="/firebase-public/Questy New Folder/Questy Small Size (8).webp"
                   alt="Questy Silver"
                   loading="lazy"
                 />

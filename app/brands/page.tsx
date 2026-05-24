@@ -382,7 +382,7 @@ export default function BrandsPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="br-final-questy left"
-          src="/firebase-public/Questy New Folder/Questy Regular Size (3).png"
+          src="/firebase-public/Questy New Folder/Questy Regular Size (3).webp"
           alt=""
           aria-hidden="true"
           loading="lazy"
@@ -390,7 +390,7 @@ export default function BrandsPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="br-final-questy"
-          src="/firebase-public/Questy New Folder/Questy Regular Size (1).png"
+          src="/firebase-public/Questy New Folder/Questy Regular Size (1).webp"
           alt=""
           aria-hidden="true"
           loading="lazy"

@@ -51,7 +51,7 @@ export default function FloatingDiscord() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="floating-discord-mascot"
-          src="/firebase-public/Questy New Folder/Questy Regular Size (4).png"
+          src="/firebase-public/Questy New Folder/Questy Regular Size (4).webp"
           alt=""
           aria-hidden="true"
         />

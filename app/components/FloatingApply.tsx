@@ -38,7 +38,7 @@ export default function FloatingApply({
   ctaHref = "https://discord.gg/NhqfucYDXD",
   ctaClass = "btn-primary",
   accent = "lime",
-  mascot = "/firebase-public/Questy New Folder/Questy Small Size (1).png",
+  mascot = "/firebase-public/Questy New Folder/Questy Small Size (1).webp",
 }: Props = {}) {
   const [visible, setVisible] = useState(false);
 

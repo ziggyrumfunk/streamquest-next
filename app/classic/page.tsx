@@ -112,10 +112,10 @@ const completedQuests = [
 ];
 
 const features = [
-  { icon: "/firebase-public/Questy New Folder/Questy Small Size (1).png", title: "Quest-based campaigns", body: "Clear objectives, mission briefs, requirements. Streamers know what to do. Studios know what they're buying." },
-  { icon: "/firebase-public/Questy New Folder/Questy Regular Size (2).png", title: "Manual VOD review", body: "Every submission verified by a human. Correct category, gameplay time, brief compliance before any payout." },
-  { icon: "/firebase-public/Questy New Folder/Questy Small Size (8).png", title: "Transparent payouts", body: "Paid within 5 business days via Twitch donation setup. No bank details needed for standard payouts." },
-  { icon: "/firebase-public/Questy New Folder/Questy Small Size (3).png", title: "KPI reporting", body: "Viewer hours, cost-per-viewer-hour, creator lists, tier completion, top streams, geo distribution." },
+  { icon: "/firebase-public/Questy New Folder/Questy Small Size (1).webp", title: "Quest-based campaigns", body: "Clear objectives, mission briefs, requirements. Streamers know what to do. Studios know what they're buying." },
+  { icon: "/firebase-public/Questy New Folder/Questy Regular Size (2).webp", title: "Manual VOD review", body: "Every submission verified by a human. Correct category, gameplay time, brief compliance before any payout." },
+  { icon: "/firebase-public/Questy New Folder/Questy Small Size (8).webp", title: "Transparent payouts", body: "Paid within 5 business days via Twitch donation setup. No bank details needed for standard payouts." },
+  { icon: "/firebase-public/Questy New Folder/Questy Small Size (3).webp", title: "KPI reporting", body: "Viewer hours, cost-per-viewer-hour, creator lists, tier completion, top streams, geo distribution." },
 ];
 
 const stats = [
@@ -293,7 +293,7 @@ export default function HomePage() {
               <a href="https://discord.gg/NhqfucYDXD" className="btn btn-lime">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/firebase-public/Questy New Folder/Questy Small Size (1).png"
+                  src="/firebase-public/Questy New Folder/Questy Small Size (1).webp"
                   alt=""
                   aria-hidden="true"
                   loading="lazy"
@@ -527,7 +527,7 @@ export default function HomePage() {
               <div className="what-quote">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/firebase-public/Questy New Folder/Questy Regular Size (1).png"
+                  src="/firebase-public/Questy New Folder/Questy Regular Size (1).webp"
                   alt="Questy mascot"
                   loading="lazy"
                 />
@@ -752,7 +752,7 @@ export default function HomePage() {
                 <a href="https://discord.gg/NhqfucYDXD" className="btn btn-lime">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/firebase-public/Questy New Folder/Questy Small Size (1).png"
+                    src="/firebase-public/Questy New Folder/Questy Small Size (1).webp"
                     alt=""
                     aria-hidden="true"
                     loading="lazy"
@@ -878,7 +878,7 @@ export default function HomePage() {
                   <a href="https://discord.gg/NhqfucYDXD" className="btn btn-lime">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/firebase-public/Questy New Folder/Questy Small Size (1).png"
+                      src="/firebase-public/Questy New Folder/Questy Small Size (1).webp"
                       alt=""
                       aria-hidden="true"
                       loading="lazy"

@@ -17,19 +17,19 @@ export const metadata: Metadata = {
 
 /* Real creators displayed in the hero avatar wall (13 streamers) */
 const creators = [
-  { name: "CaedesEnder",    handle: "@caedesender",   twitch: "https://www.twitch.tv/caedesender",   avatar: "/firebase-public/Streamer Icons/CaedesEnder.png" },
-  { name: "Drowsbicycle",   handle: "@drowsybicycle", twitch: "https://www.twitch.tv/drowsybicycle", avatar: "/firebase-public/Streamer Icons/Drowsbicycle.png" },
-  { name: "FalaMarkao",     handle: "@falamarkao",    twitch: "https://www.twitch.tv/falamarkao",    avatar: "/firebase-public/Streamer Icons/FalaMarkao.png" },
-  { name: "Findseloy",      handle: "@findseloy",     twitch: "https://www.twitch.tv/findseloy",     avatar: "/firebase-public/Streamer Icons/Findseloy.png" },
-  { name: "Fradda",         handle: "@fradda",        twitch: "https://www.twitch.tv/fradda",        avatar: "/firebase-public/Streamer Icons/Fradda.png" },
-  { name: "ItsTsubaki",     handle: "@itstsubaki",    twitch: "https://linktr.ee/itstsubaki",        avatar: "/firebase-public/Streamer Icons/ItsTsubaki.png" },
-  { name: "John_Shinoda",   handle: "@john_shinoda",  twitch: "https://www.twitch.tv/john_shinoda",  avatar: "/firebase-public/Streamer Icons/John_Shinoda.png" },
-  { name: "Paildry",        handle: "@paildry",       twitch: "https://twitch.tv/Paildry",            avatar: "/firebase-public/Streamer Icons/Paildry.png" },
-  { name: "Paschoalin",     handle: "@paschoalin",    twitch: "https://www.twitch.tv/paschoalin",    avatar: "/firebase-public/Streamer Icons/Paschaolin.jpeg" },
-  { name: "Scorpinhoo",     handle: "@scorpinhoo",    twitch: "https://www.twitch.tv/scorpinhoo",    avatar: "/firebase-public/Streamer Icons/Scorphinhoo.png" },
-  { name: "ShrillGoblin",   handle: "@shrillgoblin",  twitch: "https://www.twitch.tv/shrillgoblin",  avatar: "/firebase-public/Streamer Icons/ShrillGoblin.png" },
-  { name: "igorbay0",       handle: "@igorbay0",      twitch: "https://twitch.tv/igorbay0",          avatar: "/firebase-public/Streamer Icons/igorbay0.png" },
-  { name: "lunarivalkyrie", handle: "@lunarivalkyrie",twitch: "https://www.twitch.tv/lunarivalkyrie",avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.png" },
+  { name: "CaedesEnder",    handle: "@caedesender",   twitch: "https://www.twitch.tv/caedesender",   avatar: "/firebase-public/Streamer Icons/CaedesEnder.webp" },
+  { name: "Drowsbicycle",   handle: "@drowsybicycle", twitch: "https://www.twitch.tv/drowsybicycle", avatar: "/firebase-public/Streamer Icons/Drowsbicycle.webp" },
+  { name: "FalaMarkao",     handle: "@falamarkao",    twitch: "https://www.twitch.tv/falamarkao",    avatar: "/firebase-public/Streamer Icons/FalaMarkao.webp" },
+  { name: "Findseloy",      handle: "@findseloy",     twitch: "https://www.twitch.tv/findseloy",     avatar: "/firebase-public/Streamer Icons/Findseloy.webp" },
+  { name: "Fradda",         handle: "@fradda",        twitch: "https://www.twitch.tv/fradda",        avatar: "/firebase-public/Streamer Icons/Fradda.webp" },
+  { name: "ItsTsubaki",     handle: "@itstsubaki",    twitch: "https://linktr.ee/itstsubaki",        avatar: "/firebase-public/Streamer Icons/ItsTsubaki.webp" },
+  { name: "John_Shinoda",   handle: "@john_shinoda",  twitch: "https://www.twitch.tv/john_shinoda",  avatar: "/firebase-public/Streamer Icons/John_Shinoda.webp" },
+  { name: "Paildry",        handle: "@paildry",       twitch: "https://twitch.tv/Paildry",            avatar: "/firebase-public/Streamer Icons/Paildry.webp" },
+  { name: "Paschoalin",     handle: "@paschoalin",    twitch: "https://www.twitch.tv/paschoalin",    avatar: "/firebase-public/Streamer Icons/Paschaolin.webp" },
+  { name: "Scorpinhoo",     handle: "@scorpinhoo",    twitch: "https://www.twitch.tv/scorpinhoo",    avatar: "/firebase-public/Streamer Icons/Scorphinhoo.webp" },
+  { name: "ShrillGoblin",   handle: "@shrillgoblin",  twitch: "https://www.twitch.tv/shrillgoblin",  avatar: "/firebase-public/Streamer Icons/ShrillGoblin.webp" },
+  { name: "igorbay0",       handle: "@igorbay0",      twitch: "https://twitch.tv/igorbay0",          avatar: "/firebase-public/Streamer Icons/igorbay0.webp" },
+  { name: "lunarivalkyrie", handle: "@lunarivalkyrie",twitch: "https://www.twitch.tv/lunarivalkyrie",avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.webp" },
 ];
 
 /* alternate circle / square shapes per slot for visual rhythm */
@@ -86,28 +86,28 @@ const testimonials = [
     name: "Paildry",
     handle: "twitch.tv/paildry",
     twitch: "https://twitch.tv/Paildry",
-    avatar: "/firebase-public/Streamer Icons/Paildry.png",
+    avatar: "/firebase-public/Streamer Icons/Paildry.webp",
     quote: "Completed 10+ quests across several great games, and every payment arrived on time as promised. StreamQuest has been reliable and transparent.",
   },
   {
     name: "Findseloy",
     handle: "twitch.tv/findseloy",
     twitch: "https://www.twitch.tv/findseloy",
-    avatar: "/firebase-public/Streamer Icons/Findseloy.png",
+    avatar: "/firebase-public/Streamer Icons/Findseloy.webp",
     quote: "I have been here practically since the beginning and I have never seen a project so friendly to smaller creators.",
   },
   {
     name: "ShrillGoblin",
     handle: "twitch.tv/shrillgoblin",
     twitch: "https://www.twitch.tv/shrillgoblin",
-    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.png",
+    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.webp",
     quote: "Quick turn arounds for quest completions. I have been more than happy to recommend the program to my content creator friends.",
   },
   {
     name: "LunariValkyrie",
     handle: "twitch.tv/lunarivalkyrie",
     twitch: "https://www.twitch.tv/lunarivalkyrie",
-    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.png",
+    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.webp",
     quote: "After being treated so poorly on another platform, despite being a top performer, I was scared to try another. But I couldn't be happier here.",
   },
 ];
@@ -385,6 +385,4 @@ export default function StreamersPage() {
       </section>
           <LazyCreatorClips />
       <FloatingDiscord />
-      </div>
-  );
-}
+      </

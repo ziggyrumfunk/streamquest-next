@@ -54,7 +54,7 @@ export default function LoadingSplash() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="splash-mascot"
-          src="/firebase-public/Questy New Folder/Questy Regular Size (3).png"
+          src="/firebase-public/Questy New Folder/Questy Regular Size (3).webp"
           alt=""
           width={260}
           height={260}

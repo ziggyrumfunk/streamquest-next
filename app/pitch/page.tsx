@@ -129,17 +129,17 @@ const taxiCase = {
   name: "Taxi Chaos 2",
   studio: "Current Games and Focuspoint Studios",
   service: "Full marketing partnership",
-  keyart: "/firebase-public/TaxiChaos2/screenshot-4.png",
+  keyart: "/firebase-public/TaxiChaos2/screenshot-4.webp",
   trailer: "odR4CLlU5NY",
   screenshots: [
-    "/firebase-public/TaxiChaos2/screenshot-1.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-2.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-3.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-5.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-6.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-7.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-8.jpg",
-    "/firebase-public/TaxiChaos2/screenshot-9.jpg",
+    "/firebase-public/TaxiChaos2/screenshot-1.webp",
+    "/firebase-public/TaxiChaos2/screenshot-2.webp",
+    "/firebase-public/TaxiChaos2/screenshot-3.webp",
+    "/firebase-public/TaxiChaos2/screenshot-5.webp",
+    "/firebase-public/TaxiChaos2/screenshot-6.webp",
+    "/firebase-public/TaxiChaos2/screenshot-7.webp",
+    "/firebase-public/TaxiChaos2/screenshot-8.webp",
+    "/firebase-public/TaxiChaos2/screenshot-9.webp",
   ],
   stats: [
     { num: "7.79M", label: "Owned channel views" },
@@ -322,7 +322,7 @@ export default function PitchPage() {
             <div className="pitch-intro-mascot">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/firebase-public/Questy New Folder/Questy Regular Size (2).png"
+                src="/firebase-public/Questy New Folder/Questy Regular Size (2).webp"
                 alt=""
                 aria-hidden="true"
               />
@@ -857,7 +857,7 @@ export default function PitchPage() {
           </Reveal>
           <div className="pitch-qa-mascot" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/firebase-public/Questy New Folder/Questy Regular Size (7).png" alt="" />
+            <img src="/firebase-public/Questy New Folder/Questy Regular Size (7).webp" alt="" />
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ import Reveal from "./components/Reveal";
 import FloatingDiscord from "./components/FloatingDiscord";
 import LazyCreatorClips from "./components/LazyCreatorClips";
 import PolaroidField from "./components/PolaroidField";
-import SteamGrowthCounter from "./components/SteamGrowthCounter";
+import { LazySteamGrowthCounter } from "./components/LazyComponents";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
 import "./redesign.css";
 
@@ -60,14 +60,14 @@ const heroTiles = [
   { src: "/firebase-public/Game Screenshots/TEMTEM SWARM.webp",           className: "p16", depth: 0.55 },
 
   // Small circular streamer avatars (8 of them, scattered)
-  { src: "/firebase-public/Streamer Icons/CaedesEnder.png",              className: "p3 is-avatar",  depth: 0.4 },
-  { src: "/firebase-public/Streamer Icons/Findseloy.png",                className: "p4 is-avatar",  depth: 0.5 },
-  { src: "/firebase-public/Streamer Icons/Paildry.png",                  className: "p9 is-avatar",  depth: 0.35 },
-  { src: "/firebase-public/Streamer Icons/ShrillGoblin.png",             className: "p10 is-avatar", depth: 0.45 },
-  { src: "/firebase-public/Streamer Icons/FalaMarkao.png",               className: "p11 is-avatar", depth: 0.4 },
-  { src: "/firebase-public/Streamer Icons/Fradda.png",                   className: "p12 is-avatar", depth: 0.5 },
-  { src: "/firebase-public/Streamer Icons/lunarivalkyrie.png",           className: "p13 is-avatar", depth: 0.45 },
-  { src: "/firebase-public/Streamer Icons/ItsTsubaki.png",               className: "p14 is-avatar", depth: 0.4 },
+  { src: "/firebase-public/Streamer Icons/CaedesEnder.webp",              className: "p3 is-avatar",  depth: 0.4 },
+  { src: "/firebase-public/Streamer Icons/Findseloy.webp",                className: "p4 is-avatar",  depth: 0.5 },
+  { src: "/firebase-public/Streamer Icons/Paildry.webp",                  className: "p9 is-avatar",  depth: 0.35 },
+  { src: "/firebase-public/Streamer Icons/ShrillGoblin.webp",             className: "p10 is-avatar", depth: 0.45 },
+  { src: "/firebase-public/Streamer Icons/FalaMarkao.webp",               className: "p11 is-avatar", depth: 0.4 },
+  { src: "/firebase-public/Streamer Icons/Fradda.webp",                   className: "p12 is-avatar", depth: 0.5 },
+  { src: "/firebase-public/Streamer Icons/lunarivalkyrie.webp",           className: "p13 is-avatar", depth: 0.45 },
+  { src: "/firebase-public/Streamer Icons/ItsTsubaki.webp",               className: "p14 is-avatar", depth: 0.4 },
 ];
 
 /** Floating game-art tiles in the final CTA — 8 different ones. */
@@ -94,28 +94,28 @@ const testimonials = [
     name: "Paildry",
     handle: "twitch.tv/paildry",
     twitch: "https://twitch.tv/Paildry",
-    avatar: "/firebase-public/Streamer Icons/Paildry.png",
+    avatar: "/firebase-public/Streamer Icons/Paildry.webp",
     quote: "Completed 10+ quests across several great games, and every payment arrived on time as promised. StreamQuest has been reliable and transparent in what it offers, and I'd definitely recommend it.",
   },
   {
     name: "ShrillGoblin",
     handle: "twitch.tv/shrillgoblin",
     twitch: "https://www.twitch.tv/shrillgoblin",
-    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.png",
+    avatar: "/firebase-public/Streamer Icons/ShrillGoblin.webp",
     quote: "Administration is thorough and responsive, with quick turn arounds for quest completions. Wide variety of games to cover. I have been more than happy to recommend the program to several of my content creator friends.",
   },
   {
     name: "Findseloy",
     handle: "twitch.tv/findseloy",
     twitch: "https://www.twitch.tv/findseloy",
-    avatar: "/firebase-public/Streamer Icons/Findseloy.png",
+    avatar: "/firebase-public/Streamer Icons/Findseloy.webp",
     quote: "I have been here practically since the beginning and I have never seen a project so friendly to smaller creators. Everything has been and continues to be incredible. Very interesting games and the support is amazing.",
   },
   {
     name: "LunariValkyrie",
     handle: "twitch.tv/lunarivalkyrie",
     twitch: "https://www.twitch.tv/lunarivalkyrie",
-    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.png",
+    avatar: "/firebase-public/Streamer Icons/lunarivalkyrie.webp",
     quote: "My experience with StreamQuest has been nothing but wonderful. After being treated so poorly on another platform, despite being a top performer, I was scared to try another. But I couldn't be happier here.",
   },
 ];
@@ -219,8 +219,20 @@ export default async function HomePage() {
     cover: q.portrait || q.cover,
     status: q.status === "active" ? ("Active" as const) : undefined,
   }));
+  const lcpCover = activeQuests[0]?.cover;
   return (
     <div className="rd">
+      {/* Preload the LCP image — the first active campaign cover.
+          This kicks the fetch off during HTML parse instead of after CSS+JS. */}
+      {lcpCover && (
+        <link
+          rel="preload"
+          as="image"
+          href={lcpCover}
+          // @ts-expect-error — valid HTML attr, missing in React types
+          fetchpriority="high"
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
@@ -520,7 +532,7 @@ export default async function HomePage() {
           </Reveal>
 
           <Reveal>
-            <SteamGrowthCounter />
+            <LazySteamGrowthCounter />
           </Reveal>
         </div>
       </section>
@@ -706,35 +718,4 @@ export default async function HomePage() {
         <div className="rd-final-inner">
           <Reveal>
             <span className="eyebrow">
-              <span className="pulse" />
-              Get started in minutes
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2>
-              Your first quest is <span className="grad">one click away</span>.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <p>Whether you are a creator chasing your first paid stream or a studio ready to activate 50+ authentic creators, the door is open.</p>
-          </Reveal>
-          <Reveal delay={0.3}>
-            <div className="rd-final-actions">
-              <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
-                Join Discord →
-              </a>
-              <a href="https://app.streamquest.io" className="btn btn-secondary btn-xl">
-                Become a paid streamer
-              </a>
-              <Link href="/brands" className="btn btn-twitch btn-xl">
-                Launch a campaign
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <FloatingDiscord />
-    </div>
-  );
-}
+              <span cl
