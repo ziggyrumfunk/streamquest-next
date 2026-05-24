@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 import Reveal from "./components/Reveal";
 import FloatingDiscord from "./components/FloatingDiscord";
@@ -7,6 +8,17 @@ import PolaroidField from "./components/PolaroidField";
 import { LazySteamGrowthCounter } from "./components/LazyComponents";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
 import "./redesign.css";
+
+/**
+ * Server-side mobile detection. The mobile homepage skips the
+ * heavy hero (polaroid field, cursor tracking, fade-in animations,
+ * 14 partner logos) and renders a lean static hero instead.
+ * Desktop visitors get the full rich experience unchanged.
+ */
+function isMobileUA(): boolean {
+  const ua = headers().get("user-agent") || "";
+  return /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+}
 
 export const metadata: Metadata = {
   title: "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
@@ -220,6 +232,7 @@ export default async function HomePage() {
     cover: q.portrait || q.cover,
     status: q.status === "active" ? ("Active" as const) : undefined,
   }));
+  const isMobile = isMobileUA();
   return (
     <div className="rd">
       <script
@@ -231,34 +244,28 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
 
-      {/* ============ HERO (centered + cursor-reactive 3:4 tiles) ============ */}
-      <section className="rd-hero">
-        <PolaroidField tiles={heroTiles} className="rd-polaroids" intensity={85} />
-
-        <div className="rd-hero-inner">
-          {activeQuests.length > 0 && (
-            <Reveal>
+      {/* ============ HERO ============ */}
+      {isMobile ? (
+        /* Mobile: lean static hero. Zero polaroids, zero Reveal JS,
+           zero cursor tracking. Just plain HTML so it paints instantly. */
+        <section className="rd-hero rd-hero-mobile">
+          <div className="rd-hero-inner">
+            {activeQuests.length > 0 && (
               <span className="eyebrow">
                 <span className="pulse" />
                 {activeQuests.length} active campaigns running now
               </span>
-            </Reveal>
-          )}
+            )}
 
-          <Reveal delay={0.1}>
             <h1>
               <span className="line">Paid Twitch streams.</span>
               <span className="line grad">Real reach.</span>
             </h1>
-          </Reveal>
 
-          <Reveal delay={0.2}>
             <p className="rd-hero-sub">
               StreamQuest is the quest-based Twitch creator platform. Micro-streamers earn real money playing new indie and AA games. Studios get authentic launch reach with full KPI reporting and zero bot inventory.
             </p>
-          </Reveal>
 
-          <Reveal delay={0.3}>
             <div className="rd-hero-ctas">
               <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
                 Join Discord →
@@ -267,30 +274,79 @@ export default async function HomePage() {
                 Launch a campaign
               </Link>
             </div>
-          </Reveal>
 
-          <Reveal delay={0.4}>
             <div className="rd-hero-trust">
               <div className="rd-trust-item"><span className="rd-trust-num">5d</span><span className="rd-trust-label">payout window</span></div>
               <div className="rd-trust-item"><span className="rd-trust-num">25+</span><span className="rd-trust-label">successful campaigns</span></div>
               <div className="rd-trust-item"><span className="rd-trust-num">50+</span><span className="rd-trust-label">creators per launch</span></div>
             </div>
-          </Reveal>
-        </div>
-      </section>
+          </div>
+        </section>
+      ) : (
+        /* Desktop: full rich hero with cursor-reactive 3:4 polaroid tiles. */
+        <section className="rd-hero">
+          <PolaroidField tiles={heroTiles} className="rd-polaroids" intensity={85} />
 
-      {/* ============ PARTNERS (trust signal #1) ============ */}
+          <div className="rd-hero-inner">
+            {activeQuests.length > 0 && (
+              <Reveal>
+                <span className="eyebrow">
+                  <span className="pulse" />
+                  {activeQuests.length} active campaigns running now
+                </span>
+              </Reveal>
+            )}
+
+            <Reveal delay={0.1}>
+              <h1>
+                <span className="line">Paid Twitch streams.</span>
+                <span className="line grad">Real reach.</span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="rd-hero-sub">
+                StreamQuest is the quest-based Twitch creator platform. Micro-streamers earn real money playing new indie and AA games. Studios get authentic launch reach with full KPI reporting and zero bot inventory.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="rd-hero-ctas">
+                <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
+                  Join Discord →
+                </a>
+                <Link href="/brands" className="btn btn-secondary btn-xl">
+                  Launch a campaign
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.4}>
+              <div className="rd-hero-trust">
+                <div className="rd-trust-item"><span className="rd-trust-num">5d</span><span className="rd-trust-label">payout window</span></div>
+                <div className="rd-trust-item"><span className="rd-trust-num">25+</span><span className="rd-trust-label">successful campaigns</span></div>
+                <div className="rd-trust-item"><span className="rd-trust-num">50+</span><span className="rd-trust-label">creators per launch</span></div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* ============ PARTNERS (trust signal #1) ============
+          Mobile: only first 6 logos, no marquee duplication. Saves 22 image requests. */}
       <div className="rd-partners">
         <div className="rd-partners-wrap">
           <div className="rd-partners-track" aria-hidden="true">
-            {[...partners, ...partners].map((name, i) => (
+            {(isMobile ? partners.slice(0, 6) : [...partners, ...partners]).map((name, i) => (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img
                 key={`${name}-${i}`}
                 className="rd-partner-logo"
-                src={`/firebase-public/Logos Partner/${name}.png`}
+                src={`/firebase-public/Logos Partner/${name}.webp`}
                 alt={name === "Current Games (2)" ? "Current Games" : name}
                 loading="lazy"
+                width={120}
+                height={48}
               />
             ))}
           </div>
