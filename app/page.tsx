@@ -219,20 +219,8 @@ export default async function HomePage() {
     cover: q.portrait || q.cover,
     status: q.status === "active" ? ("Active" as const) : undefined,
   }));
-  const lcpCover = activeQuests[0]?.cover;
   return (
     <div className="rd">
-      {/* Preload the LCP image — the first active campaign cover.
-          This kicks the fetch off during HTML parse instead of after CSS+JS. */}
-      {lcpCover && (
-        <link
-          rel="preload"
-          as="image"
-          href={lcpCover}
-          // @ts-expect-error — valid HTML attr, missing in React types
-          fetchpriority="high"
-        />
-      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}

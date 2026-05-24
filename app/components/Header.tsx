@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
-import MobileNav from "./MobileNav";
+import MobileNavTrigger from "./MobileNavTrigger";
 
 const primaryNav = [
   { href: "/", label: "Home" },
@@ -171,7 +171,7 @@ export default async function Header() {
           </a>
         </div>
 
-        <MobileNav
+        <MobileNavTrigger
           primary={primaryNav}
           activeQuests={activeQuests}
           pastQuests={pastQuests}
