@@ -716,4 +716,25 @@ export default async function HomePage() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p>Whether you are a creator chasing your first paid stream or a studio
+            <p>Whether you are a creator chasing your first paid stream or a studio ready to activate 50+ authentic creators, the door is open.</p>
+          </Reveal>
+          <Reveal delay={0.3}>
+            <div className="rd-final-actions">
+              <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
+                Join Discord →
+              </a>
+              <a href="https://app.streamquest.io" className="btn btn-secondary btn-xl">
+                Become a paid streamer
+              </a>
+              <Link href="/brands" className="btn btn-twitch btn-xl">
+                Launch a campaign
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <FloatingDiscord />
+    </div>
+  );
+}

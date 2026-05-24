@@ -427,3 +427,10 @@ export default function TestimonialsPage() {
               <Link href="/quests-guide" className="btn btn-secondary btn-xl">
                 Read the quests guide
               </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -168,4 +168,15 @@ export default async function Header() {
             aria-label="Open the StreamQuest creator dashboard"
           >
             Creator Dashboard
-   
+          </a>
+        </div>
+
+        <MobileNav
+          primary={primaryNav}
+          activeQuests={activeQuests}
+          pastQuests={pastQuests}
+        />
+      </div>
+    </header>
+  );
+}
