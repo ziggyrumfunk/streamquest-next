@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { isUnlocked } from "./session";
 import { signInAction, signOutAction } from "./actions";
+import SidePanelNav from "./SidePanelNav";
 import "@/app/redesign.css";
 import "./ghm.css";
 
 export const metadata: Metadata = {
-  title: "Good Heavens Marketing Proposal",
-  description: "Private StreamQuest proposal for Good Heavens.",
+  title: "Good Heavens! Marketing Proposal",
+  description: "Private StreamQuest proposal for Good Heavens!",
   robots: { index: false, follow: false },
 };
 
@@ -22,7 +23,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       <main className="ghm-lock">
         <div className="ghm-lock-card">
           <div className="ghm-lock-eyebrow">Private proposal</div>
-          <h1>Good Heavens marketing proposal</h1>
+          <h1>Good Heavens! marketing proposal</h1>
           <p>Enter the access code to view this page.</p>
           <form action={signInAction} className="ghm-lock-form">
             <input
@@ -45,6 +46,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
 
   return (
     <main className="ghm">
+      <SidePanelNav />
       {/* ============ HERO ============ */}
       <section className="ghm-hero">
         <div className="ghm-hero-bg" aria-hidden="true" />
@@ -64,7 +66,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
             StreamQuest proposal
           </span>
           <h1>
-            Good Heavens. <span className="grad">Marketing &amp; launch plan</span>.
+            Good Heavens! <span className="grad">Marketing &amp; launch plan</span>.
           </h1>
           <p>
             A practical launch support plan for Steam Next Fest, Gamescom preparation,
@@ -81,13 +83,13 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ OBJECTIVE ============ */}
-      <section className="ghm-section">
+      <section id="objective" className="ghm-section ghm-bg-scholar">
         <div className="ghm-shell ghm-obj-split">
           <div className="ghm-block">
             <span className="ghm-tag">Objective</span>
             <h2>Continue as an execution layer around the team, not above it.</h2>
             <p>
-              Over the past months, StreamQuest has become closely involved with Good Heavens across Reddit,
+              Over the past months, StreamQuest has become closely involved with Good Heavens! across Reddit,
               social media, Steam page improvements, content direction, creator thinking, and broader campaign
               planning. This has gone beyond high-level advice. We have worked closely with Faruk and Gün on
               content creation, supported the internal workflow, created additional content ourselves where
@@ -98,7 +100,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
               adapting posts to subreddit rules, and navigating communities carefully, we have reached several
               number 1 positions across relevant niche subreddits. This kind of traction is not only about
               posting more. It comes from understanding where the game fits, how each community behaves, and
-              how to frame Good Heavens in a way that feels native instead of promotional.
+              how to frame Good Heavens! in a way that feels native instead of promotional.
             </p>
             <p>
               Going forward, StreamQuest can continue acting as an execution layer around the team. The Good
@@ -112,7 +114,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
               This support is especially valuable because the team has limited time and many important
               priorities ahead. By taking pressure off the recurring marketing execution, StreamQuest helps
               the team focus on the work only they can do: improving the build, preparing better assets,
-              making key launch decisions, and delivering the most polished version of Good Heavens possible.
+              making key launch decisions, and delivering the most polished version of Good Heavens! possible.
             </p>
           </div>
           <div className="ghm-char-stack ghm-char-stack-tall" aria-hidden="true">
@@ -125,7 +127,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ STRATEGY SPLIT ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="strategy" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell ghm-split">
           <div className="ghm-block">
             <span className="ghm-tag ghm-tag-purple">Budget-sensitive structure</span>
@@ -155,7 +157,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ PR SCOPE ============ */}
-      <section className="ghm-section">
+      <section id="pr" className="ghm-section ghm-bg-war">
         <div className="ghm-shell ghm-pr-split">
           <div className="ghm-block">
             <span className="ghm-tag">PR scope</span>
@@ -163,7 +165,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
             <p>
               PR ownership remains with Critical Hit, Theofanis, or whichever PR partner the team chooses.
               StreamQuest does not decide the PR direction or replace the PR partner. Our role is to support
-              the execution layer around the PR campaign so the selected partner and the Good Heavens team
+              the execution layer around the PR campaign so the selected partner and the Good Heavens! team
               have what they need, when they need it.
             </p>
             <p>
@@ -203,7 +205,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ CURRENT LEARNINGS ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="learnings" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell">
           <div className="ghm-block ghm-head-block">
             <span className="ghm-tag">Current learnings</span>
@@ -253,7 +255,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ PACKAGE 1 — Reddit only ============ */}
-      <section className="ghm-section">
+      <section id="package-1" className="ghm-section ghm-bg-dungeon">
         <div className="ghm-shell">
           <div className="ghm-block ghm-package">
             <span className="ghm-tag">Package 1</span>
@@ -293,7 +295,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ PACKAGE 2 — June essentials ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="package-2" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell">
           <div className="ghm-block ghm-package">
             <span className="ghm-tag">Package 2</span>
@@ -372,7 +374,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ RECOMMENDED ROUTE ============ */}
-      <section className="ghm-section">
+      <section id="recommended" className="ghm-section ghm-bg-base">
         <div className="ghm-shell">
           <div className="ghm-cta">
             <span className="ghm-cta-eyebrow">Recommended route</span>
@@ -409,7 +411,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ TIMELINE ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="timeline" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell">
           <div className="ghm-block ghm-head-block">
             <span className="ghm-tag">Timeline</span>
@@ -502,7 +504,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ TRAILER ADD-ON ============ */}
-      <section className="ghm-section">
+      <section id="trailer" className="ghm-section ghm-bg-gameplay">
         <div className="ghm-shell">
           <div className="ghm-trailer">
             <div>
@@ -535,18 +537,14 @@ export default function GHmarketingPage({ searchParams }: Props) {
             </div>
             <div className="ghm-trailer-art ghm-trailer-art-chars" aria-hidden="true">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ghm-trailer-char ghm-trailer-char-main" src={`${GH}/player attack.png`} alt="" loading="lazy" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ghm-trailer-char ghm-trailer-char-side" src={`${GH}/drunk orc.png`} alt="" loading="lazy" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ghm-trailer-char ghm-trailer-char-mini" src={`${GH}/ant drone.png`} alt="" loading="lazy" />
+              <img className="ghm-trailer-char ghm-trailer-char-main" src={`${GH}/Good Heavens! ign rar.png`} alt="" loading="lazy" />
             </div>
           </div>
         </div>
       </section>
 
       {/* ============ PRICE GRID ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="pricing" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell">
           <div className="ghm-block ghm-head-block">
             <span className="ghm-tag">Individual pricing</span>
@@ -569,7 +567,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ THREE ROUTES ============ */}
-      <section className="ghm-section">
+      <section id="routes" className="ghm-section ghm-bg-base">
         <div className="ghm-shell">
           <div className="ghm-routes">
             <article className="ghm-route">
@@ -595,7 +593,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
       </section>
 
       {/* ============ FINAL RECOMMENDATION ============ */}
-      <section className="ghm-section ghm-section-shaded">
+      <section id="final" className="ghm-section ghm-section-shaded">
         <div className="ghm-shell">
           <div className="ghm-cta">
             <span className="ghm-cta-eyebrow">Final recommendation</span>
@@ -605,7 +603,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
             <p>
               Use June to test and prepare for Steam Next Fest, July to prepare the campaign and assets
               before Gamescom, and August to use Gamescom momentum for a focused late-August and
-              post-Gamescom release push. The Good Heavens team keeps ownership of the key product and
+              post-Gamescom release push. The Good Heavens! team keeps ownership of the key product and
               launch decisions. StreamQuest supports the execution layer around them by reducing workload,
               managing recurring marketing tasks, supporting content and ads, coordinating Reddit and
               creator activity, helping with Steam page work, and making sure the PR partner receives the
@@ -620,7 +618,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
               <li>June for Steam Next Fest visibility, ad testing, creator activity, and store page essentials</li>
               <li>July for pre-Gamescom preparation, press kit work, content planning, Steam page polish, and influencer outreach support</li>
               <li>August for Gamescom momentum and a focused late-August release push</li>
-              <li>The Good Heavens team keeps ownership of product, roadmap, priorities, and launch decisions</li>
+              <li>The Good Heavens! team keeps ownership of product, roadmap, priorities, and launch decisions</li>
               <li>StreamQuest supports the execution layer with content, creators, ads, Reddit, Steam page work, and PR coordination</li>
               <li>Keep enough budget free for paid ads, Gamescom costs, PR, and launch execution</li>
             </ul>
@@ -630,7 +628,7 @@ export default function GHmarketingPage({ searchParams }: Props) {
 
       <footer className="ghm-foot">
         <div className="ghm-shell ghm-foot-inner">
-          <span>Prepared by StreamQuest for Good Heavens.</span>
+          <span>Prepared by StreamQuest for Good Heavens!</span>
           <form action={signOutAction}>
             <button type="submit" className="ghm-foot-signout">Sign out</button>
           </form>

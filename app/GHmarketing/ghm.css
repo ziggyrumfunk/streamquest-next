@@ -329,6 +329,7 @@
   padding: 90px 0;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 90px;
 }
 .ghm-section-shaded {
   background: var(--gh-dark-3);
@@ -339,14 +340,62 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/streamdash-12aa9.firebasestorage.app/o/public%2FGoodHeavensRPG%2Fbackground%20dark.jpg?alt=media&token=2c4b45d9-70fe-4731-91be-06720f6dd733');
+  background-image: url('/firebase-public/GoodHeavensRPG/background dark.jpg');
   background-size: cover;
   background-position: center;
-  opacity: 0.07;
+  opacity: 0.08;
   filter: blur(3px);
   pointer-events: none;
 }
 .ghm-section-shaded > * { position: relative; z-index: 1; }
+
+/* ----- Subtle darkened-screenshot backgrounds for non-shaded sections ----
+   Each .ghm-bg-* paints a heavily darkened gameplay screenshot behind the
+   section content. Opacity stays low so it never competes with the text. */
+.ghm-bg-scholar::before,
+.ghm-bg-war::before,
+.ghm-bg-dungeon::before,
+.ghm-bg-base::before,
+.ghm-bg-gameplay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  filter: brightness(0.55) saturate(1.05) blur(1px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ghm-bg-scholar::before  { background-image: url('/firebase-public/GoodHeavensRPG/Scholar City.jpg'); }
+.ghm-bg-war::before      { background-image: url('/firebase-public/GoodHeavensRPG/War City 4.jpg'); }
+.ghm-bg-dungeon::before  { background-image: url('/firebase-public/GoodHeavensRPG/Dungeon 2.png'); }
+.ghm-bg-base::before     { background-image: url('/firebase-public/GoodHeavensRPG/Base 4.jpg'); }
+.ghm-bg-gameplay::before { background-image: url('/firebase-public/GoodHeavensRPG/gameplay (4).jpg'); }
+
+/* Soft vignette over screenshot so edges fade to flat dark */
+.ghm-bg-scholar::after,
+.ghm-bg-war::after,
+.ghm-bg-dungeon::after,
+.ghm-bg-base::after,
+.ghm-bg-gameplay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(13, 11, 20, 0.7) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Ensure everything in those sections sits above the screenshot underlay */
+.ghm-bg-scholar > *,
+.ghm-bg-war > *,
+.ghm-bg-dungeon > *,
+.ghm-bg-base > *,
+.ghm-bg-gameplay > * {
+  position: relative;
+  z-index: 1;
+}
 
 .ghm-block { max-width: 980px; }
 .ghm-head-block { margin-bottom: 48px; }
@@ -844,18 +893,19 @@
   object-fit: contain;
 }
 .ghm-trailer-char {
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.75))
+          drop-shadow(0 0 28px rgba(245, 200, 66, 0.1));
 }
-/* Single static hero character, centered in the panel */
+/* Single hero portrait (Good Heavens! ign rar), centered, filling the panel */
 .ghm-trailer-char-main {
-  bottom: 5%;
+  bottom: 4%;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 78%;
-  max-height: 88%;
+  max-width: 92%;
+  max-height: 94%;
   z-index: 2;
 }
-/* Drop the secondary characters — they were stacking over each other. */
+/* Drop the secondary characters — single portrait reads cleaner. */
 .ghm-trailer-char-side,
 .ghm-trailer-char-mini {
   display: none;
@@ -948,4 +998,112 @@
   background: rgba(245, 200, 66, 0.08);
   border-color: var(--gh-gold-soft);
   color: var(--gh-gold);
+}
+
+/* ============================================================
+   Floating side-panel jump nav
+   ============================================================ */
+.ghm-sidenav {
+  position: fixed;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  z-index: 50;
+  padding: 14px 12px;
+  background: rgba(13, 11, 20, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--gh-line);
+  border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
+              0 0 30px rgba(245, 200, 66, 0.05);
+  pointer-events: auto;
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.ghm-sidenav::-webkit-scrollbar { display: none; }
+
+.ghm-sidenav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ghm-sidenav li { display: block; }
+
+.ghm-sidenav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px 6px 8px;
+  color: var(--gh-cream);
+  opacity: 0.55;
+  text-decoration: none;
+  font-family: var(--gh-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: opacity 0.2s, color 0.2s, background 0.2s, padding 0.2s;
+  white-space: nowrap;
+}
+.ghm-sidenav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--gh-cream);
+  opacity: 0.4;
+  transition: background 0.2s, opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+  flex-shrink: 0;
+}
+.ghm-sidenav-label {
+  /* Hidden by default — only the active item shows its label.
+     Hover expands them all on desktop. */
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.25s ease, opacity 0.2s ease;
+}
+
+.ghm-sidenav a:hover {
+  opacity: 1;
+  color: var(--gh-gold);
+  background: rgba(245, 200, 66, 0.06);
+}
+.ghm-sidenav a:hover .ghm-sidenav-dot {
+  background: var(--gh-gold);
+  opacity: 1;
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(245, 200, 66, 0.6);
+}
+/* Expand all labels on panel hover so you can see what each dot is */
+.ghm-sidenav:hover .ghm-sidenav-label {
+  max-width: 180px;
+  opacity: 1;
+}
+
+/* Active item: gold dot + always-visible label */
+.ghm-sidenav li.is-active a {
+  opacity: 1;
+  color: var(--gh-gold);
+  background: rgba(245, 200, 66, 0.1);
+}
+.ghm-sidenav li.is-active .ghm-sidenav-dot {
+  background: var(--gh-gold);
+  opacity: 1;
+  box-shadow: 0 0 12px rgba(245, 200, 66, 0.75);
+}
+.ghm-sidenav li.is-active .ghm-sidenav-label {
+  max-width: 180px;
+  opacity: 1;
+}
+
+/* On screens too narrow for a side panel, hide it. The page is long but
+   each section header already labels itself, and mobile gets a clean read. */
+@media (max-width: 1024px) {
+  .ghm-sidenav { display: none; }
 }
