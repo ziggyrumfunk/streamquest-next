@@ -27,24 +27,37 @@
   --gh-line: rgba(245, 200, 66, 0.14);
   --gh-line-strong: rgba(245, 200, 66, 0.34);
   --gh-violet: #c9a8ff;
+  --gh-storybook: 'Schoolbell', 'SchoolbellLocal', cursive;
+  --gh-body: var(--font-jost), 'Jost', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
   background: var(--gh-dark);
   color: var(--gh-cream);
-  font-family: 'Schoolbell', 'SchoolbellLocal', cursive;
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 1.7;
+  font-family: var(--gh-body);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.65;
   min-height: 100dvh;
   position: relative;
 }
 
-/* Force the storybook font on every text-level element inside the page,
-   so the global Jost rules in redesign.css can't bleed in. */
-.ghm h1, .ghm h2, .ghm h3, .ghm h4, .ghm h5, .ghm h6,
+/* Schoolbell ONLY on real headlines + a couple of brand moments. Everything
+   else inherits the clean Jost body font from the redesign system. */
+.ghm h1,
+.ghm h2,
+.ghm h3,
+.ghm-lock-card h1,
+.ghm-hero h1,
+.ghm-trailer-price {
+  font-family: var(--gh-storybook);
+  font-weight: 400;
+}
+
+/* Anything text-level that isn't a headline explicitly uses the body font,
+   so nothing leaks Schoolbell into paragraphs / lists / tables / buttons. */
 .ghm p, .ghm li, .ghm span, .ghm strong, .ghm em,
 .ghm a, .ghm button, .ghm input, .ghm th, .ghm td, .ghm blockquote,
-.ghm-lock h1, .ghm-lock p, .ghm-lock button, .ghm-lock input, .ghm-lock div {
-  font-family: inherit;
+.ghm-lock p, .ghm-lock button, .ghm-lock input, .ghm-lock div {
+  font-family: var(--gh-body);
 }
 
 .ghm .grad {
@@ -187,7 +200,8 @@
     rgba(13, 11, 20, 0.95) 100%);
 }
 
-/* Hero ambient characters (same DOM, gold-tinted glow + float) */
+/* Hero ambient characters — kept STATIC and quiet. Only one main mascot
+   on each side so the hero copy never has art crashing into it. */
 .ghm-hero-chars {
   position: absolute;
   inset: 0;
@@ -198,30 +212,34 @@
 .ghm-char {
   position: absolute;
   height: auto;
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7))
-          drop-shadow(0 0 24px rgba(245, 200, 66, 0.08));
-  opacity: 0.95;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
+  opacity: 0.85;
 }
-.ghm-char-1 { right: 4%;  bottom: 0;     width: 280px; opacity: 0.92; animation: ghFloatA 5s ease-in-out infinite; }
-.ghm-char-2 { right: 22%; bottom: 0;     width: 220px; opacity: 0.82; animation: ghFloatB 6.5s ease-in-out infinite 0.4s; }
-.ghm-char-3 { right: 38%; bottom: -10px; width: 200px; opacity: 0.74; animation: ghFloatA 4.6s ease-in-out infinite 1.1s; }
-.ghm-char-4 { right: 1%;  bottom: 8px;   width: 130px; opacity: 0.8;  animation: ghFloatB 5.4s ease-in-out infinite 1.6s; }
-@keyframes ghFloatA {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-14px) rotate(1deg); }
+/* Single anchor mascot, far enough off the centered text column */
+.ghm-char-1 {
+  right: 3%;
+  bottom: 0;
+  width: 240px;
+  opacity: 0.65;
 }
-@keyframes ghFloatB {
-  0%, 100% { transform: translateY(0) rotate(1deg); }
-  50% { transform: translateY(-10px) rotate(-1deg); }
+/* Small companion at the far edge, only on wide screens */
+.ghm-char-4 {
+  left: 3%;
+  bottom: 12px;
+  width: 130px;
+  opacity: 0.45;
+}
+/* Hide the rest — they were the source of the visual clutter */
+.ghm-char-2,
+.ghm-char-3 {
+  display: none;
 }
 @media (max-width: 1100px) {
-  .ghm-char-2, .ghm-char-3 { display: none; }
-  .ghm-char-1 { width: 220px; opacity: 0.55; }
-  .ghm-char-4 { width: 110px; opacity: 0.5; }
+  .ghm-char-1 { width: 180px; opacity: 0.42; }
+  .ghm-char-4 { display: none; }
 }
 @media (max-width: 720px) {
-  .ghm-char-1 { width: 170px; opacity: 0.35; }
-  .ghm-char-4 { display: none; }
+  .ghm-char-1 { display: none; }
 }
 
 .ghm-hero-inner {
@@ -240,7 +258,8 @@
   padding: 9px 18px;
   border: 1px solid var(--gh-line-strong);
   background: rgba(245, 200, 66, 0.08);
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gh-gold);
@@ -285,10 +304,12 @@
   justify-content: center;
 }
 .ghm-pill {
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--gh-cream);
-  padding: 8px 18px;
+  padding: 8px 16px;
   background: rgba(245, 200, 66, 0.06);
   border: 1px solid var(--gh-line);
   border-radius: 999px;
@@ -332,11 +353,12 @@
 
 .ghm-tag {
   display: inline-block;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gh-gold);
-  opacity: 0.72;
+  opacity: 0.78;
   margin-bottom: 12px;
 }
 .ghm-tag-purple { color: var(--gh-violet); }
@@ -369,17 +391,17 @@
 }
 .ghm h3:first-child { margin-top: 0; }
 .ghm p {
-  font-size: 1.12rem;
+  font-size: 1.02rem;
   color: var(--gh-cream);
-  opacity: 0.86;
-  line-height: 1.75;
+  opacity: 0.85;
+  line-height: 1.7;
   margin: 0 0 16px;
   max-width: 72ch;
 }
 .ghm-muted {
   color: var(--gh-cream) !important;
-  opacity: 0.55 !important;
-  font-size: 1rem !important;
+  opacity: 0.6 !important;
+  font-size: 0.95rem !important;
   font-style: italic;
 }
 
@@ -392,20 +414,20 @@
 }
 .ghm-list li {
   position: relative;
-  padding-left: 26px;
-  font-size: 1.1rem;
+  padding-left: 24px;
+  font-size: 1rem;
   color: var(--gh-cream);
   opacity: 0.88;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 .ghm-list li::before {
   content: '★';
   position: absolute;
   left: 0;
-  top: 0;
+  top: 1px;
   color: var(--gh-gold);
-  font-size: 0.95rem;
-  line-height: 2;
+  font-size: 0.85rem;
+  line-height: 1.7;
   opacity: 0.85;
   text-shadow: 0 0 10px rgba(245, 200, 66, 0.5);
 }
@@ -473,12 +495,11 @@
   top: 120px;
   border: 1px solid var(--gh-line);
   background:
-    radial-gradient(ellipse 80% 70% at 50% 30%, rgba(245, 200, 66, 0.14), transparent 65%),
+    radial-gradient(ellipse 80% 70% at 50% 30%, rgba(245, 200, 66, 0.12), transparent 65%),
     linear-gradient(180deg, rgba(19, 16, 31, 0.95) 0%, rgba(13, 11, 20, 0.98) 100%);
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55),
-              0 0 60px rgba(245, 200, 66, 0.06);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
   border-radius: 10px;
 }
 .ghm-char-stack::after {
@@ -490,38 +511,35 @@
     repeating-linear-gradient(90deg, rgba(245, 200, 66, 0.03) 0 1px, transparent 1px 50px);
   pointer-events: none;
 }
-.ghm-stack-main,
-.ghm-stack-side {
+/* Single, centered, static mascot. No hover, no float. */
+.ghm-stack-main {
   position: absolute;
   height: auto;
-  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.7))
-          drop-shadow(0 0 28px rgba(245, 200, 66, 0.1));
-  transition: transform 0.5s ease;
-}
-.ghm-stack-main {
-  bottom: 6%;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.7));
+  bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
-  width: 72%;
+  width: 70%;
+  max-height: 84%;
+  object-fit: contain;
   z-index: 2;
 }
-.ghm-stack-side {
-  bottom: 14%;
-  right: 6%;
-  width: 32%;
-  opacity: 0.92;
-  z-index: 1;
-}
-.ghm-char-stack:hover .ghm-stack-main { transform: translateX(-50%) translateY(-8px); }
-.ghm-char-stack:hover .ghm-stack-side { transform: translateY(-4px); }
+/* The secondary side character was making the panels feel cluttered. Drop it. */
+.ghm-stack-side { display: none; }
 
 .ghm-char-stack-tall { aspect-ratio: 4 / 6; }
 .ghm-char-stack-side { aspect-ratio: 4 / 5; }
 
 @media (max-width: 900px) {
-  .ghm-char-stack { position: static; aspect-ratio: 16 / 10; }
-  .ghm-stack-main { width: 38%; }
-  .ghm-stack-side { width: 22%; bottom: 22%; }
+  /* On mobile the aside stacks BELOW text — keep it compact so it isn't a wall. */
+  .ghm-char-stack {
+    position: static;
+    aspect-ratio: auto;
+    height: 240px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .ghm-stack-main { width: auto; max-height: 88%; }
 }
 
 /* ============================================================
@@ -582,17 +600,18 @@
 }
 .ghm-table th {
   text-align: left;
-  padding: 15px 20px;
+  padding: 14px 18px;
   background: rgba(245, 200, 66, 0.1);
   color: var(--gh-gold);
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--gh-line);
 }
 .ghm-table td {
-  padding: 17px 20px;
-  font-size: 1.05rem;
+  padding: 16px 18px;
+  font-size: 0.98rem;
   color: var(--gh-cream);
   opacity: 0.9;
   border-top: 1px solid var(--gh-line);
@@ -605,8 +624,10 @@
   color: var(--gh-gold) !important;
   opacity: 1 !important;
   white-space: nowrap;
-  font-size: 1.15rem !important;
-  text-shadow: 0 0 18px rgba(245, 200, 66, 0.3);
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.005em;
+  text-shadow: 0 0 18px rgba(245, 200, 66, 0.25);
 }
 .ghm-price-muted {
   color: var(--gh-cream) !important;
@@ -667,12 +688,13 @@
 }
 .ghm-cta-eyebrow {
   display: inline-block;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gh-gold);
   margin-bottom: 14px;
-  opacity: 0.78;
+  opacity: 0.82;
 }
 .ghm-cta h2 { margin-bottom: 16px; }
 
@@ -685,18 +707,11 @@
 }
 .ghm-month {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 300px 1fr;
   background: rgba(13, 11, 20, 0.6);
   border: 1px solid var(--gh-line);
   overflow: hidden;
   border-radius: 12px;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-}
-.ghm-month:hover {
-  border-color: var(--gh-line-strong);
-  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5),
-              0 0 30px rgba(245, 200, 66, 0.08);
-  transform: translateY(-3px);
 }
 .ghm-month-art {
   position: relative;
@@ -708,10 +723,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.9);
-  transition: filter 0.4s ease, transform 0.5s ease;
+  filter: brightness(0.92);
 }
-.ghm-month:hover .ghm-month-art img { filter: brightness(1.05); transform: scale(1.04); }
 .ghm-month-art::after {
   content: '';
   position: absolute;
@@ -720,54 +733,44 @@
   pointer-events: none;
 }
 
-/* Month card with transparent character art */
+/* Month card with transparent character art — single static mascot */
 .ghm-month-art-chars {
   background:
-    radial-gradient(ellipse 90% 70% at 50% 35%, rgba(245, 200, 66, 0.16), transparent 70%),
+    radial-gradient(ellipse 90% 70% at 50% 40%, rgba(245, 200, 66, 0.14), transparent 70%),
     linear-gradient(160deg, rgba(19, 16, 31, 0.95), rgba(13, 11, 20, 0.98));
 }
 .ghm-month-art-chars img {
   object-fit: contain;
-  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.72))
-          drop-shadow(0 0 24px rgba(245, 200, 66, 0.08));
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.72));
 }
 .ghm-month-art-chars::after {
   background:
     repeating-linear-gradient(0deg, rgba(245, 200, 66, 0.03) 0 1px, transparent 1px 40px),
-    repeating-linear-gradient(90deg, rgba(245, 200, 66, 0.03) 0 1px, transparent 1px 40px),
-    linear-gradient(90deg, transparent 70%, rgba(13, 11, 20, 0.85) 100%);
+    repeating-linear-gradient(90deg, rgba(245, 200, 66, 0.03) 0 1px, transparent 1px 40px);
 }
 .ghm-month-char {
   position: absolute;
   height: auto;
   width: auto;
-  transition: transform 0.5s ease;
 }
 .ghm-month-char-main {
-  bottom: 8%;
+  bottom: 6%;
   left: 50%;
   transform: translateX(-50%);
-  max-height: 78%;
-  max-width: 65%;
+  max-height: 82%;
+  max-width: 70%;
   z-index: 2;
 }
-.ghm-month-char-mini {
-  bottom: 12%;
-  right: 8%;
-  max-height: 36%;
-  max-width: 30%;
-  opacity: 0.9;
-  z-index: 1;
-}
-.ghm-month:hover .ghm-month-char-main { transform: translateX(-50%) translateY(-8px); }
-.ghm-month:hover .ghm-month-char-mini { transform: translateY(-4px); }
+/* Drop the mini secondary character — single focused mascot reads cleaner. */
+.ghm-month-char-mini { display: none; }
 .ghm-month-body { padding: 30px 32px; }
 .ghm-month-tag {
   display: inline-block;
-  padding: 6px 16px;
+  padding: 6px 14px;
   background: var(--gh-gold);
   color: var(--gh-dark);
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -841,36 +844,22 @@
   object-fit: contain;
 }
 .ghm-trailer-char {
-  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7))
-          drop-shadow(0 0 22px rgba(245, 200, 66, 0.08));
-  transition: transform 0.5s ease;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.7));
 }
+/* Single static hero character, centered in the panel */
 .ghm-trailer-char-main {
-  bottom: 6%;
-  left: 18%;
-  max-width: 55%;
-  max-height: 80%;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 78%;
+  max-height: 88%;
   z-index: 2;
 }
-.ghm-trailer-char-side {
-  bottom: 8%;
-  right: 6%;
-  max-width: 38%;
-  max-height: 60%;
-  opacity: 0.92;
-  z-index: 1;
-}
+/* Drop the secondary characters — they were stacking over each other. */
+.ghm-trailer-char-side,
 .ghm-trailer-char-mini {
-  top: 10%;
-  right: 12%;
-  max-width: 22%;
-  max-height: 32%;
-  opacity: 0.78;
-  z-index: 1;
+  display: none;
 }
-.ghm-trailer:hover .ghm-trailer-char-main { transform: translateY(-8px); }
-.ghm-trailer:hover .ghm-trailer-char-side { transform: translateY(-5px); }
-.ghm-trailer:hover .ghm-trailer-char-mini { transform: translateY(-3px); }
 
 @media (max-width: 900px) { .ghm-trailer { grid-template-columns: 1fr; } }
 
@@ -914,15 +903,16 @@
 }
 .ghm-route-recommended::after { opacity: 1; }
 .ghm-route-eyebrow {
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gh-gold);
   margin-bottom: 12px;
-  opacity: 0.78;
+  opacity: 0.82;
 }
 .ghm-route h3 { margin: 0 0 14px; }
-.ghm-route .ghm-price { font-size: 1.2rem !important; margin: 0 0 14px; }
+.ghm-route .ghm-price { font-size: 1.1rem !important; margin: 0 0 14px; }
 @media (max-width: 900px) { .ghm-routes { grid-template-columns: 1fr; } }
 
 /* ============================================================
