@@ -6,6 +6,7 @@ const primaryNav = [
   { href: "/", label: "Home" },
   { href: "/streamers", label: "Streamers" },
   { href: "/brands", label: "Brands" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/testimonials", label: "Testimonials" },
   { href: "/quests-guide", label: "Quests Guide" },
 ];

@@ -11,15 +11,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`,                       lastModified: now, changeFrequency: "weekly",  priority: 1.0 },
-    { url: `${SITE}/streamers`,              lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${SITE}/brands`,                 lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
-    { url: `${SITE}/quests-guide`,           lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${SITE}/testimonials`,           lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${SITE}/faq`,                    lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${SITE}/news`,                   lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
-    { url: `${SITE}/privacy-policy`,         lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
-    { url: `${SITE}/terms-and-conditions`,   lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
+    { url: `${SITE}/`,                                lastModified: now, changeFrequency: "weekly",  priority: 1.0 },
+    { url: `${SITE}/streamers`,                       lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${SITE}/brands`,                          lastModified: now, changeFrequency: "weekly",  priority: 0.9 },
+    { url: `${SITE}/case-studies`,                    lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${SITE}/case-studies/planet-of-lana-2`,   lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE}/quests-guide`,                    lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE}/testimonials`,                    lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${SITE}/faq`,                             lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE}/news`,                            lastModified: now, changeFrequency: "weekly",  priority: 0.7 },
+    { url: `${SITE}/privacy-policy`,                  lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
+    { url: `${SITE}/terms-and-conditions`,            lastModified: now, changeFrequency: "yearly",  priority: 0.3 },
   ];
 
   const questRoutes: MetadataRoute.Sitemap = quests.map((q) => ({
