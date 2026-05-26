@@ -60,14 +60,6 @@ const socials = [
     href: "https://www.youtube.com/shorts/pJj6tR1rF6Q",
   },
   {
-    platform: "Instagram",
-    pillClass: "ig",
-    handle: "GirlWhoPlays",
-    meta: "Spanish Instagram Reel. Strongest performer of the activation.",
-    href: "https://www.instagram.com/reels/DV9OyaakXft/",
-    feature: true,
-  },
-  {
     platform: "X / Twitter",
     pillClass: "x",
     handle: "UmbritaC",
@@ -395,13 +387,56 @@ export default function PlanetOfLana2CaseStudy() {
             </p>
           </div>
 
-          <h3 style={{ marginTop: 38 }}>Example social highlights</h3>
+          {/* ---- Featured viral example (GirlWhoPlays) ---- */}
+          <div className="cs-viral-feature">
+            <div className="cs-viral-embed">
+              <div className="cs-viral-frame">
+                <iframe
+                  src="https://www.instagram.com/reel/DV9OyaakXft/embed"
+                  title="GirlWhoPlays Planet of Lana II Instagram Reel"
+                  loading="lazy"
+                  allow="encrypted-media"
+                  scrolling="no"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <div className="cs-viral-text">
+              <span className="cs-viral-badge">Example of a small clip that can go viral</span>
+              <h3>40 posts. One of them takes off. That&apos;s the whole bet.</h3>
+              <p>
+                The micro-creator model is not built on every post overperforming. It is
+                built on the math that when many creators post across many unique
+                accounts, the campaign creates many chances for one piece of content to
+                break out.
+              </p>
+              <p>
+                @GirlWhoPlays&apos; Spanish-language reel was that piece on this campaign.
+                A creator the algorithm liked, a clip that lined up with her audience,
+                and the kind of organic reach a single paid placement is unlikely to
+                buy on its own.
+              </p>
+              <p className="cs-muted">
+                The rest of the activation still provides the base layer of proof,
+                tags, and visibility. The viral hit sits on top of that base, not in
+                place of it.
+              </p>
+              <a
+                className="cs-viral-link"
+                href="https://www.instagram.com/reels/DV9OyaakXft/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open on Instagram →
+              </a>
+            </div>
+          </div>
+
+          <h3 style={{ marginTop: 48 }}>The rest of the social spread</h3>
           <p className="cs-muted">
-            The output appeared across Instagram, YouTube Shorts and X. Not every
-            individual post needs to overperform for the campaign to be valuable. With
-            many creators posting across many unique accounts, the campaign creates
-            more chances for one piece to break out while still generating a broad
-            base of proof, tags and visibility.
+            The output appeared across Instagram, YouTube Shorts and X. Each post added
+            its own slice of proof and tags. Not every individual post needs to
+            overperform for the campaign to be valuable.
           </p>
 
           <div className="cs-socials">
@@ -411,7 +446,7 @@ export default function PlanetOfLana2CaseStudy() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`cs-social${s.feature ? " is-feature" : ""}`}
+                className="cs-social"
               >
                 <span className="cs-social-platform">
                   <span className={`cs-social-pill ${s.pillClass}`}>{s.platform}</span>
@@ -449,7 +484,7 @@ export default function PlanetOfLana2CaseStudy() {
                 <li>Many small communities seeing the game from trusted voices</li>
                 <li>Many public posts and tags from unique accounts</li>
                 <li>Many proof points collected into one KPI report</li>
-                <li>Less dependence on a single creator's performance</li>
+                <li>Less dependence on a single creator&apos;s performance</li>
               </ul>
             </div>
             <div className="cs-split-visual is-art">
@@ -463,13 +498,20 @@ export default function PlanetOfLana2CaseStudy() {
             <span className="cs-tag">Run this for your game</span>
             <h2>
               One campaign beat,{" "}
-              <span className="grad" style={{
-                background: "linear-gradient(105deg, #B2F048 0%, #D5FF78 35%, #ffffff 78%)",
-                WebkitBackgroundClip: "text",
-                backgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                color: "transparent",
-              }}>distributed across many creators</span>.
+              <span
+                className="grad"
+                style={{
+                  background:
+                    "linear-gradient(105deg, #B2F048 0%, #D5FF78 35%, #ffffff 78%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                }}
+              >
+                distributed across many creators
+              </span>
+              .
             </h2>
             <p>
               For games with an existing hook, a strong visual identity, or a
@@ -483,7 +525,6 @@ export default function PlanetOfLana2CaseStudy() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }
