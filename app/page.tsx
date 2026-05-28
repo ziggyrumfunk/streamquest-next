@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   title: "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
   description:
     "StreamQuest runs paid, quest-based Twitch streamer campaigns for indie and AA games. Manual verification, transparent payouts, and measurable KPI reporting for studios and micro-creators.",
-  alternates: { canonical: "/" },
+  alternates: { canonical: "https://streamquest.io/" },
   openGraph: {
     title: "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
     description:

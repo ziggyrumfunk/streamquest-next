@@ -9,7 +9,7 @@ import "./news.css";
 export const metadata: Metadata = {
   title: "News",
   description: "Latest updates, campaigns, and team notes from StreamQuest.",
-  alternates: { canonical: "/news" },
+  alternates: { canonical: "https://streamquest.io/news" },
 };
 
 // News list reads from KV; revalidates on tag bust from admin actions.

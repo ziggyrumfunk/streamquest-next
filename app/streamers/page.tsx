@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "For streamers — get paid to play indie & AA games",
   description:
     "Real money for real streams. Apply for paid Twitch quests with indie and AA games. 300+ followers, 5+ CCV, all regions welcome.",
-  alternates: { canonical: "/streamers" },
+  alternates: { canonical: "https://streamquest.io/streamers" },
 };
 
 /* Real creators displayed in the hero avatar wall (13 streamers) */

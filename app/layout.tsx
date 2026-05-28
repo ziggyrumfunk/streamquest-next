@@ -50,11 +50,11 @@ export const metadata: Metadata = {
   ),
   title: {
     default:
-      "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
+      "StreamQuest | Paid Twitch Campaigns for Indie & AA Games",
     template: "%s | StreamQuest",
   },
   description:
-    "StreamQuest runs paid, quest-based Twitch streamer campaigns for indie and AA games. Manual verification, transparent payouts, and measurable KPI reporting for studios and micro-creators.",
+    "Paid, quest-based Twitch campaigns for indie and AA games. Manual verification, transparent payouts, and full KPI reporting for studios and creators.",
   robots: {
     index: true,
     follow: true,
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     siteName: "StreamQuest",
     locale: "en_US",
     title:
-      "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
+      "StreamQuest | Paid Twitch Campaigns for Indie & AA Games",
     description:
       "A Twitch creator platform where streamers discover indie games, join paid quests, and help studios launch authentic creator campaigns.",
     url: "/",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@StreamQuest_io",
     title:
-      "StreamQuest | Paid Twitch Streamer Campaigns for Indie & AA Games",
+      "StreamQuest | Paid Twitch Campaigns for Indie & AA Games",
     description:
       "Paid Twitch streamer campaigns for indie and AA games. Streamers get rewarded. Studios get authentic reach.",
   },

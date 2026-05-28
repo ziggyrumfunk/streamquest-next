@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Gamified micro-creator campaigns and indie marketing services for game studios and publishers. Real campaigns, verified results, boutique service.",
   robots: { index: false, follow: false },
-  alternates: { canonical: "/pitch" },
+  alternates: { canonical: "https://streamquest.io/pitch" },
 };
 
 /* ============================================================

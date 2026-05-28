@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Planet of Lana II Case Study | StreamQuest",
   description:
     "How StreamQuest divided one influencer beat into 49 creator communities for Planet of Lana II. 159h verified livestream, 96.1% completion, 3,546.6 viewer-hours across 6 languages.",
-  alternates: { canonical: "/case-studies/planet-of-lana-2" },
+  alternates: { canonical: "https://streamquest.io/case-studies/planet-of-lana-2" },
 };
 
 const PL2 = "/firebase-public/PlanetOfLana2";

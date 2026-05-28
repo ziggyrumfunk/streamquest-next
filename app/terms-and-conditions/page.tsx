@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Terms and Conditions",
   description:
     "Terms governing access to and use of StreamQuest, including the website, Creator Dashboard, client tools, campaign pages, Quest applications, Mission Briefs, submissions, and related services.",
-  alternates: { canonical: "/terms-and-conditions" },
+  alternates: { canonical: "https://streamquest.io/terms-and-conditions" },
 };
 
 const blocks: LegalBlock[] = [

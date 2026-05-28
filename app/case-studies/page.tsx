@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Case Studies | StreamQuest",
   description:
     "How indie and AA game studios run StreamQuest creator campaigns. Read full breakdowns of past activations: scope, results, KPIs and creator output.",
-  alternates: { canonical: "/case-studies" },
+  alternates: { canonical: "https://streamquest.io/case-studies" },
 };
 
 const PL2 = "/firebase-public/PlanetOfLana2";

@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   title: "Testimonials — real quotes from creators and studios",
   description:
     "Real quotes from StreamQuest streamers and partner studios. Reliable payments, hands-on support, authentic creator communities.",
-  alternates: { canonical: "/testimonials" },
+  alternates: { canonical: "https://streamquest.io/testimonials" },
 };
 
 /* ============ DATA ============ */

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "FAQ — StreamQuest creator and studio questions",
   description:
     "Answers for streamers and studios: how quests work, requirements, payouts, verification, KPI reports, mission briefs, and more.",
-  alternates: { canonical: "/faq" },
+  alternates: { canonical: "https://streamquest.io/faq" },
 };
 
 /* ============ HERO MARQUEE DATA ============ */

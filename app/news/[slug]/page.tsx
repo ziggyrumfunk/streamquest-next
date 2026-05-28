@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.title,
-    alternates: { canonical: `/news/${params.slug}` },
+    alternates: { canonical: `https://streamquest.io/news/${params.slug}` },
     openGraph: post.cover
       ? { title: post.title, images: [post.cover] }
       : { title: post.title },

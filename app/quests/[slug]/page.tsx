@@ -28,7 +28,7 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     title: `${q.title} — Mission brief`,
     description: q.description || q.tagline,
-    alternates: { canonical: `/quests/${q.slug}` },
+    alternates: { canonical: `https://streamquest.io/quests/${q.slug}` },
     openGraph: {
       title: `${q.title} — StreamQuest mission brief`,
       description: q.description || q.tagline,

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "For studios & publishers — launch with 50+ verified creators",
   description:
     "StreamQuest runs gamified Twitch micro-streamer campaigns for indie and AA games. Verified metrics, transparent KPI reporting, and authentic creator communities.",
-  alternates: { canonical: "/brands" },
+  alternates: { canonical: "https://streamquest.io/brands" },
 };
 
 /* ============ DATA ============ */
