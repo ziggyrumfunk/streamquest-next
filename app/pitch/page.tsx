@@ -611,7 +611,7 @@ export default function PitchPage() {
         {/* Full-bleed image strip uses the proper key art for crisp rendering */}
         <div className="pitch-case-strip" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={taxiCase.keyart} alt="" loading="lazy" />
+          <img src={taxiCase.keyart} alt={taxiCase.name} loading="lazy" />
           <div className="pitch-case-strip-veil" />
         </div>
 
@@ -698,7 +698,7 @@ export default function PitchPage() {
       <section className="pitch-case-section pitch-section-shaded">
         <div className="pitch-case-strip" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={goodHeavensCase.keyart} alt="" loading="lazy" />
+          <img src={goodHeavensCase.keyart} alt={goodHeavensCase.name} loading="lazy" />
           <div className="pitch-case-strip-veil" />
         </div>
 

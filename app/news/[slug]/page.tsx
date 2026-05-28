@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.title,
+    alternates: { canonical: `/news/${params.slug}` },
     openGraph: post.cover
       ? { title: post.title, images: [post.cover] }
       : { title: post.title },
@@ -61,7 +62,7 @@ export default async function NewsPostPage({ params }: Params) {
           <Reveal>
             <div className="news-post-cover">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={post.cover} alt="" loading="eager" />
+              <img src={post.cover} alt={post.title} loading="eager" />
             </div>
           </Reveal>
         )}

@@ -104,7 +104,7 @@ export default async function AdminDashboard({ searchParams }: Props) {
                 <div className="admin-quest-thumb">
                   {p.cover ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={p.cover} alt="" loading="lazy" />
+                    <img src={p.cover} alt={p.title} loading="lazy" />
                   ) : (
                     <div className="admin-no-thumb" />
                   )}
@@ -148,7 +148,7 @@ function QuestList({
           <li key={q.slug} className="admin-quest">
             <div className="admin-quest-thumb">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={q.portrait || q.cover} alt="" loading="lazy" />
+              <img src={q.portrait || q.cover} alt={q.title} loading="lazy" />
             </div>
             <div className="admin-quest-meta">
               <Link href={`/quests/${q.slug}`} className="admin-quest-title">{q.title}</Link>

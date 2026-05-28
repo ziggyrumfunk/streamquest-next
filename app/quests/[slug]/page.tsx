@@ -28,6 +28,7 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     title: `${q.title} — Mission brief`,
     description: q.description || q.tagline,
+    alternates: { canonical: `/quests/${q.slug}` },
     openGraph: {
       title: `${q.title} — StreamQuest mission brief`,
       description: q.description || q.tagline,
@@ -72,7 +73,7 @@ export default function QuestPage({ params }: Params) {
       <section className="q-hero">
         <div className="q-hero-bg" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={quest.cover} alt="" loading="eager" fetchPriority="high" />
+          <img src={quest.cover} alt={quest.title} loading="eager" fetchPriority="high" />
         </div>
 
         <div className="q-hero-inner">

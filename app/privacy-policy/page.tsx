@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How StreamQuest collects, uses, shares, stores, and protects personal data when you visit the website, sign in to the Creator Dashboard, or work with us as a client.",
+  alternates: { canonical: "/privacy-policy" },
 };
 
 const blocks: LegalBlock[] = [

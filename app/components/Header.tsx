@@ -90,7 +90,7 @@ export default async function Header() {
                     <Link key={q.href} href={q.href} className="nav-dd-card">
                       <div className="nav-dd-thumb">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={q.cover} alt="" loading="lazy" />
+                        <img src={q.cover} alt={q.title} loading="lazy" />
                         <span className="nav-dd-tagstrip" />
                       </div>
                       <div className="nav-dd-meta">
@@ -129,7 +129,7 @@ export default async function Header() {
                     <Link key={q.href} href={q.href} className="nav-dd-card nav-dd-card--past">
                       <div className="nav-dd-thumb">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={q.cover} alt="" loading="lazy" />
+                        <img src={q.cover} alt={q.title} loading="lazy" />
                       </div>
                       <div className="nav-dd-meta">
                         <div className="nav-dd-title">{q.title}</div>

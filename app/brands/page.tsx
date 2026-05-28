@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "For studios & publishers — launch with 50+ verified creators",
   description:
     "StreamQuest runs gamified Twitch micro-streamer campaigns for indie and AA games. Verified metrics, transparent KPI reporting, and authentic creator communities.",
+  alternates: { canonical: "/brands" },
 };
 
 /* ============ DATA ============ */
@@ -116,7 +117,7 @@ export default function BrandsPage() {
             {heroRowA.map((q, i) => (
               <div key={`a-${q.slug}-${i}`} className="br-hero-tile">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={q.cover} alt="" loading={i < 3 ? "eager" : "lazy"} />
+                <img src={q.cover} alt={q.title} loading={i < 3 ? "eager" : "lazy"} />
               </div>
             ))}
           </div>
@@ -124,7 +125,7 @@ export default function BrandsPage() {
             {heroRowB.map((q, i) => (
               <div key={`b-${q.slug}-${i}`} className="br-hero-tile">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={q.cover} alt="" loading="lazy" />
+                <img src={q.cover} alt={q.title} loading="lazy" />
               </div>
             ))}
           </div>
@@ -132,7 +133,7 @@ export default function BrandsPage() {
             {heroRowC.map((q, i) => (
               <div key={`c-${q.slug}-${i}`} className="br-hero-tile">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={q.cover} alt="" loading="lazy" />
+                <img src={q.cover} alt={q.title} loading="lazy" />
               </div>
             ))}
           </div>
@@ -295,7 +296,7 @@ export default function BrandsPage() {
             {[...quests, ...quests].map((q, i) => (
               <div key={`${q.slug}-${i}`} className="br-strip-tile">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={q.cover} alt="" loading="lazy" decoding="async" />
+                <img src={q.cover} alt={q.title} loading="lazy" decoding="async" />
               </div>
             ))}
           </div>

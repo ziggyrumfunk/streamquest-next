@@ -66,9 +66,9 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  alternates: {
-    canonical: "/",
-  },
+  // No default canonical — Next.js uses the request URL per page,
+  // which is correct for every route except the homepage. The homepage
+  // explicitly sets `alternates.canonical: "/"` in app/page.tsx.
   openGraph: {
     type: "website",
     siteName: "StreamQuest",

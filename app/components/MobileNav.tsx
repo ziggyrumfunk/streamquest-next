@@ -112,7 +112,7 @@ export default function MobileNav({ primary, activeQuests, pastQuests }: Props) 
                     <li key={q.href}>
                       <Link href={q.href} className="mnav-quest" onClick={() => setOpen(false)}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={q.cover} alt="" loading="lazy" />
+                        <img src={q.cover} alt={q.title} loading="lazy" />
                         <span className="mnav-quest-meta">
                           <span className="mnav-quest-title">{q.title}</span>
                           <span className="mnav-quest-studio">{q.studio}</span>
@@ -134,7 +134,7 @@ export default function MobileNav({ primary, activeQuests, pastQuests }: Props) 
                     <li key={q.href}>
                       <Link href={q.href} className="mnav-quest" onClick={() => setOpen(false)}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={q.cover} alt="" loading="lazy" />
+                        <img src={q.cover} alt={q.title} loading="lazy" />
                         <span className="mnav-quest-meta">
                           <span className="mnav-quest-title">{q.title}</span>
                           <span className="mnav-quest-studio">{q.studio}</span>

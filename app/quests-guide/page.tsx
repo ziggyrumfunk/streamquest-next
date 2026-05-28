@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "How to join StreamQuest — Creator quests guide",
   description:
     "Learn how to join StreamQuest as a streamer, how quests work, how rewards are handled, and how creators progress from Bronze to Silver.",
+  alternates: { canonical: "/quests-guide" },
 };
 
 /* Pool of gameplay screenshots used for the scrolling background of the compact hero */

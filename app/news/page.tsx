@@ -9,6 +9,7 @@ import "./news.css";
 export const metadata: Metadata = {
   title: "News",
   description: "Latest updates, campaigns, and team notes from StreamQuest.",
+  alternates: { canonical: "/news" },
 };
 
 // News list reads from KV; revalidates on tag bust from admin actions.
@@ -60,7 +61,7 @@ export default async function NewsListPage() {
                     {p.cover && (
                       <div className="news-card-cover">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={p.cover} alt="" loading="lazy" />
+                        <img src={p.cover} alt={p.title} loading="lazy" />
                       </div>
                     )}
                     <div className="news-card-body">
