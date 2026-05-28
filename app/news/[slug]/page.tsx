@@ -41,8 +41,32 @@ export default async function NewsPostPage({ params }: Params) {
   const post = await getPost(params.slug);
   if (!post) notFound();
 
+  const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://streamquest.io";
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    datePublished: post.date,
+    dateModified: post.date,
+    image: post.cover ? [post.cover] : undefined,
+    author: { "@type": "Organization", name: "StreamQuest" },
+    publisher: {
+      "@type": "Organization",
+      name: "StreamQuest",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE}/firebase-public/Logos%20Partner/streamquest%20logo.png`,
+      },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE}/news/${post.slug}` },
+  };
+
   return (
     <div className="rd news-post">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <article>
         <header className="news-post-header">
           <div className="rd-shell">

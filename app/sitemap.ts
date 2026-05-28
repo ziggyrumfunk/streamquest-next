@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { quests } from "@/data/quests";
+import { getPostSlugs, getPost } from "@/lib/news";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://streamquest.io";
 
@@ -7,7 +8,7 @@ const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://streamquest.io";
  * Sitemap: fully static. No KV / Blob lookups so Google never times out.
  * News posts can be added back later via a separate /news/sitemap.xml.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -31,5 +32,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: q.status === "active" ? 0.85 : 0.5,
   }));
 
-  return [...staticRoutes, ...questRoutes];
+  // News posts are fetched best-effort. If KV is unavailable we just
+  // skip them rather than failing the whole sitemap.
+  let newsRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const slugs = await getPostSlugs();
+    const posts = await Promise.all(slugs.map((s) => getPost(s).catch(() => null)));
+    newsRoutes = posts
+      .filter((p): p is NonNullable<typeof p> => !!p)
+      .map((p) => ({
+        url: `${SITE}/news/${p.slug}`,
+        lastModified: p.date ? new Date(p.date) : now,
+        changeFrequency: "yearly" as const,
+        priority: 0.6,
+      }));
+  } catch {
+    newsRoutes = [];
+  }
+
+  return [...staticRoutes, ...questRoutes, ...newsRoutes];
 }

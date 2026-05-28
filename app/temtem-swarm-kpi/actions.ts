@@ -1,6 +1,7 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
+import { rateLimit, clientKey } from "@/lib/rateLimit";
 import { redirect } from "next/navigation";
 import { TEMTEM_KPI_COOKIE, sign, getPassword } from "./session";
 
@@ -9,6 +10,10 @@ import { TEMTEM_KPI_COOKIE, sign, getPassword } from "./session";
  * The page itself imports `isUnlocked` from ./session directly.
  */
 export async function signInAction(formData: FormData) {
+  const limit = rateLimit(clientKey(headers(), "/temtem-swarm-kpi"));
+  if (!limit.ok) {
+    redirect("/temtem-swarm-kpi?err=1");
+  }
   const pw = String(formData.get("password") ?? "");
   if (pw === getPassword()) {
     cookies().set(TEMTEM_KPI_COOKIE, sign(), {

@@ -68,9 +68,36 @@ const socials = [
   },
 ];
 
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://streamquest.io";
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "Planet of Lana II x StreamQuest case study",
+  description:
+    "How StreamQuest divided one influencer beat into 49 creator communities for Planet of Lana II.",
+  image: [`${SITE}${PL2}/PoL II Wemari Tree.jpg`],
+  author: { "@type": "Organization", name: "StreamQuest" },
+  publisher: {
+    "@type": "Organization",
+    name: "StreamQuest",
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE}/firebase-public/Logos%20Partner/streamquest%20logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${SITE}/case-studies/planet-of-lana-2`,
+  },
+};
+
 export default function PlanetOfLana2CaseStudy() {
   return (
     <main className="cs-wrap">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* ===== HERO ===== */}
       <section className="cs-hero">
         <div

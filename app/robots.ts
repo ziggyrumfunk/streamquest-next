@@ -8,7 +8,14 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/admin/", "/GHmarketing", "/pitch"],
+        disallow: [
+          "/admin",
+          "/admin/",
+          "/GHmarketing",
+          "/pitch",
+          "/temtem-swarm-kpi",
+          "/endix-kpi",
+        ],
       },
     ],
     sitemap: `${SITE}/sitemap.xml`,
