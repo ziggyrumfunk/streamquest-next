@@ -104,9 +104,9 @@ export default function BrandsPage() {
     <div className="rd">
       <FloatingApply
         line1="Launching a game?"
-        line2="Book a free strategy call"
-        ctaText="Book →"
-        ctaHref="mailto:contact@streamquest.io"
+        line2="Pick a time, no commitment"
+        ctaText="Book a call →"
+        ctaHref="#book"
         ctaClass="btn-twitch"
         accent="purple"
       />
@@ -160,13 +160,14 @@ export default function BrandsPage() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="br-hero-email">
-              <span className="br-hero-email-label">Get in touch</span>
-              <a href="mailto:contact@streamquest.io" className="br-hero-email-addr">
-                contact@streamquest.io
+            <div className="br-hero-cta">
+              <a href="#book" className="br-book-btn">
+                <span className="br-book-btn-dot" />
+                Book a 30-min call
+                <span className="br-book-btn-arrow">↓</span>
               </a>
-              <a href="#book" className="br-hero-email-link">
-                or book a 30-min call ↓
+              <a href="mailto:contact@streamquest.io" className="br-hero-email-soft">
+                or email contact@streamquest.io
               </a>
             </div>
           </Reveal>
@@ -407,7 +408,7 @@ export default function BrandsPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <p>
-                30 minutes with the StreamQuest team. We&apos;ll walk you through campaign types, the kind of KPIs to expect for your title, and budget options that fit your launch window. No pitch deck, no commitment.
+                30 minutes with the StreamQuest team. We&apos;ll walk you through campaign types, the kind of KPIs to expect for your title, and budget options that fit your launch window.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
