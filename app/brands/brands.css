@@ -807,9 +807,9 @@
 .br-hero-cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 .br-book-btn {
   position: relative;

@@ -166,9 +166,6 @@ export default function BrandsPage() {
                 Book a 30-min call
                 <span className="br-book-btn-arrow">↓</span>
               </a>
-              <a href="mailto:contact@streamquest.io" className="br-hero-email-soft">
-                or email contact@streamquest.io
-              </a>
             </div>
           </Reveal>
           <Reveal delay={0.4}>
