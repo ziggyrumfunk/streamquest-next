@@ -12,7 +12,22 @@ export const metadata: Metadata = {
 
 const PL2 = "/firebase-public/PlanetOfLana2";
 
+const RP_DIR = "/firebase-public/Replaced";
 const studies = [
+  {
+    href: "/case-studies/replaced",
+    studio: "Thunderful x Sad Cat Studios",
+    title: "REPLACED",
+    blurb:
+      "How a structured micro-creator campaign generated 279h of stream time, 6,782 viewer-hours, and creator demand strong enough to add 15 extra slots mid-flight.",
+    cover: `${RP_DIR}/sq-replaced-keyart-landscape-1920.webp`,
+    gameLogo: `${RP_DIR}/sq-replaced-logo-white.webp`,
+    stats: [
+      { num: "62", lbl: "Creators" },
+      { num: "279h", lbl: "Stream time" },
+      { num: "+15", lbl: "Extra slots" },
+    ],
+  },
   {
     href: "/case-studies/planet-of-lana-2",
     studio: "Thunderful x Wishfully",
