@@ -444,22 +444,3 @@ export default function BrandsPage() {
     </div>
   );
 }
-        <Reveal delay={0.4}>
-            <a
-              href="https://www.linkedin.com/company/streamquestio"
-              target="_blank"
-              rel="noopener"
-              className="br-linkedin"
-              aria-label="Follow StreamQuest on LinkedIn"
-            >
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                <path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.34 18H5.67V9.67h2.67V18zM7 8.5a1.54 1.54 0 1 1 0-3.08 1.54 1.54 0 0 1 0 3.08zM18.34 18h-2.67v-4.06c0-.97-.02-2.22-1.35-2.22-1.35 0-1.56 1.06-1.56 2.15V18h-2.67V9.67h2.56v1.14h.04c.36-.68 1.23-1.4 2.54-1.4 2.72 0 3.22 1.79 3.22 4.12V18z"/>
-              </svg>
-              <span>Follow StreamQuest on LinkedIn</span>
-            </a>
-          </Reveal>
-        </div>
-      </section>
-    </div>
-  );
-}
