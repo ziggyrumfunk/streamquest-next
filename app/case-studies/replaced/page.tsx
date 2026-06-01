@@ -260,7 +260,7 @@ export default function ReplacedCaseStudy() {
               </p>
               <div className="cs-video-frame">
                 <iframe
-                  src="https://www.youtube-nocookie.com/embed/fuUo7_VaboE?rel=0&modestbranding=1"
+                  src="https://www.youtube-nocookie.com/embed/pYxgYoaJL9M?rel=0&modestbranding=1"
                   title="REPLACED — mission brief video"
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
