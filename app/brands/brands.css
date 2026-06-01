@@ -632,3 +632,173 @@
   border-color: rgba(10, 102, 194, 0.6);
   transform: translateY(-1px);
 }
+
+/* ===== Hero / final email blocks ===== */
+.br-hero-email,
+.br-final-email {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+}
+.br-final-email {
+  align-items: center;
+}
+.br-hero-email-label,
+.br-final-email-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+.br-hero-email-addr,
+.br-final-email-addr {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  font-size: clamp(28px, 4.4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-decoration: none;
+  background: linear-gradient(90deg, #b2f048 0%, #d6a3ff 60%, #9b6dff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: opacity 0.2s;
+}
+.br-hero-email-addr:hover,
+.br-final-email-addr:hover {
+  opacity: 0.85;
+}
+.br-hero-email-link,
+.br-final-email-secondary {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.br-hero-email-link:hover,
+.br-final-email-secondary:hover {
+  color: #b2f048;
+  border-color: rgba(178, 240, 72, 0.6);
+}
+
+/* ===== Calendly section ===== */
+.br-calendly {
+  position: relative;
+  padding: 96px 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.br-calendly-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 25%, rgba(155, 109, 255, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 60% at 85% 80%, rgba(178, 240, 72, 0.25) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(40, 18, 80, 0.85) 0%, rgba(15, 8, 40, 0.95) 50%, rgba(10, 30, 18, 0.9) 100%);
+}
+.br-calendly-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.4;
+}
+.br-calendly-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.br-calendly-questy {
+  position: absolute;
+  left: -40px;
+  bottom: -60px;
+  width: 220px;
+  height: auto;
+  pointer-events: none;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.45));
+  z-index: 0;
+}
+.br-calendly-copy {
+  position: relative;
+  z-index: 1;
+  padding-left: 200px;
+}
+.br-calendly-copy h2 {
+  font-size: clamp(34px, 4.6vw, 56px);
+  line-height: 1.05;
+  font-weight: 800;
+  margin: 12px 0 18px;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.br-calendly-copy p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  max-width: 460px;
+}
+.br-calendly-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 22px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.br-calendly-meta a {
+  color: #b2f048;
+  text-decoration: none;
+}
+.br-calendly-meta a:hover {
+  text-decoration: underline;
+}
+.br-calendly-widget {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 6px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.br-calendly-widget .calendly-inline-widget {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .br-calendly { padding: 64px 0; }
+  .br-calendly-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .br-calendly-copy {
+    padding-left: 0;
+    text-align: center;
+  }
+  .br-calendly-copy p { margin: 0 auto; }
+  .br-calendly-meta { justify-content: center; flex-wrap: wrap; }
+  .br-calendly-questy {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: 130px;
+    margin: 0 auto;
+    display: block;
+    transform: rotate(-4deg);
+  }
+  .br-calendly-widget .calendly-inline-widget {
+    height: 620px !important;
+  }
+}

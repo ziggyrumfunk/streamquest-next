@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import Reveal from "@/app/components/Reveal";
 import FloatingApply from "@/app/components/FloatingApply";
+import Script from "next/script";
 import SteamGrowthCounter from "@/app/components/SteamGrowthCounter";
 import { quests } from "@/data/quests";
 import "@/app/redesign.css";
@@ -159,13 +160,14 @@ export default function BrandsPage() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="br-hero-ctas">
-              <a href="https://discord.gg/NhqfucYDXD" className="btn btn-twitch btn-xl">
-                Book a strategy call →
+            <div className="br-hero-email">
+              <span className="br-hero-email-label">Get in touch</span>
+              <a href="mailto:contact@streamquest.io" className="br-hero-email-addr">
+                contact@streamquest.io
               </a>
-              <Link href="#campaigns" className="btn btn-secondary btn-xl">
-                See past campaigns
-              </Link>
+              <a href="#book" className="br-hero-email-link">
+                or book a 30-min call ↓
+              </a>
             </div>
           </Reveal>
           <Reveal delay={0.4}>
@@ -379,7 +381,58 @@ export default function BrandsPage() {
         </div>
       </section>
 
-      {/* ============ FINAL CTA ============ */}
+      {/* ============ CALENDLY BOOKING ============ */}
+      <section className="br-calendly" id="book">
+        <div className="br-calendly-bg" aria-hidden="true" />
+        <div className="rd-shell br-calendly-inner">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="br-calendly-questy"
+            src="/firebase-public/Questy New Folder/Questy Regular Size (1).webp"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+          />
+          <div className="br-calendly-copy">
+            <Reveal>
+              <span className="br-eyebrow">
+                <span className="pulse" />
+                Pick a time
+              </span>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2>
+                Let&apos;s discuss <span className="grad-purple">your game</span>.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p>
+                30 minutes with the StreamQuest team. We&apos;ll walk you through campaign types, the kind of KPIs to expect for your title, and budget options that fit your launch window. No pitch deck, no commitment.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="br-calendly-meta">
+                <span>30 min · video call</span>
+                <span>·</span>
+                <a href="mailto:contact@streamquest.io">contact@streamquest.io</a>
+              </div>
+            </Reveal>
+          </div>
+          <div className="br-calendly-widget">
+            <div
+              className="calendly-inline-widget"
+              data-url="https://calendly.com/contact-streamquest/30min"
+              style={{ minWidth: "320px", height: "700px" }}
+            />
+            <Script
+              src="https://assets.calendly.com/assets/external/widget.js"
+              strategy="lazyOnload"
+            />
+          </div>
+        </div>
+      </section>
+
+            {/* ============ FINAL CTA ============ */}
       <section className="br-final">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -416,12 +469,13 @@ export default function BrandsPage() {
             </p>
           </Reveal>
           <Reveal delay={0.3}>
-            <div className="br-final-actions">
-              <a href="mailto:contact@streamquest.io" className="btn btn-twitch btn-xl">
-                Book a strategy call →
+            <div className="br-final-email">
+              <span className="br-final-email-label">Email us at</span>
+              <a href="mailto:contact@streamquest.io" className="br-final-email-addr">
+                contact@streamquest.io
               </a>
-              <Link href="/quests-guide" className="btn btn-secondary btn-xl">
-                See the creator side
+              <Link href="/quests-guide" className="br-final-email-secondary">
+                See the creator side →
               </Link>
             </div>
           </Reveal>
