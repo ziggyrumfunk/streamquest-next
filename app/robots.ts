@@ -15,6 +15,7 @@ export default function robots(): MetadataRoute.Robots {
           "/pitch",
           "/temtem-swarm-kpi",
           "/endix-kpi",
+          "/aska-kpi",
         ],
       },
     ],
