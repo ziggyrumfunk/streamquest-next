@@ -2099,3 +2099,17 @@
 @media (prefers-reduced-motion: reduce) {
   .rd-active-card.is-active { animation: none; }
 }
+
+/* ===== H1 brand line (SEO + brand reinforcement) ===== */
+.rd-hero h1 .line-brand,
+.rd-hero-inner h1 .line-brand {
+  display: block;
+  font-size: clamp(13px, 1.2vw, 16px);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rd-lime, #b2f048);
+  margin-bottom: 14px;
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(178, 240, 72, 0.35);
+}

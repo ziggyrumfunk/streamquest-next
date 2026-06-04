@@ -299,6 +299,7 @@ export default async function HomePage() {
             )}
 
             <h1>
+              <span className="line line-brand">StreamQuest</span>
               <span className="line">Paid Twitch streams.</span>
               <span className="line grad">Real reach.</span>
             </h1>
@@ -342,6 +343,7 @@ export default async function HomePage() {
 
             <Reveal delay={0.1}>
               <h1>
+                <span className="line line-brand">StreamQuest</span>
                 <span className="line">Paid Twitch streams.</span>
                 <span className="line grad">Real reach.</span>
               </h1>
