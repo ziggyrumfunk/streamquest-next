@@ -15,6 +15,11 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
+const KEY_ART = "/media/house-flipper/key%20art.jpg";
+const COZY = "/media/house-flipper/cozy-living-room.jpg";
+const TOPDOWN = "/media/house-flipper/top%20down%20house.jpg";
+const OUTDOORS = "/media/house-flipper/outdoors.jpg";
+
 type Props = { searchParams: { err?: string } };
 
 const kpis = [
@@ -71,21 +76,35 @@ export default function HouseFlipperKpiPage({ searchParams }: Props) {
   return (
     <main className="cs-wrap">
       {/* =============== HERO =============== */}
-      <section className="hf-hero">
+      <section className="hf-hero hf-hero-img">
+        <div
+          className="hf-hero-art"
+          aria-hidden="true"
+          style={{ backgroundImage: `url('${KEY_ART}')` }}
+        />
         <div className="hf-hero-bg" aria-hidden="true" />
-        <div className="cs-shell">
-          <span className="cs-eyebrow">Trial Campaign KPI Report</span>
-          <h1>
-            House Flipper Remastered Collection.{" "}
-            <span className="grad">10 creators, 4 languages, one launch window</span>.
-          </h1>
-          <p className="cs-hero-lead">
-            This trial campaign activated 10 Twitch creators across multiple
-            language markets with a very short turnaround. All creators streamed
-            during the launch window and completed their activation either on
-            launch day or the day after, creating immediate live visibility,
-            social proof, and social media coverage around the campaign.
-          </p>
+        <div className="cs-shell hf-hero-grid">
+          <div className="hf-hero-copy">
+            <span className="cs-eyebrow">Trial Campaign KPI Report</span>
+            <h1>
+              House Flipper Remastered Collection.{" "}
+              <span className="grad">10 creators, 4 languages, one launch window</span>.
+            </h1>
+            <p className="cs-hero-lead">
+              This trial campaign activated 10 Twitch creators across multiple
+              language markets with a very short turnaround. All creators streamed
+              during the launch window and completed their activation either on
+              launch day or the day after, creating immediate live visibility,
+              social proof, and social media coverage around the campaign.
+            </p>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="hf-hero-thumb"
+            src={KEY_ART}
+            alt="House Flipper Remastered Collection key art"
+            loading="eager"
+          />
         </div>
       </section>
 
@@ -106,16 +125,27 @@ export default function HouseFlipperKpiPage({ searchParams }: Props) {
       {/* =============== KEY RESULTS =============== */}
       <section className="cs-section">
         <div className="cs-shell">
-          <div style={{ maxWidth: 720, marginBottom: 22 }}>
-            <span className="cs-tag">Key results</span>
-            <h2>10 creators. 4 languages. 27h 46m of launch-window Twitch content.</h2>
-            <p>
-              For a €410 equivalent activation cost, the campaign generated nearly
-              28 hours of live Twitch content, almost 392 live viewer-hours, and
-              additional launch-window social posting across multiple creator
-              audiences.
-            </p>
+          <div className="hf-split">
+            <div className="hf-split-copy">
+              <span className="cs-tag">Key results</span>
+              <h2>10 creators. 4 languages. 27h 46m of launch-window Twitch content.</h2>
+              <p>
+                For a €410 equivalent activation cost, the campaign generated
+                nearly 28 hours of live Twitch content, almost 392 live
+                viewer-hours, and additional launch-window social posting across
+                multiple creator audiences.
+              </p>
+            </div>
+            <div className="hf-split-visual">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={COZY}
+                alt="House Flipper Remastered cozy interior — fireplace, sofa, candles"
+                loading="lazy"
+              />
+            </div>
           </div>
+          <div className="hf-split-spacer" />
           <div className="hf-stat-list">
             <div className="hf-stat-row is-total">
               <span className="hf-stat-label">Creators activated</span>
@@ -209,7 +239,12 @@ export default function HouseFlipperKpiPage({ searchParams }: Props) {
       </section>
 
       {/* =============== LANGUAGE COVERAGE =============== */}
-      <section className="cs-section">
+      <section className="cs-section hf-section-bg">
+        <div
+          className="hf-section-bg-img"
+          aria-hidden="true"
+          style={{ backgroundImage: `url('${TOPDOWN}')` }}
+        />
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">Language &amp; market coverage</span>
@@ -316,6 +351,15 @@ export default function HouseFlipperKpiPage({ searchParams }: Props) {
           </div>
           <CreatorTable />
         </div>
+      </section>
+
+      {/* =============== OUTDOORS BREAK =============== */}
+      <section className="hf-break">
+        <div
+          className="hf-break-img"
+          style={{ backgroundImage: `url('${OUTDOORS}')` }}
+          aria-hidden="true"
+        />
       </section>
 
       {/* =============== MAIN TAKEAWAYS =============== */}
