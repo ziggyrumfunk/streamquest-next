@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { rows, type HouseFlipperRow } from "./data";
+import { rows, socialPlatformLabel, type HouseFlipperRow } from "./data";
 
 type SortMode = "creator" | "viewerHours" | "streamHours" | "peak" | "followers" | "avgCcv";
 
@@ -77,6 +77,8 @@ export default function CreatorTable() {
               <th>Peak</th>
               <th>Stream time</th>
               <th>Viewer-hrs</th>
+              <th>VOD</th>
+              <th>Stats</th>
               <th>Social</th>
             </tr>
           </thead>
@@ -93,7 +95,51 @@ export default function CreatorTable() {
                   <td>{r.peakViewers}</td>
                   <td>{r.streamTime}</td>
                   <td>{r.viewerHours.toFixed(1)}</td>
-                  <td>{r.socialPost ? <span className="hf-yes">Yes</span> : <span className="hf-no">—</span>}</td>
+                  <td>
+                    {r.vodUrl ? (
+                      <a
+                        className="hf-tiny-link"
+                        href={r.vodUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        VOD
+                      </a>
+                    ) : (
+                      <span className="hf-no">—</span>
+                    )}
+                  </td>
+                  <td>
+                    {r.twitchtrackerUrl ? (
+                      <a
+                        className="hf-tiny-link"
+                        href={r.twitchtrackerUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        stats
+                      </a>
+                    ) : (
+                      <span className="hf-no">—</span>
+                    )}
+                  </td>
+                  <td>
+                    {r.socialUrl ? (
+                      <a
+                        className={`hf-tiny-link is-${r.socialPlatform}`}
+                        href={r.socialUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={socialPlatformLabel(r.socialPlatform)}
+                      >
+                        {r.socialPlatform === "x" && "X"}
+                        {r.socialPlatform === "instagram" && "IG"}
+                        {r.socialPlatform === "youtube" && "YT"}
+                      </a>
+                    ) : (
+                      <span className="hf-no">—</span>
+                    )}
+                  </td>
                 </tr>
               );
             })}

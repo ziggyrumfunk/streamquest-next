@@ -353,7 +353,200 @@ export default function HouseFlipperKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* =============== OUTDOORS BREAK =============== */}
+      {/* =============== FEATURED EMBEDS =============== */}
+      <section className="cs-section">
+        <div className="cs-shell">
+          <div style={{ maxWidth: 760, marginBottom: 28 }}>
+            <span className="cs-tag">Featured creator content</span>
+            <h2>Selected Twitch VODs and social posts.</h2>
+            <p>
+              A cross-section of the launch-window coverage across the four
+              language markets. Every activation's full VOD and social proof
+              link is also in the creator table below.
+            </p>
+          </div>
+
+          <div className="hf-embed-grid">
+            {/* Twitch VOD embeds (16:9) */}
+            <article className="hf-embed">
+              <div className="hf-embed-frame is-landscape">
+                <iframe
+                  src="https://player.twitch.tv/?video=2788697324&parent=streamquest.io&parent=www.streamquest.io&parent=localhost&autoplay=false"
+                  title="UndoubtedlyLink Twitch VOD"
+                  loading="lazy"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-twitch">Twitch VOD</span>
+                <div className="hf-embed-handle">UndoubtedlyLink</div>
+                <p className="hf-embed-caption">
+                  English · Silver · 30 avg CCV, 34 peak. Launch-window coverage.
+                </p>
+                <a className="hf-embed-link" href="https://www.twitch.tv/videos/2788697324" target="_blank" rel="noopener noreferrer">
+                  Open VOD &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article className="hf-embed">
+              <div className="hf-embed-frame is-landscape">
+                <iframe
+                  src="https://player.twitch.tv/?video=2789426262&parent=streamquest.io&parent=www.streamquest.io&parent=localhost&autoplay=false"
+                  title="Phenexa Twitch VOD"
+                  loading="lazy"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-twitch">Twitch VOD</span>
+                <div className="hf-embed-handle">Phenexa</div>
+                <p className="hf-embed-caption">
+                  English · Silver · 20 avg CCV, 60.3 viewer-hours over 3h 01m.
+                </p>
+                <a className="hf-embed-link" href="https://www.twitch.tv/videos/2789426262" target="_blank" rel="noopener noreferrer">
+                  Open VOD &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article className="hf-embed">
+              <div className="hf-embed-frame is-landscape">
+                <iframe
+                  src="https://player.twitch.tv/?video=2789314922&parent=streamquest.io&parent=www.streamquest.io&parent=localhost&autoplay=false"
+                  title="Paildry Twitch VOD"
+                  loading="lazy"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-twitch">Twitch VOD</span>
+                <div className="hf-embed-handle">Paildry</div>
+                <p className="hf-embed-caption">
+                  German · Silver · 17 avg CCV, 21 peak. 2h 40m launch-window coverage.
+                </p>
+                <a className="hf-embed-link" href="https://www.twitch.tv/videos/2789314922" target="_blank" rel="noopener noreferrer">
+                  Open VOD &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article className="hf-embed">
+              <div className="hf-embed-frame is-landscape">
+                <iframe
+                  src="https://player.twitch.tv/?video=2789235050&parent=streamquest.io&parent=www.streamquest.io&parent=localhost&autoplay=false"
+                  title="Capsuhi Twitch VOD"
+                  loading="lazy"
+                  allow="autoplay; fullscreen"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-twitch">Twitch VOD</span>
+                <div className="hf-embed-handle">Capsuhi</div>
+                <p className="hf-embed-caption">
+                  French · Bronze · 3h 12m streamed, 25.6 viewer-hours.
+                </p>
+                <a className="hf-embed-link" href="https://www.twitch.tv/videos/2789235050" target="_blank" rel="noopener noreferrer">
+                  Open VOD &rarr;
+                </a>
+              </div>
+            </article>
+
+            {/* Instagram reel embed (9:16) */}
+            <article className="hf-embed">
+              <div className="hf-embed-frame">
+                <iframe
+                  src="https://www.instagram.com/p/DZK-9lnPcaX/embed"
+                  title="Haouanubis on Instagram"
+                  loading="lazy"
+                  allow="encrypted-media; clipboard-write; picture-in-picture"
+                  scrolling="no"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-ig">Instagram</span>
+                <div className="hf-embed-handle">Haouanubis</div>
+                <p className="hf-embed-caption">
+                  English · Silver · Instagram launch-window post.
+                </p>
+                <a className="hf-embed-link" href="https://www.instagram.com/p/DZK-9lnPcaX/" target="_blank" rel="noopener noreferrer">
+                  Open post &rarr;
+                </a>
+              </div>
+            </article>
+
+            {/* YouTube embed (16:9) */}
+            <article className="hf-embed">
+              <div className="hf-embed-frame is-landscape">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/Hy0BR3UohwU"
+                  title="bumquackza on YouTube"
+                  loading="lazy"
+                  allow="encrypted-media; accelerometer; clipboard-write; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+              <div className="hf-embed-meta">
+                <span className="hf-embed-platform is-yt">YouTube</span>
+                <div className="hf-embed-handle">bumquackza</div>
+                <p className="hf-embed-caption">
+                  English · Bronze · YouTube highlight from the 6h 50m stream.
+                </p>
+                <a className="hf-embed-link" href="https://www.youtube.com/watch?v=Hy0BR3UohwU" target="_blank" rel="noopener noreferrer">
+                  Open video &rarr;
+                </a>
+              </div>
+            </article>
+          </div>
+
+          {/* X/Twitter posts — listed as cards (X widgets need their JS loader) */}
+          <h3 style={{ marginTop: 44, marginBottom: 14 }}>X / Twitter launch-window posts</h3>
+          <div className="hf-x-grid">
+            <a className="hf-x-card" href="https://x.com/UndoubtedlyLink/status/2062647078585606304" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@UndoubtedlyLink</div>
+              <div className="hf-x-meta">English &middot; Silver</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/Gladiator50n/status/2062937934194422166" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@Gladiator50n</div>
+              <div className="hf-x-meta">English &middot; Silver</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/OfficialPhenexa/status/2062974049920196781" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@OfficialPhenexa</div>
+              <div className="hf-x-meta">English &middot; Silver</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/Labsytv/status/2062581976029073514" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@Labsytv</div>
+              <div className="hf-x-meta">French &middot; Silver</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/Capsuhi/status/2062903358403268987" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@Capsuhi</div>
+              <div className="hf-x-meta">French &middot; Bronze</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/xBBrisita/status/2062984860013138090" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@xBBrisita</div>
+              <div className="hf-x-meta">Spanish &middot; Bronze</div>
+            </a>
+            <a className="hf-x-card" href="https://x.com/ZiniADC__/status/2062928428450435178" target="_blank" rel="noopener noreferrer">
+              <span className="hf-x-pill">X</span>
+              <div className="hf-x-handle">@ZiniADC__</div>
+              <div className="hf-x-meta">German &middot; Silver (Paildry)</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+            {/* =============== OUTDOORS BREAK =============== */}
       <section className="hf-break">
         <div
           className="hf-break-img"
