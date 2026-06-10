@@ -68,7 +68,25 @@ export default function QuestPage({ params }: Params) {
   const isActive = quest.status === "active";
 
   return (
-    <div className="rd">
+    <div className={`rd q-slug-${quest.slug}`}>
+      {quest.slug === "goodheavens" && (
+        <div className="gh-deco-layer" aria-hidden="true">
+          {/* eslint-disable @next/next/no-img-element */}
+          <img className="gh-deco gh-deco-tr is-anim"   style={{ width: 220, ["--rot" as any]: "-4deg" }} src="/firebase-public/GoodHeavensRPG/Rar.webp" alt="" loading="lazy" />
+          <img className="gh-deco gh-deco-ml is-anim-2" style={{ width: 200, ["--rot" as any]: "6deg",  top: "16%", left: "-3%" }} src="/firebase-public/GoodHeavensRPG/Forest Guard.webp" alt="" loading="lazy" />
+          <img className="gh-deco gh-deco-mr is-anim"   style={{ width: 170, ["--rot" as any]: "-8deg", top: "22%", right: "-2%" }} src="/firebase-public/GoodHeavensRPG/sheep pink.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim-2 is-faded"   style={{ width: 240, ["--rot" as any]: "3deg",  top: "32%", left: "4%" }} src="/firebase-public/GoodHeavensRPG/drunk orc.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim"              style={{ width: 150, ["--rot" as any]: "-12deg", top: "40%", right: "5%" }} src="/firebase-public/GoodHeavensRPG/Doe.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim-2"            style={{ width: 200, ["--rot" as any]: "5deg",   top: "52%", left: "-2%" }} src="/firebase-public/GoodHeavensRPG/troll.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim is-tiny"      style={{ width: 130, ["--rot" as any]: "8deg",   top: "58%", right: "3%" }} src="/firebase-public/GoodHeavensRPG/Fox sit.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim-2 is-faded"   style={{ width: 180, ["--rot" as any]: "-3deg",  top: "66%", left: "5%" }} src="/firebase-public/GoodHeavensRPG/scholar mayor.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim"              style={{ width: 220, ["--rot" as any]: "4deg",   top: "72%", right: "-2%" }} src="/firebase-public/GoodHeavensRPG/Dump Monster.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim-2"            style={{ width: 160, ["--rot" as any]: "-6deg",  top: "82%", left: "2%" }} src="/firebase-public/GoodHeavensRPG/hunter.webp" alt="" loading="lazy" />
+          <img className="gh-deco is-anim is-tiny"      style={{ width: 140, ["--rot" as any]: "10deg",  top: "88%", right: "4%" }} src="/firebase-public/GoodHeavensRPG/flying rat.webp" alt="" loading="lazy" />
+          {/* eslint-enable @next/next/no-img-element */}
+        </div>
+      )}
+
       {/* ============ HERO ============ */}
       <section className="q-hero">
         <div className="q-hero-bg" aria-hidden="true">

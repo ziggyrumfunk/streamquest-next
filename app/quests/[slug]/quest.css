@@ -1223,3 +1223,104 @@
   filter: brightness(1.08);
   box-shadow: 0 12px 28px rgba(88, 101, 242, 0.32);
 }
+
+/* ============================================================
+   /quests/goodheavens — themed body background + character decorations
+   Scoped to .q-slug-goodheavens so only this quest is affected.
+   ============================================================ */
+.q-slug-goodheavens {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Richer body background: gradient swatches + soft dot pattern. */
+.q-slug-goodheavens::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 12% 18%, rgba(255, 184, 92, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 88% 28%, rgba(135, 220, 188, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 82% 78%, rgba(218, 138, 235, 0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 18% 88%, rgba(96, 198, 232, 0.16) 0%, transparent 60%);
+}
+.q-slug-goodheavens::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px, 60px 60px;
+  background-position: 0 0, 14px 14px;
+  opacity: 0.85;
+  mix-blend-mode: screen;
+}
+
+/* Section deco wrapper. Sits inside each section, child <img> floats decorate. */
+.gh-deco-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.q-slug-goodheavens .q-section {
+  position: relative;
+}
+/* Make sure section content sits above the deco. */
+.q-slug-goodheavens .q-section > .q-shell,
+.q-slug-goodheavens .q-section > .rd-shell,
+.q-slug-goodheavens .q-section > .shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* Individual character floats. */
+.gh-deco {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.42));
+  will-change: transform;
+  opacity: 0.86;
+}
+.gh-deco.is-faded { opacity: 0.42; }
+.gh-deco.is-tiny  { opacity: 0.65; }
+
+@keyframes gh-bob {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%      { transform: translateY(-10px) rotate(calc(var(--rot, 0deg) + 1deg)); }
+}
+@keyframes gh-bob-slow {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%      { transform: translateY(-16px) rotate(calc(var(--rot, 0deg) - 1.5deg)); }
+}
+.gh-deco.is-anim    { animation: gh-bob 7s ease-in-out infinite; }
+.gh-deco.is-anim-2  { animation: gh-bob-slow 9s ease-in-out infinite; }
+
+/* Position presets. Use simple keys so JSX stays readable. */
+.gh-deco-tl { top: 8%;  left: 2%; }
+.gh-deco-tr { top: 6%;  right: 2%; }
+.gh-deco-ml { top: 38%; left: -2%; }
+.gh-deco-mr { top: 42%; right: -2%; }
+.gh-deco-bl { bottom: 6%; left: 3%; }
+.gh-deco-br { bottom: 4%; right: 4%; }
+
+/* Hide all decos on small screens to keep mobile clean. */
+@media (max-width: 900px) {
+  .gh-deco { display: none; }
+  .q-slug-goodheavens::before,
+  .q-slug-goodheavens::after { opacity: 0.6; }
+}
+
+/* Slight color richness on the existing section backgrounds for GH only. */
+.q-slug-goodheavens .q-section-tight,
+.q-slug-goodheavens .q-section {
+  background: transparent;
+}
