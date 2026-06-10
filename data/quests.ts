@@ -128,7 +128,7 @@ export const quests: Quest[] = [
     portrait: "/firebase-public/GoodHeavensRPG/library_capsule (600x900).webp",
     logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).webp",
     description:
-      "Curated paid creator campaign around the Good Heavens demo. Play the demo live on Twitch, show off the funniest and craziest moments, and push viewers to wishlist the game with your tracked link.",
+      "Curated paid creator campaign around the Good Heavens! demo. Play the demo live on Twitch, show off the funniest and craziest moments, and push viewers to wishlist the game with your tracked link.",
     about:
       "Good Heavens! is a chaotic co-op crafting RPG where survival is optional, the world is weird, and the NPCs are completely unhinged. Strongest creator angles: funny NPCs, weird factions, chaotic dialogue, co-op moments with friends, the colorful Adventure Time inspired world, base building, crafting, classes, and RPG progression, plus those big what-the-hell-is-happening clip moments.",
     keyFeatures: [
@@ -142,7 +142,7 @@ export const quests: Quest[] = [
       {
         name: "Bronze",
         payout: "EUR 10",
-        requirement: "Stream Good Heavens for at least 1 hour at 5+ average CCV",
+        requirement: "Stream Good Heavens! for at least 1 hour at 5+ average CCV",
         freeCopy: true,
       },
       {
@@ -150,7 +150,7 @@ export const quests: Quest[] = [
         payout: "EUR 20",
         rate: "EUR 10 / hr",
         rateNote: "EUR 20 total (2 x EUR 10), at least 1 side quest required",
-        requirement: "Stream Good Heavens for at least 2 hours at 14+ average CCV",
+        requirement: "Stream Good Heavens! for at least 2 hours at 14+ average CCV",
         sideQuestsRequired: true,
         freeCopy: true,
       },
@@ -169,7 +169,7 @@ export const quests: Quest[] = [
       {
         name: "Bring A Friend",
         xp: 75,
-        desc: "Play the Good Heavens demo in co-op with up to 8 friends. Submit a lobby screenshot or VOD timestamp as proof.",
+        desc: "Play the Good Heavens! demo in co-op with up to 8 friends. Submit a lobby screenshot or VOD timestamp as proof.",
       },
       {
         name: "Mountain King Slayer",
@@ -179,11 +179,11 @@ export const quests: Quest[] = [
       {
         name: "Join The Discord",
         xp: 25,
-        desc: "Join the official Good Heavens Discord. Submit a screenshot showing you joined.",
+        desc: "Join the official Good Heavens! Discord. Submit a screenshot showing you joined.",
       },
     ],
     rules: [
-      "Stream Good Heavens live on Twitch using the correct category. Save your VOD.",
+      "Stream Good Heavens! live on Twitch using the correct category. Save your VOD.",
       "Mention your unique tracked wishlist link clearly during the stream.",
       "Silver requires at least 1 side quest. Silver without a side quest is treated as Bronze if the Bronze stream length is met.",
       "Extra stream time does not add to payout for Bronze or Silver.",
@@ -236,12 +236,12 @@ export const quests: Quest[] = [
     ],
 
     storyParagraphs: [
-      "StreamQuest is teaming up with Nowhere Studios and RocketRide Games for a paid creator campaign around the Good Heavens demo. This is a curated campaign, not first come first served. Streamers are reviewed and approved based on fit, quality, audience, and campaign needs.",
+      "StreamQuest is teaming up with Nowhere Studios and RocketRide Games for a paid creator campaign around the Good Heavens! demo. This is a curated campaign, not first come first served. Streamers are reviewed and approved based on fit, quality, audience, and campaign needs.",
       "Your main goal is simple: play the demo live, show off the funniest and craziest moments, and push viewers to wishlist the game with your tracked link.",
       "Good Heavens! is a chaotic co-op crafting RPG where survival is optional, the world is weird, and the NPCs are completely unhinged. It is built for funny clips, co-op chaos, and that Adventure Time inspired colorful look that reads great on stream and on thumbnails.",
     ],
     storyPull:
-      "If this looks fun, wishlist Good Heavens through my link. Keep the CTA that simple. Authentic streams plus a clear wishlist ask is what this campaign is built around.",
+      "If this looks fun, wishlist Good Heavens! through my link. Keep the CTA that simple. Authentic streams plus a clear wishlist ask is what this campaign is built around.",
     storyAside: "/firebase-public/GoodHeavensRPG/gameplay (4).webp",
     storyAsideCaption: "Co-op chaos in the demo",
     shortDescription:
@@ -323,7 +323,7 @@ export const quests: Quest[] = [
     rulesContent: [
       {
         heading: "Goals",
-        body: "We coordinate many small creators in the same window so Good Heavens shows up across Twitch, social feeds, and wishlist numbers. Real visibility, real storefront movement.",
+        body: "We coordinate many small creators in the same window so Good Heavens! shows up across Twitch, social feeds, and wishlist numbers. Real visibility, real storefront movement.",
       },
       {
         heading: "Selection",

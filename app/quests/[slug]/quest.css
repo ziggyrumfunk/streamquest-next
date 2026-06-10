@@ -1324,3 +1324,102 @@
 .q-slug-goodheavens .q-section {
   background: transparent;
 }
+
+/* ============================================================
+   /quests/goodheavens — blurred + darkened screenshot section backgrounds.
+   Applied to every 3rd .q-section so the page reads varied without overdoing it.
+   ============================================================ */
+.q-slug-goodheavens .q-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Make sure section content sits above the screenshot bg + the deco layer. */
+.q-slug-goodheavens .q-section > .rd-shell,
+.q-slug-goodheavens .q-section > .shell,
+.q-slug-goodheavens .q-section > .q-shell,
+.q-slug-goodheavens .q-section > div {
+  position: relative;
+  z-index: 3;
+}
+
+/* Blurred screenshot layer. */
+.q-slug-goodheavens .q-section.q-has-shot-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.12);
+  filter: blur(18px) brightness(0.4) saturate(1.15);
+  opacity: 0.55;
+  z-index: 1;
+  pointer-events: none;
+}
+/* Dark gradient veil over the blurred shot. */
+.q-slug-goodheavens .q-section.q-has-shot-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8, 6, 14, 0.55) 0%,
+      rgba(8, 6, 14, 0.25) 50%,
+      rgba(8, 6, 14, 0.7) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* :nth-of-type rule auto-applies to a cycle. */
+.q-slug-goodheavens .q-section:nth-of-type(3n)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.12);
+  filter: blur(18px) brightness(0.4) saturate(1.15);
+  opacity: 0.55;
+  z-index: 1;
+  pointer-events: none;
+}
+.q-slug-goodheavens .q-section:nth-of-type(3n)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      rgba(8, 6, 14, 0.55) 0%,
+      rgba(8, 6, 14, 0.25) 50%,
+      rgba(8, 6, 14, 0.7) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Cycle four different screenshots. */
+.q-slug-goodheavens .q-section:nth-of-type(3n+0)::before {
+  background-image: url('/firebase-public/GoodHeavensRPG/gameplay%20(1).webp');
+}
+.q-slug-goodheavens .q-section:nth-of-type(6n)::before {
+  background-image: url('/firebase-public/GoodHeavensRPG/Scholar%20City.webp');
+}
+.q-slug-goodheavens .q-section:nth-of-type(9n)::before {
+  background-image: url('/firebase-public/GoodHeavensRPG/gameplay%20(3).webp');
+}
+.q-slug-goodheavens .q-section:nth-of-type(12n)::before {
+  background-image: url('/firebase-public/GoodHeavensRPG/War%20City%204.webp');
+}
+
+/* Section headings + text need to stay punchy on the new bg. */
+.q-slug-goodheavens .q-section h2,
+.q-slug-goodheavens .q-section h3 {
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Mobile: keep the screenshot bg but ease the blur to save memory. */
+@media (max-width: 900px) {
+  .q-slug-goodheavens .q-section:nth-of-type(3n)::before {
+    filter: blur(12px) brightness(0.35) saturate(1.05);
+    opacity: 0.5;
+  }
+}
