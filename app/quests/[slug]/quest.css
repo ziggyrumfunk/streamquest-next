@@ -1423,3 +1423,99 @@
     opacity: 0.5;
   }
 }
+
+/* ============================================================
+   FIXES — Good Heavens! quest tweaks
+   - Lift floating characters above the section bgs
+   - Reduce blur so screenshots are actually readable
+   - Bigger body text for 2K/4K screens
+   ============================================================ */
+
+/* Bump deco layer over the section blur ::before / ::after pseudos. */
+.q-slug-goodheavens .gh-deco-layer {
+  z-index: 5;
+}
+
+/* Push characters further to the side margins so they don't intrude on text. */
+.q-slug-goodheavens .gh-deco       { max-width: 18vw; }
+.q-slug-goodheavens .gh-deco-tl    { top: 8%;  left: 0.5vw; }
+.q-slug-goodheavens .gh-deco-tr    { top: 6%;  right: 0.5vw; }
+.q-slug-goodheavens .gh-deco-ml    { top: 38%; left: 0.5vw; }
+.q-slug-goodheavens .gh-deco-mr    { top: 42%; right: 0.5vw; }
+.q-slug-goodheavens .gh-deco-bl    { bottom: 6%; left: 1vw; }
+.q-slug-goodheavens .gh-deco-br    { bottom: 4%; right: 1.5vw; }
+
+/* Hide deco on narrower viewports too — the rd-shell eats most of the width. */
+@media (max-width: 1280px) {
+  .q-slug-goodheavens .gh-deco { display: none; }
+}
+
+/* Reduce blur dramatically so the screenshots are visible. */
+.q-slug-goodheavens .q-section:nth-of-type(3n)::before {
+  filter: blur(7px) brightness(0.55) saturate(1.1);
+  opacity: 0.7;
+  transform: scale(1.06);
+}
+.q-slug-goodheavens .q-section.q-has-shot-bg::before {
+  filter: blur(7px) brightness(0.55) saturate(1.1);
+  opacity: 0.7;
+  transform: scale(1.06);
+}
+
+/* Lighten the gradient veil so the screenshot can come through. */
+.q-slug-goodheavens .q-section:nth-of-type(3n)::after,
+.q-slug-goodheavens .q-section.q-has-shot-bg::after {
+  background:
+    linear-gradient(180deg,
+      rgba(8, 6, 14, 0.4) 0%,
+      rgba(8, 6, 14, 0.15) 50%,
+      rgba(8, 6, 14, 0.5) 100%);
+}
+
+/* Mobile keeps a bit more blur to save GPU. */
+@media (max-width: 900px) {
+  .q-slug-goodheavens .q-section:nth-of-type(3n)::before {
+    filter: blur(10px) brightness(0.5) saturate(1.05);
+    opacity: 0.6;
+  }
+}
+
+/* ===== Larger body text (applies to ALL quest pages, not just GH) ===== */
+.q-section p {
+  font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.25rem);
+  line-height: 1.65;
+}
+
+.q-story-body {
+  font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.25rem);
+  line-height: 1.75;
+}
+.q-story-body p {
+  font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.25rem);
+  max-width: 68ch;
+  line-height: 1.75;
+}
+.q-story-pull {
+  font-size: clamp(1.08rem, 0.6vw + 0.95rem, 1.3rem);
+  line-height: 1.6;
+}
+.q-short-desc p {
+  font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.25rem);
+  line-height: 1.75;
+  max-width: 78ch;
+}
+
+/* TL;DR sub copy + tier requirement are also a bit cramped at 4K. */
+.q-tldr-sub {
+  font-size: clamp(0.95rem, 0.4vw + 0.85rem, 1.1rem);
+}
+.q-tier-req {
+  font-size: clamp(1rem, 0.4vw + 0.9rem, 1.15rem);
+  line-height: 1.55;
+}
+
+/* Hero tagline + meta items also feel small at 2K. */
+.q-tagline {
+  font-size: clamp(1.1rem, 0.6vw + 0.95rem, 1.35rem);
+  line-height: 1.6;
+}
