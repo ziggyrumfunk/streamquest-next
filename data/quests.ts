@@ -118,6 +118,237 @@ export type Quest = {
 
 export const quests: Quest[] = [
   {
+    slug: "goodheavens",
+    title: "Good Heavens!",
+    status: "active",
+    studio: "Nowhere Studios x RocketRide Games",
+    tagline: "Chaotic co-op crafting RPG demo. Curated launch-window wishlist push.",
+    category: "Co-op crafting RPG",
+    cover: "/firebase-public/GoodHeavensRPG/library_hero (3840x1240).webp",
+    portrait: "/firebase-public/GoodHeavensRPG/library_capsule (600x900).webp",
+    logo: "/firebase-public/GoodHeavensRPG/library_logo_transparent (890x720).webp",
+    description:
+      "Curated paid creator campaign around the Good Heavens demo. Play the demo live on Twitch, show off the funniest and craziest moments, and push viewers to wishlist the game with your tracked link.",
+    about:
+      "Good Heavens! is a chaotic co-op crafting RPG where survival is optional, the world is weird, and the NPCs are completely unhinged. Strongest creator angles: funny NPCs, weird factions, chaotic dialogue, co-op moments with friends, the colorful Adventure Time inspired world, base building, crafting, classes, and RPG progression, plus those big what-the-hell-is-happening clip moments.",
+    keyFeatures: [
+      "Funny NPCs, weird factions, and chaotic dialogue. Easy clip material with no setup needed.",
+      "Co-op for up to 8 players. The crazier the lobby, the better the stream.",
+      "Adventure Time inspired colorful world. Reads great on stream and in thumbnails.",
+      "Base building, crafting, classes, and RPG progression. Survival is relaxed, not a punishment loop.",
+      "Big what-the-hell moments built into the design. Side quests reward leaning into the chaos.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "EUR 10",
+        requirement: "Stream Good Heavens for at least 1 hour at 5+ average CCV",
+        freeCopy: true,
+      },
+      {
+        name: "Silver",
+        payout: "EUR 20",
+        rate: "EUR 10 / hr",
+        rateNote: "EUR 20 total (2 x EUR 10), at least 1 side quest required",
+        requirement: "Stream Good Heavens for at least 2 hours at 14+ average CCV",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Clip Outside Twitch",
+        xp: 50,
+        desc: "Post a clip outside of Twitch. Reels, Shorts, TikToks, or X posts all count. Instagram Stories do not. Tag @goodheavensrpg and @streamquest with the exact handle for each platform.",
+      },
+      {
+        name: "Unique Wishlist Link Push",
+        xp: 50,
+        desc: "Share or actively promote your unique tracked wishlist link during stream and in your posts. Screenshot or link as proof.",
+      },
+      {
+        name: "Bring A Friend",
+        xp: 75,
+        desc: "Play the Good Heavens demo in co-op with up to 8 friends. Submit a lobby screenshot or VOD timestamp as proof.",
+      },
+      {
+        name: "Mountain King Slayer",
+        xp: 100,
+        desc: "Slay the Mountain King. Submit a screenshot of the kill as proof. The cleanest clip-moment side quest in the demo.",
+      },
+      {
+        name: "Join The Discord",
+        xp: 25,
+        desc: "Join the official Good Heavens Discord. Submit a screenshot showing you joined.",
+      },
+    ],
+    rules: [
+      "Stream Good Heavens live on Twitch using the correct category. Save your VOD.",
+      "Mention your unique tracked wishlist link clearly during the stream.",
+      "Silver requires at least 1 side quest. Silver without a side quest is treated as Bronze if the Bronze stream length is met.",
+      "Extra stream time does not add to payout for Bronze or Silver.",
+      "Authentic streams only. You should clearly explain why viewers should wishlist the game.",
+    ],
+    freeCopy: true,
+    links: {
+      steam:
+        "https://store.steampowered.com/app/1617120/Good_Heavens/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=GoodHeavens&utm_content=wishlist_cta",
+      official: "https://www.goodheavensrpg.com",
+      twitch: "https://www.twitch.tv/directory/category/good-heavens",
+    },
+
+    /* -------- Rich brief content -------- */
+    duration: "Launch window",
+    slots: 50,
+    rating: "PEGI 12 (est.)",
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "lXPPZyEKGtM",
+      brief: "lXPPZyEKGtM",
+    },
+
+    heroMeta: [
+      { label: "Applications", value: "Creator Dashboard" },
+      { label: "Selection", value: "Curated" },
+      { label: "Slots", value: "Curated, limited" },
+      { label: "Free copy", value: "Both tiers" },
+    ],
+
+    tldr: [
+      { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 CCV" },
+      { stat: "EUR 20", label: "Silver tier", sub: "2h, EUR 10/h, 14 CCV, side quest required" },
+      { stat: "Curated", label: "Creator selection", sub: "Reviewed and approved for fit and quality" },
+      { stat: "5 days", label: "Payout turnaround", sub: "After VOD verification via Twitch setup" },
+    ],
+    tldrFootnotes: [
+      "Free demo access for all approved creators.",
+      "Silver requires at least 1 side quest or the run counts as Bronze.",
+      "Push your unique tracked wishlist link on stream so we can measure community impact.",
+    ],
+
+    screenshots: [
+      "/firebase-public/GoodHeavensRPG/gameplay (1).webp",
+      "/firebase-public/GoodHeavensRPG/gameplay (2).webp",
+      "/firebase-public/GoodHeavensRPG/gameplay (3).webp",
+      "/firebase-public/GoodHeavensRPG/Scholar City.webp",
+      "/firebase-public/GoodHeavensRPG/War City 4.webp",
+    ],
+
+    storyParagraphs: [
+      "StreamQuest is teaming up with Nowhere Studios and RocketRide Games for a paid creator campaign around the Good Heavens demo. This is a curated campaign, not first come first served. Streamers are reviewed and approved based on fit, quality, audience, and campaign needs.",
+      "Your main goal is simple: play the demo live, show off the funniest and craziest moments, and push viewers to wishlist the game with your tracked link.",
+      "Good Heavens! is a chaotic co-op crafting RPG where survival is optional, the world is weird, and the NPCs are completely unhinged. It is built for funny clips, co-op chaos, and that Adventure Time inspired colorful look that reads great on stream and on thumbnails.",
+    ],
+    storyPull:
+      "If this looks fun, wishlist Good Heavens through my link. Keep the CTA that simple. Authentic streams plus a clear wishlist ask is what this campaign is built around.",
+    storyAside: "/firebase-public/GoodHeavensRPG/gameplay (4).webp",
+    storyAsideCaption: "Co-op chaos in the demo",
+    shortDescription:
+      "Good Heavens! is a chaotic co-op crafting RPG where survival is optional, the world is weird, and the NPCs are completely unhinged. Funny NPCs, weird factions, big clip moments, base building, crafting, classes, RPG progression, and an Adventure Time inspired colorful world that pops on stream. A great fit for creators whose audiences enjoy co-op, crafting, survival adjacent games, comedy streams, and weird wholesome chaos.",
+
+    sideQuestIntro:
+      "Each side quest is self-contained. Clip Outside Twitch needs actual feed posts (Reels, Shorts, TikToks, or X), not Stories. Bring A Friend rewards co-op. Mountain King Slayer is the cleanest clip-moment side quest in the demo. Use your tracked wishlist link wherever it fits.",
+    sideQuestOutro:
+      "The best runs do not stop at Twitch. Push the demo on social too and use your tracked wishlist link when asking for wishlists.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/1617120/Good_Heavens/?utm_source=StreamQuest&utm_medium=wishlist&utm_campaign=GoodHeavens&utm_content=tracked",
+    trackedWishlistNote:
+      "Use this for side quest proof and on-stream CTAs so we can measure impact. If you receive a unique link in Discord, prefer that one.",
+
+    gallery: {
+      wide: "/firebase-public/GoodHeavensRPG/gameplay (5).webp",
+      thumbs: [
+        "/firebase-public/GoodHeavensRPG/gameplay (6).webp",
+        "/firebase-public/GoodHeavensRPG/gameplay (7).webp",
+        "/firebase-public/GoodHeavensRPG/Base 4.webp",
+        "/firebase-public/GoodHeavensRPG/Dungeon 2.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest on clip and wishlist posts",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "Good Heavens!",
+        hint: "Tag @goodheavensrpg on Instagram and X. Join the official Discord for the Join The Discord side quest.",
+        links: [
+          { type: "website", href: "https://www.goodheavensrpg.com" },
+          { type: "discord", href: "https://discord.gg/HQgAgWQXmm" },
+          { type: "instagram", href: "https://www.instagram.com/goodheavensrpg/" },
+          { type: "x", href: "https://x.com/goodheavensrpg" },
+          { type: "tiktok", href: "https://www.tiktok.com/@good.heavens64" },
+        ],
+      },
+      {
+        name: "Studios",
+        hint: "Nowhere Studios (developer) and RocketRide Games (publisher).",
+        links: [
+          { type: "website", href: "https://www.nowherestudios.com" },
+          { type: "website", href: "https://www.rocketridegames.com" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Wishlist on Steam",
+        href: "https://store.steampowered.com/app/1617120/Good_Heavens/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=GoodHeavens&utm_content=storefront",
+        icon: "steam",
+      },
+      {
+        name: "Official site",
+        sub: "goodheavensrpg.com",
+        href: "https://www.goodheavensrpg.com",
+        icon: "website",
+      },
+      {
+        name: "Discord",
+        sub: "Official community",
+        href: "https://discord.gg/HQgAgWQXmm",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Goals",
+        body: "We coordinate many small creators in the same window so Good Heavens shows up across Twitch, social feeds, and wishlist numbers. Real visibility, real storefront movement.",
+      },
+      {
+        heading: "Selection",
+        body: "This campaign is curated. Streamers are reviewed and approved based on fit, quality, audience, and campaign needs. Applying does not guarantee approval. If you are stuck on Pending, join Discord. Coordination happens there.",
+      },
+      {
+        heading: "Wishlist link",
+        body: "The tracked wishlist link is one of the most important parts of this campaign. Mention it on stream and include it in your social side quests. A unique link is provided in Discord after approval.",
+      },
+      {
+        heading: "Authenticity",
+        body: "Your stream must be authentic. Play the demo your way, react to the weird stuff, and clearly explain why viewers should wishlist the game.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard" },
+      { title: "Wait for selection", sub: "Curated campaign, approval is not guaranteed" },
+      { title: "Join Discord", sub: "Required for the tracked wishlist link and support" },
+      { title: "Stream the demo", sub: "Bronze or Silver, with side quests for Silver" },
+      { title: "Submit", sub: "VOD plus side-quest proof in the dashboard" },
+      { title: "Get paid", sub: "Within 5 business days of verification" },
+    ],
+  },
+  {
     slug: "replaced",
     title: "REPLACED",
     status: "active",
