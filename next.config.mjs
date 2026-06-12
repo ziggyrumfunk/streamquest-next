@@ -13,13 +13,16 @@ const nextConfig = {
       },
     ],
   },
-  // Old Squarespace URLs will be redirected here in Phase 3.
-  // async redirects() {
-  //   return [
-  //     { source: "/godbreakers", destination: "/quests/godbreakers", permanent: true },
-  //     // ...
-  //   ];
-  // },
+  async redirects() {
+    return [
+      // Friendly short URL for the Good Heavens! quest brief.
+      { source: "/GOODHEAVENS",   destination: "/quests/goodheavens", permanent: true },
+      { source: "/goodheavens",   destination: "/quests/goodheavens", permanent: true },
+      { source: "/Goodheavens",   destination: "/quests/goodheavens", permanent: true },
+      { source: "/GoodHeavens",   destination: "/quests/goodheavens", permanent: true },
+      { source: "/good-heavens",  destination: "/quests/goodheavens", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
