@@ -24,7 +24,7 @@ export type QuestStatus = "active" | "completed";
 export type SideQuestDetail = { name: string; desc: string; xp?: number };
 
 /** Two YouTube IDs that drive the tabbed video player on the brief. */
-export type QuestVideos = { trailer?: string; brief?: string };
+export type QuestVideos = { trailer?: string; brief?: string; briefComingSoon?: boolean };
 
 /** One TL;DR card. `stat` is the big number ("€10", "50", "5d"). */
 export type QuestTldrItem = { stat: string; label: string; sub?: string };
@@ -117,6 +117,211 @@ export type Quest = {
    ============================================================ */
 
 export const quests: Quest[] = [
+  {
+    slug: "alphanomos",
+    title: "Alpha Nomos",
+    status: "active",
+    studio: "RibCage Games",
+    tagline: "Rhythm-based action roguelite. Hack, slash, and feel the beat.",
+    category: "Rhythm action roguelite",
+    cover: "/media/alpha-nomos/key%20art%20horizontal.webp",
+    portrait: "/media/alpha-nomos/key%20art%20vertical.jpg",
+    description:
+      "Paid creator campaign for the Alpha Nomos demo by RibCage Games. Play live on Twitch, show the rhythm combat, and help more players discover and wishlist Alpha Nomos on Steam.",
+    about:
+      "Alpha Nomos is a rhythm-based action roguelite where music is part of the fight. Play as Cello, a brave jester exploring a broken world ravaged by music, and help her gang escape a cute but dangerous world filled with murderous puppets, strange characters, and beat-driven combat. Fight to the rhythm. Build your run. Escape the puppet-filled chaos.",
+    keyFeatures: [
+      "Rhythm-based combat where the action follows the beat. Easy for viewers to read on stream.",
+      "Roguelite progression with musical upgrades and build variety per run.",
+      "Cello and her gang versus a world of murderous puppets. Strong character + tone hooks.",
+      "Cute but dangerous world driven by music. High clip potential for first reactions.",
+      "Free Steam demo. The campaign is built around demo discovery and wishlists.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "EUR 10",
+        requirement: "Stream Alpha Nomos for at least 1 hour at 5+ average CCV",
+      },
+      {
+        name: "Silver",
+        payout: "EUR 20",
+        rate: "EUR 10 / hr",
+        rateNote: "EUR 20 total (2 x EUR 10), at least 1 side quest required",
+        requirement: "Stream Alpha Nomos for at least 2 hours at 15+ average CCV. Silver tier must be unlocked for your account.",
+        sideQuestsRequired: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Beat Goes Viral",
+        xp: 50,
+        desc: "Post a short-form clip from your Alpha Nomos stream on TikTok, YouTube Shorts, Instagram Reels, or X. Strong clip ideas: a clean rhythm combo, a funny mistake while missing the beat, a strong first reaction, a musical upgrade moment, or a quick explanation of the hook. Tag Alpha Nomos, RibCage Games, and StreamQuest.",
+      },
+      {
+        name: "Wishlist Maestro",
+        xp: 50,
+        desc: "Actively encourage viewers to wishlist Alpha Nomos on Steam using your tracked link. Pin the link in chat, set a chat command, show the Steam page on stream, and remind viewers after strong gameplay moments. Proof: screenshot, post link, or VOD timestamp.",
+      },
+    ],
+    rules: [
+      "Stream Alpha Nomos live on Twitch using the correct category. Save your VOD.",
+      "Use your tracked Steam link during the stream.",
+      "Silver requires at least 1 side quest. Silver without a side quest is treated as Bronze if Bronze stream length is met.",
+      "Extra stream time does not add to payout for Bronze or Silver.",
+      "No faked engagement, viewers, or proof. No old or unrelated content. No asking viewers to leave Steam reviews in exchange for rewards.",
+    ],
+    links: {
+      steam:
+        "https://store.steampowered.com/app/2529960/Alpha_Nomos/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=AlphaNomos&utm_content=wishlist_cta",
+      official: "https://ribcage.games/",
+      twitch: "https://www.twitch.tv/directory/category/alpha-nomos",
+    },
+
+    /* -------- Rich brief content -------- */
+    duration: "Campaign window",
+    rating: "TBA",
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "7Lv0I9-ytdc",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Applications", value: "Creator Dashboard" },
+      { label: "Selection", value: "Curated" },
+      { label: "Game access", value: "Free demo on Steam" },
+      { label: "Focus", value: "Wishlists" },
+    ],
+
+    tldr: [
+      { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 CCV" },
+      { stat: "EUR 20", label: "Silver tier", sub: "2h, 15 CCV, side quest required, Silver unlock required" },
+      { stat: "50 XP", label: "Side Quest", sub: "Short-form clip from your stream" },
+      { stat: "50 XP", label: "Side Quest", sub: "Wishlist push during stream" },
+    ],
+    tldrFootnotes: [
+      "Approved creators play the Alpha Nomos demo live on Twitch and submit their VOD through the StreamQuest dashboard.",
+      "The campaign is built around the free Steam demo. No game copy is provided.",
+      "Mission brief video is coming soon. Trailer is up. Use the trailer plus the brief below to get the angle.",
+    ],
+
+    screenshots: [
+      "/media/alpha-nomos/screenshot%20(1).jpg",
+      "/media/alpha-nomos/screenshot%20(2).jpg",
+      "/media/alpha-nomos/screenshot%20(3).jpg",
+      "/media/alpha-nomos/screenshot%20(4).jpg",
+    ],
+
+    storyParagraphs: [
+      "StreamQuest is teaming up with RibCage Games for a paid creator campaign around the Alpha Nomos demo. Hack, slash, and feel the beat as you help Cello and her gang escape a murderous puppet-filled world driven by music.",
+      "Alpha Nomos has a clear visual and gameplay hook for Twitch: the action follows the beat. That makes it easy for viewers to understand what is happening, react to your timing, and follow the chaos when things go wrong. Good stream moments include learning the rhythm combat, hitting clean beat-based combos, missing the timing and recovering, finding musical upgrades, reacting to the puppet enemies, testing different roguelite builds, and showing how the world reacts to the music.",
+      "This mission is focused on demo discovery and Steam wishlists. Help viewers understand what Alpha Nomos is, why the rhythm combat is fun, and where they can wishlist or try the game.",
+    ],
+    storyPull:
+      "If this looks fun, wishlist Alpha Nomos through my link. Fight to the rhythm. Build your run. Escape the puppet-filled chaos.",
+    storyAside: "/media/alpha-nomos/screenshot%20(2).jpg",
+    storyAsideCaption: "Beat-driven combat in the demo",
+    shortDescription:
+      "Alpha Nomos is a rhythm-based action roguelite by RibCage Games. Play as Cello, a brave jester exploring a broken world ravaged by music, with a gang of friends and a world full of murderous puppets. Fight to the beat, build your roguelite run, and escape the chaos. A great fit for creators whose audiences enjoy rhythm games, action roguelites, music, comedy, and short-form clip-friendly gameplay.",
+
+    sideQuestIntro:
+      "Each side quest is self-contained and worth 50 XP. Beat Goes Viral takes a strong stream moment off Twitch into a short-form clip. Wishlist Maestro keeps the tracked Steam link active and visible during the stream.",
+    sideQuestOutro:
+      "The best runs lean into clips. Stream the rhythm hook on Twitch, then post the cleanest 30 seconds where your viewers naturally hear the beat.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/2529960/Alpha_Nomos/?utm_source=StreamQuest&utm_medium=wishlist&utm_campaign=AlphaNomos&utm_content=tracked",
+    trackedWishlistNote:
+      "Use this for side quest proof and on-stream CTAs so we can measure impact. If you receive a unique link in Discord, prefer that one.",
+
+    gallery: {
+      wide: "/media/alpha-nomos/screenshot%20(1).jpg",
+      thumbs: [
+        "/media/alpha-nomos/screenshot%20(2).jpg",
+        "/media/alpha-nomos/screenshot%20(3).jpg",
+        "/media/alpha-nomos/screenshot%20(4).jpg",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest on clip and wishlist posts",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "Alpha Nomos",
+        hint: "Tag Alpha Nomos and join the official Discord for updates and support.",
+        links: [
+          { type: "website", href: "https://store.steampowered.com/app/2529960/Alpha_Nomos/" },
+          { type: "discord", href: "https://discord.com/invite/KFUdHV7YP8" },
+        ],
+      },
+      {
+        name: "RibCage Games",
+        hint: "Developer and publisher of Alpha Nomos.",
+        links: [
+          { type: "website", href: "https://ribcage.games/" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Wishlist on Steam",
+        href: "https://store.steampowered.com/app/2529960/Alpha_Nomos/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=AlphaNomos&utm_content=storefront",
+        icon: "steam",
+      },
+      {
+        name: "RibCage Games",
+        sub: "ribcage.games",
+        href: "https://ribcage.games/",
+        icon: "website",
+      },
+      {
+        name: "Discord",
+        sub: "Alpha Nomos community",
+        href: "https://discord.com/invite/KFUdHV7YP8",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Goals",
+        body: "We coordinate creators in the same window so Alpha Nomos shows up across Twitch, short-form clips, and wishlist numbers. Real visibility, real storefront movement.",
+      },
+      {
+        heading: "Selection",
+        body: "This campaign is curated. Streamers are reviewed and approved based on fit, quality, audience, and recent stream activity. Applying does not guarantee approval. If you are stuck on Pending, join StreamQuest Discord. Coordination happens there.",
+      },
+      {
+        heading: "Wishlist link",
+        body: "The tracked wishlist link is one of the most important parts of this campaign. Mention it on stream, pin it in chat, and include it in your social side quests. A unique link is provided after approval.",
+      },
+      {
+        heading: "Authenticity",
+        body: "Stream Alpha Nomos honestly. React to the rhythm, miss the beat, recover, try different builds. Real reactions read better on stream and turn into the best clips.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard" },
+      { title: "Wait for selection", sub: "Curated campaign, approval is not guaranteed" },
+      { title: "Join Discord", sub: "Required for the tracked Steam link and support" },
+      { title: "Stream the demo", sub: "Bronze or Silver, with side quests for Silver" },
+      { title: "Submit", sub: "VOD plus side-quest proof in the dashboard" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
   {
     slug: "goodheavens",
     title: "Good Heavens!",

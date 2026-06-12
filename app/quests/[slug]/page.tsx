@@ -161,13 +161,14 @@ export default function QuestPage({ params }: Params) {
       </section>
 
       {/* ============ VIDEO TABS ============ */}
-      {(quest.videos?.trailer || quest.videos?.brief) && (
+      {(quest.videos?.trailer || quest.videos?.brief || quest.videos?.briefComingSoon) && (
         <section className="q-section q-section-tight">
           <div className="rd-shell">
             <Reveal>
               <QuestVideoTabs
                 trailer={quest.videos.trailer}
                 brief={quest.videos.brief}
+                briefComingSoon={quest.videos.briefComingSoon}
               />
             </Reveal>
           </div>
