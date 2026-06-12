@@ -143,17 +143,15 @@ export const quests: Quest[] = [
         name: "Bronze",
         payout: "EUR 10",
         requirement: "Stream Good Heavens! for at least 1 hour at 5+ average CCV",
-        freeCopy: true,
-      },
+              },
       {
         name: "Silver",
         payout: "EUR 20",
         rate: "EUR 10 / hr",
         rateNote: "EUR 20 total (2 x EUR 10), at least 1 side quest required",
-        requirement: "Stream Good Heavens! for at least 2 hours at 14+ average CCV",
+        requirement: "Stream Good Heavens! for at least 2 hours at 15+ average CCV. Silver tier must be unlocked for your account.",
         sideQuestsRequired: true,
-        freeCopy: true,
-      },
+              },
     ],
     sideQuestDetails: [
       {
@@ -168,17 +166,17 @@ export const quests: Quest[] = [
       },
       {
         name: "Bring A Friend",
-        xp: 75,
+        xp: 50,
         desc: "Play the Good Heavens! demo in co-op with up to 8 friends. Submit a lobby screenshot or VOD timestamp as proof.",
       },
       {
         name: "Mountain King Slayer",
-        xp: 100,
+        xp: 50,
         desc: "Slay the Mountain King. Submit a screenshot of the kill as proof. The cleanest clip-moment side quest in the demo.",
       },
       {
         name: "Join The Discord",
-        xp: 25,
+        xp: 50,
         desc: "Join the official Good Heavens! Discord. Submit a screenshot showing you joined.",
       },
     ],
@@ -189,8 +187,7 @@ export const quests: Quest[] = [
       "Extra stream time does not add to payout for Bronze or Silver.",
       "Authentic streams only. You should clearly explain why viewers should wishlist the game.",
     ],
-    freeCopy: true,
-    links: {
+        links: {
       steam:
         "https://store.steampowered.com/app/1617120/Good_Heavens/?utm_source=StreamQuest&utm_medium=mission_brief&utm_campaign=GoodHeavens&utm_content=wishlist_cta",
       official: "https://www.goodheavensrpg.com",
@@ -212,12 +209,12 @@ export const quests: Quest[] = [
       { label: "Applications", value: "Creator Dashboard" },
       { label: "Selection", value: "Curated" },
       { label: "Slots", value: "Curated, limited" },
-      { label: "Free copy", value: "Both tiers" },
+      { label: "Game access", value: "Free demo on Steam" },
     ],
 
     tldr: [
       { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 CCV" },
-      { stat: "EUR 20", label: "Silver tier", sub: "2h, EUR 10/h, 14 CCV, side quest required" },
+      { stat: "EUR 20", label: "Silver tier", sub: "2h, EUR 10/h, 15 CCV, side quest required, Silver unlock required" },
       { stat: "Curated", label: "Creator selection", sub: "Reviewed and approved for fit and quality" },
       { stat: "5 days", label: "Payout turnaround", sub: "After VOD verification via Twitch setup" },
     ],
