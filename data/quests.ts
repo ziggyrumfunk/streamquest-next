@@ -185,7 +185,7 @@ export const quests: Quest[] = [
 
     videos: {
       trailer: "7Lv0I9-ytdc",
-      briefComingSoon: true,
+      brief: "wxiTe5m-DRQ",
     },
 
     heroMeta: [
@@ -204,7 +204,7 @@ export const quests: Quest[] = [
     tldrFootnotes: [
       "Approved creators play the Alpha Nomos demo live on Twitch and submit their VOD through the StreamQuest dashboard.",
       "The campaign is built around the free Steam demo. No game copy is provided.",
-      "Mission brief video is coming soon. Trailer is up. Use the trailer plus the brief below to get the angle.",
+      "Trailer and mission brief video are both live above. Read the brief below for everything you need to apply.",
     ],
 
     screenshots: [
@@ -407,7 +407,7 @@ export const quests: Quest[] = [
 
     videos: {
       trailer: "lXPPZyEKGtM",
-      brief: "lXPPZyEKGtM",
+      brief: "nlm8utGiExg",
     },
 
     heroMeta: [
