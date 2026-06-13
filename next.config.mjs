@@ -21,6 +21,13 @@ const nextConfig = {
       { source: "/Goodheavens",   destination: "/quests/goodheavens", permanent: true },
       { source: "/GoodHeavens",   destination: "/quests/goodheavens", permanent: true },
       { source: "/good-heavens",  destination: "/quests/goodheavens", permanent: true },
+
+      // Friendly short URL for the Alpha Nomos quest brief.
+      { source: "/alphanomos",   destination: "/quests/alphanomos", permanent: true },
+      { source: "/ALPHANOMOS",   destination: "/quests/alphanomos", permanent: true },
+      { source: "/AlphaNomos",   destination: "/quests/alphanomos", permanent: true },
+      { source: "/Alphanomos",   destination: "/quests/alphanomos", permanent: true },
+      { source: "/alpha-nomos",  destination: "/quests/alphanomos", permanent: true },
     ];
   },
 };
