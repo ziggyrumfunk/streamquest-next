@@ -374,10 +374,6 @@
   opacity: 1;
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.lib-recline-cue.is-done {
-  opacity: 0;
-  transform: translateX(-50%) translateY(10px);
-}
 .lib-recline-cue-label {
   font-size: 11px;
   font-weight: 800;
@@ -1065,6 +1061,58 @@
   margin-top: 26px;
 }
 
+/* ============ PITCH DECK DOWNLOAD ============ */
+.lib-deck {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 44px;
+  padding: 18px 24px;
+  text-decoration: none;
+  border: 1px solid var(--lib-edge-strong);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+}
+.lib-deck:hover {
+  border-color: rgba(178, 240, 72, 0.5);
+  background: rgba(178, 240, 72, 0.05);
+  transform: translateY(-2px);
+}
+.lib-deck-badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #061018;
+  background: var(--rd-lime);
+}
+.lib-deck-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.lib-deck-title {
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.lib-deck-sub {
+  font-size: 0.88rem;
+  color: var(--lib-muted);
+}
+.lib-deck-arrow {
+  font-size: 1.3rem;
+  color: var(--rd-lime);
+  transition: transform 0.25s ease;
+}
+.lib-deck:hover .lib-deck-arrow { transform: translateY(3px); }
+
 /* ============ FABRIC TEXTURE BACKGROUND ============ */
 .lib-tex { position: relative; overflow: hidden; }
 .lib-tex-img { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
@@ -1170,6 +1218,9 @@
   .lib-cta-row .btn { width: 100%; }
   .lib-email-cta { padding: 18px 20px; }
   .lib-hero-secondary .btn-secondary { width: 100%; }
+  .lib-deck { width: 100%; box-sizing: border-box; gap: 14px; padding: 16px 18px; }
+  .lib-deck-text { min-width: 0; }
+  .lib-deck-title { font-size: 0.98rem; }
 }
 
 /* On short scroll-stage viewports, never trap the user. */

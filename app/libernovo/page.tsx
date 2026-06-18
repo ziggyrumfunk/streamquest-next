@@ -319,6 +319,23 @@ export default function LibernovoPage() {
               ))}
             </div>
           </Reveal>
+
+          <Reveal>
+            <a
+              href="/media/libernovo/LiberNovo-Pitch-Deck.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="lib-deck"
+            >
+              <span className="lib-deck-badge" aria-hidden="true">PDF</span>
+              <span className="lib-deck-text">
+                <span className="lib-deck-title">Download the LiberNovo pitch deck</span>
+                <span className="lib-deck-sub">More about the product, the materials, and the tech behind it.</span>
+              </span>
+              <span className="lib-deck-arrow" aria-hidden="true">↓</span>
+            </a>
+          </Reveal>
         </div>
       </section>
 
