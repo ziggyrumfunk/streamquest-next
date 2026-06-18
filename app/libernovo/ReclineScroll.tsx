@@ -159,9 +159,19 @@ export default function ReclineScroll() {
           </div>
         </div>
 
-        {/* Scroll cue — always visible while the section is pinned, so it's
-            clear the whole sequence is scroll-driven. */}
-        <div className="lib-recline-cue" aria-hidden="true">
+        {/* Scroll cues — one near the top and one near the bottom, always
+            visible while pinned so it's clear the sequence is scroll-driven. */}
+        <div className="lib-recline-cue is-top" aria-hidden="true">
+          <span className="lib-recline-cue-label">Scroll to recline</span>
+          <span className="lib-recline-cue-mouse">
+            <span className="lib-recline-cue-dot" />
+          </span>
+          <span className="lib-recline-cue-chevs">
+            <span />
+            <span />
+          </span>
+        </div>
+        <div className="lib-recline-cue is-bottom" aria-hidden="true">
           <span className="lib-recline-cue-label">Scroll to recline</span>
           <span className="lib-recline-cue-mouse">
             <span className="lib-recline-cue-dot" />
