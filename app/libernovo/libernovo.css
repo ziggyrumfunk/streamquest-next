@@ -359,6 +359,82 @@
 }
 .lib-recline-tick.is-on { background: var(--rd-lime); }
 
+/* Scroll cue — visible prompt that scrolling drives the recline. */
+.lib-recline-cue {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.lib-recline-cue.is-done {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+}
+.lib-recline-cue-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+}
+/* Thin vertical line with a lime bead travelling down it. */
+.lib-recline-cue-mouse {
+  position: relative;
+  width: 2px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.22);
+}
+.lib-recline-cue-dot {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  background: var(--rd-lime);
+  box-shadow: 0 0 10px rgba(178, 240, 72, 0.8);
+  animation: lib-cue-dot 1.7s ease-in-out infinite;
+}
+@keyframes lib-cue-dot {
+  0% { top: 2px; opacity: 0; }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { top: 24px; opacity: 0; }
+}
+.lib-recline-cue-chevs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: -2px;
+  animation: lib-cue-bounce 1.6s ease-in-out infinite;
+}
+.lib-recline-cue-chevs span {
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--rd-lime);
+  border-bottom: 2px solid var(--rd-lime);
+  transform: rotate(45deg);
+}
+.lib-recline-cue-chevs span:last-child { opacity: 0.45; }
+@keyframes lib-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lib-recline-cue-dot,
+  .lib-recline-cue-chevs { animation: none; }
+  .lib-recline-cue-dot { top: 12px; opacity: 1; }
+}
+
 /* Static fallback (reduced motion / no JS) */
 .lib-recline-static {
   width: min(calc(100% - 32px), 1280px);

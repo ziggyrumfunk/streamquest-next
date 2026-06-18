@@ -158,6 +158,21 @@ export default function ReclineScroll() {
             </div>
           </div>
         </div>
+
+        {/* Scroll cue — bounces while at the start of the sequence, fades once moving. */}
+        <div
+          className={`lib-recline-cue${active > 0 ? " is-done" : ""}`}
+          aria-hidden="true"
+        >
+          <span className="lib-recline-cue-label">Scroll to recline</span>
+          <span className="lib-recline-cue-mouse">
+            <span className="lib-recline-cue-dot" />
+          </span>
+          <span className="lib-recline-cue-chevs">
+            <span />
+            <span />
+          </span>
+        </div>
       </div>
     </div>
   );
