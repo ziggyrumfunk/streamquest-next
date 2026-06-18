@@ -918,12 +918,15 @@
 .lib-email-cta-addr {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: clamp(1.15rem, 5vw, 2.4rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: #fff;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 .lib-email-cta-arrow {
   color: var(--rd-lime);
@@ -1142,9 +1145,14 @@
 @media (max-width: 980px) {
   .lib-hero-grid { grid-template-columns: 1fr; }
   .lib-hero-visual { order: -1; min-height: 360px; }
-  .lib-recline-stagegrid { grid-template-columns: 1fr; gap: 18px; }
-  .lib-recline-imgstack { height: 42vh; }
-  .lib-recline-captions { min-height: 200px; }
+  /* Top-align the stacked recline content so the scroll cue always has
+     a clear strip at the bottom (no collision with the progress ticks). */
+  .lib-recline-stage { align-items: flex-start; }
+  .lib-recline-stagegrid { grid-template-columns: 1fr; gap: 14px; padding-top: 6vh; }
+  .lib-recline-imgstack { height: 36vh; }
+  .lib-recline-captions { min-height: 150px; }
+  .lib-recline-cue { bottom: 14px; gap: 7px; }
+  .lib-recline-cue-mouse { height: 26px; }
   .lib-videos { grid-template-columns: 1fr; }
   .lib-comfort { grid-template-columns: 1fr; }
   .lib-receive-layout { grid-template-columns: 1fr; gap: 28px; }
@@ -1160,6 +1168,8 @@
   .lib-hero-value { top: 2%; right: 0; padding: 9px 12px; }
   .lib-hero-value-num { font-size: 1.2rem; }
   .lib-cta-row .btn { width: 100%; }
+  .lib-email-cta { padding: 18px 20px; }
+  .lib-hero-secondary .btn-secondary { width: 100%; }
 }
 
 /* On short scroll-stage viewports, never trap the user. */
