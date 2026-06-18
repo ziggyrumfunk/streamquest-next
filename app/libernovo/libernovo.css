@@ -12,6 +12,16 @@
   --lib-shade: rgba(255, 255, 255, 0.022);
 }
 
+/* The base .rd uses overflow-x: hidden, which the browser resolves to
+   overflow-y: auto — that turns .rd into a scroll container and silently
+   breaks position: sticky inside it (the recline stage never pins).
+   overflow-x: clip contains horizontal overflow the same way WITHOUT
+   creating a scroll container, so sticky pins to the page scroll.
+   Scoped to this page only. */
+.rd.libernovo {
+  overflow-x: clip;
+}
+
 .lib-section {
   position: relative;
   z-index: 1;
@@ -246,7 +256,7 @@
 .lib-recline-wrap {
   position: relative;
   z-index: 1;
-  height: 360vh; /* scroll distance for the 5 frames */
+  height: 300vh; /* scroll distance for the 5 frames */
 }
 .lib-recline-stage {
   position: sticky;
