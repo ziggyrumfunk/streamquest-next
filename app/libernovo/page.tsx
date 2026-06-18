@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import Reveal from "@/app/components/Reveal";
+import FloatingApply from "@/app/components/FloatingApply";
 import "@/app/redesign.css";
 import HeroChair from "./HeroChair";
 import ReclineScroll from "./ReclineScroll";
@@ -17,36 +18,54 @@ export const metadata: Metadata = {
 };
 
 const APPLY_EMAIL =
-  "mailto:contact@streamquest.io?subject=LiberNovo%20creator%20sponsorship%20application&body=Twitch%20channel%3A%0A30-day%20average%20viewers%3A%0AFollowers%3A%0ACountry%20%2F%20language%3A%0ASocial%20links%3A%0AUse%20a%20facecam%3F%20(yes%2Fno)%3A%0ACurrent%20chair%3A%0AExisting%20chair%2Ffurniture%20sponsorships%3F%3A%0AWhy%20you%27re%20a%20fit%3A%0A";
+  "mailto:contact@streamquest.io?subject=LiberNovo%20chair%20application&body=Twitch%20channel%3A%0A30-day%20average%20viewers%3A%0AFollowers%3A%0ACountry%20%2F%20language%3A%0ASocial%20links%3A%0AUse%20a%20facecam%3F%20(yes%2Fno)%3A%0ACurrent%20chair%3A%0AExisting%20chair%2Ffurniture%20sponsorships%3F%3A%0AWhy%20you%27re%20a%20fit%3A%0A";
 const DISCORD = "https://discord.gg/NhqfucYDXD";
 
-/* Real product capabilities pulled from LiberNovo's Omni Pro page. */
+/* Real product capabilities from LiberNovo's Omni Pro page and Maxis deck. */
 const productVideos = [
   {
     src: "/media/libernovo/video-back.mp4",
     tag: "Dynamic support",
     title: "The backrest moves with you",
-    body: "Synchronized support tracks your spine through every lean, so the chair reads on camera as part of how you play, not a prop.",
+    body: "60 precision joints and 4 synchronized mechanisms track your neck, spine, hips, and arms in real time. No lever fiddling.",
   },
   {
     src: "/media/libernovo/video-fan.mp4",
-    tag: "Active ventilation",
-    title: "Built-in airflow",
-    body: "Active ventilation pulls heat away during the long sessions. Less sweat, fewer fidget breaks, steadier framing.",
+    tag: "Active airflow",
+    title: "Built-in ventilation",
+    body: "A quiet centrifugal fan pulls cool air through a 5-layer breathable seat. Less heat over a long session on camera.",
   },
   {
     src: "/media/libernovo/video-auto.mp4",
-    tag: "Smart on / off",
+    tag: "Smart sensor",
     title: "Senses when you sit",
-    body: "The chair powers its active features up and down on its own, so it stays out of your way mid-stream.",
+    body: "Airflow powers down when you stand and restarts when you return, so the chair stays out of your way mid-stream.",
+  },
+];
+
+const comfortCards = [
+  {
+    img: "/media/libernovo/comfort-neck.png",
+    title: "Breathable neck support",
+    body: "A hydrophilic-sponge neck rest with a cozy wrap, built for comfort across work and rest.",
+  },
+  {
+    img: "/media/libernovo/comfort-back.png",
+    title: "Triple-layer back fit",
+    body: "A stretch layer, pressure-relief wrap, and aerospace-grade resilient panels sense and support your back's curves.",
+  },
+  {
+    img: "/media/libernovo/comfort-seat.png",
+    title: "Zoned seat support",
+    body: "A multi-density cushion: firm at the rear for your sit bones, soft at the front to ease leg pressure on long sits.",
   },
 ];
 
 const features = [
-  { t: "Dynamic synchronized support", d: "The seat and backrest move together and follow your posture instead of forcing one fixed position." },
-  { t: "OmniStretch spinal decompression", d: "An active stretch mode that opens up the lower back, on demand, between matches." },
-  { t: "Active ventilation", d: "Airflow built into the seat keeps you cool across marathon streams." },
-  { t: "160° multi-angle recline", d: "From locked-in upright to a full lean-back for breaks and watch-parties." },
+  { t: "Moves with you", d: "Headrest tracks your neck, backrest contours your spine, armrests follow your arms, the seat adapts to your hips." },
+  { t: "Five recline modes", d: "From 105° deep focus through 115°, 125°, and 135°, all the way to a 160° spine-flow recline." },
+  { t: "OmniStretch decompression", d: "A five-minute decompression-style stretch that resets built-up tension during long sessions." },
+  { t: "Premium materials", d: "Danish Gabriel Atlantic fabric rated to 100,000+ rubs, in Graphite or Glacier. Built to look right on camera for years." },
 ];
 
 const receive = [
@@ -60,7 +79,7 @@ const receive = [
   },
   {
     t: "A real, longer-term partner",
-    d: "This is an ongoing collaboration, not a one-off unboxing. You get a direct line through StreamQuest and a brand that wants you on camera for the long run.",
+    d: "An ongoing collaboration, not a one-off unboxing. A direct line through StreamQuest and a brand that wants you on camera for the long run.",
   },
 ];
 
@@ -83,39 +102,17 @@ const idealProfile = [
 
 const steps = [
   { title: "You apply", sub: "Send your channel, recent metrics, socials, facecam info, current chair, and any existing sponsorships. The prep list below covers it." },
-  { title: "StreamQuest screens", sub: "We review your viewers, engagement, facecam use, chair visibility, content quality, location, and brand fit." },
-  { title: "We shortlist to LiberNovo", sub: "Suitable creators are presented to LiberNovo with the context that makes the case for you." },
-  { title: "LiberNovo decides", sub: "LiberNovo has final approval over who is selected, which chair is provided, and shipping eligibility. Applying does not guarantee acceptance." },
-  { title: "Agreement and onboarding", sub: "Approved creators sign a separate creator agreement with the final terms before anything ships." },
-  { title: "Ship and activate", sub: "LiberNovo arranges the chair and sets up your affiliate link. The sponsorship starts from a defined activation date." },
+  { title: "StreamQuest screens and onboards you", sub: "We review your fit and walk approved creators through onboarding. LiberNovo gives final approval and provides the chair, so applying does not guarantee acceptance." },
+  { title: "Your chair ships", sub: "Once you're approved and onboarded, LiberNovo arranges the chair and sets up your affiliate link, and the sponsorship begins." },
 ];
 
 const applyFields = [
-  { group: "You", items: ["Name and email", "Discord username", "Country, time zone, language(s)"] },
-  { group: "Twitch", items: ["Channel URL and username", "Followers and 30-day average viewers", "Streams per month and typical length", "Main games or categories", "TwitchTracker or SullyGnome link"] },
-  { group: "Socials", items: ["YouTube, TikTok, Instagram, X", "Rough follower counts", "Anywhere else you post"] },
-  { group: "Setup", items: ["Do you use a facecam, and how often", "Is your chair visible on camera", "A screenshot of your normal layout", "Your current chair brand / model"] },
-  { group: "Conflicts", items: ["Current chair or furniture sponsors", "Any exclusivity obligations", "Competing-brand restrictions"] },
-  { group: "Commitment", items: ["Can you do 4 facecam streams a month", "Willing to commit for the full term", "Whether you expect a fee on top of the chair"] },
-];
-
-const confirmed = [
-  "StreamQuest is working with LiberNovo to identify suitable Twitch creators.",
-  "Selected creators may receive a premium LiberNovo chair (approx. €1,200 retail value) as part of a longer-term sponsorship.",
-  "Facecam use is expected and the chair should be visible during qualifying streams.",
-  "The current intended requirement is at least four qualifying streams per month.",
-  "Creators receive a personal affiliate link or code, current baseline 5% on eligible attributed sales.",
-  "There is no guaranteed sales requirement.",
-  "StreamQuest reviews applicants; LiberNovo makes the final approval decision.",
-];
-
-const pending = [
-  "The exact sponsorship length. Your individual agreement states the full period.",
-  "Whether the chair is kept, kept on completion, or returned in some cases.",
-  "Which chair models, colors, and countries are available.",
-  "Who covers shipping, customs, returns, and warranty support.",
-  "Affiliate attribution window, payout timing, and refund handling.",
-  "Whether dedicated reviews, overlays, or social posts are required.",
+  { group: "You", items: ["Name, email, Discord", "Country, time zone, language"] },
+  { group: "Twitch", items: ["Channel and 30-day average viewers", "Followers and streams per month", "Main games or categories"] },
+  { group: "Socials", items: ["YouTube, TikTok, Instagram, X", "Rough follower counts"] },
+  { group: "Setup", items: ["How often you use a facecam", "A screenshot of your layout", "Your current chair"] },
+  { group: "Conflicts", items: ["Current chair or furniture sponsors", "Any exclusivity obligations"] },
+  { group: "Commitment", items: ["4 facecam streams a month", "Whether you expect a fee on top"] },
 ];
 
 const faqs = [
@@ -145,6 +142,23 @@ const faqs = [
   },
 ];
 
+/* Reusable, heavily highlighted email CTA — the primary action on the page. */
+function EmailCTA() {
+  return (
+    <a href={APPLY_EMAIL} className="lib-email-cta" aria-label="Email contact@streamquest.io to apply for a chair">
+      <span className="lib-email-cta-eyebrow">
+        <span className="pulse" />
+        Apply for your chair
+      </span>
+      <span className="lib-email-cta-addr">
+        contact@streamquest.io
+        <span className="lib-email-cta-arrow" aria-hidden="true">→</span>
+      </span>
+      <span className="lib-email-cta-hint">Email us with the details below. A real person reads every one.</span>
+    </a>
+  );
+}
+
 export default function LibernovoPage() {
   return (
     <div className="rd libernovo">
@@ -155,38 +169,36 @@ export default function LibernovoPage() {
             <Reveal>
               <span className="eyebrow">
                 <span className="pulse" />
-                StreamQuest × LiberNovo · Creator sponsorship
+                StreamQuest × LiberNovo · Free chair for creators
               </span>
             </Reveal>
             <Reveal delay={0.1}>
               <h1>
-                Stream from a <span className="grad">€1,200 chair</span> you actually want on camera.
+                Stream from a <span className="grad">€1,200 chair</span>, built for creators.
               </h1>
             </Reveal>
             <Reveal delay={0.2}>
               <p className="lib-hero-sub">
-                StreamQuest is helping LiberNovo find established Twitch creators for a
-                longer-term ergonomic chair sponsorship. Selected creators receive a premium
-                LiberNovo chair as part of the deal, subject to final approval and a separate
-                agreement. Show up on facecam, keep the chair in frame, stream like yourself.
+                StreamQuest is helping LiberNovo put its premium ergonomic chair under established
+                Twitch creators. Selected creators receive one as part of a longer-term
+                sponsorship, subject to final approval and a separate agreement. Show up on
+                facecam, keep the chair in frame, stream like yourself.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
-              <div className="lib-cta-row">
-                <a href={APPLY_EMAIL} className="btn btn-primary btn-xl">
-                  Apply to be considered
-                </a>
-                <a href={DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
-                  Ask in Discord
-                </a>
-              </div>
+              <EmailCTA />
             </Reveal>
             <Reveal delay={0.4}>
-              <ul className="lib-hero-bullets">
-                <li>Facecam creators</li>
-                <li>100+ avg viewers preferred</li>
-                <li>5% affiliate</li>
-              </ul>
+              <div className="lib-hero-secondary">
+                <a href={DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                  Or ask in Discord
+                </a>
+                <ul className="lib-hero-bullets">
+                  <li>Facecam creators</li>
+                  <li>100+ avg viewers preferred</li>
+                  <li>5% affiliate</li>
+                </ul>
+              </div>
             </Reveal>
           </div>
 
@@ -196,8 +208,13 @@ export default function LibernovoPage() {
         </div>
       </section>
 
-      {/* ============ WHAT THIS IS ============ */}
-      <section className="lib-section">
+      {/* ============ WHAT THIS IS — with lifestyle background ============ */}
+      <section className="lib-section lib-section-bg">
+        <div className="lib-section-bg-img" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/media/libernovo/room-1.png" alt="" loading="lazy" />
+          <div className="lib-section-bg-veil" />
+        </div>
         <div className="rd-shell lib-intro">
           <Reveal>
             <span className="rd-section-tag">What this is</span>
@@ -209,11 +226,11 @@ export default function LibernovoPage() {
           </Reveal>
           <Reveal delay={0.15}>
             <p>
-              LiberNovo makes premium ergonomic chairs. StreamQuest sources and screens the
-              creators. The goal is honest, visible product use over time: your audience seeing
-              the chair in your setup, stream after stream, not a single sponsored clip that
-              disappears. You are not asked to guarantee sales, and you are not asked to turn
-              every stream into an advert.
+              LiberNovo makes premium ergonomic chairs and builds them, in their own words, for
+              creators. StreamQuest sources and screens the creators. The goal is honest, visible
+              product use over time: your audience seeing the chair in your setup, stream after
+              stream, not a single sponsored clip that disappears. You are not asked to guarantee
+              sales, and you are not asked to turn every stream into an advert.
             </p>
           </Reveal>
         </div>
@@ -222,7 +239,24 @@ export default function LibernovoPage() {
       {/* ============ RECLINE SCROLL SEQUENCE ============ */}
       <ReclineScroll />
 
-      {/* ============ PRODUCT — VIDEO FEATURE CARDS ============ */}
+      {/* ============ LIFESTYLE BAND ============ */}
+      <section className="lib-band">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="lib-band-img" src="/media/libernovo/room-2.png" alt="A LiberNovo Omni Pro chair in a creator's room" loading="lazy" />
+        <div className="lib-band-veil" aria-hidden="true" />
+        <div className="rd-shell lib-band-inner">
+          <Reveal>
+            <h2>
+              A quiet companion through every <span className="grad">task, breakthrough, and moment of focus</span>.
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p>LiberNovo&rsquo;s words, not ours. The kind of chair that earns a place in your setup, not just a sponsored mention.</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ PRODUCT — VIDEOS + COMFORT + FEATURES ============ */}
       <section className="lib-section lib-section-shaded">
         <div className="rd-shell">
           <Reveal>
@@ -232,8 +266,10 @@ export default function LibernovoPage() {
                 A chair worth <span className="grad">putting on camera</span>.
               </h2>
               <p>
-                The LiberNovo Omni Pro is a dynamic ergonomic chair built for people who sit for
-                a living. These are its real features, the things your viewers will ask about.
+                The LiberNovo Omni Pro is a dynamic ergonomic chair. Sixty precision joints and
+                four synchronized mechanisms move with you in real time, so the support reads as
+                part of how you play. These are its real features, the things your chat will ask
+                about.
               </p>
             </div>
           </Reveal>
@@ -250,6 +286,21 @@ export default function LibernovoPage() {
                   <span className="lib-video-tag">{v.tag}</span>
                   <h3>{v.title}</h3>
                   <p>{v.body}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="lib-comfort">
+            {comfortCards.map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.08}>
+                <article className="lib-comfort-card">
+                  <div className="lib-comfort-img">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={c.img} alt={c.title} loading="lazy" />
+                  </div>
+                  <h3>{c.title}</h3>
+                  <p>{c.body}</p>
                 </article>
               </Reveal>
             ))}
@@ -387,14 +438,14 @@ export default function LibernovoPage() {
         </div>
       </section>
 
-      {/* ============ SELECTION PROCESS ============ */}
+      {/* ============ HOW IT WORKS — simplified 3-step journey ============ */}
       <section className="lib-section">
         <div className="rd-shell">
           <Reveal>
             <div className="lib-head">
-              <span className="rd-section-tag">How selection works</span>
+              <span className="rd-section-tag">How it works</span>
               <h2>
-                Two companies, <span className="grad">one clear path</span>.
+                Three steps. <span className="grad">That&rsquo;s it</span>.
               </h2>
               <p>
                 StreamQuest sources and screens. LiberNovo provides the chair and makes the final
@@ -404,7 +455,7 @@ export default function LibernovoPage() {
           </Reveal>
           <ol className="lib-steps">
             {steps.map((s, i) => (
-              <Reveal key={s.title} delay={i * 0.05} as="li">
+              <Reveal key={s.title} delay={i * 0.06} as="li">
                 <div className="lib-step">
                   <span className="lib-step-dot" aria-hidden="true" />
                   <div className="lib-step-body">
@@ -428,8 +479,8 @@ export default function LibernovoPage() {
                 What we&rsquo;ll <span className="grad">ask you</span>.
               </h2>
               <p>
-                Have these ready and your application sails through screening. You do not need to
-                send a shipping address yet. That is collected securely only after approval.
+                Have these ready and your application sails through screening. No shipping address
+                yet, that is collected securely only after approval.
               </p>
             </div>
           </Reveal>
@@ -457,44 +508,8 @@ export default function LibernovoPage() {
         </div>
       </section>
 
-      {/* ============ TRANSPARENCY ============ */}
-      <section className="lib-section">
-        <div className="rd-shell">
-          <Reveal>
-            <div className="lib-head">
-              <span className="rd-section-tag">Straight with you</span>
-              <h2>
-                What&rsquo;s <span className="grad">confirmed</span>, and what&rsquo;s still being finalized.
-              </h2>
-            </div>
-          </Reveal>
-          <div className="lib-transparency">
-            <Reveal>
-              <div className="lib-trans-col is-confirmed">
-                <h3>Confirmed</h3>
-                <ul>
-                  {confirmed.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="lib-trans-col is-pending">
-                <h3>Set in your agreement</h3>
-                <ul>
-                  {pending.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ============ FAQ ============ */}
-      <section className="lib-section lib-section-shaded">
+      <section className="lib-section">
         <div className="rd-shell">
           <Reveal>
             <div className="lib-head">
@@ -521,42 +536,46 @@ export default function LibernovoPage() {
       <section className="lib-final">
         <div className="lib-final-bg" aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/media/libernovo/chair-side-black.png" alt="" />
+          <img src="/media/libernovo/chair-side-black.png" alt="" loading="lazy" />
         </div>
         <div className="rd-shell lib-final-inner">
           <Reveal>
-            <span className="eyebrow">
-              <span className="pulse" />
-              Limited selection
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
             <h2>
               Think your room is a <span className="grad">fit</span>?
             </h2>
           </Reveal>
-          <Reveal delay={0.2}>
+          <Reveal delay={0.15}>
             <p>
               Send your channel and the details above. StreamQuest screens every application and
-              shortlists the strongest creators to LiberNovo. We would rather hear from you than
-              have you talk yourself out of it.
+              shortlists the strongest creators to LiberNovo.
             </p>
           </Reveal>
-          <Reveal delay={0.3}>
-            <div className="lib-cta-row">
-              <a href={APPLY_EMAIL} className="btn btn-primary btn-xl">
-                Apply to be considered
+          <Reveal delay={0.25}>
+            <EmailCTA />
+          </Reveal>
+          <Reveal delay={0.35}>
+            <div className="lib-final-links">
+              <a href={DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                Or ask in Discord
               </a>
-              <a href={DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
-                Ask in Discord
-              </a>
-              <Link href="/" className="btn btn-ghost btn-xl">
+              <Link href="/" className="btn btn-ghost">
                 Back to StreamQuest
               </Link>
             </div>
           </Reveal>
         </div>
       </section>
+
+      {/* Floating email apply widget */}
+      <FloatingApply
+        line1="Want a free LiberNovo chair?"
+        line2="Email us to apply"
+        ctaText="Email us →"
+        ctaHref={APPLY_EMAIL}
+        ctaClass="btn-primary"
+        accent="lime"
+        mascot="/media/libernovo/chair-front-white.webp"
+      />
     </div>
   );
 }
