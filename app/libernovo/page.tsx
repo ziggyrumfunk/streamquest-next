@@ -622,7 +622,7 @@ export default function LibernovoPage() {
         ctaHref={APPLY_EMAIL}
         ctaClass="btn-primary"
         accent="lime"
-        mascot="/media/libernovo/chair-front-white.webp"
+        mascot="/media/libernovo/chair-front-black.png"
       />
     </div>
   );

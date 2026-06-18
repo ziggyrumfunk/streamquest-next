@@ -1232,3 +1232,34 @@
   .lib-recline-stage { position: relative; height: auto; padding: 60px 0; }
   .lib-recline-imgstack { height: 50vh; }
 }
+
+/* ============================================================
+   FLOATING APPLY WIDGET — bigger, scoped to this page only.
+   (The same component is shared site-wide, so the size bump is
+   namespaced under .libernovo and never touches other pages.)
+   ============================================================ */
+.libernovo .floating-apply {
+  width: 272px;
+  padding: 28px 22px 24px;
+  gap: 16px;
+}
+.libernovo .floating-apply-mascot {
+  width: 128px;
+  height: 128px;
+  /* Light halo so the black chair reads on the dark glass widget. */
+  background: radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.07) 40%, transparent 68%);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 16px rgba(178, 240, 72, 0.3));
+}
+.libernovo .floating-apply-line1 { font-size: 16px; }
+.libernovo .floating-apply-line2 { font-size: 12.5px; }
+.libernovo .floating-apply-cta { padding: 13px 22px; font-size: 12.5px; }
+
+@media (max-width: 768px) {
+  .libernovo .floating-apply { width: 190px; padding: 18px 14px 16px; gap: 12px; }
+  .libernovo .floating-apply-mascot { width: 88px; height: 88px; }
+  .libernovo .floating-apply-line1 { font-size: 13px; }
+}
+@media (max-width: 460px) {
+  .libernovo .floating-apply { width: 152px; padding: 14px 12px 12px; }
+  .libernovo .floating-apply-mascot { width: 68px; height: 68px; }
+}
