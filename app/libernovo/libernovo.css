@@ -481,10 +481,25 @@
 }
 
 /* ============ RECEIVE ============ */
+.lib-receive-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.lib-receive-visual {
+  position: relative;
+}
+.lib-receive-visual img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+}
 .lib-receive {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 .lib-receive-card {
   border: 1px solid var(--lib-edge);
@@ -971,6 +986,82 @@
   margin-top: 26px;
 }
 
+/* ============ FABRIC TEXTURE BACKGROUND ============ */
+.lib-tex { position: relative; overflow: hidden; }
+.lib-tex-img { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.lib-tex-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+.lib-tex-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 70% at 30% 40%, rgba(5, 9, 19, 0.5), rgba(5, 9, 19, 0.78) 100%),
+    linear-gradient(180deg, var(--rd-deep), rgba(5, 9, 19, 0.6) 20%, rgba(5, 9, 19, 0.6) 80%, var(--rd-deep));
+}
+.lib-tex .rd-shell { position: relative; z-index: 1; }
+
+/* ============ FULL-BLEED BRAND BANNER ============ */
+.lib-banner {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--rd-deep);
+}
+.lib-banner-img {
+  width: 100%;
+  height: clamp(220px, 34vw, 460px);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+/* Blend the banner into the dark page at the top and bottom edges. */
+.lib-banner::before,
+.lib-banner::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 90px;
+  z-index: 1;
+  pointer-events: none;
+}
+.lib-banner::before { top: 0; background: linear-gradient(180deg, var(--rd-deep), transparent); }
+.lib-banner::after { bottom: 0; background: linear-gradient(0deg, var(--rd-deep), transparent); }
+
+/* ============ "IN THE BOX" DIAGRAM ============ */
+.lib-ships { margin: 56px 0 0; }
+.lib-ships-cap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 18px;
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.74);
+  font-weight: 400;
+}
+.lib-ships-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+}
+.lib-ships-frame {
+  border: 1px solid var(--lib-edge);
+  background: #eceef1;
+  padding: clamp(16px, 3vw, 32px);
+}
+.lib-ships-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {
   .lib-hero-grid { grid-template-columns: 1fr; }
@@ -980,6 +1071,8 @@
   .lib-recline-captions { min-height: 200px; }
   .lib-videos { grid-template-columns: 1fr; }
   .lib-comfort { grid-template-columns: 1fr; }
+  .lib-receive-layout { grid-template-columns: 1fr; gap: 28px; }
+  .lib-receive-visual { max-width: 420px; margin: 0 auto; }
   .lib-receive { grid-template-columns: 1fr; }
   .lib-features { grid-template-columns: 1fr; }
   .lib-deliver { grid-template-columns: 1fr; }

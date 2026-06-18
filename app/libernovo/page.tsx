@@ -333,15 +333,23 @@ export default function LibernovoPage() {
               </h2>
             </div>
           </Reveal>
-          <div className="lib-receive">
-            {receive.map((r, i) => (
-              <Reveal key={r.t} delay={i * 0.08}>
-                <article className="lib-receive-card">
-                  <h3>{r.t}</h3>
-                  <p>{r.d}</p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="lib-receive-layout">
+            <Reveal>
+              <div className="lib-receive-visual">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/media/libernovo/chair-studio.png" alt="LiberNovo Omni Pro ergonomic chair" loading="lazy" />
+              </div>
+            </Reveal>
+            <div className="lib-receive">
+              {receive.map((r, i) => (
+                <Reveal key={r.t} delay={i * 0.08}>
+                  <article className="lib-receive-card">
+                    <h3>{r.t}</h3>
+                    <p>{r.d}</p>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
           </div>
           <Reveal>
             <p className="lib-fineline">
@@ -354,7 +362,12 @@ export default function LibernovoPage() {
       </section>
 
       {/* ============ WHAT YOU DELIVER ============ */}
-      <section className="lib-section lib-section-shaded">
+      <section className="lib-section lib-section-shaded lib-tex">
+        <div className="lib-tex-img" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/media/libernovo/fabric-graphite.png" alt="" loading="lazy" />
+          <div className="lib-tex-veil" />
+        </div>
         <div className="rd-shell">
           <Reveal>
             <div className="lib-head">
@@ -408,6 +421,12 @@ export default function LibernovoPage() {
             </p>
           </Reveal>
         </div>
+      </section>
+
+      {/* ============ PERFORMANCE BANNER (full-bleed) ============ */}
+      <section className="lib-banner" aria-label="LiberNovo Omni Pro — where performance peaks">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="lib-banner-img" src="/media/libernovo/performance-banner.png" alt="LiberNovo Omni Pro chairs in a modern room — where performance peaks" loading="lazy" />
       </section>
 
       {/* ============ IDEAL PROFILE ============ */}
@@ -466,6 +485,18 @@ export default function LibernovoPage() {
               </Reveal>
             ))}
           </ol>
+          <Reveal>
+            <figure className="lib-ships">
+              <figcaption className="lib-ships-cap">
+                <span className="lib-ships-eyebrow">In the box</span>
+                Precision-engineered and shipped flat, ready to build.
+              </figcaption>
+              <div className="lib-ships-frame">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/media/libernovo/omni-pro-wide.webp" alt="LiberNovo Omni Pro components: backrest, neck support, seat base, base, and hardware" loading="lazy" />
+              </div>
+            </figure>
+          </Reveal>
         </div>
       </section>
 
