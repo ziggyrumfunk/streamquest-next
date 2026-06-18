@@ -82,12 +82,12 @@ const idealProfile = [
 ];
 
 const steps = [
-  { n: "01", title: "You apply", sub: "Send your channel, recent metrics, socials, facecam info, current chair, and any existing sponsorships. The prep list below covers it." },
-  { n: "02", title: "StreamQuest screens", sub: "We review your viewers, engagement, facecam use, chair visibility, content quality, location, and brand fit." },
-  { n: "03", title: "We shortlist to LiberNovo", sub: "Suitable creators are presented to LiberNovo with the context that makes the case for you." },
-  { n: "04", title: "LiberNovo decides", sub: "LiberNovo has final approval over who is selected, which chair is provided, and shipping eligibility. Applying does not guarantee acceptance." },
-  { n: "05", title: "Agreement and onboarding", sub: "Approved creators sign a separate creator agreement with the final terms before anything ships." },
-  { n: "06", title: "Ship and activate", sub: "LiberNovo arranges the chair and sets up your affiliate link. The sponsorship starts from a defined activation date." },
+  { title: "You apply", sub: "Send your channel, recent metrics, socials, facecam info, current chair, and any existing sponsorships. The prep list below covers it." },
+  { title: "StreamQuest screens", sub: "We review your viewers, engagement, facecam use, chair visibility, content quality, location, and brand fit." },
+  { title: "We shortlist to LiberNovo", sub: "Suitable creators are presented to LiberNovo with the context that makes the case for you." },
+  { title: "LiberNovo decides", sub: "LiberNovo has final approval over who is selected, which chair is provided, and shipping eligibility. Applying does not guarantee acceptance." },
+  { title: "Agreement and onboarding", sub: "Approved creators sign a separate creator agreement with the final terms before anything ships." },
+  { title: "Ship and activate", sub: "LiberNovo arranges the chair and sets up your affiliate link. The sponsorship starts from a defined activation date." },
 ];
 
 const applyFields = [
@@ -110,7 +110,7 @@ const confirmed = [
 ];
 
 const pending = [
-  "The exact sponsorship length — your individual agreement states the full period.",
+  "The exact sponsorship length. Your individual agreement states the full period.",
   "Whether the chair is kept, kept on completion, or returned in some cases.",
   "Which chair models, colors, and countries are available.",
   "Who covers shipping, customs, returns, and warranty support.",
@@ -210,8 +210,8 @@ export default function LibernovoPage() {
           <Reveal delay={0.15}>
             <p>
               LiberNovo makes premium ergonomic chairs. StreamQuest sources and screens the
-              creators. The goal is honest, visible product use over time — your audience seeing
-              the chair in your setup, stream after stream — not a single sponsored clip that
+              creators. The goal is honest, visible product use over time: your audience seeing
+              the chair in your setup, stream after stream, not a single sponsored clip that
               disappears. You are not asked to guarantee sales, and you are not asked to turn
               every stream into an advert.
             </p>
@@ -233,7 +233,7 @@ export default function LibernovoPage() {
               </h2>
               <p>
                 The LiberNovo Omni Pro is a dynamic ergonomic chair built for people who sit for
-                a living. These are its real features — the things your viewers will ask about.
+                a living. These are its real features, the things your viewers will ask about.
               </p>
             </div>
           </Reveal>
@@ -352,8 +352,8 @@ export default function LibernovoPage() {
               Give your genuine opinion. Compare it to your old gaming chair or your last
               ergonomic one. Tell your chat what you actually think. All we ask is that your
               claims come from real experience, that you skip misleading or medical statements,
-              and that you clearly disclose the sponsorship. Authenticity is the entire point —
-              it is what makes a real creator worth more than an ad slot.
+              and that you clearly disclose the sponsorship. Authenticity is the entire point.
+              It is what makes a real creator worth more than an ad slot.
             </p>
           </Reveal>
         </div>
@@ -370,7 +370,7 @@ export default function LibernovoPage() {
               </h2>
               <p>
                 This is the ideal profile, not a wall of hard gates. If you are close and a
-                genuine fit, apply — exceptional applications get a real look.
+                genuine fit, apply. Exceptional applications get a real look.
               </p>
             </div>
           </Reveal>
@@ -406,7 +406,7 @@ export default function LibernovoPage() {
             {steps.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.05} as="li">
                 <div className="lib-step">
-                  <div className="lib-step-n" aria-hidden="true">{s.n}</div>
+                  <span className="lib-step-dot" aria-hidden="true" />
                   <div className="lib-step-body">
                     <h3>{s.title}</h3>
                     <p>{s.sub}</p>
@@ -429,7 +429,7 @@ export default function LibernovoPage() {
               </h2>
               <p>
                 Have these ready and your application sails through screening. You do not need to
-                send a shipping address yet — that is collected securely only after approval.
+                send a shipping address yet. That is collected securely only after approval.
               </p>
             </div>
           </Reveal>
