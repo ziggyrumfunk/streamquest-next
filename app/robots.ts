@@ -17,10 +17,8 @@ export default function robots(): MetadataRoute.Robots {
           "/endix-kpi",
           "/aska-kpi",
           "/house-flipper-kpi",
+          "/good-heavens-kpi",
         ],
       },
     ],
-    sitemap: `${SITE}/sitemap.xml`,
-    host: SITE,
-  };
-}
+    sitemap: `${SITE}/sitema
