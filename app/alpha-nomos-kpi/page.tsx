@@ -27,7 +27,7 @@ const CLIP_EMBED = `https://clips.twitch.tv/embed?clip=${CLIP_SLUG}&${CLIP_PAREN
 const CLIP_LINK = `https://www.twitch.tv/uclaoboat/clip/${CLIP_SLUG}`;
 
 const kpis = [
-  { num: "48 / 48", lbl: "Completed creators" },
+  { num: "48 / 50", lbl: "Completed creators" },
   { num: "€2,450", lbl: "Final all-in spend" },
   { num: "33 / 15", lbl: "Silver / Bronze" },
   { num: "45 / 48", lbl: "Wishlist completions" },
@@ -148,7 +148,7 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
             <span className="grad">Broad reach, partner-grade credibility</span>.
           </h1>
           <p className="cs-hero-lead">
-            The Alpha Nomos campaign closed at a final spend of €2,450 with all 48 tracked
+            The Alpha Nomos campaign closed at a final spend of €2,450 with 48 of 50
             creators completing, across a mix of 33 Silver and 15 Bronze tiers. The campaign
             pushed hard for wishlists and landed 45 of 48 completions, generated 2,945
             viewer-hours, and reached audiences in 8 languages. 14 of the creators were
@@ -183,7 +183,7 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
                 Alpha Nomos is a rhythm-based action roguelite by RibCage Games. The campaign
                 was built to put the demo in front of varied, engaged Twitch audiences, drive
                 Steam wishlists, and gather honest creator feedback while the game is still in
-                development. Every tracked creator completed their activation.
+                development. 48 of the 50 booked creators completed their activation.
               </p>
               <p>
                 The blend of established Partner channels and community-driven creators gave the
@@ -193,7 +193,7 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
               </p>
               <h3>Highlights</h3>
               <ul className="cs-list">
-                <li>48 of 48 tracked creators completed, 33 Silver and 15 Bronze</li>
+                <li>48 of 50 creators completed, 33 Silver and 15 Bronze</li>
                 <li>45 of 48 wishlist completions (94%) and 28 of 48 outside-Twitch posts (58%)</li>
                 <li>2,945 viewer-hours delivered at €0.83 all-in per viewer-hour</li>
                 <li>14 Twitch Partner-status channels participated</li>
@@ -275,7 +275,7 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">Delivery KPIs</span>
-            <h2>Every tracked creator completed.</h2>
+            <h2>48 of 50 creators completed.</h2>
             <p>
               Headline delivery across the full roster, with wishlist and outside-Twitch quests
               tracked per creator.
@@ -284,8 +284,8 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
           <div className="nomos-stat-list">
             <div className="nomos-stat-row is-total">
               <span className="nomos-stat-label">Completed creators</span>
-              <span className="nomos-stat-num">48 / 48</span>
-              <span className="nomos-stat-note">Full tracked creator delivery.</span>
+              <span className="nomos-stat-num">48 / 50</span>
+              <span className="nomos-stat-note">48 of 50 booked creators delivered.</span>
             </div>
             <div className="nomos-stat-row">
               <span className="nomos-stat-label">Viewer-hours delivered</span>
@@ -396,11 +396,6 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
               <span className="nomos-stat-note">€2,450 final spend across 2,945 viewer-hours.</span>
             </div>
             <div className="nomos-stat-row">
-              <span className="nomos-stat-label">Cost per completed creator</span>
-              <span className="nomos-stat-num">€51.04</span>
-              <span className="nomos-stat-note">Blended across all 48 completed creators.</span>
-            </div>
-            <div className="nomos-stat-row">
               <span className="nomos-stat-label">Viewer-hours per euro</span>
               <span className="nomos-stat-num">1.20</span>
               <span className="nomos-stat-note">2,945 viewer-hours generated per €2,450 spent.</span>
@@ -444,7 +439,7 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
             <div className="nomos-stat-row is-total">
               <span className="nomos-stat-label">Final all-in spend</span>
               <span className="nomos-stat-num">€2,450</span>
-              <span className="nomos-stat-note">Blended cost per completed creator: €51.04.</span>
+              <span className="nomos-stat-note">Billed on verified completions.</span>
             </div>
           </div>
         </div>
@@ -496,6 +491,10 @@ export default function AlphaNomosKpiPage({ searchParams }: Props) {
               proof submitted. Filter and sort to explore.
             </p>
           </div>
+        </div>
+        {/* Widened out of the content shell so every column, VOD link included,
+            fits on screen without sideways scrolling on desktop. */}
+        <div className="nomos-log-wrap">
           <CreatorTable />
         </div>
       </section>
