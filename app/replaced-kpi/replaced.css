@@ -540,3 +540,75 @@
 .replaced-vod-meta { padding: 16px 18px 18px; }
 .replaced-vod-meta h4 { font-size: 1.05rem; margin: 0 0 6px; color: #fff; }
 .replaced-vod-meta p { font-size: 0.9rem; color: rgba(255, 255, 255, 0.65); margin: 0; }
+
+/* ============================================================
+   REPLACED graphics: cinematic bands + veiled section backgrounds.
+   ============================================================ */
+.replaced-band {
+  position: relative;
+  z-index: 1;
+  min-height: clamp(300px, 44vh, 540px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid var(--rd-line);
+  border-bottom: 1px solid var(--rd-line);
+}
+.replaced-band-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.replaced-band-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 9, 19, 0.94) 0%, rgba(5, 9, 19, 0.62) 52%, rgba(5, 9, 19, 0.3) 100%),
+    linear-gradient(180deg, rgba(5, 9, 19, 0.55), transparent 42%, rgba(5, 9, 19, 0.55));
+}
+.replaced-band-inner { position: relative; z-index: 1; max-width: 640px; padding: 54px 0; }
+.replaced-band-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+  margin-bottom: 14px;
+}
+.replaced-band-inner h2 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 14px;
+}
+.replaced-band-inner p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 500px;
+}
+
+/* Veiled section background image */
+.replaced-section-bg { position: relative; overflow: hidden; }
+.replaced-section-bg-img { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.replaced-section-bg-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.16;
+}
+.replaced-section-bg-veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 80% at 20% 40%, rgba(5, 9, 19, 0.55), rgba(5, 9, 19, 0.82) 100%),
+    linear-gradient(180deg, var(--rd-deep), transparent 22%, transparent 78%, var(--rd-deep));
+}
+.replaced-section-bg > .cs-shell { position: relative; z-index: 1; }

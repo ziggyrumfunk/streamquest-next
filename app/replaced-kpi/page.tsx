@@ -197,6 +197,18 @@ export default function ReplacedKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
+      {/* =============== CINEMATIC BAND =============== */}
+      <section className="replaced-band" aria-label="REPLACED key art">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="replaced-band-img" src="/media/replaced/Replaced_Release_Date_Trailer_Screenshot_08.webp" alt="REPLACED cinematic key art" loading="lazy" />
+        <div className="replaced-band-veil" aria-hidden="true" />
+        <div className="cs-shell replaced-band-inner">
+          <span className="replaced-band-eyebrow">R.E.A.C.H. · Phoenix-City</span>
+          <h2>Handcrafted pixel art, cinematic 2.5D.</h2>
+          <p>A game that gave creators something worth sitting with, not just sampling.</p>
+        </div>
+      </section>
+
       {/* =============== EXECUTIVE READOUT =============== */}
       <section className="cs-section">
         <div className="cs-shell">
@@ -336,7 +348,12 @@ export default function ReplacedKpiPage({ searchParams }: Props) {
       </section>
 
       {/* =============== WHAT STANDS OUT =============== */}
-      <section className="cs-section cs-section-shaded">
+      <section className="cs-section cs-section-shaded replaced-section-bg">
+        <div className="replaced-section-bg-img" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/media/replaced/Replaced_Release_Date_Trailer_Screenshot_11.webp" alt="" loading="lazy" />
+          <div className="replaced-section-bg-veil" />
+        </div>
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">What stands out</span>
@@ -470,8 +487,53 @@ export default function ReplacedKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* =============== FEATURED VODS =============== */}
+      {/* =============== ORGANIC REACH / VIRAL POST =============== */}
       <section className="cs-section">
+        <div className="cs-shell">
+          <div style={{ maxWidth: 720, marginBottom: 26 }}>
+            <span className="cs-tag">Organic reach beyond the brief</span>
+            <h2>The campaign bought attention. The game earned the engagement.</h2>
+          </div>
+          <div className="cs-viral-feature">
+            <div className="cs-viral-embed">
+              <div className="cs-viral-frame">
+                <iframe
+                  src="https://www.instagram.com/p/DUtKmewidMY/embed"
+                  title="REPLACED viral Instagram post"
+                  loading="lazy"
+                  allow="encrypted-media"
+                  scrolling="no"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+            <div className="cs-viral-text">
+              <span className="cs-viral-badge">Organic reach beyond the brief</span>
+              <h3>The most valuable creators were genuinely interested in the game.</h3>
+              <p>
+                They were not simply posting because they were asked to. They were willing to give
+                REPLACED extended attention beyond the minimum brief requirements.
+              </p>
+              <p className="cs-muted">
+                This is the structural advantage of the micro-creator model: when a game lands, the
+                distributed creator base is the layer where authentic, repeating attention shows up
+                across multiple feeds.
+              </p>
+              <a
+                className="cs-viral-link"
+                href="https://www.instagram.com/p/DUtKmewidMY/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Open on Instagram →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =============== FEATURED VODS =============== */}
+      <section className="cs-section cs-section-shaded">
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 8 }}>
             <span className="cs-tag">Featured stream VODs</span>
@@ -500,6 +562,18 @@ export default function ReplacedKpiPage({ searchParams }: Props) {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* =============== CINEMATIC BAND 2 =============== */}
+      <section className="replaced-band" aria-label="REPLACED gameplay">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="replaced-band-img" src="/media/replaced/Replaced_Release_Date_Trailer_Screenshot_16.webp" alt="REPLACED gameplay" loading="lazy" />
+        <div className="replaced-band-veil" aria-hidden="true" />
+        <div className="cs-shell replaced-band-inner">
+          <span className="replaced-band-eyebrow">The full log</span>
+          <h2>62 creators, one campaign.</h2>
+          <p>Every logged activation, with tier, ranking, performance, and side-quest proof.</p>
         </div>
       </section>
 
