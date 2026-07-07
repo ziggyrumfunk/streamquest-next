@@ -18,6 +18,8 @@ export default function robots(): MetadataRoute.Robots {
           "/aska-kpi",
           "/house-flipper-kpi",
           "/good-heavens-kpi",
+          "/alpha-nomos-kpi",
+          "/replaced-kpi",
         ],
       },
     ],
