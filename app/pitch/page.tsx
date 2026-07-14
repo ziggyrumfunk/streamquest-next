@@ -55,9 +55,9 @@ const challenges = [
 
 const compareRows = [
   { label: "Community relationship", a: "Built through interaction. Viewers chat, get responses, form bonds.", b: "Built through scale. Reach is wide, interaction is limited." },
-  { label: "Viewer trust", a: "Seen as peers or friends. Endorsements feel personal.", b: "Seen as personalities. Endorsements may feel branded." },
-  { label: "Motivation", a: "Passion driven. Early career creators deeply invested in the quest.", b: "Career focused. Often juggling multiple sponsor slots per week." },
-  { label: "Cost efficiency", a: "More creators per euro. Campaigns scale horizontally.", b: "High cost per placement. All or nothing." },
+  { label: "Viewer trust", a: "Seen as peers or friends. Endorsements feel personal.", b: "Seen as a personality. Endorsements may feel branded." },
+  { label: "Motivation", a: "Passion driven. Creators who genuinely want to play the game.", b: "Career focused. Often juggling multiple sponsor slots per week." },
+  { label: "Spend behaviour", a: "Many voices, spread across communities. Campaigns scale horizontally.", b: "One slot, one audience. All or nothing." },
   { label: "UGC potential", a: "Every stream is a unique voice, diverse content, honest reactions.", b: "Limited variations. Often one clip or VOD per campaign." },
   { label: "Longevity", a: "High odds to continue streaming the game after contractual obligations.", b: "Unlikely to continue playing the game after contractual obligations." },
 ];
@@ -73,14 +73,14 @@ const questModel: { name: string; body: string; clip: QuestModelClip }[] = [
   },
   {
     name: "Side quests",
-    body: "Optional extra challenges that unlock bonus XP. Post a gameplay clip, write a Steam review, share the wishlist link, complete a survey, finish the game.",
+    body: "Optional extra challenges that unlock bonus XP. Post a gameplay clip, share the wishlist link, complete a feedback survey, hit an in-game milestone, post UGC on socials, or record a campaign recap.",
     clip: {
       mp4:  "/media/clips/clip-2.mp4",
     },
   },
   {
     name: "XP and tiers",
-    body: "Bronze (5+ average viewers, top 6% of Twitch), Silver (15+ average viewers, top 3%), Gold (top XP earners, custom rates). Creators level up across quests.",
+    body: "Bronze (5+ average viewers, top 6% of Twitch), Silver (15+ average viewers, top 3%), Gold (English-only, 50+ average viewers, 1,500+ followers, 2 hours streamed plus one UGC video outside Twitch). Creators level up across quests.",
     clip: {
       mp4:  "/media/clips/clip-3.mp4",
     },
@@ -107,10 +107,27 @@ const usps = [
 
 const creatorActivation = [
   { t: "Quest design", d: "We translate your launch goals into a mission brief: stream hours, category, side quests, payout tiers, proof rules." },
-  { t: "Creator vetting", d: "Hand-picked micro-streamers per campaign. Manual review for content fit, audience, region, quality." },
-  { t: "Mission ops", d: "Approvals, key distribution, Discord coordination, VOD verification, side quest submissions, all handled by us." },
-  { t: "Payouts", d: "We pay creators directly via their Twitch donation setup. No invoices for them to chase. Unused credits are refunded to you." },
-  { t: "KPI reporting", d: "Monthly KPI deck with creator-level stats, peak viewers, watch-hours, social proof, and storefront UTM tracking." },
+  { t: "Vetted Affiliates and Partners", d: "Hand-picked creators per campaign, from engaged micro-creators and Twitch Affiliates through to selected Twitch Partners. Manually reviewed for content fit, audience, region, and quality." },
+  { t: "Discord management", d: "An active creator Discord where we brief, remind, answer, coordinate, and keep creators moving. Relationship-driven, not a self-serve listing board." },
+  { t: "Proof checks", d: "Every submission is verified by a human: VODs, timestamps, categories, clips, social posts, and side-quest proof. No faked engagement or unrelated content." },
+  { t: "Direct payouts", d: "We pay creators directly. Real cash, no crypto, no gift cards, no unnecessary middleman. Unused credits are refunded to you." },
+  { t: "End-of-campaign KPI report", d: "A full close-out report with VODs, proof, watch-hours, creator feedback, content links, and budget reconciliation." },
+];
+
+/* Creator-side philosophy: how creators are treated, paid, and managed. */
+const creatorSide = [
+  {
+    t: "An active creator Discord",
+    d: "Not a self-serve listing board. Creators are briefed, reminded, updated, and coordinated directly by our team in Discord, and they can reach a real person when something is unclear.",
+  },
+  {
+    t: "Real cash, short route",
+    d: "We pay creators directly. No crypto, no gift cards, no sleazy payout tricks, no unnecessary middleman. Creators get real money they can spend however they want.",
+  },
+  {
+    t: "Respect drives performance",
+    d: "Creators perform better when they are respected, paid fairly, and given clear goals. That is why our campaigns are managed relationships, not transactions.",
+  },
 ];
 
 const marketingStudio = [
@@ -218,7 +235,6 @@ const kpis = [
       ["50 creators", "100% of target slots"],
       ["181 hours streamed", "+200% over-delivery"],
       ["~3,700 viewer-hours", "Generated total"],
-      ["€0.46 to 0.48", "Cost per watch-hour"],
       ["Average CCV 12 / 26", "Bronze / Silver vs targets 5 / 15"],
       ["80% of creators", "Posted on socials"],
     ],
@@ -230,7 +246,6 @@ const kpis = [
       ["45 streamers", "~90% of target slots"],
       ["60 hours streamed", "+267% over-delivery"],
       ["1,180 viewer-hours", "Generated total"],
-      ["€0.37 / viewer-hour", "Effective cost"],
       ["Average CCV 19.7 vs 5", "3.94x over target"],
       ["87% of creators", "Posted on socials"],
     ],
@@ -242,7 +257,6 @@ const kpis = [
       ["40 creators", "~80% of target slots"],
       ["92 hours streamed", "+30% over-delivery"],
       ["~2,448 viewer-hours", "Target 190 → 13x over"],
-      ["€0.67 / watch-hour", "Cost efficiency"],
       ["Average CCV 27 vs 5", "440% over target"],
       ["70% of creators", "Posted on socials"],
     ],
@@ -284,13 +298,56 @@ export default function PitchPage() {
                 Email contact@streamquest.io
               </a>
               <a
-                href="https://discord.gg/NhqfucYDXD"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:contact@streamquest.io?subject=Request%20StreamQuest%20KPI%20examples"
                 className="btn btn-secondary btn-xl"
               >
-                Join Discord
+                Request KPI examples
               </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ============ CREATOR ACTIVATION — the core product, leads the page ============ */}
+      <section className="pitch-section pitch-section-shaded">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="pitch-head-wide">
+              <span className="rd-section-tag">The core product · Creator activation</span>
+              <h2>
+                Quest-based <span className="grad">Twitch creator campaigns</span>.
+              </h2>
+              <p>
+                This is what StreamQuest is built on. Curated creators, from engaged
+                micro-creators and Twitch Affiliates through to selected Twitch Partners, play
+                your game live, hit measurable goals, and get paid per completed activation.
+                Campaigns typically start around 50 creators and scale from there. Setup,
+                vetting, Discord management, proof checks, payouts, and reporting are all on us.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="pitch-services">
+              {creatorActivation.map((s) => (
+                <article key={s.t} className="pitch-service">
+                  <span className="pitch-service-mark" aria-hidden="true">+</span>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="pitch-case-links" style={{ marginTop: 34 }}>
+              <span className="pitch-case-links-label">Creator activation in practice</span>
+              <div className="pitch-case-links-row">
+                <Link className="pitch-case-link" href="/case-studies/planet-of-lana-2">
+                  Planet of Lana 2 case study
+                </Link>
+                <Link className="pitch-case-link" href="/case-studies/replaced">
+                  REPLACED case study
+                </Link>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -307,8 +364,10 @@ export default function PitchPage() {
               </h2>
               <p>
                 Gaming is a network of smaller communities. StreamQuest helps studios spread
-                the budget of one large influencer across up to 50 trusted micro-creators,
-                creating more consistent visibility, social proof, and verified reporting.
+                the budget of one large influencer across 50+ trusted creators, creating more
+                consistent visibility, social proof, and verified reporting. Campaigns
+                typically start around 50 creators and can scale depending on scope and
+                availability.
               </p>
               <p>
                 Our edge is that we combine platform structure with agency-style personal
@@ -361,18 +420,19 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ============ AFFILIATE VS PARTNERED — comparison table ============ */}
+      {/* ============ MANY CREATORS VS ONE PLACEMENT — comparison table ============ */}
       <section className="pitch-section">
         <div className="rd-shell">
           <Reveal>
             <div className="pitch-head-wide">
-              <span className="rd-section-tag">Why micro creators win</span>
+              <span className="rd-section-tag">Why many creators win</span>
               <h2>
-                Affiliate streamers <span className="grad">vs</span> partnered streamers.
+                Many trusted creators <span className="grad">vs</span> one large placement.
               </h2>
               <p>
-                We activate 50+ trusted creators per campaign, creating real momentum
-                through many voices instead of relying on one spotlight.
+                We activate 50+ trusted creators per campaign, a mix of engaged micro-creators,
+                Twitch Affiliates, and selected Twitch Partners, creating real momentum through
+                many voices instead of relying on one spotlight.
               </p>
             </div>
           </Reveal>
@@ -380,8 +440,8 @@ export default function PitchPage() {
             <div className="pitch-compare">
               <div className="pitch-compare-head">
                 <div className="pitch-compare-col-label"></div>
-                <div className="pitch-compare-col-a">Affiliate (StreamQuest)</div>
-                <div className="pitch-compare-col-b">Partnered (traditional)</div>
+                <div className="pitch-compare-col-a">Micro-creators, Affiliates &amp; selected Partners (StreamQuest)</div>
+                <div className="pitch-compare-col-b">One large sponsored placement</div>
               </div>
               {compareRows.map((row) => (
                 <div key={row.label} className="pitch-compare-row">
@@ -466,6 +526,36 @@ export default function PitchPage() {
         </div>
       </section>
 
+      {/* ============ CREATOR SIDE — philosophy, Discord, payouts ============ */}
+      <section className="pitch-section">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="pitch-head-wide">
+              <span className="rd-section-tag">The creator side</span>
+              <h2>
+                A managed creator community, <span className="grad">not a listing board</span>.
+              </h2>
+              <p>
+                The quality of a campaign comes from how creators are treated. StreamQuest is a
+                managed community built around fair rewards and real participation, which is why
+                creators show up, deliver, and often keep playing after the brief is done.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="pitch-services">
+              {creatorSide.map((s) => (
+                <article key={s.t} className="pitch-service">
+                  <span className="pitch-service-mark" aria-hidden="true">+</span>
+                  <h3>{s.t}</h3>
+                  <p>{s.d}</p>
+                </article>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============ USPs — asymmetric grid: large + smaller cells ============ */}
       <section className="pitch-section pitch-section-shaded">
         <div className="rd-shell">
@@ -524,41 +614,12 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ============ CREATOR ACTIVATION — service list ============ */}
-      <section className="pitch-section pitch-section-shaded">
-        <div className="rd-shell">
-          <Reveal>
-            <div className="pitch-head-wide">
-              <span className="rd-section-tag">Pillar 1 — Creator activation</span>
-              <h2>
-                What is included in a <span className="grad">StreamQuest campaign</span>.
-              </h2>
-              <p>
-                Hand-picked micro-streamers play your game, hit measurable goals, and get paid per
-                completed activation. Setup, vetting, key delivery, payouts, and reporting are all on us.
-              </p>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="pitch-services">
-              {creatorActivation.map((s) => (
-                <article key={s.t} className="pitch-service">
-                  <span className="pitch-service-mark" aria-hidden="true">+</span>
-                  <h3>{s.t}</h3>
-                  <p>{s.d}</p>
-                </article>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ============ INDIE MARKETING STUDIO — service list ============ */}
       <section className="pitch-section">
         <div className="rd-shell">
           <Reveal>
             <div className="pitch-head-wide">
-              <span className="rd-section-tag">Pillar 2 — Marketing support</span>
+              <span className="rd-section-tag">Pillar 2 · Marketing support</span>
               <h2>
                 Branding, social, storefronts, <span className="grad">community</span>, and more.
               </h2>
@@ -618,7 +679,7 @@ export default function PitchPage() {
         <div className="rd-shell pitch-case-wrap">
           <Reveal>
             <div className="pitch-case-head">
-              <span className="rd-section-tag">Case study — {taxiCase.service}</span>
+              <span className="rd-section-tag">Case study · {taxiCase.service}</span>
               <h2>
                 {taxiCase.name}: <span className="grad">trailer pickup on IGN</span>.
               </h2>
@@ -705,7 +766,7 @@ export default function PitchPage() {
         <div className="rd-shell pitch-case-wrap">
           <Reveal>
             <div className="pitch-case-head">
-              <span className="rd-section-tag">Case study — {goodHeavensCase.service}</span>
+              <span className="rd-section-tag">Case study · {goodHeavensCase.service}</span>
               <h2>
                 {goodHeavensCase.name}: <span className="grad">pre-launch presence</span> for an Early Access debut.
               </h2>
@@ -823,6 +884,25 @@ export default function PitchPage() {
               ))}
             </div>
           </Reveal>
+          <Reveal>
+            <div className="pitch-case-links" style={{ marginTop: 34 }}>
+              <span className="pitch-case-links-label">Named creator activation proof</span>
+              <div className="pitch-case-links-row">
+                <Link className="pitch-case-link" href="/case-studies/planet-of-lana-2">
+                  Planet of Lana 2 case study
+                </Link>
+                <Link className="pitch-case-link" href="/case-studies/replaced">
+                  REPLACED case study
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal>
+            <p className="pitch-poc">
+              Also in the portfolio: House Flipper / Frozen District, a rapid creator activation
+              test. This was a short proof-of-concept activation rather than a full campaign.
+            </p>
+          </Reveal>
         </div>
       </section>
 
@@ -918,12 +998,10 @@ export default function PitchPage() {
                 Email contact@streamquest.io
               </a>
               <a
-                href="https://discord.gg/NhqfucYDXD"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:contact@streamquest.io?subject=Send%20your%20Steam%20page%20to%20StreamQuest"
                 className="btn btn-secondary btn-xl"
               >
-                Join Discord
+                Send your Steam page
               </a>
               <Link href="/" className="btn btn-ghost btn-xl">Back to home</Link>
             </div>

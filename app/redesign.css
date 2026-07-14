@@ -1770,9 +1770,9 @@
 /* Three simple tier columns underneath the video */
 .rd-earn-tiers {
   margin: 48px auto 0;
-  width: min(calc(100% - 32px), 880px);
+  width: min(calc(100% - 32px), 1080px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border-top: 1px solid var(--rd-line);
 }
@@ -1811,6 +1811,12 @@
   font-size: 13px;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.55;
+}
+/* Four tiers get cramped on mid widths — drop to two columns.
+   Declared before the 720px rule so single-column still wins on phones. */
+@media (max-width: 980px) {
+  .rd-earn-tiers { grid-template-columns: repeat(2, 1fr); }
+  .rd-earn-tier:nth-child(2n) { border-right: none; }
 }
 
 @media (max-width: 720px) {

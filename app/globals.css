@@ -800,16 +800,19 @@ p {
    MOBILE NAV — hamburger + slide-in drawer (under 900px)
    ============================================================ */
 
-/* Desktop nav: visible above 900px, hidden below */
+/* Desktop nav: only shown once the full nav actually fits next to the
+   Creator Dashboard button. The links need ~1233px of header; below that
+   the nav overflowed and painted over the CTA, so we use the burger menu
+   (which carries every link, including FAQ and News) instead. */
 .desktop-nav { display: flex; }
 .desktop-cta { display: inline-flex; }
 
-@media (max-width: 900px) {
+@media (max-width: 1279px) {
   .desktop-nav { display: none; }
   .desktop-cta { display: none; }
 }
 
-/* Burger button — only visible under 900px */
+/* Burger button — visible whenever the desktop nav is hidden */
 .mnav-burger {
   display: none;
   margin-left: auto;
@@ -832,7 +835,7 @@ p {
   transition: transform 0.2s, opacity 0.2s;
 }
 .mnav-burger:hover { border-color: var(--lime); }
-@media (max-width: 900px) {
+@media (max-width: 1279px) {
   .mnav-burger { display: inline-flex; }
 }
 

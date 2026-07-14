@@ -1235,3 +1235,12 @@
   .pitch-case-landing { padding: 22px 22px; }
   .pitch-case-landing-arrow { width: 48px; height: 48px; font-size: 22px; }
 }
+
+/* Portfolio proof-of-concept note (House Flipper / Frozen District). */
+.pitch .pitch-poc {
+  margin-top: 26px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 640px;
+}

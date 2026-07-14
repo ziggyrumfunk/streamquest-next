@@ -71,15 +71,23 @@ export const streamerFaqs: FaqCategory[] = [
         q: "How many hours do I need to stream?",
         a: [
           { type: "p", text: "Each mission brief defines the exact requirements and maximum payable hour caps. A common baseline is:" },
-          { type: "ul", items: ["Bronze: minimum 1 hour", "Silver: usually 2 hours (sometimes up to 3 depending on the quest)"] },
+          { type: "ul", items: ["Bronze: minimum 1 hour", "Silver: usually 2 hours (sometimes up to 3 depending on the quest)", "Gold: 2 hours of Twitch streaming, plus 1 UGC video outside Twitch"] },
           { type: "p", text: "Only verified gameplay time counts." },
         ],
       },
       {
         q: "What tiers exist and how do I unlock Silver?",
         a: [
-          { type: "p", text: "Current tiers include Bronze and Silver. Gold is planned as a future partner tier." },
+          { type: "p", text: "Current tiers are Bronze, Silver, and Gold." },
           { type: "p", text: "Silver unlocks at Level 10 which equals 450 XP. Silver often requires at least one side quest completion depending on the campaign." },
+        ],
+      },
+      {
+        q: "What is the Gold tier?",
+        a: [
+          { type: "p", text: "Gold quests are English-only and reserved for stronger creators. To qualify you need 50+ average viewers and 1,500+ followers." },
+          { type: "p", text: "The quest is 2 hours of Twitch streaming, plus 1 UGC video posted outside Twitch." },
+          { type: "p", text: "Gold pays €25 per hour for 2 hours, so €50 in total." },
         ],
       },
       {

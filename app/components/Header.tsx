@@ -53,7 +53,7 @@ export default async function Header() {
         </Link>
 
         <nav className="desktop-nav flex-1 min-w-0" aria-label="Primary site navigation">
-          <ul className="flex items-center gap-6 list-none whitespace-nowrap">
+          <ul className="flex items-center gap-4 list-none whitespace-nowrap">
             {primaryNav.map((item) => (
               <li key={item.href}>
                 <Link

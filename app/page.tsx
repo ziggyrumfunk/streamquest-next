@@ -437,6 +437,11 @@ export default async function HomePage() {
               <div className="rd-earn-tier-payout">€25+</div>
               <div className="rd-earn-tier-req">Stream 2+ hours · 15 CCV</div>
             </div>
+            <div className="rd-earn-tier">
+              <div className="rd-earn-tier-name">Gold</div>
+              <div className="rd-earn-tier-payout">€50</div>
+              <div className="rd-earn-tier-req">Stream 2 hours · 50 CCV · English · 1 UGC video</div>
+            </div>
             <div className="rd-earn-tier bonus">
               <div className="rd-earn-tier-name">Bonus</div>
               <div className="rd-earn-tier-payout">Extra XP</div>
