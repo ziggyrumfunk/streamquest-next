@@ -958,16 +958,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 72px;
-  height: 72px;
+  width: 112px;
+  height: 112px;
   border-radius: 999px;
   background: var(--rd-deep);
   border: 2px solid var(--rd-lime);
   color: var(--rd-lime);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 0.18em;
-  box-shadow: 0 0 28px rgba(178, 240, 72, 0.35);
+  letter-spacing: 0.16em;
+  /* Center optically: wide letter-spacing adds a trailing gap after the
+     last glyph, so offset it to keep the word visually centered. */
+  text-indent: 0.16em;
+  box-shadow: 0 0 34px rgba(178, 240, 72, 0.4);
   margin-bottom: 28px;
 }
 .rd-tier h3 {
