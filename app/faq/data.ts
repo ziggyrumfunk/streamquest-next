@@ -71,23 +71,25 @@ export const streamerFaqs: FaqCategory[] = [
         q: "How many hours do I need to stream?",
         a: [
           { type: "p", text: "Each mission brief defines the exact requirements and maximum payable hour caps. A common baseline is:" },
-          { type: "ul", items: ["Bronze: minimum 1 hour", "Silver: usually 2 hours (sometimes up to 3 depending on the quest)", "Gold: 2 hours of Twitch streaming, plus 1 UGC video outside Twitch"] },
+          { type: "ul", items: ["Bronze: minimum 1 hour", "Silver: usually 2 hours (sometimes up to 3 depending on the quest)", "Gold: minimum 2 hours, plus 1 UGC clip outside Twitch"] },
           { type: "p", text: "Only verified gameplay time counts." },
         ],
       },
       {
-        q: "What tiers exist and how do I unlock Silver?",
+        q: "What tiers exist and how do I unlock Silver and Gold?",
         a: [
           { type: "p", text: "Current tiers are Bronze, Silver, and Gold." },
           { type: "p", text: "Silver unlocks at Level 10 which equals 450 XP. Silver often requires at least one side quest completion depending on the campaign." },
+          { type: "p", text: "Gold unlocks at Level 20 which equals 1,000 XP." },
         ],
       },
       {
         q: "What is the Gold tier?",
         a: [
-          { type: "p", text: "Gold quests are English-only and reserved for stronger creators. To qualify you need 50+ average viewers and 1,500+ followers." },
-          { type: "p", text: "The quest is 2 hours of Twitch streaming, plus 1 UGC video posted outside Twitch." },
-          { type: "p", text: "Gold pays €25 per hour for 2 hours, so €50 in total." },
+          { type: "p", text: "Gold is the top tier, reserved for stronger creators, and unlocks by earning XP: Level 20, which equals 1,000 XP." },
+          { type: "p", text: "Requirements: 50+ average viewers and 2,000+ followers. Gold quests focus on English, German, and French streams, and exceptions can be made." },
+          { type: "p", text: "A Gold quest is a minimum of 2 hours of Twitch streaming, plus 1 UGC clip posted outside Twitch per campaign, for example a gameplay clip on Instagram." },
+          { type: "p", text: "Gold pays €50 per completed quest." },
         ],
       },
       {

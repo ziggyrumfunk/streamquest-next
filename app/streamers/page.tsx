@@ -71,14 +71,15 @@ const ranks = [
   {
     code: "GOLD",
     title: "Gold creator",
-    body: "Top-tier rank. Highest payout caps and exclusive launch slots.",
+    body: "Top rank, unlocked by earning XP. Gold quests pay €50 for a minimum 2-hour stream plus one UGC clip outside Twitch.",
     perks: [
+      "€50 per completed Gold quest",
+      "1 UGC clip per campaign (Instagram, TikTok, YouTube)",
+      "English, German, and French focus (exceptions possible)",
       "Premium quest invitations",
-      "Higher per-hour payout caps",
       "Direct support channel",
-      "Featured spotlight on StreamQuest",
     ],
-    promo: "Sustained performance over multiple campaigns",
+    promo: "Level 20 (1,000 XP) · 50 avg viewers · 2,000+ followers",
   },
 ];
 

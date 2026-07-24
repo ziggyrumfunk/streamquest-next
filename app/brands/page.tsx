@@ -59,7 +59,7 @@ const campaignTypes = [
 
 const studioSteps = [
   { n: "01", t: "Share your game assets",      d: "Logo and cover art minimum. Trailers, Steam links, embargo notes, key art all help us write a stronger brief." },
-  { n: "02", t: "We build the mission brief",  d: "Streaming requirements, side quest options, timing, specific CTAs, payout tiers. You approve before anything goes live." },
+  { n: "02", t: "We build the mission brief",  d: "Streaming requirements, side quest options, timing, specific CTAs, payout tiers (Bronze, Silver, Gold). You approve before anything goes live." },
   { n: "03", t: "Hand-screened 50+ creators",  d: "Every applicant manually reviewed for community quality, content fit, and authentic engagement. Zero automated bulk approvals." },
   { n: "04", t: "Live and verified",           d: "Two-week activation window. Each VOD reviewed by a human for category, gameplay time, and brief compliance before payout." },
   { n: "05", t: "Transparent KPI report",      d: "Viewer hours, cost per viewer hour, creator list with follower/CCV data, tier completion, language and geo breakdown." },

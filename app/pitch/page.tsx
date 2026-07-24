@@ -80,7 +80,7 @@ const questModel: { name: string; body: string; clip: QuestModelClip }[] = [
   },
   {
     name: "XP and tiers",
-    body: "Bronze (5+ average viewers, top 6% of Twitch), Silver (15+ average viewers, top 3%), Gold (English-only, 50+ average viewers, 1,500+ followers, 2 hours streamed plus one UGC video outside Twitch). Creators level up across quests.",
+    body: "Bronze (5+ average viewers, top 6% of Twitch), Silver (15+ average viewers, top 3%), Gold (unlocks at Level 20, 50+ average viewers, 2,000+ followers, English, German, or French, 2 hours streamed plus one UGC clip outside Twitch). Creators level up across quests.",
     clip: {
       mp4:  "/media/clips/clip-3.mp4",
     },
