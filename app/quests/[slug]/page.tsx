@@ -70,6 +70,11 @@ export default function QuestPage({ params }: Params) {
 
   return (
     <div className={`rd q-slug-${quest.slug}`}>
+      {/* Ambient character layer, drifts behind the whole brief. */}
+      {quest.swarm && quest.swarm.items.length > 0 && (
+        <MutantSwarm items={quest.swarm.items} />
+      )}
+
       {quest.slug === "goodheavens" && (
         <div className="gh-deco-layer" aria-hidden="true">
           {/* eslint-disable @next/next/no-img-element */}
@@ -185,14 +190,18 @@ export default function QuestPage({ params }: Params) {
                 <span className="q-tag">First time streamer?</span>
                 <p>
                   Read the Quests Guide before you go live. It covers setup, proof,
-                  and the exact dos and don&apos;ts so your run counts.
+                  and the exact dos and don&apos;ts so your run counts. The FAQ answers
+                  the rest: tiers, XP, payouts, and what happens after you submit.
                 </p>
                 <div className="q-first-timer-actions">
                   <Link href="/quests-guide" className="btn btn-primary">
                     Open Quests Guide
                   </Link>
-                  <a href="https://app.streamquest.io" className="btn btn-secondary">
-                    Open Creator Dashboard
+                  <Link href="/faq" className="btn btn-secondary">
+                    Read the FAQ
+                  </Link>
+                  <a href="https://app.streamquest.io" className="btn btn-ghost">
+                    Creator Dashboard
                   </a>
                 </div>
               </div>
@@ -335,11 +344,26 @@ export default function QuestPage({ params }: Params) {
                 </div>
               </Reveal>
 
-              {quest.storyAside && (
+              {(quest.storyAsideVideo || quest.storyAside) && (
                 <Reveal delay={0.15}>
                   <div className="q-story-aside">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={quest.storyAside} alt={quest.storyAsideCaption || ""} loading="lazy" />
+                    {quest.storyAsideVideo ? (
+                      <video
+                        className="q-story-aside-video"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        poster={quest.storyAsidePoster}
+                        aria-label={quest.storyAsideCaption || "Gameplay clip"}
+                      >
+                        <source src={quest.storyAsideVideo} type="video/mp4" />
+                      </video>
+                    ) : (
+                      /* eslint-disable-next-line @next/next/no-img-element */
+                      <img src={quest.storyAside} alt={quest.storyAsideCaption || ""} loading="lazy" />
+                    )}
                     {quest.storyAsideCaption && (
                       <span className="q-story-aside-cap">{quest.storyAsideCaption}</span>
                     )}
@@ -380,23 +404,6 @@ export default function QuestPage({ params }: Params) {
               </div>
             </Reveal>
           </div>
-        </section>
-      )}
-
-      {/* ============ MUTANT SWARM ============ */}
-      {quest.swarm && quest.swarm.items.length > 0 && (
-        <section className="q-swarm">
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-swarm-head">
-                {quest.swarm.eyebrow && <span className="q-tag">{quest.swarm.eyebrow}</span>}
-                {quest.swarm.heading && <h2>{quest.swarm.heading}</h2>}
-                {quest.swarm.body && <p>{quest.swarm.body}</p>}
-                {quest.swarm.hint && <span className="q-swarm-hint">{quest.swarm.hint}</span>}
-              </div>
-            </Reveal>
-          </div>
-          <MutantSwarm items={quest.swarm.items} />
         </section>
       )}
 

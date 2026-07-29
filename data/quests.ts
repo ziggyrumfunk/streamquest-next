@@ -120,6 +120,8 @@ export type Quest = {
   storyParagraphs?: string[];           // multi-paragraph story block
   storyPull?: string;                   // pull-quote string
   storyAside?: string;                  // image URL for split-layout aside
+  storyAsideVideo?: string;             // looping clip; takes over from storyAside when set
+  storyAsidePoster?: string;            // poster frame for storyAsideVideo
   storyAsideCaption?: string;
   shortDescription?: string;            // longer "short description" paragraph
   sideQuestIntro?: string;              // intro paragraph for side quest section
@@ -169,7 +171,7 @@ export const quests: Quest[] = [
         name: "Bronze",
         payout: "EUR 10",
         requirement:
-          "Stream Ground Zero Hero for 1 completed hour at 5+ average CCV, with at least 300 Twitch followers. No XP required.",
+          "Stream Ground Zero Hero for 1 completed hour at 5+ average viewers, with at least 300 Twitch followers. No XP required.",
         freeCopy: true,
       },
       {
@@ -178,7 +180,7 @@ export const quests: Quest[] = [
         rate: "EUR 10 / hr",
         rateNote: "EUR 20 total (2 x EUR 10). Only completed full hours count.",
         requirement:
-          "Stream up to 2 completed hours at 15+ average CCV. Requires 450 XP to unlock Silver, at least 1 side quest, and the wishlist push.",
+          "Stream up to 2 completed hours at 15+ average viewers. Requires 450 XP to unlock Silver, at least 1 side quest, and the wishlist push.",
         sideQuestsRequired: true,
         freeCopy: true,
       },
@@ -187,7 +189,7 @@ export const quests: Quest[] = [
         payout: "EUR 50",
         rateNote: "2 curated invitation-only slots",
         requirement:
-          "Stream 2 completed hours at 50+ average CCV, with 500+ followers on the social account used for the required post. Invitation only, and requires at least 2 side quests including the social clip and wishlist push.",
+          "Stream 2 completed hours at 50+ average viewers, with 500+ followers on the social account used for the required post. Invitation only, and requires at least 2 side quests including the social clip and wishlist push.",
         sideQuestsRequired: true,
         freeCopy: true,
       },
@@ -244,9 +246,9 @@ export const quests: Quest[] = [
     ],
 
     tldr: [
-      { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 CCV, 300 followers" },
-      { stat: "EUR 20", label: "Silver tier", sub: "2h, 15 CCV, 450 XP, 1 side quest" },
-      { stat: "EUR 50", label: "Gold tier", sub: "2h, 50 CCV, 2 invite-only slots" },
+      { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 average viewers, 300 followers" },
+      { stat: "EUR 20", label: "Silver tier", sub: "2h, 15 average viewers, 450 XP, 1 side quest" },
+      { stat: "EUR 50", label: "Gold tier", sub: "2h, 50 average viewers, 2 invite-only slots" },
       { stat: "EUR 50", label: "Favorite Stream", sub: "Acclaim bonus plus a social feature" },
     ],
     tldrFootnotes: [
@@ -270,32 +272,30 @@ export const quests: Quest[] = [
     ],
     storyPull:
       "Go into the blast zone, make something entertaining, and have fun becoming the problem.",
-    storyAside: "/media/ground-zero-hero/hero-character.webp",
+    storyAside: "/media/ground-zero-hero/chaos-poster.webp",
+    storyAsideVideo: "/media/ground-zero-hero/chaos.mp4",
+    storyAsidePoster: "/media/ground-zero-hero/chaos-poster.webp",
     storyAsideCaption: "Absorb, mutate, repeat",
     shortDescription:
       "Ground Zero Hero is a fast, chaotic bullet-heaven roguelite from Acclaim and developer Rowan Edmondson. Kill mutants, absorb their remains, and mutate into something stronger every run while stacking power combinations and surviving the hordes. A great fit for creators whose audiences enjoy roguelites, bullet heavens, post-apocalyptic humour, and clip-friendly chaos.",
 
+    /* Ambient art: characters drift down both margins of the whole brief
+       rather than sitting in one block. Kept to the edges and low opacity
+       so they dress the page without fighting the copy. */
     swarm: {
-      eyebrow: "Know your enemy",
-      heading: "The horde you are about to absorb.",
-      body: "Mutants, bosses, and whatever a self-saucing alien is. Every one of them is a build waiting to happen: kill it, absorb its remains, and carry the mutation into the next run.",
-      hint: "Move your cursor to scatter them",
       items: [
-        /* Back layer: small, hazy, barely drifting. */
-        { src: "/media/ground-zero-hero/characters/pinata.webp", x: 6, y: 16, size: 92, depth: 0.3 },
-        { src: "/media/ground-zero-hero/characters/chicken.webp", x: 84, y: 12, size: 96, depth: 0.28 },
-        { src: "/media/ground-zero-hero/characters/bloaty.webp", x: 45, y: 6, size: 108, depth: 0.34, flip: true },
-        { src: "/media/ground-zero-hero/characters/snail.webp", x: 66, y: 64, size: 112, depth: 0.36 },
-        /* Mid layer. */
-        { src: "/media/ground-zero-hero/characters/alien.webp", x: 19, y: 54, size: 148, depth: 0.55 },
-        { src: "/media/ground-zero-hero/characters/slug.webp", x: 77, y: 42, size: 158, depth: 0.5, flip: true },
-        { src: "/media/ground-zero-hero/characters/skeleton.webp", x: 57, y: 22, size: 126, depth: 0.6 },
-        { src: "/media/ground-zero-hero/characters/bear.webp", x: 3, y: 60, size: 162, depth: 0.65 },
-        /* Front layer: big, sharp, react hardest to the cursor. */
-        { src: "/media/ground-zero-hero/characters/croc.webp", x: 13, y: 28, size: 196, depth: 0.85 },
-        { src: "/media/ground-zero-hero/characters/flyboss.webp", x: 69, y: 10, size: 188, depth: 0.8, flip: true },
-        { src: "/media/ground-zero-hero/characters/yeti.webp", x: 27, y: 68, size: 176, depth: 0.9 },
-        { src: "/media/ground-zero-hero/characters/hero.webp", x: 42, y: 40, size: 248, depth: 1 },
+        { src: "/media/ground-zero-hero/characters/hero.webp", x: 88, y: 7, size: 200, depth: 0.9 },
+        { src: "/media/ground-zero-hero/characters/croc.webp", x: -2, y: 14, size: 172, depth: 0.75 },
+        { src: "/media/ground-zero-hero/characters/flyboss.webp", x: 89, y: 21, size: 162, depth: 0.7, flip: true },
+        { src: "/media/ground-zero-hero/characters/skeleton.webp", x: -1, y: 29, size: 132, depth: 0.6 },
+        { src: "/media/ground-zero-hero/characters/yeti.webp", x: 90, y: 36, size: 150, depth: 0.65 },
+        { src: "/media/ground-zero-hero/characters/bear.webp", x: -3, y: 44, size: 158, depth: 0.7, flip: true },
+        { src: "/media/ground-zero-hero/characters/alien.webp", x: 90, y: 51, size: 140, depth: 0.55 },
+        { src: "/media/ground-zero-hero/characters/slug.webp", x: -1, y: 59, size: 146, depth: 0.6 },
+        { src: "/media/ground-zero-hero/characters/snail.webp", x: 91, y: 67, size: 132, depth: 0.5 },
+        { src: "/media/ground-zero-hero/characters/chicken.webp", x: -1, y: 75, size: 122, depth: 0.45 },
+        { src: "/media/ground-zero-hero/characters/bloaty.webp", x: 91, y: 83, size: 126, depth: 0.5, flip: true },
+        { src: "/media/ground-zero-hero/characters/pinata.webp", x: 1, y: 91, size: 112, depth: 0.4 },
       ],
     },
 
@@ -923,7 +923,7 @@ export const quests: Quest[] = [
     ],
 
     tldr: [
-      { stat: "€10", label: "Bronze tier", sub: "1h stream, 5 CCV, 300 followers" },
+      { stat: "€10", label: "Bronze tier", sub: "1h stream, 5 average viewers, 300 followers" },
       { stat: "€20", label: "Silver tier", sub: "2h, €10/h, 15 CCV, 500 followers" },
       { stat: "50", label: "Creator slots", sub: "Curated, not first come first served" },
       { stat: "5 days", label: "Payout turnaround", sub: "After VOD verification via Twitch setup" },
