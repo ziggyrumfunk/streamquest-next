@@ -118,9 +118,248 @@ export type Quest = {
 
 export const quests: Quest[] = [
   {
+    slug: "groundzerohero",
+    title: "Ground Zero Hero",
+    status: "active",
+    studio: "Acclaim x Rowan Edmondson",
+    tagline: "Bullet-heaven roguelite. Kill mutants, absorb them, become the problem.",
+    category: "Bullet-heaven roguelite",
+    cover: "/media/ground-zero-hero/key-art-horizontal.webp",
+    portrait: "/media/ground-zero-hero/key-art-vertical.webp",
+    logo: "/media/ground-zero-hero/logo.webp",
+    description:
+      "Paid creator campaign for the Ground Zero Hero launch with Acclaim. Stream the mutant-absorbing bullet-heaven roguelite live on Twitch during the August launch window and help players discover and wishlist it on Steam.",
+    about:
+      "The apocalypse has a new problem: you. In Ground Zero Hero you fight mutant hordes, absorb their radioactive remains, and mutate into something increasingly powerful and increasingly ridiculous with every run. It is a fast, chaotic bullet-heaven roguelite built for clutch escapes, broken builds, unexpected mutations, and highly shareable stream moments.",
+    keyFeatures: [
+      "Screen-filling mutant hordes and bullet-heaven chaos. Reads instantly on stream.",
+      "Absorb radioactive remains and mutate mid-run. Your character visibly changes as you get stronger.",
+      "Stacking upgrades, superpowers, and mutation choices that turn a normal run completely broken.",
+      "Auto-aim means you focus on movement, dodging, and loot. Controller recommended, keyboard and mouse supported.",
+      "Fast runs with clutch escapes and last-second saves. Strong clip potential for short-form.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "EUR 10",
+        requirement:
+          "Stream Ground Zero Hero for 1 completed hour at 5+ average CCV, with at least 300 Twitch followers. No XP required.",
+        freeCopy: true,
+      },
+      {
+        name: "Silver",
+        payout: "EUR 20",
+        rate: "EUR 10 / hr",
+        rateNote: "EUR 20 total (2 x EUR 10). Only completed full hours count.",
+        requirement:
+          "Stream up to 2 completed hours at 15+ average CCV. Requires 450 XP to unlock Silver, at least 1 side quest, and the wishlist push.",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+      {
+        name: "Gold",
+        payout: "EUR 50",
+        rateNote: "2 curated invitation-only slots",
+        requirement:
+          "Stream 2 completed hours at 50+ average CCV, with 500+ followers on the social account used for the required post. Invitation only, and requires at least 2 side quests including the social clip and wishlist push.",
+        sideQuestsRequired: true,
+        freeCopy: true,
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Social Mutation Report",
+        xp: 50,
+        desc: "Create and publish an original Ground Zero Hero clip or UGC post on one of your active social channels. Use footage from your own activation, clearly identify the game, tag the official Acclaim and Ground Zero Hero accounts with the campaign-supplied handles, and keep it native to the platform. The post must stay publicly accessible for validation. Optional for Bronze and Silver unless stated in your approval, mandatory for Gold.",
+      },
+      {
+        name: "Wishlist Transmission",
+        xp: 50,
+        desc: "Share the campaign's tracked Steam link and encourage interested viewers to wishlist Ground Zero Hero. Acceptable placements include a Twitch panel, a timed or manual chat message, the stream description, or a relevant social post. Keep the link visible and mention it naturally rather than interrupting gameplay. Optional for Bronze, mandatory for Silver and Gold.",
+      },
+      {
+        name: "Launch Window Deployment",
+        xp: 50,
+        desc: "Complete your qualifying stream on August 20 or August 21, 2026, so participating creators support the game during one concentrated launch window. Optional for all tiers unless your approval says otherwise, but launch-window participation is strongly preferred.",
+      },
+    ],
+    rules: [
+      "Stream Ground Zero Hero live on Twitch in the correct category. Save your VOD.",
+      "Use the tracked Steam link during the stream and keep its tracking parameters intact.",
+      "Only completed full hours qualify for the Silver hourly reward. Partial half-hours do not count as an extra paid hour.",
+      "Gold is invitation-only from the application pool. Two curated slots.",
+      "Use the platform's paid-promotion tools and a clear sponsorship disclosure, such as #ad, where required.",
+      "No faked engagement, viewers, or proof. No old or unrelated content. A Steam review is never required, never rewarded, and never part of the paid mission.",
+    ],
+    links: {
+      steam:
+        "https://store.steampowered.com/app/2570580/Ground_Zero_Hero/?utm_source=StreamQuest&utm_campaign=Ground00&utm_medium=creator",
+      official: "https://playacclaim.com/ground-zero-hero",
+      twitch: "https://www.twitch.tv/directory/category/ground-zero-hero",
+    },
+    dates: { start: "2026-08-20", end: "2026-09-03" },
+
+    /* -------- Rich brief content -------- */
+    duration: "Launch window",
+    slots: 2,
+    rating: "TBA",
+    platforms: ["PC (Steam)", "macOS"],
+
+    videos: {
+      trailer: "_sPF4ocBBWY",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Applications open", value: "August 1, 2026" },
+      { label: "Launch day", value: "August 20, 2026" },
+      { label: "Selection", value: "Curated" },
+      { label: "Game access", value: "Full Steam key" },
+    ],
+
+    tldr: [
+      { stat: "EUR 10", label: "Bronze tier", sub: "1h stream, 5 CCV, 300 followers" },
+      { stat: "EUR 20", label: "Silver tier", sub: "2h, 15 CCV, 450 XP, 1 side quest" },
+      { stat: "EUR 50", label: "Gold tier", sub: "2h, 50 CCV, 2 invite-only slots" },
+      { stat: "EUR 50", label: "Favorite Stream", sub: "Acclaim bonus plus a social feature" },
+    ],
+    tldrFootnotes: [
+      "Every approved creator, including Bronze, receives a full Steam key for Ground Zero Hero.",
+      "Priority stream dates are August 20 and 21, 2026. Final submission deadline is September 3, 2026.",
+      "Applications open August 1 and approvals are announced August 16. Join the StreamQuest Discord for keys, Gold invitations, and giveaway applications.",
+    ],
+
+    screenshots: [
+      "/media/ground-zero-hero/screenshot-1.webp",
+      "/media/ground-zero-hero/screenshot-2.webp",
+      "/media/ground-zero-hero/screenshot-3.webp",
+      "/media/ground-zero-hero/screenshot-4.webp",
+      "/media/ground-zero-hero/screenshot-5.webp",
+    ],
+
+    storyParagraphs: [
+      "StreamQuest and Acclaim are recruiting a limited, curated group of Twitch creators to support the Ground Zero Hero launch. This campaign is not first come, first served. Creators are selected on campaign fit and the slots available.",
+      "Your mission is to stream Ground Zero Hero on Twitch and show your audience the core loop: fight, absorb, upgrade, mutate, and survive. Build the stream around your own reactions, build choices, close calls, and the moments where a normal run turns completely broken. Encourage interested viewers to visit the tracked Steam page and wishlist the game.",
+      "The goal is not to turn your broadcast into a continuous advertisement. Play the game, have fun with it, and bring in the game and the wishlist link naturally when the stream gives you an opening.",
+    ],
+    storyPull:
+      "Go into the blast zone, make something entertaining, and have fun becoming the problem.",
+    storyAside: "/media/ground-zero-hero/hero-character.webp",
+    storyAsideCaption: "Absorb, mutate, repeat",
+    shortDescription:
+      "Ground Zero Hero is a fast, chaotic bullet-heaven roguelite from Acclaim and developer Rowan Edmondson. Kill mutants, absorb their remains, and mutate into something stronger every run while stacking power combinations and surviving the hordes. A great fit for creators whose audiences enjoy roguelites, bullet heavens, post-apocalyptic humour, and clip-friendly chaos.",
+
+    sideQuestIntro:
+      "Each completed side quest awards 50 StreamQuest XP. Social Mutation Report takes your best moment off Twitch as original UGC. Wishlist Transmission keeps the tracked Steam link visible. Launch Window Deployment lines your stream up with the August 20 to 21 launch push.",
+    sideQuestOutro:
+      "Acclaim will also pick one standout creator for Acclaim's Favorite Stream: a EUR 50 bonus plus exposure through Acclaim's official channels. Completed side quests, a strong social post, memorable gameplay, facecam, and an entertaining post-apocalyptic costume or stream theme all improve your chances. The costume is encouraged, not mandatory.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/2570580/Ground_Zero_Hero/?utm_source=StreamQuest&utm_campaign=Ground00&utm_medium=creator",
+    trackedWishlistNote:
+      "Use this campaign link whenever a tracked Steam or wishlist link is required. Do not replace or remove its tracking parameters when completing the Wishlist Transmission side quest.",
+
+    gallery: {
+      wide: "/media/ground-zero-hero/screenshot-1.webp",
+      thumbs: [
+        "/media/ground-zero-hero/screenshot-2.webp",
+        "/media/ground-zero-hero/screenshot-3.webp",
+        "/media/ground-zero-hero/screenshot-4.webp",
+        "/media/ground-zero-hero/screenshot-5.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest on clip and wishlist posts",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "Ground Zero Hero",
+        hint: "Tag the game on your social side quest post.",
+        links: [
+          { type: "x", href: "https://x.com/GZH_game" },
+          { type: "website", href: "https://playacclaim.com/ground-zero-hero" },
+          { type: "discord", href: "https://discord.com/invite/Nk6nR769HG" },
+        ],
+      },
+      {
+        name: "Acclaim",
+        hint: "Publisher of Ground Zero Hero. Tag Acclaim on your UGC post.",
+        links: [
+          { type: "website", href: "https://playacclaim.com/" },
+          { type: "twitch", href: "https://www.twitch.tv/playacclaim" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Wishlist on Steam",
+        href: "https://store.steampowered.com/app/2570580/Ground_Zero_Hero/?utm_source=StreamQuest&utm_campaign=Ground00&utm_medium=creator",
+        icon: "steam",
+      },
+      {
+        name: "Acclaim",
+        sub: "playacclaim.com",
+        href: "https://playacclaim.com/ground-zero-hero",
+        icon: "website",
+      },
+      {
+        name: "Discord",
+        sub: "Ground Zero Hero community",
+        href: "https://discord.com/invite/Nk6nR769HG",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Limited and curated selection",
+        body: "Applications do not guarantee approval. Selection is based on creator fit, content quality, community fit, campaign timing, and the available budget and slots. English-language streams receive priority. Creators with active social channels and a strong idea for an original Ground Zero Hero post or clip receive additional consideration. Gold has only two curated, invitation-only slots and those creators are contacted through the StreamQuest Discord.",
+      },
+      {
+        heading: "Launch window",
+        body: "Streaming on August 20 or August 21 is strongly encouraged so participating creators support the game during one concentrated launch window. It also completes the Launch Window Deployment side quest. The final submission deadline is September 3, 2026.",
+      },
+      {
+        heading: "What to showcase",
+        body: "Focus on what creates good live reactions: screen-filling mutant hordes, absorbing radioactive remains, upgrades and mutation choices, visible changes to your build, close calls and last-second escapes, and how quickly a normal run becomes completely broken. If you finish the available content early, start another run or try different mutations.",
+      },
+      {
+        heading: "Recommended setup",
+        body: "Controller is recommended for the smoothest experience, and keyboard and mouse are supported. Auto-aim lets you concentrate on movement, dodging, upgrades, and loot. Test the game, capture settings, microphone, and audio before going live. Facecam is preferred if you want to be considered for Acclaim's Favorite Stream, but it is not a Bronze or Silver requirement.",
+      },
+      {
+        heading: "Creator giveaways",
+        body: "StreamQuest and Acclaim may select roughly three to four participating creators to host additional community giveaways, with keys expected to cover PC, Nintendo, and Xbox. These are separate from the standard creator reward. Share your Twitch and social channels in the designated StreamQuest Discord thread to be considered. Giveaway applications are curated and are not first come, first served.",
+      },
+      {
+        heading: "Submission",
+        body: "Submit through the StreamQuest creator panel by September 3, 2026, with your VOD link, qualifying stream date and duration, public URLs for each social post, proof of the tracked wishlist placement, and the side quests you are claiming. Evidence must stay accessible long enough for StreamQuest to validate it.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard from August 1" },
+      { title: "Join Discord", sub: "Required for keys, Gold invitations, and giveaway applications" },
+      { title: "Wait for approvals", sub: "Announced August 16, curated and not guaranteed" },
+      { title: "Stream the launch", sub: "August 20 or 21 preferred, Bronze, Silver, or Gold" },
+      { title: "Submit", sub: "VOD plus side-quest proof by September 3" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
+  {
     slug: "alphanomos",
     title: "Alpha Nomos",
-    status: "active",
+    status: "completed",
     studio: "RibCage Games",
     tagline: "Rhythm-based action roguelite. Hack, slash, and feel the beat.",
     category: "Rhythm action roguelite",
@@ -325,7 +564,7 @@ export const quests: Quest[] = [
   {
     slug: "goodheavens",
     title: "Good Heavens!",
-    status: "active",
+    status: "completed",
     studio: "Nowhere Studios x RocketRide Games",
     tagline: "Chaotic co-op crafting RPG demo. Curated launch-window wishlist push.",
     category: "Co-op crafting RPG",
