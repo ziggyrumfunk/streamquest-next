@@ -1588,3 +1588,121 @@
   .q-video-soon { flex-direction: column; align-items: flex-start; gap: 18px; padding: 28px 22px; }
   .q-video-soon-icon { width: 56px; height: 56px; }
 }
+
+/* ============================================================
+   MUTANT SWARM — interactive character band (Ground Zero Hero).
+   Renders only for quests that supply `swarm` in data/quests.ts.
+   ============================================================ */
+.q-swarm {
+  position: relative;
+  padding: 96px 0 0;
+  overflow: hidden;
+}
+.q-swarm-head {
+  position: relative;
+  /* Above the band: characters reach z-index 10 and the edge fades 11. */
+  z-index: 30;
+  max-width: 620px;
+}
+.q-swarm-head h2 {
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 14px 0 16px;
+}
+.q-swarm-head p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.66);
+  font-weight: 400;
+}
+.q-swarm-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 9px 16px;
+  border: 1px solid rgba(178, 240, 72, 0.32);
+  background: rgba(178, 240, 72, 0.06);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rd-lime, #B2F048);
+}
+.q-swarm-hint::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--rd-lime, #B2F048);
+  box-shadow: 0 0 10px rgba(178, 240, 72, 0.85);
+  animation: q-swarm-blink 1.8s ease-in-out infinite;
+}
+@keyframes q-swarm-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.82); }
+}
+
+/* The band the characters live in. Cursor becomes the threat. */
+.q-swarm-band {
+  position: relative;
+  height: clamp(420px, 52vw, 620px);
+  margin-top: -40px;
+  cursor: crosshair;
+  /* Radioactive glow pooling under the horde. */
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 78%, rgba(178, 240, 72, 0.14), transparent 70%),
+    radial-gradient(ellipse 45% 50% at 18% 40%, rgba(145, 70, 255, 0.12), transparent 70%);
+}
+.q-swarm-layer {
+  position: absolute;
+  inset: 0;
+}
+.q-swarm-item {
+  position: absolute;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  pointer-events: none;
+  user-select: none;
+}
+.q-swarm-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.55));
+}
+
+/* Fade the band into the page top and bottom so it sits in the layout. */
+.q-swarm-band::before,
+.q-swarm-band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 110px;
+  pointer-events: none;
+  z-index: 11;
+}
+.q-swarm-band::before {
+  top: 0;
+  background: linear-gradient(180deg, var(--rd-deep, #050913), transparent);
+}
+.q-swarm-band::after {
+  bottom: 0;
+  background: linear-gradient(0deg, var(--rd-deep, #050913), transparent);
+}
+
+@media (max-width: 900px) {
+  .q-swarm { padding-top: 72px; }
+  .q-swarm-band { height: clamp(340px, 78vw, 460px); margin-top: -20px; }
+  /* Thin the horde on small screens so it stays readable. */
+  .q-swarm-item[data-depth="0.28"],
+  .q-swarm-item[data-depth="0.34"] { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q-swarm-hint::before { animation: none; }
+  .q-swarm-item { transition: none !important; }
+}

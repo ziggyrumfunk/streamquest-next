@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import Reveal from "@/app/components/Reveal";
 import QuestVideoTabs from "@/app/components/QuestVideoTabs";
 import CopyLink from "@/app/components/CopyLink";
+import MutantSwarm from "@/app/components/MutantSwarm";
 import {
   quests,
   getQuestBySlug,
@@ -379,6 +380,23 @@ export default function QuestPage({ params }: Params) {
               </div>
             </Reveal>
           </div>
+        </section>
+      )}
+
+      {/* ============ MUTANT SWARM ============ */}
+      {quest.swarm && quest.swarm.items.length > 0 && (
+        <section className="q-swarm">
+          <div className="rd-shell">
+            <Reveal>
+              <div className="q-swarm-head">
+                {quest.swarm.eyebrow && <span className="q-tag">{quest.swarm.eyebrow}</span>}
+                {quest.swarm.heading && <h2>{quest.swarm.heading}</h2>}
+                {quest.swarm.body && <p>{quest.swarm.body}</p>}
+                {quest.swarm.hint && <span className="q-swarm-hint">{quest.swarm.hint}</span>}
+              </div>
+            </Reveal>
+          </div>
+          <MutantSwarm items={quest.swarm.items} />
         </section>
       )}
 

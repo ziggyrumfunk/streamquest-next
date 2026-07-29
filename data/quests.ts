@@ -56,6 +56,31 @@ export type QuestStep = { title: string; sub: string };
 /** Generic key/value pair shown in the hero meta strip ("Duration · 2 weeks"). */
 export type QuestHeroMetaItem = { label: string; value: string };
 
+/**
+ * One floating character in the interactive swarm band.
+ * `x`/`y` are percentages inside the band, `size` is the rendered width in px
+ * at desktop, and `depth` (0–1) drives parallax strength, scale and blur so
+ * the layer reads as 3D. Higher depth = closer to the viewer = moves more.
+ */
+export type QuestSwarmItem = {
+  src: string;
+  alt?: string;
+  x: number;
+  y: number;
+  size: number;
+  depth: number;
+  flip?: boolean;
+};
+
+/** Interactive character swarm band. Renders only when a quest supplies it. */
+export type QuestSwarm = {
+  eyebrow?: string;
+  heading?: string;
+  body?: string;
+  hint?: string;
+  items: QuestSwarmItem[];
+};
+
 export type Quest = {
   slug: string;                  // URL: /quests/[slug]
   title: string;
@@ -105,6 +130,7 @@ export type Quest = {
   officialAccounts?: QuestAccount[];
   storeLinks?: QuestStoreLink[];
   platforms?: string[];
+  swarm?: QuestSwarm;                   // interactive floating character band
   rulesContent?: QuestRuleBlock[];      // richer than `rules: string[]`
   howToJoin?: QuestStep[];              // optional override; defaults to standard six
   rating?: string;                      // "ESRB M (17+) / PEGI 16"
@@ -248,6 +274,30 @@ export const quests: Quest[] = [
     storyAsideCaption: "Absorb, mutate, repeat",
     shortDescription:
       "Ground Zero Hero is a fast, chaotic bullet-heaven roguelite from Acclaim and developer Rowan Edmondson. Kill mutants, absorb their remains, and mutate into something stronger every run while stacking power combinations and surviving the hordes. A great fit for creators whose audiences enjoy roguelites, bullet heavens, post-apocalyptic humour, and clip-friendly chaos.",
+
+    swarm: {
+      eyebrow: "Know your enemy",
+      heading: "The horde you are about to absorb.",
+      body: "Mutants, bosses, and whatever a self-saucing alien is. Every one of them is a build waiting to happen: kill it, absorb its remains, and carry the mutation into the next run.",
+      hint: "Move your cursor to scatter them",
+      items: [
+        /* Back layer: small, hazy, barely drifting. */
+        { src: "/media/ground-zero-hero/characters/pinata.webp", x: 6, y: 16, size: 92, depth: 0.3 },
+        { src: "/media/ground-zero-hero/characters/chicken.webp", x: 84, y: 12, size: 96, depth: 0.28 },
+        { src: "/media/ground-zero-hero/characters/bloaty.webp", x: 45, y: 6, size: 108, depth: 0.34, flip: true },
+        { src: "/media/ground-zero-hero/characters/snail.webp", x: 66, y: 64, size: 112, depth: 0.36 },
+        /* Mid layer. */
+        { src: "/media/ground-zero-hero/characters/alien.webp", x: 19, y: 54, size: 148, depth: 0.55 },
+        { src: "/media/ground-zero-hero/characters/slug.webp", x: 77, y: 42, size: 158, depth: 0.5, flip: true },
+        { src: "/media/ground-zero-hero/characters/skeleton.webp", x: 57, y: 22, size: 126, depth: 0.6 },
+        { src: "/media/ground-zero-hero/characters/bear.webp", x: 3, y: 60, size: 162, depth: 0.65 },
+        /* Front layer: big, sharp, react hardest to the cursor. */
+        { src: "/media/ground-zero-hero/characters/croc.webp", x: 13, y: 28, size: 196, depth: 0.85 },
+        { src: "/media/ground-zero-hero/characters/flyboss.webp", x: 69, y: 10, size: 188, depth: 0.8, flip: true },
+        { src: "/media/ground-zero-hero/characters/yeti.webp", x: 27, y: 68, size: 176, depth: 0.9 },
+        { src: "/media/ground-zero-hero/characters/hero.webp", x: 42, y: 40, size: 248, depth: 1 },
+      ],
+    },
 
     sideQuestIntro:
       "Each completed side quest awards 50 StreamQuest XP. Social Mutation Report takes your best moment off Twitch as original UGC. Wishlist Transmission keeps the tracked Steam link visible. Launch Window Deployment lines your stream up with the August 20 to 21 launch push.",
