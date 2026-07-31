@@ -23,8 +23,20 @@ export type QuestStatus = "active" | "completed";
 /** Named side quest with description, optional XP value for rich active-quest cards. */
 export type SideQuestDetail = { name: string; desc: string; xp?: number };
 
-/** Two YouTube IDs that drive the tabbed video player on the brief. */
-export type QuestVideos = { trailer?: string; brief?: string; briefComingSoon?: boolean };
+/**
+ * Videos driving the tabbed player on the brief.
+ * `trailer` and `brief` are YouTube IDs. `briefVideo` is a self-hosted file
+ * and takes precedence over `brief`; set `briefPortrait` for 9:16 uploads so
+ * the player renders phone-shaped instead of pillarboxed in a 16:9 stage.
+ */
+export type QuestVideos = {
+  trailer?: string;
+  brief?: string;
+  briefComingSoon?: boolean;
+  briefVideo?: string;
+  briefPoster?: string;
+  briefPortrait?: boolean;
+};
 
 /** One TL;DR card. `stat` is the big number ("€10", "50", "5d"). */
 export type QuestTldrItem = { stat: string; label: string; sub?: string };
@@ -235,7 +247,9 @@ export const quests: Quest[] = [
 
     videos: {
       trailer: "_sPF4ocBBWY",
-      briefComingSoon: true,
+      briefVideo: "/media/ground-zero-hero/mission-brief.mp4",
+      briefPoster: "/media/ground-zero-hero/mission-brief-poster.webp",
+      briefPortrait: true,
     },
 
     heroMeta: [

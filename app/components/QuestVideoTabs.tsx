@@ -6,26 +6,50 @@ type Props = {
   trailer?: string;
   brief?: string;
   briefComingSoon?: boolean;
+  briefVideo?: string;
+  briefPoster?: string;
+  briefPortrait?: boolean;
 };
 
 type Tab = {
   id: string;
   label: string;
   youtube?: string;
+  /** Self-hosted file, used instead of a YouTube embed. */
+  file?: string;
+  poster?: string;
+  portrait?: boolean;
   placeholder?: boolean;
 };
 
 /**
- * Tabbed YouTube player used inside the active quest brief.
- * Renders only one iframe at a time so we don't autoplay two streams.
- * Tabs collapse to a single video if only one ID is supplied.
- * If `briefComingSoon` is true and no `brief` ID is provided, the Mission Brief
- * tab still renders but shows a "coming soon" placeholder card.
+ * Tabbed video player used inside the active quest brief.
+ * Renders only one player at a time so we don't autoplay two streams.
+ * Tabs collapse to a single video if only one source is supplied.
+ *
+ * The Mission Brief tab resolves in priority order: a self-hosted
+ * `briefVideo`, then a YouTube `brief` ID, then a "coming soon" card when
+ * `briefComingSoon` is set.
  */
-export default function QuestVideoTabs({ trailer, brief, briefComingSoon }: Props) {
+export default function QuestVideoTabs({
+  trailer,
+  brief,
+  briefComingSoon,
+  briefVideo,
+  briefPoster,
+  briefPortrait,
+}: Props) {
   const tabs: Tab[] = [
     trailer ? { id: "trailer", label: "Official Trailer", youtube: trailer } : null,
-    brief
+    briefVideo
+      ? {
+          id: "brief",
+          label: "Mission Brief Video",
+          file: briefVideo,
+          poster: briefPoster,
+          portrait: briefPortrait,
+        }
+      : brief
       ? { id: "brief", label: "Mission Brief Video", youtube: brief }
       : briefComingSoon
       ? { id: "brief", label: "Mission Brief Video", placeholder: true }
@@ -58,8 +82,21 @@ export default function QuestVideoTabs({ trailer, brief, briefComingSoon }: Prop
         </div>
       )}
 
-      <div className="q-video-stage" key={current.id}>
-        {current.placeholder ? (
+      <div
+        className={`q-video-stage${current.portrait ? " is-portrait" : ""}`}
+        key={current.id}
+      >
+        {current.file ? (
+          <video
+            className="q-video-file"
+            controls
+            playsInline
+            preload="metadata"
+            poster={current.poster}
+          >
+            <source src={current.file} type="video/mp4" />
+          </video>
+        ) : current.placeholder ? (
           <div className="q-video-soon">
             <div className="q-video-soon-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

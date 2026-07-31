@@ -28,6 +28,15 @@ const nextConfig = {
       { source: "/AlphaNomos",   destination: "/quests/alphanomos", permanent: true },
       { source: "/Alphanomos",   destination: "/quests/alphanomos", permanent: true },
       { source: "/alpha-nomos",  destination: "/quests/alphanomos", permanent: true },
+
+      // Friendly short URL for the Ground Zero Hero quest brief.
+      { source: "/gzh",              destination: "/quests/groundzerohero", permanent: true },
+      { source: "/GZH",              destination: "/quests/groundzerohero", permanent: true },
+      { source: "/Gzh",              destination: "/quests/groundzerohero", permanent: true },
+      { source: "/groundzerohero",   destination: "/quests/groundzerohero", permanent: true },
+      { source: "/GROUNDZEROHERO",   destination: "/quests/groundzerohero", permanent: true },
+      { source: "/GroundZeroHero",   destination: "/quests/groundzerohero", permanent: true },
+      { source: "/ground-zero-hero", destination: "/quests/groundzerohero", permanent: true },
     ];
   },
 };
