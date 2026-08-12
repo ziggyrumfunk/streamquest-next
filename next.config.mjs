@@ -37,6 +37,12 @@ const nextConfig = {
       { source: "/GROUNDZEROHERO",   destination: "/quests/groundzerohero", permanent: true },
       { source: "/GroundZeroHero",   destination: "/quests/groundzerohero", permanent: true },
       { source: "/ground-zero-hero", destination: "/quests/groundzerohero", permanent: true },
+
+      // Friendly short URL for the RIFTFALL quest brief.
+      { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },
+      { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: true },
+      { source: "/Riftfall",  destination: "/quests/riftfall", permanent: true },
+      { source: "/rift-fall", destination: "/quests/riftfall", permanent: true },
     ];
   },
 };

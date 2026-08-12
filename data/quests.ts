@@ -158,6 +158,224 @@ export type Quest = {
 
 export const quests: Quest[] = [
   {
+    slug: "riftfall",
+    title: "RIFTFALL",
+    status: "active",
+    studio: "GameEra Studios",
+    tagline: "Fast, brutal retro FPS. Two hours in the rift, on the free demo.",
+    category: "Retro FPS",
+    cover: "/media/riftfall/key-art-horizontal.webp",
+    portrait: "/media/riftfall/key-art-vertical.webp",
+    description:
+      "Paid creator campaign for the free RIFTFALL demo by GameEra Studios. Stream two hours of the public Steam demo live on Twitch, show the speed and the secrets, and send interested viewers to the demo and wishlist.",
+    about:
+      "RIFTFALL is a fast, brutal single-player retro FPS built around speed, heavy weapons, secrets, permanent upgrades, squad support, and arena-style encounters. The full game has a 20-level campaign, five weapons with alternate fire modes, 60+ enemy types, four AI marine squadmates, and puzzle-driven bosses. The free public Steam demo covers five levels and is built for repeat runs, so there is plenty to dig into across a two-hour stream.",
+    keyFeatures: [
+      "Fast, aggressive retro FPS combat. Movement and speed read instantly on stream.",
+      "Five weapons with alternate fire modes, plus permanent upgrades between runs.",
+      "Secrets, alternate routes, and hidden areas that reward exploring on camera.",
+      "Four AI marine squadmates that create tactical and chaotic moments in a fight.",
+      "60+ enemy types and arena-style encounters built for close calls and clutch escapes.",
+      "Free public demo on Steam. No key needed, and your viewers can play it immediately.",
+    ],
+    tiers: [
+      {
+        name: "Silver",
+        payout: "EUR 50",
+        requirement:
+          "Stream 2 hours of the RIFTFALL demo with active spoken commentary, at 15 to 49 recent average viewers.",
+      },
+      {
+        name: "Gold",
+        payout: "EUR 100",
+        requirement:
+          "Stream 2 hours of the RIFTFALL demo with active spoken commentary, at 50+ recent average viewers.",
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Rift Signal",
+        xp: 50,
+        desc: "Optional, and XP only. Cut an original RIFTFALL clip from your own qualifying stream and post it on TikTok, YouTube Shorts, Instagram Reels, X, or another active channel. Clearly identify RIFTFALL, tag the official game and StreamQuest handles supplied with your approval, and include the tracked demo and wishlist link. Keep the post public and submit the URL. A trailer repost does not count: it has to be your own gameplay.",
+      },
+    ],
+    rules: [
+      "Wait for written approval before you go live. This campaign is curated and applying does not secure a slot.",
+      "Install the free public RIFTFALL demo on Steam and test your capture, microphone, game audio, and chat setup first.",
+      "Launch the demo and press P twice before you go live to remove the one-hour demo limit. Confirm it is gone before starting.",
+      "Stream at least 2 hours of actual demo gameplay with active spoken commentary, in the Twitch category supplied with your approval.",
+      "Disclose the paid activation through Twitch's paid-promotion tools and with a clear verbal or written disclosure.",
+      "Use the exact tracked link supplied with your approval. Do not shorten it, replace it, or strip its tracking.",
+      "Give at least one clear verbal call to action inviting viewers to try the free demo and wishlist RIFTFALL.",
+      "Keep a public VOD available and submit it through the creator dashboard before the deadline.",
+      "Steam reviews are never required, rewarded, gated, or incentivised, and never affect payment or approval.",
+    ],
+    links: {
+      steam: "https://store.steampowered.com/app/4965490/RIFTFALL/",
+      official: "https://game-era.com",
+      twitch: "https://www.twitch.tv/directory/category/riftfall",
+    },
+    dates: { start: "2026-09-07", end: "2026-09-20" },
+
+    /* -------- Rich brief content -------- */
+    duration: "Sep 7 to 20, 2026",
+    slots: 25,
+    rating: "TBA",
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "vDXw2ehaQGA",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Campaign window", value: "Sep 7 to 20, 2026" },
+      { label: "Tiers", value: "Silver and Gold" },
+      { label: "Game access", value: "Free public demo" },
+      { label: "Required stream", value: "2 hours" },
+    ],
+
+    tldr: [
+      { stat: "EUR 50", label: "Silver tier", sub: "2h stream, 15 to 49 average viewers" },
+      { stat: "EUR 100", label: "Gold tier", sub: "2h stream, 50+ average viewers" },
+      { stat: "50 XP", label: "Rift Signal", sub: "Optional social clip, XP only" },
+      { stat: "25", label: "Slots", sub: "Curated, applying is not a slot" },
+    ],
+    tldrFootnotes: [
+      "No key needed. The campaign runs on the free public RIFTFALL demo on Steam.",
+      "Press P twice before you go live to remove the one-hour demo limit.",
+      "Silver and Gold only for this campaign. There is no Bronze tier, and English-language streams are the priority.",
+    ],
+
+    screenshots: [
+      "/media/riftfall/screenshot-1.webp",
+      "/media/riftfall/screenshot-2.webp",
+      "/media/riftfall/screenshot-3.webp",
+      "/media/riftfall/screenshot-4.webp",
+      "/media/riftfall/screenshot-5.webp",
+    ],
+
+    storyParagraphs: [
+      "Enter the rift. StreamQuest and GameEra Studios are running a curated paid campaign around the free public RIFTFALL demo, and we are looking for creators who can carry two hours of fast, loud, single-player FPS with real commentary.",
+      "Your job is to make the gameplay the focus. React naturally, explain your decisions, pull chat into route and loadout calls, and turn the close calls and discoveries into the moments people clip. The demo is built for repeat runs, so replaying levels, hunting secrets, testing alternate fire modes, and trying different squad tactics all count toward your two hours.",
+      "Your honest opinion stays yours. We want an entertaining gameplay stream, not a two-hour ad read. The requirements are strict so that every verified completion is measured the same way.",
+    ],
+    storyPull:
+      "If RIFTFALL looks like your kind of retro FPS, try the free demo and wishlist it through my link.",
+    storyAside: "/media/riftfall/promo.webp",
+    storyAsideCaption: "Squad up and clear the rift",
+    shortDescription:
+      "RIFTFALL is a fast, brutal single-player retro FPS from GameEra Studios, with a free public Steam demo covering five levels. A strong fit for creators whose audiences enjoy boomer shooters, movement shooters, speed, secrets, builds, and challenge runs.",
+
+    sideQuestIntro:
+      "There is one optional side quest on this campaign. Rift Signal awards 50 StreamQuest XP. It carries no separate payment and is not required to complete the paid main quest.",
+    sideQuestOutro:
+      "Everything else on this campaign is the main quest. Two hours, live commentary, the tracked link, and a verbal nudge toward the free demo and the wishlist.",
+
+    trackedWishlistUrl: "https://store.steampowered.com/app/4965490/RIFTFALL/",
+    trackedWishlistNote:
+      "The tracked campaign link is supplied with your approval. Use that exact link on stream and in any side quest post, and do not strip its tracking parameters. The link above is the plain Steam page for reference only.",
+
+    gallery: {
+      wide: "/media/riftfall/demo-live.webp",
+      thumbs: [
+        "/media/riftfall/screenshot-2.webp",
+        "/media/riftfall/screenshot-3.webp",
+        "/media/riftfall/screenshot-4.webp",
+        "/media/riftfall/screenshot-5.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Tag @StreamQuest on your Rift Signal clip",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+        ],
+      },
+      {
+        name: "RIFTFALL",
+        hint: "Steam page, free demo, and wishlist.",
+        links: [
+          { type: "website", href: "https://store.steampowered.com/app/4965490/RIFTFALL/" },
+        ],
+      },
+      {
+        name: "GameEra Studios",
+        hint: "Developer of RIFTFALL. Official handles are supplied with your approval.",
+        links: [
+          { type: "website", href: "https://game-era.com" },
+          { type: "youtube", href: "https://www.youtube.com/@NukeThemAllGame/videos" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Free demo and wishlist",
+        href: "https://store.steampowered.com/app/4965490/RIFTFALL/",
+        icon: "steam",
+      },
+      {
+        name: "GameEra Studios",
+        sub: "game-era.com",
+        href: "https://game-era.com",
+        icon: "website",
+      },
+      {
+        name: "10 minute gameplay",
+        sub: "See the demo in action",
+        href: "https://youtu.be/18oBPXqJPWs",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Curated and capped",
+        body: "This campaign is Silver and Gold only. There is no Bronze tier. A maximum of 25 verified paid activations are available and one approved creator fills one slot. English-language creators are the priority, and a limited number of non-English streams may be approved in advance. Applying does not guarantee approval.",
+      },
+      {
+        heading: "The two hour requirement",
+        body: "At least two hours of actual RIFTFALL demo gameplay with active spoken commentary, and the game stays the main content for that whole period. The demo covers five levels, so replay levels, hunt secrets and alternate routes, try different weapons and alternate fire, experiment with your AI squadmates, and let chat pick routes or challenges. Do not switch to another game during the qualifying two hours.",
+      },
+      {
+        heading: "Remove the demo time limit",
+        body: "The public demo has a one-hour limit by default. Launch the demo and press P twice before you go live to remove it, and confirm the limit is gone before you start the qualifying broadcast. Test this in advance, not on stream.",
+      },
+      {
+        heading: "What will not qualify",
+        body: "Less than two hours of qualifying gameplay. Trailer-only coverage, passive testing, long inactivity, or gameplay without spoken commentary. Overlay-only, short-form-only, or social-only content in place of the Twitch stream. The wrong category, an unapproved build, or any non-PC version. A missing disclosure, missing verbal call to action, or failure to use the supplied tracked link. A private, deleted, or otherwise inaccessible VOD that cannot be validated.",
+      },
+      {
+        heading: "AI disclosure",
+        body: "The official Steam page currently carries an AI-generated content disclosure. Read it before you apply. This campaign is intended for creators who are comfortable covering the game fairly on its own merits. You do not need to endorse or defend any technology, your honest gameplay opinion stays your own, and you should not make claims about the game's development process that are not supported by the official Steam page.",
+      },
+      {
+        heading: "Proof and verification",
+        body: "Submit the public VOD or public mirror URL, the qualifying stream date, duration, and category through the creator dashboard. Provide screenshots or timestamps if we ask for proof of the paid-promotion disclosure, the tracked link placement, the verbal call to action, or the pre-stream setup. Evidence must stay public and accessible long enough for us to validate it. Twitch VOD retention varies by account type, so save a personal copy if that is practical for you.",
+      },
+      {
+        heading: "Your content stays yours",
+        body: "You keep ownership of your creator content. By completing the quest you grant StreamQuest and the client the licence described in the StreamQuest Terms and Conditions, and any permitted public reuse by the client must clearly credit your channel name or handle.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard, Silver or Gold only" },
+      { title: "Wait for written approval", sub: "Curated, and a slot is not secured by applying" },
+      { title: "Set up and test", sub: "Install the free demo and press P twice to lift the limit" },
+      { title: "Stream two hours", sub: "Live commentary, correct category, tracked link, verbal CTA" },
+      { title: "Submit", sub: "Public VOD plus any side quest proof, before the deadline" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
+  {
     slug: "groundzerohero",
     title: "Ground Zero Hero",
     status: "active",
