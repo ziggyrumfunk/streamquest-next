@@ -198,6 +198,11 @@ export const quests: Quest[] = [
         xp: 50,
         desc: "Optional, and XP only. Cut an original RIFTFALL clip from your own qualifying stream and post it on TikTok, YouTube Shorts, Instagram Reels, X, or another active channel. Clearly identify RIFTFALL, tag the official game and StreamQuest handles supplied with your approval, and include the tracked demo and wishlist link. Keep the post public and submit the URL. A trailer repost does not count: it has to be your own gameplay.",
       },
+      {
+        name: "Squad Link",
+        xp: 50,
+        desc: "Optional, and XP only. RIFTFALL supports online co-op, so pull a friend into the rift and stream a run together. Co-op tends to produce the best clips: covering each other, splitting up to hunt secrets, and the chaos when the plan falls apart. Flag the co-op segment with a timestamp in your submission. Check with StreamQuest first if you are unsure whether co-op is available in the build you are streaming.",
+      },
     ],
     rules: [
       "Wait for written approval before you go live. This campaign is curated and applying does not secure a slot.",
@@ -208,6 +213,8 @@ export const quests: Quest[] = [
       "Use the exact tracked link supplied with your approval. Do not shorten it, replace it, or strip its tracking.",
       "Give at least one clear verbal call to action inviting viewers to try the free demo and wishlist RIFTFALL.",
       "Keep a public VOD available and submit it through the creator dashboard before the deadline.",
+      "Record your stream locally and submit a downloadable Google Drive link to the full recording along with your VOD. This is required to qualify.",
+      "By taking part you grant GameEra Studios permission to feature your recording, or edited excerpts from it, on the RIFTFALL Steam page and official channels, with credit to your channel.",
       "Steam reviews are never required, rewarded, gated, or incentivised, and never affect payment or approval.",
     ],
     links: {
@@ -238,13 +245,14 @@ export const quests: Quest[] = [
     tldr: [
       { stat: "EUR 50", label: "Silver tier", sub: "2h stream, 15 to 49 average viewers" },
       { stat: "EUR 100", label: "Gold tier", sub: "2h stream, 50+ average viewers" },
-      { stat: "50 XP", label: "Rift Signal", sub: "Optional social clip, XP only" },
+      { stat: "50 XP", label: "Side quests", sub: "Social clip or co-op run, XP only" },
       { stat: "25", label: "Slots", sub: "Curated, applying is not a slot" },
     ],
     tldrFootnotes: [
       "No key needed. The campaign runs on the free public RIFTFALL demo on Steam.",
       "Press P twice before you go live to remove the one-hour demo limit.",
       "Silver and Gold only for this campaign. There is no Bronze tier, and English-language streams are the priority.",
+      "Record locally as well as streaming. A Google Drive link to your full recording is required to qualify, and GameEra Studios may feature it on the RIFTFALL Steam page with credit to your channel.",
     ],
 
     screenshots: [
@@ -268,7 +276,7 @@ export const quests: Quest[] = [
       "RIFTFALL is a fast, brutal single-player retro FPS from GameEra Studios, with a free public Steam demo covering five levels. A strong fit for creators whose audiences enjoy boomer shooters, movement shooters, speed, secrets, builds, and challenge runs.",
 
     sideQuestIntro:
-      "There is one optional side quest on this campaign. Rift Signal awards 50 StreamQuest XP. It carries no separate payment and is not required to complete the paid main quest.",
+      "There are two optional side quests on this campaign, each worth 50 StreamQuest XP. Rift Signal takes a clip off Twitch and onto your socials. Squad Link brings a friend in for a co-op run. Neither carries a separate payment, and neither is required to complete the paid main quest.",
     sideQuestOutro:
       "Everything else on this campaign is the main quest. Two hours, live commentary, the tracked link, and a verbal nudge toward the free demo and the wishlist.",
 
@@ -328,6 +336,12 @@ export const quests: Quest[] = [
         icon: "website",
       },
       {
+        name: "Creator assets",
+        sub: "Trailers, key art, and promo art",
+        href: "https://drive.google.com/drive/folders/1xqbJ5s4rLvcoehWdvSh-yhadTEmm0Ts9",
+        icon: "website",
+      },
+      {
         name: "10 minute gameplay",
         sub: "See the demo in action",
         href: "https://youtu.be/18oBPXqJPWs",
@@ -358,11 +372,11 @@ export const quests: Quest[] = [
       },
       {
         heading: "Proof and verification",
-        body: "Submit the public VOD or public mirror URL, the qualifying stream date, duration, and category through the creator dashboard. Provide screenshots or timestamps if we ask for proof of the paid-promotion disclosure, the tracked link placement, the verbal call to action, or the pre-stream setup. Evidence must stay public and accessible long enough for us to validate it. Twitch VOD retention varies by account type, so save a personal copy if that is practical for you.",
+        body: "Submit the public VOD or public mirror URL, the qualifying stream date, duration, and category through the creator dashboard, together with a downloadable Google Drive link to your full local recording. Both are required to qualify, so set your local recording up before you go live. Provide screenshots or timestamps if we ask for proof of the paid-promotion disclosure, the tracked link placement, the verbal call to action, or the pre-stream setup. Evidence must stay public and accessible long enough for us to validate it.",
       },
       {
-        heading: "Your content stays yours",
-        body: "You keep ownership of your creator content. By completing the quest you grant StreamQuest and the client the licence described in the StreamQuest Terms and Conditions, and any permitted public reuse by the client must clearly credit your channel name or handle.",
+        heading: "Your content, and where it may appear",
+        body: "You keep ownership of everything you make. As part of this campaign you grant GameEra Studios permission to feature your recording, or edited excerpts from it, on the RIFTFALL Steam page and their official channels, and you grant StreamQuest and the client the licence described in the StreamQuest Terms and Conditions. Any public reuse must clearly credit your channel name or handle. If you are not comfortable with your stream being featured this way, this is not the right campaign for you.",
       },
     ],
 
@@ -371,7 +385,7 @@ export const quests: Quest[] = [
       { title: "Wait for written approval", sub: "Curated, and a slot is not secured by applying" },
       { title: "Set up and test", sub: "Install the free demo and press P twice to lift the limit" },
       { title: "Stream two hours", sub: "Live commentary, correct category, tracked link, verbal CTA" },
-      { title: "Submit", sub: "Public VOD plus any side quest proof, before the deadline" },
+      { title: "Submit", sub: "Public VOD, your Drive recording, plus any side quest proof" },
       { title: "Get paid", sub: "After verification" },
     ],
   },
