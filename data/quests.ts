@@ -149,6 +149,8 @@ export type Quest = {
   howToJoin?: QuestStep[];              // optional override; defaults to standard six
   rating?: string;                      // "ESRB M (17+) / PEGI 16"
   slots?: number;
+  /** Unpublished. Kept in this file but filtered out of every surface. */
+  draft?: boolean;
   duration?: string;                    // "2 weeks"
 };
 
@@ -156,9 +158,10 @@ export type Quest = {
    ACTIVE QUESTS — full detail, fully render on /quests/[slug]
    ============================================================ */
 
-export const quests: Quest[] = [
+const allQuests: Quest[] = [
   {
     slug: "riftfall",
+    draft: true,
     title: "RIFTFALL",
     status: "active",
     studio: "GameEra Studios",
@@ -1862,6 +1865,13 @@ export const quests: Quest[] = [
 /* ============================================================
    HELPERS — used by homepage, header, quest template, etc.
    ============================================================ */
+
+/**
+ * Published quests. Anything flagged `draft` is withheld from every
+ * surface: the quest route, header dropdowns, homepage, library and
+ * sitemap all read from here. Remove the flag to republish.
+ */
+export const quests: Quest[] = allQuests.filter((q) => !q.draft);
 
 export const activeQuests = quests.filter((q) => q.status === "active");
 export const completedQuests = quests.filter((q) => q.status === "completed");
