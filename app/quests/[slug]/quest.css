@@ -1777,3 +1777,26 @@
 @media (max-width: 560px) {
   .q-video-stage.is-portrait { width: min(100%, 320px); }
 }
+
+/* ============================================================
+   RIFTFALL side art
+   Reuses the ambient swarm layer, but the RIFTFALL pack is
+   rectangular key art rather than transparent cutouts, so the
+   pieces are framed like posters drifting past the margins.
+   ============================================================ */
+.q-slug-riftfall .q-swarm-item img {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 5px;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+/* Hold these back further than the GZH cutouts: they are solid
+   rectangles sitting behind body copy, so they need to stay quiet. */
+.q-slug-riftfall .q-swarm-item {
+  opacity: 0.5 !important;
+}
+@media (max-width: 1100px) {
+  /* No real margin left to live in, so retire the side art. */
+  .q-slug-riftfall .q-swarm-ambient { display: none; }
+}
