@@ -149,8 +149,14 @@ export type Quest = {
   howToJoin?: QuestStep[];              // optional override; defaults to standard six
   rating?: string;                      // "ESRB M (17+) / PEGI 16"
   slots?: number;
-  /** Unpublished. Kept in this file but filtered out of every surface. */
+  /** Fully offline. No route is generated and it is hidden everywhere. */
   draft?: boolean;
+  /**
+   * Reachable at its own URL, but hidden from the homepage, header
+   * dropdowns, library, related-quest grid and sitemap, and marked
+   * noindex. For briefs shared by direct link only.
+   */
+  unlisted?: boolean;
   duration?: string;                    // "2 weeks"
 };
 
@@ -161,7 +167,7 @@ export type Quest = {
 const allQuests: Quest[] = [
   {
     slug: "riftfall",
-    draft: true,
+    unlisted: true,
     title: "RIFTFALL",
     status: "active",
     studio: "GameEra Studios",
@@ -1867,16 +1873,23 @@ const allQuests: Quest[] = [
    ============================================================ */
 
 /**
- * Published quests. Anything flagged `draft` is withheld from every
- * surface: the quest route, header dropdowns, homepage, library and
- * sitemap all read from here. Remove the flag to republish.
+ * Quests that have a page. Drafts are fully offline, so they are the only
+ * thing excluded here. Used for routing and slug lookup.
  */
-export const quests: Quest[] = allQuests.filter((q) => !q.draft);
+export const routableQuests: Quest[] = allQuests.filter((q) => !q.draft);
+
+/**
+ * Listed quests. This is what every browsable surface reads from: the
+ * homepage, header dropdowns, library grid, related-quest grid and the
+ * sitemap. Unlisted quests still have a working URL, they just are not
+ * advertised anywhere.
+ */
+export const quests: Quest[] = routableQuests.filter((q) => !q.unlisted);
 
 export const activeQuests = quests.filter((q) => q.status === "active");
 export const completedQuests = quests.filter((q) => q.status === "completed");
 
 export const getQuestBySlug = (slug: string): Quest | undefined =>
-  quests.find((q) => q.slug === slug);
+  routableQuests.find((q) => q.slug === slug);
 
-export const allQuestSlugs = (): string[] => quests.map((q) => q.slug);
+export const allQuestSlugs = (): string[] => routableQuests.map((q) => q.slug);

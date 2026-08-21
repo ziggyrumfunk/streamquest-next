@@ -38,13 +38,12 @@ const nextConfig = {
       { source: "/GroundZeroHero",   destination: "/quests/groundzerohero", permanent: true },
       { source: "/ground-zero-hero", destination: "/quests/groundzerohero", permanent: true },
 
-      // RIFTFALL short URLs. Disabled while the brief is unpublished so the
-      // links 404 outright instead of redirecting into a missing page.
-      // Restore alongside removing `draft: true` in data/quests.ts.
-      // { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },
-      // { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: true },
-      // { source: "/Riftfall",  destination: "/quests/riftfall", permanent: true },
-      // { source: "/rift-fall", destination: "/quests/riftfall", permanent: true },
+      // Friendly short URL for the RIFTFALL quest brief. The brief is
+      // unlisted, so this link is how it gets shared.
+      { source: "/riftfall",  destination: "/quests/riftfall", permanent: false },
+      { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: false },
+      { source: "/Riftfall",  destination: "/quests/riftfall", permanent: false },
+      { source: "/rift-fall", destination: "/quests/riftfall", permanent: false },
     ];
   },
 };

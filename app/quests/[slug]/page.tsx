@@ -29,6 +29,8 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     title: `${q.title} — Mission brief`,
     description: q.description || q.tagline,
+    // Unlisted briefs are shared by direct link, so keep them out of search.
+    ...(q.unlisted ? { robots: { index: false, follow: false } } : {}),
     alternates: { canonical: `https://streamquest.io/quests/${q.slug}` },
     openGraph: {
       title: `${q.title} — StreamQuest mission brief`,
