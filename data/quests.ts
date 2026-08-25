@@ -167,7 +167,6 @@ export type Quest = {
 const allQuests: Quest[] = [
   {
     slug: "riftfall",
-    unlisted: true,
     title: "RIFTFALL",
     status: "active",
     studio: "GameEra Studios",
