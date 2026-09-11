@@ -20,6 +20,7 @@ export default function robots(): MetadataRoute.Robots {
           "/good-heavens-kpi",
           "/alpha-nomos-kpi",
           "/replaced-kpi",
+          "/ground-zero-hero-kpi",
         ],
       },
     ],
