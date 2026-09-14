@@ -860,3 +860,141 @@
   border-color: var(--rd-lime);
   color: var(--rd-lime);
 }
+
+/* ============================================================
+   Review pass, 14 Sep 2026: compact launch-context block, VOD
+   card that links out, platform split chips, measurement note,
+   partner chips.
+   ============================================================ */
+
+/* ---------- Compact launch-context block ---------- */
+.gzh-section-compact { padding: 56px 0; }
+.gzh-context--compact {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+.gzh-context--compact .gzh-context-card { padding: 16px 14px 14px; }
+.gzh-context--compact .gzh-context-card::after { display: none; }
+.gzh-context--compact .gzh-context-num { font-size: clamp(20px, 2vw, 26px); }
+.gzh-context--compact .gzh-context-lbl { font-size: 0.86rem; line-height: 1.35; margin-top: 6px; }
+.gzh-context--compact .gzh-context-src { font-size: 11.5px; margin-top: 5px; }
+@media (max-width: 1100px) {
+  .gzh-context--compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .gzh-context--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- VOD card that links out instead of embedding ---------- */
+.gzh-vod--link { text-decoration: none; color: inherit; }
+.gzh-vod-thumb { position: relative; overflow: hidden; }
+.gzh-vod-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7);
+  transition: transform 0.4s, filter 0.4s;
+}
+.gzh-vod--link:hover .gzh-vod-thumb img { transform: scale(1.04); filter: brightness(0.85); }
+.gzh-vod-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(5, 9, 19, 0.82);
+  border: 1px solid rgba(145, 70, 255, 0.6);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.gzh-vod-play::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 9px solid var(--rd-twitch-2);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+
+/* ---------- Platform split chips ---------- */
+.gzh-split { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.gzh-split-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 7px 12px;
+  background: rgba(13, 23, 36, 0.86);
+  border: 1px solid var(--rd-line);
+  border-radius: 999px;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.82);
+}
+.gzh-split-chip strong { color: var(--rd-lime); font-weight: 800; font-size: 1rem; }
+
+/* ---------- Measurement note ---------- */
+.gzh-measure {
+  margin-top: 26px;
+  padding: 18px 20px;
+  background: rgba(178, 240, 72, 0.06);
+  border: 1px solid rgba(178, 240, 72, 0.3);
+  border-left: 3px solid var(--rd-lime);
+  border-radius: 0 10px 10px 0;
+}
+.gzh-measure-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+  margin-bottom: 6px;
+}
+.gzh-measure p { margin: 0; font-size: 0.95rem; line-height: 1.6; color: rgba(255, 255, 255, 0.86); }
+
+/* ---------- Partner chips ---------- */
+.gzh-partners { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.gzh-partner-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  background: rgba(145, 70, 255, 0.1);
+  border: 1px solid rgba(145, 70, 255, 0.4);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.gzh-partner-chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--rd-twitch);
+  box-shadow: 0 0 10px rgba(145, 70, 255, 0.8);
+}
+/* Partner tag inside the creator table */
+.gzh-partner-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(145, 70, 255, 0.5);
+  background: rgba(145, 70, 255, 0.14);
+  color: var(--rd-twitch-2);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

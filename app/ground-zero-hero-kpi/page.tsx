@@ -58,32 +58,39 @@ const kpis = [
 
 const tldrTiles = [
   { stat: "27", label: "Creators", sub: "5 Bronze, 18 Silver, 4 Gold" },
-  { stat: "71.9h", label: "Live coverage", sub: "71h 53m of Ground Zero Hero streamed" },
   { stat: "2,510", label: "Viewer-hours", sub: "Estimated from logged hours and averages" },
+  { stat: "€0.80", label: "Per viewer-hour", sub: "€2,000 budget over 2,510 viewer-hours" },
   { stat: "179", label: "Peak viewers", sub: "SOGAeon, highest single stream" },
   { stat: "22 / 27", label: "Launch window", sub: "Streamed on 20 or 21 August" },
-  { stat: "7", label: "Languages", sub: "English led at 51.9%" },
+  { stat: "8", label: "Twitch Partners", sub: "Verified against Twitch, 14 Sep" },
 ];
+
+/* Twitch Partner status, checked directly against Twitch on 14 September 2026. */
+const PARTNERS = ["SOGAeon", "Toky", "LunariValkyrie", "Foythtv", "azano__", "fleapuff", "saremugames", "J0SH"];
 
 const featuredVods = [
   {
     name: "SOGAeon",
     id: "2858477009",
     tier: "Gold",
+    embed: true,
     meta: "179 peak, 138 average, 3h36 streamed. 497 viewer-hours, the largest single contribution in the campaign.",
   },
   {
     name: "J0SH",
     id: "2852763452",
     tier: "Gold",
+    embed: true,
     meta: "121 peak, 112 average across 2h30 on launch day. Also cut a YouTube Short from the session.",
   },
   {
     name: "GirlWhoPlays",
     id: "2851945966",
-    time: "1h03m13s",
+    time: "01h03m13s",
     tier: "Silver",
-    meta: "86 peak, 70 average over 2h35, streaming Ground Zero Hero to a Spanish-language audience.",
+    embed: false,
+    thumb: `${M}/screenshot-2.webp`,
+    meta: "86 peak, 70 average over 2h35, streaming Ground Zero Hero to a Spanish-language audience. The VOD is subscriber-only on Twitch, so it opens there rather than playing here.",
   },
 ];
 
@@ -95,6 +102,14 @@ const languages = [
   { name: "German", n: 1, pct: 3.7 },
   { name: "Portuguese", n: 1, pct: 3.7 },
   { name: "Romanian", n: 1, pct: 3.7 },
+];
+
+const platformSplit = [
+  { n: 5, label: "TikToks" },
+  { n: 5, label: "X posts" },
+  { n: 3, label: "Instagram posts" },
+  { n: 2, label: "YouTube Shorts" },
+  { n: 1, label: "Reddit post" },
 ];
 
 const topDrivers = [
@@ -123,37 +138,37 @@ const contextCards = [
   {
     num: "608",
     lbl: "Twitch category peak viewers",
-    src: "20 August, 17:00 UTC. Streams Charts.",
+    src: "20 Aug, 17:00 UTC. Streams Charts.",
     href: "https://streamscharts.com/games/ground-zero-hero/statistics",
   },
   {
     num: "12",
     lbl: "Concurrent Ground Zero Hero channels",
-    src: "20 August, 19:30 UTC. Streams Charts.",
+    src: "20 Aug, 19:30 UTC. Streams Charts.",
     href: "https://streamscharts.com/games/ground-zero-hero/statistics",
   },
   {
     num: "20 Aug",
     lbl: "Full Steam release, 12:36 UTC",
-    src: "SteamDB release record.",
+    src: "SteamDB.",
     href: "https://steamdb.info/app/2570580/charts/",
   },
   {
     num: "74",
     lbl: "Steam concurrent-player peak",
-    src: "22 August, all-time. SteamDB.",
+    src: "22 Aug, all-time. SteamDB.",
     href: "https://steamdb.info/app/2570580/charts/",
   },
   {
     num: "76.8%",
     lbl: "Positive Steam reviews, Very Positive",
-    src: "58 reviews at the 7 September snapshot. SteamDB.",
+    src: "58 reviews, 7 Sep. SteamDB.",
     href: "https://steamdb.info/app/2570580/charts/",
   },
   {
     num: "499",
     lbl: "Steam store followers",
-    src: "7 September snapshot. SteamDB.",
+    src: "7 Sep. SteamDB.",
     href: "https://steamdb.info/app/2570580/charts/",
   },
 ];
@@ -265,23 +280,16 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
             </div>
             <ul className="gzh-tldr-lines">
               <li>
-                Every creator completed the wishlist side quest. 16 social posts from 14 creators
-                carried the campaign beyond Twitch, onto X, TikTok, Instagram, YouTube Shorts and
-                Reddit.
+                71.9 hours live across 27 completed creator activations, 22.9 hours more than the
+                tiers required. 8 creators streamed at least a full extra hour.
               </li>
               <li>
-                The roster delivered 22.9 hours more than the tiers required, 47% above the 49.0
-                hour baseline. 8 creators streamed at least a full extra hour.
+                Every creator pushed the tracked wishlist link. 14 creators published 16 posts
+                outside Twitch, and the roster covered seven language communities.
               </li>
               <li>
                 The Ground Zero Hero Twitch category peaked at 608 viewers with 12 channels live at
-                once on launch day, per Streams Charts. That is launch context, not a number
-                StreamQuest claims credit for.
-              </li>
-              <li className="is-caveat">
-                Not claimed in this report: unique reach, link clicks, confirmed Steam wishlists,
-                or a causal Steam lift. The data set does not support those numbers, so they are
-                not presented as outcomes.
+                once on launch day, per Streams Charts.
               </li>
             </ul>
           </div>
@@ -299,24 +307,20 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
                 Ground Zero Hero is a bullet-heaven roguelite by Acclaim and Rowan Edmondson. The
                 activation was built to land creator coverage on and around the 20 August Steam
                 release, distribute the tracked wishlist link, and give Acclaim a set of native
-                social assets to reuse. All 27 creator submissions were verified and reconciled
+                social assets to reuse. Every creator submission was verified and reconciled
                 against TwitchTracker through 7 September.
               </p>
               <p>
-                The roster paired a Gold layer of higher-reach channels with a broad Silver and
-                Bronze base. English creators made up just over half of the cohort, French was the
-                second-largest group, and Spanish, Arabic, German, Portuguese and Romanian creators
-                widened the footprint.
+                The roster paired a Gold layer of higher-reach channels, including eight Twitch
+                Partners, with a broad Silver and Bronze base. English creators made up just over
+                half of the cohort, French was the second-largest group, and Spanish, Arabic,
+                German, Portuguese and Romanian creators widened the footprint.
               </p>
-              <h3>Highlights</h3>
-              <ul className="cs-list">
-                <li>27 completed creators: 5 Bronze, 18 Silver, 4 Gold</li>
-                <li>71.9 hours of live Ground Zero Hero coverage, 22.9 hours above the tier baseline</li>
-                <li>An estimated 2,510 viewer-hours at a weighted average of 34.9 concurrent viewers</li>
-                <li>22 of 27 creators streamed inside the 20 to 21 August launch window</li>
-                <li>27 of 27 wishlist side quests completed, 16 social posts from 14 creators</li>
-                <li>Seven language communities, with English at 51.9% of the roster</li>
-              </ul>
+              <p>
+                The result is a delivery footprint that is verified creator by creator: every
+                activation in this report has a VOD, a tier, a language and a side-quest record in
+                the log at the bottom of the page.
+              </p>
             </div>
             <div className="cs-split-visual">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -331,88 +335,87 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 8 }}>
             <span className="cs-tag">Featured streams</span>
-            <h2>Three VODs that show the range of the roster.</h2>
+            <h2>Three streams that show the range of the roster.</h2>
             <p>
               The two biggest Gold streams and the strongest non-English activation. Every VOD
               from the campaign is linked in the creator log further down.
             </p>
           </div>
           <div className="gzh-vods">
-            {featuredVods.map((v) => (
-              <article key={v.name} className="gzh-vod">
-                <div className="gzh-vod-frame">
-                  <iframe
-                    src={twitchVod(v.id, v.time)}
-                    title={`${v.name} Ground Zero Hero VOD`}
-                    loading="lazy"
-                    allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-                <div className="gzh-vod-meta">
-                  <span className={`gzh-tier-tag is-${v.tier.toLowerCase()}`}>{v.tier} tier</span>
-                  <h4>{v.name}</h4>
-                  <p>{v.meta}</p>
-                </div>
-              </article>
-            ))}
+            {featuredVods.map((v) =>
+              v.embed ? (
+                <article key={v.name} className="gzh-vod">
+                  <div className="gzh-vod-frame">
+                    <iframe
+                      src={twitchVod(v.id, v.time)}
+                      title={`${v.name} Ground Zero Hero VOD`}
+                      loading="lazy"
+                      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="gzh-vod-meta">
+                    <span className={`gzh-tier-tag is-${v.tier.toLowerCase()}`}>{v.tier} tier</span>
+                    <h4>{v.name}</h4>
+                    <p>{v.meta}</p>
+                  </div>
+                </article>
+              ) : (
+                <a
+                  key={v.name}
+                  className="gzh-vod gzh-vod--link"
+                  href={`https://www.twitch.tv/videos/${v.id}${v.time ? `?t=${v.time}` : ""}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div className="gzh-vod-frame gzh-vod-thumb">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={v.thumb} alt="" loading="lazy" />
+                    <span className="gzh-vod-play">Watch on Twitch</span>
+                  </div>
+                  <div className="gzh-vod-meta">
+                    <span className={`gzh-tier-tag is-${v.tier.toLowerCase()}`}>{v.tier} tier</span>
+                    <h4>{v.name}</h4>
+                    <p>{v.meta}</p>
+                  </div>
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>
 
-      {/* =============== DELIVERY KPIs =============== */}
+      {/* =============== WHAT THE DELIVERY MEANS =============== */}
       <section className="cs-section cs-section-shaded">
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">What StreamQuest delivered</span>
-            <h2>27 verified activations, 71.9 hours live.</h2>
+            <h2>Depth per creator, concentrated on the launch days.</h2>
             <p>
-              Headline delivery across the completed roster. Stream-hour and viewer-hour figures
-              come from the creator rows in the completion workbook and describe tracked Ground
-              Zero Hero programming. They are not unique viewers, impressions, or a single
-              simultaneous campaign peak.
+              The headline numbers are in the strip at the top. This is what they mean per
+              creator, and where the watch time actually came from.
             </p>
           </div>
           <div className="gzh-stat-list">
-            <div className="gzh-stat-row is-total">
-              <span className="gzh-stat-label">Completed creators</span>
-              <span className="gzh-stat-num">27</span>
-              <span className="gzh-stat-note">5 Bronze, 18 Silver and 4 Gold, all verified and paid.</span>
+            <div className="gzh-stat-row">
+              <span className="gzh-stat-label">Stream time per creator</span>
+              <span className="gzh-stat-num">2.7h</span>
+              <span className="gzh-stat-note">Bronze was scoped at one hour, Silver and Gold at two. The average creator stayed 2.7 hours, and 18 of 27 went at least 30 minutes past their tier.</span>
             </div>
             <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Live coverage</span>
-              <span className="gzh-stat-num">71.9h</span>
-              <span className="gzh-stat-note">71 hours 53 minutes of tracked Ground Zero Hero stream time across 28 streams.</span>
+              <span className="gzh-stat-label">Watch time per creator</span>
+              <span className="gzh-stat-num">93 vh</span>
+              <span className="gzh-stat-note">Median 52. SOGAeon and J0SH together account for 31% of all watch time, so the average is pulled up by the top of the roster.</span>
             </div>
             <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Estimated viewer-hours</span>
-              <span className="gzh-stat-num">2,510</span>
-              <span className="gzh-stat-note">Each creator&rsquo;s logged hours multiplied by their average viewers. Watch time, not unique reach.</span>
+              <span className="gzh-stat-label">Gold share of watch time</span>
+              <span className="gzh-stat-num">44%</span>
+              <span className="gzh-stat-note">Four Gold creators, 15% of the roster, delivered 1,097 of the 2,510 viewer-hours.</span>
             </div>
             <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Weighted average viewers</span>
-              <span className="gzh-stat-num">34.9</span>
-              <span className="gzh-stat-note">Duration-weighted across all 71.9 logged hours.</span>
-            </div>
-            <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Highest stream peak</span>
-              <span className="gzh-stat-num">179</span>
-              <span className="gzh-stat-note">SOGAeon, Gold tier. Individual peaks are not summed into a campaign peak because the streams ran at different times.</span>
-            </div>
-            <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Launch-window streams</span>
-              <span className="gzh-stat-num">22 / 27</span>
-              <span className="gzh-stat-note">81.5% of the roster streamed on 20 or 21 August.</span>
-            </div>
-            <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Wishlist push</span>
-              <span className="gzh-stat-num">27 / 27</span>
-              <span className="gzh-stat-note">Every creator distributed the tracked wishlist call to action.</span>
-            </div>
-            <div className="gzh-stat-row">
-              <span className="gzh-stat-label">Social posts delivered</span>
-              <span className="gzh-stat-num">16</span>
-              <span className="gzh-stat-note">From 14 creators, across X, TikTok, Instagram, YouTube Shorts and Reddit.</span>
+              <span className="gzh-stat-label">Launch-window concentration</span>
+              <span className="gzh-stat-num">81.5%</span>
+              <span className="gzh-stat-note">22 creators streamed on 20 or 21 August. The five who streamed later included SOGAeon, the campaign&rsquo;s largest stream, which kept coverage running after the launch weekend.</span>
             </div>
           </div>
         </div>
@@ -452,19 +455,24 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
           <div className="gzh-stat-list" style={{ marginTop: 34 }}>
             <div className="gzh-stat-row">
               <span className="gzh-stat-label">Combined Twitch following</span>
-              <span className="gzh-stat-num">120,935</span>
-              <span className="gzh-stat-note">Across the 26 populated follower fields. Not deduplicated, and audience overlap is unknown, so read it as potential audience rather than reach.</span>
+              <span className="gzh-stat-num">145,939</span>
+              <span className="gzh-stat-note">Across all 27 channels, not deduplicated. Two workbook fields were corrected against Twitch on 14 September: SOGAeon (26,077, mis-entered as 1,679) and Eyklor (606, previously blank).</span>
             </div>
             <div className="gzh-stat-row">
               <span className="gzh-stat-label">Twitch global top 1%</span>
-              <span className="gzh-stat-num">11+ / 27</span>
-              <span className="gzh-stat-note">At least 40.7% of the roster sits inside the global top 1% by TwitchTracker&rsquo;s source-time ranking. A curation-quality signal, not evidence of rank movement during the campaign.</span>
+              <span className="gzh-stat-num">12 / 27</span>
+              <span className="gzh-stat-note">44% of the roster sits inside the global top 1% by TwitchTracker&rsquo;s source-time ranking at screening. A screening-quality signal.</span>
             </div>
-            <div className="gzh-stat-row is-muted">
-              <span className="gzh-stat-label">Confirmed Partner status</span>
-              <span className="gzh-stat-num">1+</span>
-              <span className="gzh-stat-note">Explicitly recorded for MarianaAr32. Partner status was not captured consistently this round, so one is a floor, not a count.</span>
+            <div className="gzh-stat-row">
+              <span className="gzh-stat-label">Twitch Partners</span>
+              <span className="gzh-stat-num">8 / 27</span>
+              <span className="gzh-stat-note">Verified directly against Twitch on 14 September 2026. The other 18 Twitch creators are Affiliates. MarianaAr32 streamed this campaign on Kick, where her channel is verified, so she sits outside the Twitch count.</span>
             </div>
+          </div>
+          <div className="gzh-partners">
+            {PARTNERS.map((p) => (
+              <span key={p} className="gzh-partner-chip">{p}</span>
+            ))}
           </div>
         </div>
       </section>
@@ -475,17 +483,13 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">Side quests and creator content</span>
             <h2>Every creator pushed the wishlist. Most hit launch day.</h2>
-            <p>
-              The three optional side quests from the mission brief, tracked per creator.
-              Completion is evidence of creator action, not proof of a Steam wishlist or a
-              conversion.
-            </p>
+            <p>The three optional side quests from the mission brief, tracked per creator.</p>
           </div>
           <div className="gzh-stat-list">
             <div className="gzh-stat-row is-total">
               <span className="gzh-stat-label">Wishlist Transmission</span>
               <span className="gzh-stat-num">27 / 27</span>
-              <span className="gzh-stat-note">Tracked wishlist CTA distributed on every stream.</span>
+              <span className="gzh-stat-note">Tracked wishlist call to action distributed on every stream.</span>
             </div>
             <div className="gzh-stat-row">
               <span className="gzh-stat-label">Launch Window Deployment</span>
@@ -498,10 +502,17 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
               <span className="gzh-stat-note">14 creators published native posts or clips. MarianaAr32 alone posted to YouTube, TikTok and Instagram.</span>
             </div>
             <div className="gzh-stat-row is-muted">
-              <span className="gzh-stat-label">Known public views</span>
+              <span className="gzh-stat-label">Documented public views</span>
               <span className="gzh-stat-num">2.9K+</span>
-              <span className="gzh-stat-note">Two measured posts: UmbritaC&rsquo;s giveaway post at 2.2K and Toky&rsquo;s X post at 739. The other 14 posts have no captured analytics yet, so the real total is higher.</span>
+              <span className="gzh-stat-note">Across two measured posts, UmbritaC&rsquo;s giveaway post at 2.2K and Toky&rsquo;s X post at 739. 14 additional posts were delivered without captured public analytics.</span>
             </div>
+          </div>
+          <div className="gzh-split" aria-label="Platform split of the 16 posts">
+            {platformSplit.map((p) => (
+              <span key={p.label} className="gzh-split-chip">
+                <strong>{p.n}</strong> {p.label}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -628,7 +639,7 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
               <div className="gzh-social-stat">739 views</div>
               <h4>Toky</h4>
               <p>
-                Bronze creator with a 25.8K Twitch following. Public view count captured at the 7
+                Twitch Partner with a 25.8K following. Public view count captured at the 7
                 September cut.
               </p>
               <a
@@ -714,19 +725,21 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* =============== LAUNCH CONTEXT =============== */}
-      <section className="cs-section cs-section-shaded">
+      {/* =============== INDEPENDENT LAUNCH CONTEXT =============== */}
+      <section className="cs-section cs-section-shaded gzh-section-compact">
         <div className="cs-shell">
-          <div style={{ maxWidth: 720, marginBottom: 8 }}>
-            <span className="cs-tag">Twitch and Steam launch context</span>
-            <h2>What the public platforms recorded around release.</h2>
+          <div style={{ maxWidth: 720, marginBottom: 4 }}>
+            <span className="cs-tag">Independent launch context</span>
+            <h2 style={{ fontSize: "clamp(1.4rem, 2.2vw, 1.85rem)" }}>
+              What the public platforms recorded, not attributed to StreamQuest.
+            </h2>
             <p>
-              Third-party category and store tracking, included as launch context. These
-              snapshots include activity from other channels and other launch drivers, so they
-              are not presented as conversions caused by StreamQuest.
+              Third-party category and store tracking around release. These snapshots include
+              other channels and other launch drivers, so they sit beside the verified creator
+              delivery above rather than inside it.
             </p>
           </div>
-          <div className="gzh-context">
+          <div className="gzh-context gzh-context--compact">
             {contextCards.map((c) => (
               <div key={c.lbl} className="gzh-context-card">
                 <div className="gzh-context-num">{c.num}</div>
@@ -737,24 +750,10 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
               </div>
             ))}
           </div>
-          <h3 style={{ marginTop: 36, marginBottom: 6 }}>What is not claimed</h3>
-          <ul className="cs-list">
-            <li>
-              Streams Charts&rsquo; August monthly peak of 855 viewers landed on 11 August, before
-              release, and SteamDB&rsquo;s all-time Twitch peak of 3,176 dates from 6 May. Neither
-              is attributed to this campaign.
-            </li>
-            <li>
-              No dated pre-campaign category-rank snapshot exists, and the public TwitchTracker
-              summary only exposes a rolling window. This report therefore makes no start-to-peak
-              rank claim and no week-on-week ranking growth claim.
-            </li>
-            <li>
-              Without a control group, creator-level timestamps matched to the category curve,
-              native social analytics and tracked Steam conversion data, the incremental share of
-              the Steam signals above cannot be isolated.
-            </li>
-          </ul>
+          <p className="cs-muted" style={{ marginTop: 16, fontSize: "0.9rem" }}>
+            Streams Charts&rsquo; August monthly peak (855 viewers on 11 August) and SteamDB&rsquo;s
+            all-time Twitch peak (3,176 on 6 May) both predate the campaign and are left out.
+          </p>
         </div>
       </section>
 
@@ -763,15 +762,20 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
         <div className="cs-shell">
           <div style={{ maxWidth: 720, marginBottom: 22 }}>
             <span className="cs-tag">Budget reconciliation</span>
-            <h2>€2,000 activation budget, reconciled on verified completions.</h2>
+            <h2>€2,000 activation budget, €0.80 per estimated live viewer-hour.</h2>
             <p>
               Client-facing tier values of €20 Bronze, €50 Silver and €100 Gold, plus the fixed
-              setup and operations fee. This report deliberately does not present cost per
-              viewer-hour or CPM: Twitch watch time is not comparable to paid-media impressions,
-              and stating it as if it were would overclaim.
+              setup and operations fee. Estimated cost per live viewer-hour: €0.80. Calculated as
+              the €2,000 total activation budget divided by ≈2,510 estimated live viewer-hours.
+              Viewer-hours are estimated watch time, not unique viewers or impressions.
             </p>
           </div>
           <div className="gzh-stat-list">
+            <div className="gzh-stat-row is-total">
+              <span className="gzh-stat-label">Estimated cost per live viewer-hour</span>
+              <span className="gzh-stat-num">€0.80</span>
+              <span className="gzh-stat-note">€2,000 over 2,510 viewer-hours. On the €1,900 reconciled delivery, excluding the €50 favourite-stream reserve and €50 headroom, it is €0.76.</span>
+            </div>
             <div className="gzh-stat-row">
               <span className="gzh-stat-label">Bronze completions · 5 × €20</span>
               <span className="gzh-stat-num">€100</span>
@@ -816,25 +820,30 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* =============== NEXT CAMPAIGN =============== */}
+      {/* =============== WHAT WE WILL MEASURE NEXT TIME =============== */}
       <section className="cs-section cs-section-shaded">
         <div className="cs-shell">
           <div className="cs-split">
             <div>
-              <span className="cs-tag">Measurement gaps and next campaign</span>
-              <h2>How the next activation gets a real start-versus-peak read.</h2>
+              <span className="cs-tag">What we&rsquo;ll measure next time</span>
+              <h2>The next activation gets a real start-versus-peak read.</h2>
               <p>
-                The delivery footprint here is solid and defensible. The reach and conversion
-                layer is not, because the fields were never captured in a comparable way. For
-                the next activation, capture the same set of fields at four points: seven days
-                before launch, launch hour, 24 hours after, and seven days after.
+                This campaign&rsquo;s delivery layer is verified creator by creator. The layer
+                above it, reach and conversion, was never captured in a comparable way. For the
+                next activation, StreamQuest captures the same set of fields at four points, seven
+                days before launch, at launch hour, 24 hours after and seven days after, so start
+                versus peak becomes a measured curve rather than a snapshot.
               </p>
               <ul className="cs-list">
-                <li>Twitch category rank, peak viewers, average viewers, hours watched and concurrent channels</li>
-                <li>Each creator&rsquo;s native social views, reach, clicks and engagement</li>
-                <li>Tracked-link clicks and Steam wishlist events, with a clear UTM or referral convention</li>
-                <li>Creator-level stream timestamps, so campaign activity can be laid over the public category curve</li>
+                <li>Native-post analytics: views, reach and engagement for every social post, taken from the creators&rsquo; own dashboards</li>
+                <li>Tracked-link clicks and Steam wishlist events, with one UTM convention across every creator</li>
+                <li>Pre-launch and launch-hour snapshots of the Twitch category: rank, peak viewers, average viewers, hours watched and concurrent channels</li>
+                <li>Creator-level stream timestamps, so the roster&rsquo;s activity can be laid directly over the public category curve</li>
               </ul>
+              <p>
+                Together, that turns the next report from a verified delivery footprint into a
+                measured reach-and-conversion story.
+              </p>
             </div>
             <div className="cs-split-visual">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -853,8 +862,8 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
           <span className="gzh-band-eyebrow">The full log</span>
           <h2>27 creators, one launch.</h2>
           <p>
-            Every completed activation with tier, ranking, language, performance, viewer-hours,
-            and links to every VOD and social post submitted.
+            Every completed activation with tier, Partner status, ranking, language, performance,
+            viewer-hours, and links to every VOD and social post submitted.
           </p>
         </div>
       </section>
@@ -866,8 +875,10 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
             <span className="cs-tag">Ordered creator log</span>
             <h2>All 27 completed activations.</h2>
             <p>
-              Filter by tier, language or launch window, and sort by any performance column. Top
-              % and language rank are TwitchTracker source-time values captured at screening.
+              Filter by tier, language, launch window or Partner status, and sort by any
+              performance column. Top % and language rank are TwitchTracker source-time values
+              captured at screening; Partner status was verified directly against Twitch on 14
+              September 2026.
             </p>
           </div>
         </div>
@@ -886,10 +897,18 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
             <ul className="cs-list">
               <li>Live viewer-hours are each creator&rsquo;s logged Ground Zero Hero hours multiplied by their logged average viewers. An estimate of watch time, not unique reach.</li>
               <li>Individual stream peaks are not summed into a campaign peak, because the streams ran at different times.</li>
-              <li>Combined followers are not deduplicated and do not imply every follower saw the campaign.</li>
+              <li>Combined followers are not deduplicated. Two workbook fields were corrected against Twitch on 14 September 2026: SOGAeon (26,077) and Eyklor (606).</li>
               <li>Side-quest completion is evidence of creator action, not proof of a completed Steam wishlist or a conversion.</li>
               <li>SteamDB and Streams Charts values are external snapshots that include activity from other creators, channels and launch drivers.</li>
             </ul>
+            <div className="gzh-measure">
+              <span className="gzh-measure-title">Measurement note</span>
+              <p>
+                No unique reach, tracked-link clicks, confirmed Steam wishlists, or causal Steam
+                lift is claimed. No dated pre-campaign category-rank snapshot exists either, so no
+                rank movement is claimed.
+              </p>
+            </div>
           </div>
           <div className="gzh-sources">
             <a className="gzh-source" href={WORKBOOK} target="_blank" rel="noopener noreferrer">Creator completion workbook</a>
@@ -899,7 +918,7 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
             <a className="gzh-source" href="/quests/groundzerohero" target="_blank" rel="noopener noreferrer">Mission brief</a>
           </div>
           <div className="gzh-foot">
-            <span>Prepared by StreamQuest for Acclaim · Reporting cut 10 September 2026 · Confidential</span>
+            <span>Prepared by StreamQuest for Acclaim · Reporting cut 10 September 2026, revised 14 September · Confidential</span>
             <form action={signOutAction}>
               <button type="submit" className="gzh-foot-signout">Sign out</button>
             </form>

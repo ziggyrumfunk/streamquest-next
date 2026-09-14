@@ -24,6 +24,7 @@ export default function CreatorTable() {
   const [tierFilter, setTierFilter] = useState("");
   const [langFilter, setLangFilter] = useState("");
   const [launchFilter, setLaunchFilter] = useState("");
+  const [partnerFilter, setPartnerFilter] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>("viewerHours");
 
   const languages = useMemo(
@@ -40,6 +41,8 @@ export default function CreatorTable() {
       if (langFilter && r.language !== langFilter) return false;
       if (launchFilter === "yes" && !r.launchDay) return false;
       if (launchFilter === "no" && r.launchDay) return false;
+      if (partnerFilter === "partner" && !r.partner) return false;
+      if (partnerFilter === "non" && r.partner) return false;
       return true;
     });
     const sorted = [...list];
@@ -50,7 +53,7 @@ export default function CreatorTable() {
     else if (sortMode === "followers") sorted.sort((a, b) => (b.followers ?? 0) - (a.followers ?? 0));
     else sorted.sort((a, b) => a.creator.localeCompare(b.creator));
     return sorted;
-  }, [query, tierFilter, langFilter, launchFilter, sortMode]);
+  }, [query, tierFilter, langFilter, launchFilter, partnerFilter, sortMode]);
 
   return (
     <>
@@ -80,6 +83,11 @@ export default function CreatorTable() {
           <option value="yes">Streamed in launch window</option>
           <option value="no">Streamed after launch window</option>
         </select>
+        <select value={partnerFilter} onChange={(e) => setPartnerFilter(e.target.value)}>
+          <option value="">All creators</option>
+          <option value="partner">Twitch Partners</option>
+          <option value="non">Affiliates and other</option>
+        </select>
         <select value={sortMode} onChange={(e) => setSortMode(e.target.value as SortMode)}>
           <option value="viewerHours">Sort: Viewer-hours</option>
           <option value="creator">Sort: Creator A-Z</option>
@@ -96,6 +104,7 @@ export default function CreatorTable() {
             <tr>
               <th>Creator</th>
               <th>Tier</th>
+              <th>Status</th>
               <th>Followers</th>
               <th>Top %</th>
               <th>Lang rank</th>
@@ -118,6 +127,9 @@ export default function CreatorTable() {
                 </td>
                 <td>
                   <span className={`gzh-pill is-${r.tier.toLowerCase()}`}>{r.tier}</span>
+                </td>
+                <td>
+                  {r.partner ? <span className="gzh-partner-tag">Partner</span> : <span className="gzh-no">—</span>}
                 </td>
                 <td>
                   {r.followers !== null ? r.followers.toLocaleString() : <span className="gzh-no">—</span>}
