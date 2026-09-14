@@ -750,10 +750,6 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
               </div>
             ))}
           </div>
-          <p className="cs-muted" style={{ marginTop: 16, fontSize: "0.9rem" }}>
-            Streams Charts&rsquo; August monthly peak (855 viewers on 11 August) and SteamDB&rsquo;s
-            all-time Twitch peak (3,176 on 6 May) both predate the campaign and are left out.
-          </p>
         </div>
       </section>
 
@@ -820,39 +816,6 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
         </div>
       </section>
 
-      {/* =============== WHAT WE WILL MEASURE NEXT TIME =============== */}
-      <section className="cs-section cs-section-shaded">
-        <div className="cs-shell">
-          <div className="cs-split">
-            <div>
-              <span className="cs-tag">What we&rsquo;ll measure next time</span>
-              <h2>The next activation gets a real start-versus-peak read.</h2>
-              <p>
-                This campaign&rsquo;s delivery layer is verified creator by creator. The layer
-                above it, reach and conversion, was never captured in a comparable way. For the
-                next activation, StreamQuest captures the same set of fields at four points, seven
-                days before launch, at launch hour, 24 hours after and seven days after, so start
-                versus peak becomes a measured curve rather than a snapshot.
-              </p>
-              <ul className="cs-list">
-                <li>Native-post analytics: views, reach and engagement for every social post, taken from the creators&rsquo; own dashboards</li>
-                <li>Tracked-link clicks and Steam wishlist events, with one UTM convention across every creator</li>
-                <li>Pre-launch and launch-hour snapshots of the Twitch category: rank, peak viewers, average viewers, hours watched and concurrent channels</li>
-                <li>Creator-level stream timestamps, so the roster&rsquo;s activity can be laid directly over the public category curve</li>
-              </ul>
-              <p>
-                Together, that turns the next report from a verified delivery footprint into a
-                measured reach-and-conversion story.
-              </p>
-            </div>
-            <div className="cs-split-visual">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${M}/screenshot-5.webp`} alt="Ground Zero Hero gameplay" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* =============== CINEMATIC BAND =============== */}
       <section className="gzh-band" aria-label="Ground Zero Hero key art">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -901,14 +864,6 @@ export default function GroundZeroHeroKpiPage({ searchParams }: Props) {
               <li>Side-quest completion is evidence of creator action, not proof of a completed Steam wishlist or a conversion.</li>
               <li>SteamDB and Streams Charts values are external snapshots that include activity from other creators, channels and launch drivers.</li>
             </ul>
-            <div className="gzh-measure">
-              <span className="gzh-measure-title">Measurement note</span>
-              <p>
-                No unique reach, tracked-link clicks, confirmed Steam wishlists, or causal Steam
-                lift is claimed. No dated pre-campaign category-rank snapshot exists either, so no
-                rank movement is claimed.
-              </p>
-            </div>
           </div>
           <div className="gzh-sources">
             <a className="gzh-source" href={WORKBOOK} target="_blank" rel="noopener noreferrer">Creator completion workbook</a>
