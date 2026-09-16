@@ -21,6 +21,7 @@ export default function robots(): MetadataRoute.Robots {
           "/alpha-nomos-kpi",
           "/replaced-kpi",
           "/ground-zero-hero-kpi",
+          "/gridbeat-kpi",
           "/proposals",
           "/proposals/",
         ],
