@@ -12,6 +12,9 @@
 
    Body copy is 1rem (16px) or larger everywhere. Only UI labels
    (tags, table headers, field labels) go smaller.
+
+   Site rule: no rounded boxes. Cards, panels, tables and inputs are
+   square. Only pills (chips, tabs, tier tags) and buttons are rounded.
    ============================================================ */
 
 /* .rd sets overflow-x: hidden, which computes overflow-y to auto and makes
@@ -152,7 +155,6 @@
   padding: 26px 26px 28px;
   border: 1px solid var(--rd-line);
   border-top: 2px solid var(--rd-lime);
-  border-radius: 4px 4px 14px 14px;
   background: rgba(10, 19, 34, 0.72);
 }
 .sfg-pay-card:last-child { border-top-color: var(--rd-twitch-2); }
@@ -175,7 +177,6 @@
   margin-top: 22px;
   padding: 26px 28px 28px;
   border: 1px solid rgba(178, 240, 72, 0.32);
-  border-radius: 14px;
   background: linear-gradient(160deg, rgba(178, 240, 72, 0.08), rgba(178, 240, 72, 0.015) 60%);
 }
 .sfg-page .sfg-formula-line {
@@ -225,7 +226,6 @@
 .sfg-card {
   padding: 24px 26px 26px;
   border: 1px solid var(--rd-line);
-  border-radius: 14px;
   background: rgba(10, 19, 34, 0.74);
   transition: border-color 0.2s;
 }
@@ -288,7 +288,6 @@
   padding: 26px 26px 28px;
   background: rgba(10, 19, 34, 0.72);
   border: 1px solid var(--rd-line);
-  border-radius: 16px;
   animation: sfg-panel-in 0.3s ease;
 }
 @keyframes sfg-panel-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
@@ -299,7 +298,6 @@
   overflow-x: auto;
   margin-top: 18px;
   border: 1px solid var(--rd-line);
-  border-radius: 12px;
   background: rgba(13, 23, 36, 0.86);
 }
 .sfg-table { width: 100%; border-collapse: collapse; min-width: 620px; }
@@ -331,7 +329,6 @@
   padding: 18px 20px;
   border-left: 3px solid var(--rd-lime);
   background: rgba(178, 240, 72, 0.07);
-  border-radius: 0 12px 12px 0;
   max-width: 560px;
 }
 .sfg-page .sfg-example p { margin: 0 0 6px; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.86); }
@@ -346,7 +343,6 @@
   padding: 18px 20px;
   background: rgba(13, 23, 36, 0.86);
   border: 1px solid var(--rd-line);
-  border-radius: 12px;
 }
 .sfg-page .sfg-panel-box p { margin: 0 0 8px; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
 .sfg-page .sfg-panel-box p:last-child { margin-bottom: 0; }
@@ -360,7 +356,6 @@
 .sfg-acc { display: grid; gap: 10px; margin-top: 30px; }
 .sfg-acc-item {
   border: 1px solid var(--rd-line);
-  border-radius: 12px;
   background: rgba(13, 23, 36, 0.8);
   overflow: hidden;
 }
@@ -390,7 +385,7 @@
   transition: transform 0.2s;
 }
 .sfg-acc-item[open] summary::after { transform: rotate(-135deg); margin-top: -2px; }
-.sfg-acc-item summary:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: -2px; border-radius: 12px; }
+.sfg-acc-item summary:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: -2px; }
 .sfg-acc-body { padding: 0 20px 20px; max-width: 880px; }
 .sfg-page .sfg-acc-body p { margin: 0 0 12px; font-size: 1.02rem; line-height: 1.7; color: rgba(255, 255, 255, 0.8); }
 .sfg-page .sfg-acc-body p:last-child { margin-bottom: 0; }
@@ -413,7 +408,6 @@
   padding: 10px 16px;
   border-left: 3px solid var(--rd-lime);
   background: rgba(13, 23, 36, 0.7);
-  border-radius: 0 8px 8px 0;
   color: #fff;
   font-size: 1.02rem;
   font-weight: 700;
@@ -430,7 +424,6 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   border: 1px solid rgba(178, 240, 72, 0.4);
-  border-radius: 18px;
   overflow: hidden;
   background: rgba(10, 19, 34, 0.86);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
@@ -476,7 +469,6 @@
 .sfg-check-field input {
   height: 46px;
   padding: 0 14px;
-  border-radius: 10px;
   border: 1px solid var(--rd-line);
   background: rgba(5, 11, 21, 0.8);
   color: #fff;
@@ -511,7 +503,6 @@
   gap: 16px;
   margin-top: 16px;
   padding: 14px 16px;
-  border-radius: 12px;
   background: rgba(5, 11, 21, 0.7);
   border: 1px solid rgba(178, 240, 72, 0.4);
 }
@@ -524,7 +515,6 @@
   justify-content: space-between;
   gap: 14px;
   padding: 10px 12px;
-  border-radius: 8px;
   background: rgba(5, 11, 21, 0.55);
   border-left: 3px solid rgba(255, 255, 255, 0.2);
   font-size: 1rem;
