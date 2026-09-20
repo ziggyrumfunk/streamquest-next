@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { useQuestContext } from "./useQuestContext";
+import { useQuestContext } from "@/app/components/shortform/useQuestContext";
 
 /* A creator who came here from a quest brief gets a way back to it.
    Anyone else sees the fallback, or nothing. */

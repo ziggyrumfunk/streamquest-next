@@ -2,6 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 import { platforms, fmtNum, fmtPct } from "@/data/shortform";
+import PlatformIcon from "@/app/components/shortform/PlatformIcon";
 
 /* Per-platform qualification gates, plus the analytics creators are asked
    to send at Day 7 and Day 30. One tab per platform, arrow keys move
@@ -38,13 +39,16 @@ export default function PlatformTabs() {
             className={`sfg-tab${x.key === active ? " is-active" : ""}`}
             onClick={() => setActive(x.key)}
           >
+            <PlatformIcon name={x.key} size={18} />
             {x.label}
           </button>
         ))}
       </div>
 
       <div className="sfg-panel" key={p.key} role="tabpanel" id="sfg-tabpanel" aria-labelledby={`sfg-tab-${p.key}`}>
-        <h3 className="sfg-panel-title">{p.label} creator tiers</h3>
+        <h3 className="sfg-panel-title">
+          <PlatformIcon name={p.key} size={22} /> {p.label} creator tiers
+        </h3>
         <div className="sfg-table-wrap">
           <table className="sfg-table">
             <thead>

@@ -4,11 +4,13 @@ import type { ReactNode } from "react";
 
 import Reveal from "@/app/components/Reveal";
 import PolaroidField from "@/app/components/PolaroidField";
+import TierChecker from "@/app/components/shortform/TierChecker";
+import TierCheckWidget from "@/app/components/shortform/TierCheckWidget";
 import PlatformTabs from "./PlatformTabs";
-import TierChecker from "./TierChecker";
 import QuestBackLink from "./QuestBackLink";
 import "@/app/redesign.css";
 import "@/app/quests-guide/quests-guide.css";
+import "@/app/components/shortform/shortform.css";
 import "./shortform-guide.css";
 
 /* ============================================================
@@ -352,11 +354,14 @@ export default function ShortformGuidePage() {
             </Reveal>
             <Reveal delay={0.3}>
               <div className="qg-hero-ctas">
-                <a href="#tier-check" className="btn btn-primary">Check your tier</a>
+                <a href="#tier-check" className="btn btn-primary sf-btn-big">
+                  Check your tier
+                  <span className="sf-btn-arrow is-down" aria-hidden="true">↓</span>
+                </a>
                 <QuestBackLink
-                  className="btn btn-secondary"
+                  className="btn btn-secondary sf-btn-big"
                   fallback={
-                    <a href={SQ_DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+                    <a href={SQ_DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary sf-btn-big">
                       Join the StreamQuest Discord
                     </a>
                   }
@@ -612,13 +617,13 @@ export default function ShortformGuidePage() {
               <span className="qg-section-tag">Tier checker</span>
               <h2>Where would you land?</h2>
               <p className="sfg-lead">
-                Put in your typical numbers for one platform. You get the tier you would likely
-                qualify for and what the next one would need.
+                Two numbers: your followers and the views a typical video gets. You get your likely
+                tier, and the likes and comments your videos need to hold it.
               </p>
             </div>
           </Reveal>
           <Reveal>
-            <TierChecker />
+            <TierChecker fromUrl />
           </Reveal>
         </div>
       </section>
@@ -751,6 +756,9 @@ export default function ShortformGuidePage() {
           </Reveal>
         </div>
       </section>
+
+      {/* Floating shortcut to the checker. Steps aside while the full-size one is on screen. */}
+      <TierCheckWidget fromUrl hideWhenVisible={[".qg-hero", "#tier-check", "footer"]} />
     </div>
   );
 }

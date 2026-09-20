@@ -4,10 +4,14 @@ import Reveal from "@/app/components/Reveal";
 import { getQuestBySlug } from "@/data/quests";
 import { shortformQuests, platforms, viewsBand, guideHref, eur } from "@/data/shortform";
 import { getQuestSpots, formatSpotsDate } from "@/lib/questSpots";
+import PlatformIcon from "@/app/components/shortform/PlatformIcon";
+import TierCheckWidget from "@/app/components/shortform/TierCheckWidget";
+import OpenTierCheck from "@/app/components/shortform/OpenTierCheck";
 import LudeoHero from "./LudeoHero";
 import ApplyBar from "./ApplyBar";
 import "@/app/redesign.css";
 import "@/app/quests/[slug]/quest.css";
+import "@/app/components/shortform/shortform.css";
 import "./ludeo-quest.css";
 
 /* ============================================================
@@ -54,6 +58,15 @@ const TIER_CHECK = guideHref(SLUG, "tier-check");
 
 const Q = "/firebase-public/Questy%20New%20Folder/Questy%20Regular%20Size%20";
 const questy = (n: number) => `${Q}(${n}).webp`;
+
+/** Three rising bars, for Bronze, Silver and Gold. Sits in the "Check your tier" buttons. */
+const tierIcon = (
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+    <rect x="3" y="13" width="5" height="8" />
+    <rect x="9.5" y="8" width="5" height="13" />
+    <rect x="16" y="3" width="5" height="18" />
+  </svg>
+);
 
 /** "a, b and c" */
 const listOf = (items: string[]) =>
@@ -291,7 +304,10 @@ export default async function LudeoQuestPage() {
               </li>
             </ul>
             <div className="lq-inline-actions">
-              <Link href={TIER_CHECK} className="btn btn-secondary">Check your tier</Link>
+              <OpenTierCheck href={TIER_CHECK} className="btn btn-primary sf-btn-big">
+                {tierIcon}
+                Check your tier
+              </OpenTierCheck>
             </div>
           </Reveal>
         </div>
@@ -314,7 +330,10 @@ export default async function LudeoQuestPage() {
               </p>
               <div className="lq-chips">
                 {platforms.map((p) => (
-                  <span key={p.key} className="lq-chip">{p.label}</span>
+                  <span key={p.key} className="lq-chip">
+                    <PlatformIcon name={p.key} size={18} />
+                    {p.label}
+                  </span>
                 ))}
               </div>
             </Reveal>
@@ -378,8 +397,14 @@ export default async function LudeoQuestPage() {
                   where you would land before you apply.
                 </p>
                 <div className="lq-guide-actions">
-                  <Link href={GUIDE} className="btn btn-primary btn-xl">How it works, in depth</Link>
-                  <Link href={TIER_CHECK} className="btn btn-secondary btn-xl">Check your tier</Link>
+                  <Link href={GUIDE} className="btn btn-primary sf-btn-big">
+                    How it works, in depth
+                    <span className="sf-btn-arrow" aria-hidden="true">→</span>
+                  </Link>
+                  <OpenTierCheck href={TIER_CHECK} className="btn btn-secondary sf-btn-big">
+                    {tierIcon}
+                    Check your tier
+                  </OpenTierCheck>
                 </div>
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -419,6 +444,8 @@ export default async function LudeoQuestPage() {
       </section>
 
       <ApplyBar href={APPLY} note={spotsText} />
+      {/* Opens in place, with Ludeo's payouts. Sits above the apply bar (see --tcw-lift). */}
+      <TierCheckWidget questSlug={SLUG} guideHref={GUIDE} hideWhenVisible={[".lq-hero", "footer"]} />
     </div>
   );
 }

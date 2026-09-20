@@ -30,7 +30,12 @@
   --lq-yellow: #ffba00;
   --lq-yellow-soft: rgba(255, 186, 0, 0.12);
   --lq-yellow-line: rgba(255, 186, 0, 0.42);
+  /* The floating tier checker sits above the sticky apply bar (70px tall).
+     Lifted by default so a browser without :has() never covers the bar. */
+  --tcw-lift: 72px;
 }
+/* No apply bar on screen: the checker drops into the corner. */
+.lq-page:not(:has(.lq-applybar.is-on)) { --tcw-lift: 0px; }
 
 /* Readability floor for this page. The shared brief styles put the checklist
    at 15.5px and the step captions at 12px, and the site body is weight 300,
@@ -269,6 +274,9 @@
 /* ---------- Chips ---------- */
 .lq-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
 .lq-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 9px 15px;
   border-radius: 999px;
   background: var(--lq-yellow-soft);

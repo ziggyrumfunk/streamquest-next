@@ -1,0 +1,426 @@
+/* ============================================================
+   Shared short-form pieces, used by the quest briefs and by
+   /shortform-guide:
+
+   .sf-icon      platform marks (TikTok, Instagram, YouTube Shorts)
+   .sf-tier      Bronze / Silver / Gold tag
+   .sf-btn-big   one size up from .btn-xl, for the two actions a
+                 creator should not miss
+   .tc-*         the tier checker
+   .tcw-*        its floating pill and panel
+
+   Everything is scoped under .rd so it outranks the base rules in
+   redesign.css without !important.
+
+   Site rule: no rounded boxes. The checker, its tiles and the panel
+   are square. Pills, round icon buttons and buttons keep their shape,
+   like the floating Discord pill this widget is modelled on.
+   ============================================================ */
+
+.rd .sf-icon { display: inline-block; flex-shrink: 0; vertical-align: -0.16em; }
+
+.rd .sf-tier {
+  display: inline-flex;
+  padding: 5px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--rd-line);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.rd .sf-tier.is-gold { border-color: rgba(241, 210, 113, 0.55); color: #f1d271; }
+.rd .sf-tier.is-silver { border-color: rgba(201, 214, 230, 0.5); color: #d5dfec; }
+.rd .sf-tier.is-bronze { border-color: rgba(205, 127, 50, 0.6); color: #e0a068; }
+
+/* ---------- Big buttons ---------- */
+.rd .btn.sf-btn-big {
+  min-height: 78px;
+  padding: 24px 44px;
+  gap: 14px;
+  font-size: 16px;
+  letter-spacing: 0.07em;
+}
+.rd .sf-btn-big svg { flex-shrink: 0; }
+.rd .sf-btn-big .sf-btn-arrow { transition: transform 0.2s ease; }
+.rd .sf-btn-big:hover .sf-btn-arrow { transform: translateX(4px); }
+.rd .sf-btn-big:hover .sf-btn-arrow.is-down { transform: translateY(4px); }
+@media (max-width: 640px) {
+  .rd .btn.sf-btn-big { width: 100%; min-height: 68px; padding: 20px 24px; font-size: 15px; white-space: normal; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { .rd .sf-btn-big .sf-btn-arrow { transition: none; } }
+
+/* ============================================================
+   Tier checker
+   ============================================================ */
+
+/* The collage is one small pre-blurred, pre-darkened image
+   (public/media/shortform/checker-bg.webp, made with sharp), not live
+   screenshots under a CSS blur. The gradient on top keeps text contrast
+   safe wherever a bright game frame ends up. */
+.rd .tc,
+.rd .tcw-panel {
+  background-color: #070d19;
+  background-image:
+    linear-gradient(180deg, rgba(5, 9, 19, 0.6) 0%, rgba(5, 9, 19, 0.8) 100%),
+    url("/media/shortform/checker-bg.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+.rd .tc {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  max-width: 1080px;
+  margin: 0 auto;
+  border: 1px solid rgba(178, 240, 72, 0.42);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 60px rgba(178, 240, 72, 0.08);
+  overflow: hidden;
+}
+.rd .tc p,
+.rd .tc li { font-weight: 400; }
+
+.rd .tc-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 34px 32px;
+}
+.rd .tc-result {
+  padding: 30px 32px 28px;
+  background: rgba(6, 11, 22, 0.72);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.rd .tc-row { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+.rd .tc-legend,
+.rd .tc-field > span,
+.rd .tc-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.rd .tc-legend b { margin-left: 6px; font-weight: 800; color: var(--rd-lime); }
+.rd .tc-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; color: var(--rd-lime); }
+.rd .tc-kicker.is-plain { color: rgba(255, 255, 255, 0.66); }
+.rd .tc-kicker .sf-icon { vertical-align: 0; }
+
+/* Platform picker: icons only, the chosen name shows in the legend. */
+.rd .tc-platforms { display: flex; gap: 12px; }
+.rd .tc-platform {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(5, 11, 21, 0.72);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+}
+.rd .tc-platform:hover { border-color: rgba(178, 240, 72, 0.55); color: #fff; transform: translateY(-2px); }
+.rd .tc-platform:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: 3px; }
+.rd .tc-platform.is-active {
+  border-color: var(--rd-lime);
+  background: rgba(178, 240, 72, 0.16);
+  color: var(--rd-lime);
+  box-shadow: 0 0 24px rgba(178, 240, 72, 0.22);
+}
+
+.rd .tc-fields { display: grid; gap: 16px; }
+/* flex-end keeps inputs level when one label wraps. */
+.rd .tc-field { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; }
+.rd .tc-field input {
+  width: 100%;
+  height: 58px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 0;
+  background: rgba(5, 11, 21, 0.86);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.rd .tc-field input:focus { border-color: var(--rd-lime); box-shadow: 0 0 0 3px rgba(178, 240, 72, 0.16); }
+
+.rd .tc-hint,
+.rd .tc-note,
+.rd .tc-disclaimer {
+  margin: 14px 0 0;
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+.rd .tc-hint { margin-top: 18px; color: rgba(255, 255, 255, 0.84); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7); }
+.rd .tc-note.is-first { margin-top: 0; }
+.rd .tc-note b { color: #fff; font-weight: 800; }
+.rd .tc-disclaimer { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.62); }
+.rd .tc-disclaimer a { color: var(--rd-lime); border-bottom: 1px solid rgba(178, 240, 72, 0.4); white-space: nowrap; }
+
+.rd .tc-tier { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.rd .tc-tier .sf-tier { padding: 8px 18px; font-size: 14px; }
+.rd .tc-tier strong { color: #fff; font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; }
+
+.rd .tc-block { margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+/* What the videos still need: the two engagement gates as targets. */
+.rd .tc-needs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.rd .tc-need {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 2px solid var(--rd-lime);
+  background: rgba(5, 11, 21, 0.7);
+}
+.rd .tc-need strong { font-size: clamp(1.8rem, 2.6vw, 2.3rem); font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #fff; }
+.rd .tc-need span { margin-top: 8px; font-size: 1rem; font-weight: 700; line-height: 1.3; color: #fff; }
+.rd .tc-need small { margin-top: 5px; font-size: 0.875rem; line-height: 1.4; color: rgba(255, 255, 255, 0.64); }
+
+.rd .tc-payout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding: 14px 16px;
+  border: 1px solid rgba(178, 240, 72, 0.4);
+  background: rgba(5, 11, 21, 0.7);
+}
+.rd .tc-payout span { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); }
+.rd .tc-payout strong { font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 800; letter-spacing: -0.02em; color: var(--rd-lime); }
+
+.rd .tc-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.rd .tc-checks li {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  background: rgba(5, 11, 21, 0.6);
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.86);
+}
+.rd .tc-checks li.is-pass { border-left-color: var(--rd-lime); }
+.rd .tc-checks li.is-miss { border-left-color: #ff8b6b; }
+.rd .tc-checks em { font-style: normal; font-weight: 800; color: #fff; white-space: nowrap; }
+.rd .tc-checks li.is-miss em { color: #ffb39c; }
+
+@media (max-width: 900px) {
+  .rd .tc { grid-template-columns: 1fr; }
+  .rd .tc-form { padding: 26px 20px; }
+  .rd .tc-result { padding: 24px 20px; border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  .rd .tc-fields { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .rd .tc-fields { grid-template-columns: 1fr; }
+  .rd .tc-needs { grid-template-columns: 1fr; }
+}
+
+/* Compact: inside the floating panel, which already carries the collage. */
+.rd .tc--compact {
+  display: block;
+  max-width: none;
+  border: none;
+  box-shadow: none;
+  background: none;
+  overflow: visible;
+}
+.rd .tc--compact .tc-form { display: block; padding: 18px 20px 16px; }
+.rd .tc--compact .tc-result { padding: 18px 20px 20px; border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+.rd .tc--compact .tc-row { flex-direction: row; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.rd .tc--compact .tc-legend { display: flex; flex-direction: column; gap: 3px; }
+.rd .tc--compact .tc-legend b { margin-left: 0; }
+.rd .tc--compact .tc-platforms { gap: 8px; }
+.rd .tc--compact .tc-platform { width: 48px; height: 48px; }
+.rd .tc--compact .tc-fields { grid-template-columns: 1fr 1fr; gap: 10px; }
+.rd .tc--compact .tc-field input { height: 50px; padding: 0 14px; font-size: 1.15rem; }
+.rd .tc--compact .tc-hint { margin-top: 12px; font-size: 0.95rem; line-height: 1.5; }
+.rd .tc--compact .tc-kicker { margin-bottom: 10px; }
+.rd .tc--compact .tc-tier strong { font-size: 1.05rem; }
+.rd .tc--compact .tc-block { margin-top: 16px; padding-top: 14px; }
+/* Side by side even on a phone: it keeps the bottom sheet short. */
+.rd .tc--compact .tc-needs { grid-template-columns: 1fr 1fr; }
+.rd .tc--compact .tc-need { padding: 12px 12px 11px; }
+.rd .tc--compact .tc-need strong { font-size: 1.7rem; }
+.rd .tc--compact .tc-need span { font-size: 0.95rem; }
+.rd .tc--compact .tc-payout { padding: 11px 14px; }
+.rd .tc--compact .tc-payout strong { font-size: 1.6rem; }
+.rd .tc--compact .tc-note { margin-top: 10px; font-size: 0.95rem; line-height: 1.5; }
+.rd .tc--compact .tc-note.is-first { margin-top: 0; }
+.rd .tc--compact .tc-nextline { margin-top: 14px; }
+.rd .tc--compact .tc-disclaimer { margin-top: 14px; padding-top: 12px; font-size: 0.875rem; line-height: 1.5; }
+
+/* ============================================================
+   Floating widget
+   ============================================================ */
+
+/* --tcw-lift: set by a page that has its own sticky bottom bar, so the pill
+   and panel sit above it. */
+.rd .tcw-pill,
+.rd .tcw-panel {
+  position: fixed;
+  right: 22px;
+  bottom: calc(22px + var(--tcw-lift, 0px) + env(safe-area-inset-bottom, 0px));
+}
+
+.rd .tcw-pill {
+  z-index: 130;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 24px 9px 12px;
+  border: 1.5px solid rgba(178, 240, 72, 0.6);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(10, 20, 36, 0.96), rgba(16, 30, 50, 0.96));
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  isolation: isolate;
+  filter: drop-shadow(0 18px 38px rgba(0, 0, 0, 0.55));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(24px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    visibility 0s linear 0.45s,
+    bottom 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.2s;
+}
+.rd .tcw-pill.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    visibility 0s,
+    bottom 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.2s;
+}
+.rd .tcw-pill::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 50%, rgba(178, 240, 72, 0.5), transparent 62%);
+  filter: blur(14px);
+  z-index: -1;
+  opacity: 0.6;
+  animation: tcw-pulse 2.8s ease-in-out infinite;
+}
+@keyframes tcw-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.85; }
+}
+.rd .tcw-pill:hover { border-color: var(--rd-lime); }
+.rd .tcw-pill.is-on:hover { transform: translateY(-2px); }
+.rd .tcw-pill:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: 4px; }
+.rd .tcw-pill-questy {
+  width: 52px;
+  height: 52px;
+  max-width: none;
+  object-fit: contain;
+  flex-shrink: 0;
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
+}
+.rd .tcw-pill-body { display: inline-flex; flex-direction: column; gap: 2px; text-align: left; line-height: 1.15; }
+.rd .tcw-pill-eyebrow { font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rd-lime); }
+.rd .tcw-pill-title { font-size: 15px; font-weight: 800; letter-spacing: 0.01em; color: #fff; }
+
+.rd .tcw-backdrop { display: none; }
+
+.rd .tcw-panel {
+  z-index: 145;
+  width: min(420px, calc(100vw - 44px));
+  max-height: calc(100dvh - var(--header-h) - 44px - var(--tcw-lift, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+  border: 1px solid rgba(178, 240, 72, 0.5);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(178, 240, 72, 0.12);
+  outline: none;
+  animation: tcw-rise 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes tcw-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+.rd .tcw-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 10px 10px 20px;
+  background: rgba(6, 11, 22, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.rd .tcw-head strong { font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; }
+.rd .tcw-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.rd .tcw-close:hover { background: rgba(178, 240, 72, 0.14); color: var(--rd-lime); }
+.rd .tcw-close:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: -2px; }
+
+/* Phone: the panel becomes a bottom sheet over a dimmed page. */
+@media (max-width: 640px) {
+  .rd .tcw-pill { right: 12px; bottom: calc(12px + var(--tcw-lift, 0px) + env(safe-area-inset-bottom, 0px)); padding: 5px 16px 5px 7px; gap: 8px; }
+  .rd .tcw-pill-questy { width: 38px; height: 38px; }
+  .rd .tcw-pill-eyebrow { display: none; }
+  .rd .tcw-pill-title { font-size: 13.5px; }
+  .rd .tcw-backdrop { display: block; position: fixed; inset: 0; z-index: 144; background: rgba(3, 6, 12, 0.66); animation: tcw-fade 0.3s ease; }
+  .rd .tcw-panel {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    max-height: calc(100dvh - var(--header-h) - 8px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+}
+@keyframes tcw-fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rd .tcw-pill, .rd .tcw-pill.is-on { transition: opacity 0.2s ease, visibility 0s; transform: none; }
+  .rd .tcw-pill::before, .rd .tcw-panel, .rd .tcw-backdrop { animation: none; }
+  .rd .tc-platform { transition: none; }
+  .rd .tc-platform:hover { transform: none; }
+}
