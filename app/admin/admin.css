@@ -196,6 +196,41 @@
   padding: 14px 0;
 }
 
+/* ---- Limited spots: the "X of Y left" counter on a quest brief ---- */
+.admin-section-note {
+  margin: -6px 0 16px;
+  max-width: 720px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+/* Two classes: .admin-quest is declared further down and would otherwise win. */
+.admin-quest.admin-spots { grid-template-columns: 56px 1fr auto; }
+.admin-spots-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0;
+}
+.admin-spots-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.admin-spots-field .admin-label { font-size: 10px; letter-spacing: 0.14em; }
+.admin-spots-field .admin-input {
+  width: 96px;
+  height: 38px;
+  font-size: 16px;
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .admin-quest.admin-spots { grid-template-columns: 56px 1fr; }
+  .admin-spots-form { grid-column: 1 / -1; flex-wrap: wrap; }
+  .admin-spots-field { flex: 1 1 110px; }
+  .admin-spots-field .admin-input { width: 100%; }
+}
+
 .admin-quests {
   list-style: none;
   margin: 0;

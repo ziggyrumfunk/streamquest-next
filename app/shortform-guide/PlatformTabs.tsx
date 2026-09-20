@@ -1,11 +1,11 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent } from "react";
-import { platforms, fmtNum, fmtPct } from "./platformData";
+import { platforms, fmtNum, fmtPct } from "@/data/shortform";
 
-/* Per-platform qualification gates, mission specifics and the analytics
-   creators are asked to send at Day 7 and Day 30. One tab per platform,
-   arrow keys move between them. */
+/* Per-platform qualification gates, plus the analytics creators are asked
+   to send at Day 7 and Day 30. One tab per platform, arrow keys move
+   between them. */
 export default function PlatformTabs() {
   const [active, setActive] = useState(platforms[0].key);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -21,8 +21,8 @@ export default function PlatformTabs() {
   };
 
   return (
-    <div className="lq-platforms">
-      <div className="lq-tabs" role="tablist" aria-label="Platform" onKeyDown={onKeyDown}>
+    <div className="sfg-platforms">
+      <div className="sfg-tabs" role="tablist" aria-label="Platform" onKeyDown={onKeyDown}>
         {platforms.map((x, i) => (
           <button
             key={x.key}
@@ -31,11 +31,11 @@ export default function PlatformTabs() {
             }}
             type="button"
             role="tab"
-            id={`lq-tab-${x.key}`}
+            id={`sfg-tab-${x.key}`}
             aria-selected={x.key === active}
-            aria-controls="lq-tabpanel"
+            aria-controls="sfg-tabpanel"
             tabIndex={x.key === active ? 0 : -1}
-            className={`lq-tab${x.key === active ? " is-active" : ""}`}
+            className={`sfg-tab${x.key === active ? " is-active" : ""}`}
             onClick={() => setActive(x.key)}
           >
             {x.label}
@@ -43,24 +43,24 @@ export default function PlatformTabs() {
         ))}
       </div>
 
-      <div className="lq-panel" key={p.key} role="tabpanel" id="lq-tabpanel" aria-labelledby={`lq-tab-${p.key}`}>
-        <h3 className="lq-panel-title">{p.label} creator tiers</h3>
-        <div className="lq-table-wrap">
-          <table className="lq-table">
+      <div className="sfg-panel" key={p.key} role="tabpanel" id="sfg-tabpanel" aria-labelledby={`sfg-tab-${p.key}`}>
+        <h3 className="sfg-panel-title">{p.label} creator tiers</h3>
+        <div className="sfg-table-wrap">
+          <table className="sfg-table">
             <thead>
               <tr>
                 <th>Tier</th>
                 <th>{p.audienceLabel}</th>
                 <th>{p.viewsLabel}</th>
                 <th>Median like rate</th>
-                <th>Genuine comments</th>
+                <th>Genuine commenters</th>
               </tr>
             </thead>
             <tbody>
               {p.gates.map((g) => (
                 <tr key={g.tier}>
                   <td>
-                    <span className={`lq-tier is-${g.tier.toLowerCase()}`}>{g.tier}</span>
+                    <span className={`sfg-tier is-${g.tier.toLowerCase()}`}>{g.tier}</span>
                   </td>
                   <td>{fmtNum(g.audience)}+</td>
                   <td className="is-num">{g.viewsLabel}</td>
@@ -71,34 +71,34 @@ export default function PlatformTabs() {
             </tbody>
           </table>
         </div>
-        <p className="lq-panel-note">{p.note}</p>
+        <p className="sfg-panel-note">{p.note}</p>
 
         {p.example && (
-          <div className="lq-example">
-            <span className="lq-example-tag">Example</span>
-            <p>If your recent TikToks normally receive:</p>
+          <div className="sfg-example">
+            <span className="sfg-box-tag">Example</span>
+            <p>{p.example.intro}</p>
             <ul>
               {p.example.lines.map((l) => (
                 <li key={l}>{l}</li>
               ))}
             </ul>
-            <p className="lq-example-result">{p.example.result}</p>
+            <p className="sfg-example-result">{p.example.result}</p>
             <p>{p.example.verdict}</p>
           </div>
         )}
 
-        <div className="lq-panel-grid">
-          <div className="lq-panel-box">
-            <span className="lq-box-tag">{p.label} mission</span>
-            <p className="lq-box-format">{p.format}</p>
-            <p>{p.mission}</p>
-            {p.extra && <p className="lq-box-extra">{p.extra}</p>}
-          </div>
-          <div className="lq-panel-box">
-            <span className="lq-box-tag">Analytics to send</span>
-            <p className="lq-box-format">Around Day 7 and Day 30</p>
+        <div className={`sfg-panel-grid${p.extra ? "" : " is-single"}`}>
+          <div className="sfg-panel-box">
+            <span className="sfg-box-tag">Analytics to send</span>
+            <p className="sfg-box-lead">Around Day 7 and Day 30</p>
             <p>{p.analytics}</p>
           </div>
+          {p.extra && (
+            <div className="sfg-panel-box">
+              <span className="sfg-box-tag">Good to know</span>
+              <p>{p.extra}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

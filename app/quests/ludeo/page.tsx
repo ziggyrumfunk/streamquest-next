@@ -1,37 +1,46 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
 import { getQuestBySlug } from "@/data/quests";
+import { shortformQuests, platforms, viewsBand, guideHref, eur } from "@/data/shortform";
+import { getQuestSpots, formatSpotsDate } from "@/lib/questSpots";
 import LudeoHero from "./LudeoHero";
-import PlatformTabs from "./PlatformTabs";
-import TierChecker from "./TierChecker";
 import ApplyBar from "./ApplyBar";
-import { rewards } from "./platformData";
 import "@/app/redesign.css";
 import "@/app/quests/[slug]/quest.css";
 import "./ludeo-quest.css";
 
 /* ============================================================
    /quests/ludeo: StreamQuest x Ludeo paid short-form mission.
-   Hand-built brief (see ludeo-quest.css for why). The matching
-   entry in data/quests.ts carries `customPage: true`, which keeps
-   the generic [slug] template from generating this path, and
-   `unlisted: true` until launch, which keeps it out of listings
-   and marks it noindex here.
+
+   Deliberately short. This page covers what is specific to Ludeo:
+   the product, the must-haves, what each tier pays. Everything that
+   is the same on every short-form quest (how tiers are set, how
+   payouts are calculated, proof, the full rules, the tier checker)
+   lives on /shortform-guide, and this page links there.
+
+   Hand-built brief (see ludeo-quest.css for why). The matching entry
+   in data/quests.ts carries `customPage: true`, which keeps the
+   generic [slug] template from generating this path, `unlisted: true`
+   until launch, which keeps it out of listings and marks it noindex
+   here, and `limitedSpots: true`, which gives it a spots counter in
+   /admin.
    ============================================================ */
 
-const quest = getQuestBySlug("ludeo");
+const SLUG = "ludeo";
+const quest = getQuestBySlug(SLUG);
+const { rewards, priorityMarkets } = shortformQuests[SLUG];
 
 export const metadata: Metadata = {
   title: "Ludeo: paid short-form creator mission",
   description:
-    "Get paid to showcase Ludeo. One original 20 to 45 second vertical video for TikTok, Instagram Reels or YouTube Shorts. Guaranteed base plus performance rewards, up to €250.",
+    "Get paid to showcase Ludeo. One edited vertical video, 45 seconds or longer, posted on TikTok, Instagram Reels and YouTube Shorts. Guaranteed base plus performance rewards, up to €250.",
   ...(quest?.unlisted ? { robots: { index: false, follow: false } } : {}),
   alternates: { canonical: "https://streamquest.io/quests/ludeo" },
   openGraph: {
     title: "Ludeo: paid short-form creator mission | StreamQuest",
     description:
-      "One original short-form video introducing Ludeo. Guaranteed base plus performance rewards, up to €250.",
+      "One edited short-form video introducing Ludeo. Guaranteed base plus performance rewards, up to €250.",
     images: ["/media/ludeo/quest/cover.webp"],
   },
 };
@@ -40,220 +49,59 @@ const APPLY = "https://app.streamquest.io";
 const LUDEO = "https://ludeo.com";
 const LUDEO_DISCORD = "https://discord.com/invite/ludeo-892682814938566707";
 const SQ_DISCORD = "https://discord.gg/NhqfucYDXD";
+const GUIDE = guideHref(SLUG);
+const TIER_CHECK = guideHref(SLUG, "tier-check");
 
 const Q = "/firebase-public/Questy%20New%20Folder/Questy%20Regular%20Size%20";
 const questy = (n: number) => `${Q}(${n}).webp`;
-const eur = (n: number) => (Number.isInteger(n) ? `€${n}` : `€${n.toFixed(2)}`);
 
-const heroMeta = [
-  { label: "Platforms", value: "TikTok · Instagram Reels · YouTube Shorts" },
-  { label: "Format", value: "Original vertical video" },
-  { label: "Selection", value: "Curated, limited spots" },
-  { label: "Campaign window", value: "Dates announced soon" },
-  { label: "Reward", value: "Guaranteed base plus performance rewards" },
-  { label: "Maximum payout", value: "Up to €250", max: true },
-];
+/** "a, b and c" */
+const listOf = (items: string[]) =>
+  items.length < 2 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
 
-const tldr = [
-  { stat: "€25", label: "Bronze", sub: "Guaranteed, up to €100 total" },
-  { stat: "€50", label: "Silver", sub: "Guaranteed, up to €175 total" },
-  { stat: "€100", label: "Gold", sub: "Guaranteed, up to €250 total" },
-  { stat: "20 to 45s", label: "One original video", sub: "Vertical, on TikTok, Reels or Shorts" },
-];
+const base = rewards.map((r) => r.base);
+const topPayout = Math.max(...rewards.map((r) => r.max));
 
 const art = ["game-robocop", "game-payday3", "game-lostcastle", "game-cronos", "game-coh3", "game-redacted"];
 
 const mission = [
-  "Introduce Ludeo.",
-  "Feature 2 to 3 approved Playables.",
-  "Explain that viewers can play the showcased moments themselves.",
-  "Make clear that Playables currently require desktop.",
+  "Be edited. A raw clip or an unedited screen recording does not count.",
+  "Run 45 seconds or longer.",
+  "Explain what Ludeo is, in your own words.",
+  "Show 2 to 3 approved Playables.",
+  "Tell viewers they can play those moments themselves, on desktop.",
   "Invite viewers to join the Ludeo Discord.",
-  "Include the required sponsored-content disclosure.",
-  "Feel like content you would actually publish on your own channel.",
-];
-
-const markets = [
-  "European Union",
-  "United States",
-  "Canada",
-  "United Kingdom",
-  "Norway",
-  "Switzerland",
-  "Iceland",
-  "Australia",
-  "New Zealand",
-];
-
-const rules = [
-  {
-    heading: "Draft approval",
-    body: "Do not publish before your video is approved. Create your video, submit the draft to StreamQuest, complete any required factual or compliance corrections, receive approval, then publish during your assigned campaign window. No approval, no publication.",
-  },
-  {
-    heading: "Keep your post live",
-    body: "The commissioned post must normally remain publicly available for at least 60 days after publication. Do not delete, privatise or materially change it during that period without contacting StreamQuest.",
-  },
-  {
-    heading: "Cross-posting",
-    body: "Your commission includes the specific primary placement listed in your offer. Posting the same video on another platform does not automatically create another base payment or performance reward. Additional placements must be included in your individual commission.",
-  },
-  {
-    heading: "Content rights",
-    body: "You remain the creator and owner of your original content. By accepting this paid commission, you also allow the approved final sponsored video to be reused by Ludeo for marketing purposes, including permitted organic and paid-media use under the applicable StreamQuest campaign terms. This does not give Ludeo your account, raw footage, editable project files or rights to unrelated content.",
-  },
-  {
-    heading: "Honest content",
-    body: "This is sponsored content. It is not a paid positive review. Payment is for producing and publishing the agreed campaign content, not for pretending to have an opinion you do not have.",
-  },
-];
-
-/* The detail most creators only need once they are seriously considering it.
-   Collapsed by default so the brief reads fast; nothing is removed. */
-const finePrint: { q: string; body: ReactNode }[] = [
-  {
-    q: "How do you calculate my metrics?",
-    body: (
-      <>
-        <p>
-          From your 10 most recent comparable original short-form videos, StreamQuest works out
-          four measures.
-        </p>
-        <dl className="lq-defs">
-          <div>
-            <dt>Median views</dt>
-            <dd>The middle view count from the sample. One viral video cannot carry your whole application.</dd>
-          </div>
-          <div>
-            <dt>
-              Median like rate
-              <small>Likes ÷ views × 100</small>
-            </dt>
-            <dd>Worked out for every video. We then look at your typical result across the sample.</dd>
-          </div>
-          <div>
-            <dt>Genuine commenters</dt>
-            <dd>The normal number of distinct genuine viewers leaving comments on your content.</dd>
-          </div>
-          <div>
-            <dt>Followers or subscribers</dt>
-            <dd>An extra credibility and account-history check. It does not replace your performance requirements.</dd>
-          </div>
-        </dl>
-      </>
-    ),
-  },
-  {
-    q: "What counts as a genuine comment?",
-    body: (
-      <>
-        <p>
-          We are looking for evidence of a real audience, not inflated interaction numbers. A
-          genuine comment is normally a top-level comment made by a real viewer reacting to the
-          content. We may exclude:
-        </p>
-        <ul className="lq-notes">
-          <li>Your own comments or replies</li>
-          <li>Obvious bot comments</li>
-          <li>Repeated copy-and-paste comments</li>
-          <li>Spam</li>
-          <li>Engagement-pod activity</li>
-          <li>Giveaway spam unrelated to the content</li>
-          <li>Multiple comments from the same viewer, when assessing unique participation</li>
-          <li>Clearly purchased engagement</li>
-        </ul>
-        <p>
-          We primarily look at the number of distinct genuine commenters, not the largest raw
-          comment number displayed under the video.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "Why several metrics instead of just views?",
-    body: (
-      <>
-        <p>A healthy creator should show more than reach. We want to see:</p>
-        <ul className="lq-signals">
-          <li>People watching</li>
-          <li>People reacting</li>
-          <li>People talking</li>
-          <li>A real account behind those numbers</li>
-        </ul>
-        <p>
-          Follower count alone can be misleading. Views alone can be misleading too. That is why
-          every paid StreamQuest Short-Form tier combines reach and engagement.
-        </p>
-        <p>
-          If one of your metrics is just below a threshold, StreamQuest may manually review your
-          profile, but tier exceptions are not automatic.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "How do performance rewards work?",
-    body: (
-      <>
-        <p>
-          Your guaranteed base protects the work you put into producing an approved video. Verified
-          organic performance then increases your payout until you reach your tier cap. A Gold
-          creator, for example, may receive a €100 guaranteed base, €5 per 1,000 eligible views in
-          priority markets, and a €250 maximum total payout. The exact calculation and rate are
-          confirmed in your offer.
-        </p>
-        <p>
-          An unusually large mismatch between views and genuine audience activity may trigger
-          additional verification before variable rewards are approved. That does not remove your
-          guaranteed base if you completed the mission correctly.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "What counts as organic performance?",
-    body: (
-      <>
-        <p>
-          Purchased views, likes, comments, bots, engagement exchanges, artificial traffic, spam and
-          undisclosed paid boosting do not count toward performance rewards.
-        </p>
-        <p>
-          Do not boost the commissioned post during the 30-day measurement window unless StreamQuest
-          approves it beforehand. We may compare the sponsored video&rsquo;s performance with your
-          normal historical metrics where unusual activity appears.
-        </p>
-      </>
-    ),
-  },
-  {
-    q: "What analytics do I send, and when?",
-    body: (
-      <>
-        <p>
-          The performance window lasts 30 days after publication. We normally request an early
-          performance snapshot around Day 7 and final campaign analytics at Day 30. The exact
-          fields per platform are listed in the platform tabs above.
-        </p>
-        <p>
-          Screenshots or native exports are accepted, and StreamQuest may request a dashboard
-          walkthrough if metrics need additional verification. We will never ask for your password.
-        </p>
-      </>
-    ),
-  },
+  "Carry the required sponsored-content disclosure.",
 ];
 
 const steps = [
-  { title: "Create", sub: "Make your video once your offer is confirmed" },
-  { title: "Submit", sub: "Send the draft to StreamQuest" },
-  { title: "Get approved", sub: "Factual and compliance check" },
-  { title: "Publish", sub: "During your assigned campaign window" },
-  { title: "Send analytics", sub: "Around Day 7 and Day 30" },
+  { title: "Apply", sub: "Tell us which accounts to review" },
+  { title: "Get your offer", sub: "Tier, base, rate and maximum, up front" },
+  { title: "Make it", sub: "Send the draft, wait for approval" },
+  { title: "Post everywhere", sub: "Inside your campaign window" },
+  { title: "Send your numbers", sub: "Around Day 7 and Day 30" },
   { title: "Get paid", sub: "Base plus verified performance" },
 ];
 
-export default function LudeoQuestPage() {
+const groundRules = [
+  { lead: "Approval first.", body: "Send us your draft and wait for a yes before you post anything." },
+  { lead: "Keep it up.", body: "Your posts stay public for at least 60 days." },
+  { lead: "Organic only.", body: "No bought views, bots, engagement swaps or paid boosting." },
+  { lead: "Say what you think.", body: "This is sponsored content, not a paid positive review." },
+  { lead: "You own it.", body: "Ludeo may reuse the approved final video in its marketing. Your account and raw footage stay yours." },
+];
+
+export default async function LudeoQuestPage() {
+  // Null until someone saves a count in /admin; the page then falls back to
+  // plain "limited spots" wording instead of showing a number nobody maintains.
+  const spots = await getQuestSpots(SLUG);
+  const full = spots?.left === 0;
+  /** For the hero tile, which already carries the label "Spots". */
+  const spotsShort = spots ? (full ? `All ${spots.total} filled` : `${spots.left} of ${spots.total} left`) : null;
+  /** For running text. */
+  const spotsText = spots ? (full ? `All ${spots.total} spots filled` : `${spots.left} of ${spots.total} spots left`) : null;
+  const spotsDate = spots ? formatSpotsDate(spots.updatedAt) : "";
+
   return (
     <div className="rd lq-page">
       {/* ============ HERO ============ */}
@@ -279,53 +127,50 @@ export default function LudeoQuestPage() {
           <a href={LUDEO} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
             Explore Ludeo
           </a>
-          <a href={LUDEO_DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
-            Join the Ludeo Discord
-          </a>
         </div>
         <div className="lq-meta">
-          {heroMeta.map((m) => (
-            <div key={m.label} className={`lq-meta-item${m.max ? " is-max" : ""}`}>
-              <span className="lq-meta-label">{m.label}</span>
-              <span className="lq-meta-value">{m.value}</span>
+          <div className="lq-meta-item">
+            <span className="lq-meta-label">Platforms</span>
+            <span className="lq-meta-value">{platforms.map((p) => p.label).join(" · ")}</span>
+          </div>
+          <div className="lq-meta-item">
+            <span className="lq-meta-label">Format</span>
+            <span className="lq-meta-value">Edited vertical video, 45 seconds or longer</span>
+          </div>
+          <div className="lq-meta-item">
+            <span className="lq-meta-label">Campaign window</span>
+            <span className="lq-meta-value">Dates announced soon</span>
+          </div>
+          <div className="lq-meta-item">
+            <span className="lq-meta-label">Guaranteed</span>
+            <span className="lq-meta-value">
+              {eur(Math.min(...base))} to {eur(Math.max(...base))}, by tier
+            </span>
+          </div>
+          <div className="lq-meta-item is-max">
+            <span className="lq-meta-label">Maximum payout</span>
+            <span className="lq-meta-value">Up to {eur(topPayout)}</span>
+          </div>
+          {spots && spotsShort ? (
+            <div className="lq-meta-item is-spots">
+              <span className="lq-meta-label">Spots</span>
+              <span className="lq-meta-value">{spotsShort}</span>
+              <span className="lq-spots-bar" aria-hidden="true">
+                <span style={{ width: `${((spots.total - spots.left) / spots.total) * 100}%` }} />
+              </span>
+              {spotsDate && <span className="lq-spots-date">Updated {spotsDate}</span>}
             </div>
-          ))}
+          ) : (
+            <div className="lq-meta-item">
+              <span className="lq-meta-label">Selection</span>
+              <span className="lq-meta-value">Curated, limited spots</span>
+            </div>
+          )}
         </div>
       </LudeoHero>
 
-      {/* ============ TL;DR ============ */}
-      <section className="q-section">
-        <div className="rd-shell">
-          <Reveal>
-            <div className="q-section-head q-section-head-center">
-              <span className="q-tag">At a glance</span>
-              <h2>TL;DR</h2>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="q-tldr-grid">
-              {tldr.map((t) => (
-                <div key={t.label} className="q-tldr-card">
-                  <div className="q-tldr-stat">{t.stat}</div>
-                  <div className="q-tldr-label">{t.label}</div>
-                  <div className="q-tldr-sub">{t.sub}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="q-tldr-foot">
-              <p>
-                The guaranteed base is yours once your approved video is live and your proof is in.
-                Performance can only add to it, never take it away.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ============ WHAT IS LUDEO ============ */}
-      <section className="q-section q-section-strip">
+      <section className="q-section">
         <div className="rd-shell">
           <Reveal>
             <div className="q-section-head">
@@ -347,8 +192,7 @@ export default function LudeoQuestPage() {
               <span className="lq-flow-step">Play it yourself</span>
             </div>
             <p>
-              For this campaign, your job is to make that concept easy to understand, interesting to
-              watch and worth trying.
+              Your job is to make that idea easy to understand, fun to watch and worth trying.
             </p>
           </Reveal>
           <Reveal>
@@ -368,21 +212,21 @@ export default function LudeoQuestPage() {
       </section>
 
       {/* ============ YOUR MISSION ============ */}
-      <section className="q-section">
+      <section className="q-section q-section-strip">
         <div className="rd-shell">
           <div className="lq-split">
             <Reveal>
               <span className="q-tag">Your mission</span>
-              <h2>One original 20 to 45 second vertical video.</h2>
-              <p>Create one original vertical video introducing Ludeo. Your video should:</p>
+              <h2>One edited video, 45 seconds or longer.</h2>
+              <p>Make one original vertical video that introduces Ludeo. It needs to:</p>
               <ul className="q-list" style={{ marginTop: 22 }}>
                 {mission.map((m) => (
                   <li key={m}>{m}</li>
                 ))}
               </ul>
               <p style={{ marginTop: 24 }}>
-                You do not need to follow a word-for-word script. Use your own hook, editing, humour,
-                voice-over, facecam, captions and style.
+                Everything else is yours: the hook, the humour, voice-over, facecam, captions, pacing.
+                There is no script to follow.
               </p>
             </Reveal>
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -391,196 +235,105 @@ export default function LudeoQuestPage() {
         </div>
       </section>
 
-      {/* ============ CREATOR REWARDS ============ */}
-      <section className="q-section q-section-strip">
+      {/* ============ WHAT IT PAYS ============ */}
+      <section className="q-section" id="rewards">
         <div className="rd-shell">
           <div className="lq-split is-reverse">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="lq-questy is-late" src={questy(7)} alt="" loading="lazy" />
             <Reveal>
-              <span className="q-tag">Creator rewards</span>
-              <h2>Guaranteed payment plus performance upside.</h2>
+              <span className="q-tag">What it pays</span>
+              <h2>Three tiers. A guaranteed base, plus what your video earns.</h2>
               <p>
-                We do not determine your tier from followers or one viral video. StreamQuest reviews
-                your 10 most recent comparable original short-form videos and looks at four things
-                together.
-              </p>
-              <div className="lq-chips">
-                <span className="lq-chip is-key">Typical views</span>
-                <span className="lq-chip is-key">Account size</span>
-                <span className="lq-chip is-key">Like rate</span>
-                <span className="lq-chip is-key">Genuine comments</span>
-              </div>
-            </Reveal>
-          </div>
-          <Reveal>
-            <div className="lq-table-wrap">
-              <table className="lq-table">
-                <thead>
-                  <tr>
-                    <th>Tier</th>
-                    <th>Guaranteed base</th>
-                    <th>Priority-market CPM</th>
-                    <th>Other-market CPM</th>
-                    <th>Maximum total payout</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rewards.map((r) => (
-                    <tr key={r.tier}>
-                      <td><span className={`lq-tier is-${r.tier.toLowerCase()}`}>{r.tier}</span></td>
-                      <td className="is-base">{eur(r.base)}</td>
-                      <td className="is-num">
-                        {eur(r.cpmPriority)} <small>per 1,000 eligible views</small>
-                      </td>
-                      <td>
-                        {eur(r.cpmOther)} <small>per 1,000 eligible views</small>
-                      </td>
-                      <td className="is-max">{eur(r.max)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <ul className="lq-notes">
-              <li>Your maximum payout includes your guaranteed base.</li>
-              <li>The guaranteed base is earned after your approved video has been published correctly and the required proof has been submitted.</li>
-              <li>Poor campaign performance does not remove your guaranteed base.</li>
-            </ul>
-          </Reveal>
-          <Reveal>
-            <div className="lq-markets">
-              <h3>Priority markets</h3>
-              <p>The higher CPM applies to qualifying audiences primarily located in:</p>
-              <div className="lq-chips">
-                {markets.map((m) => (
-                  <span key={m} className="lq-chip">{m}</span>
-                ))}
-              </div>
-              <p>
-                Performance from other markets may use the lower CPM, and for mixed audiences
-                StreamQuest may calculate a blended rate based on verified audience geography. Your
-                exact tier, base, CPM, platform and maximum payout are confirmed before you accept
-                the mission.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ HOW WE DETERMINE YOUR TIER ============ */}
-      <section className="q-section">
-        <div className="rd-shell">
-          <div className="lq-split">
-            <Reveal>
-              <span className="q-tag">How we determine your tier</span>
-              <h2>Views alone are not enough.</h2>
-              <p>
-                A creator with 50,000 views and almost no likes or real conversation may not be more
-                valuable than a creator with 8,000 views and an active gaming community. Your tier
-                therefore requires you to pass all of the normal qualification gates for your
-                platform, calculated from your recent comparable original short-form content.
-              </p>
-              <p>
-                Sponsored posts, obviously boosted content, paid traffic and clear viral outliers may
-                be excluded when assessing your normal performance.
+                Your tier comes from the numbers your videos usually get, not from one viral hit.
+                Every tier has a guaranteed payment, and every 1,000 eligible views adds to it until
+                you reach the maximum.
               </p>
             </Reveal>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="lq-questy" src={questy(3)} alt="" loading="lazy" />
           </div>
 
           <Reveal>
-            <div style={{ marginTop: 52 }}>
-              <span className="q-tag">Choose your platform</span>
-              <h2>Three platforms, each judged on its own terms.</h2>
-              <p>
-                Your commission will specify one primary platform. You can apply with multiple
-                accounts, and StreamQuest evaluates each submitted platform separately, so you could
-                qualify as Silver on TikTok, Bronze on Instagram and Gold on YouTube Shorts. Your paid
-                offer states which account and platform the commission applies to.
-              </p>
-            </div>
-            <PlatformTabs />
-          </Reveal>
-
-          <Reveal>
-            <div style={{ marginTop: 56 }}>
-              <span className="q-tag">Check your tier</span>
-              <h2>Where would you land, and what could you earn?</h2>
-              <p>
-                Put in your typical numbers for one platform. You get the tier you would likely
-                qualify for, what the next tier would need, and a payout estimate.
-              </p>
-            </div>
-            <TierChecker />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ THE RULES ============ */}
-      <section className="q-section q-section-strip">
-        <div className="rd-shell">
-          <div className="lq-split">
-            <Reveal>
-              <span className="q-tag">The rules</span>
-              <h2>Five things to know before you accept.</h2>
-              <p>
-                Short version: get approval before you post, keep the video up, and say what you
-                actually think.
-              </p>
-            </Reveal>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="lq-questy is-late" src={questy(9)} alt="" loading="lazy" />
-          </div>
-          <Reveal>
-            <div className="q-rules" style={{ marginTop: 34 }}>
-              {rules.map((r) => (
-                <div key={r.heading} className="q-rules-block">
-                  <h3>{r.heading}</h3>
-                  <p>{r.body}</p>
+            <div className="lq-tiers">
+              {rewards.map((r) => (
+                <div key={r.tier} className={`lq-tier-card is-${r.tier.toLowerCase()}`}>
+                  <span className={`lq-tier is-${r.tier.toLowerCase()}`}>{r.tier}</span>
+                  <div className="lq-tier-base">{eur(r.base)}</div>
+                  <div className="lq-tier-base-label">guaranteed</div>
+                  <ul className="lq-tier-lines">
+                    <li>
+                      <strong>+ {eur(r.cpmPriority)}</strong> per 1,000 eligible views
+                    </li>
+                    <li>
+                      <strong>Up to {eur(r.max)}</strong> in total
+                    </li>
+                  </ul>
+                  <p className="lq-tier-fit">
+                    Your videos usually get <strong>{viewsBand[r.tier]}</strong> views
+                  </p>
                 </div>
               ))}
             </div>
           </Reveal>
+
+          <Reveal>
+            <ul className="lq-notes">
+              <li>
+                The guaranteed base is yours once your approved video is live and your proof is in.
+                Performance can only add to it, never take it away.
+              </li>
+              <li>
+                Rates shown are for views from priority markets: {listOf(priorityMarkets)}. Views from
+                other countries count at {listOf(rewards.map((r) => eur(r.cpmOther)))} per 1,000.
+              </li>
+              <li>
+                Views are one of four checks. Followers, like rate and genuine comments count too, and
+                the thresholds differ per platform.
+              </li>
+            </ul>
+            <div className="lq-inline-actions">
+              <Link href={TIER_CHECK} className="btn btn-secondary">Check your tier</Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ============ THE FINE PRINT ============ */}
+      {/* ============ POST EVERYWHERE ============ */}
+      <section className="q-section q-section-strip">
+        <div className="rd-shell">
+          <div className="lq-split">
+            <Reveal>
+              <span className="q-tag">Post it everywhere</span>
+              <h2>One video. Every platform. Paid on your best.</h2>
+              <p>
+                You do not have to pick a platform. Put your video on TikTok, Instagram Reels and
+                YouTube Shorts, or whichever of them you use, and send us the numbers for every post.
+              </p>
+              <p style={{ marginTop: 16 }}>
+                You are paid once, on the post that does best. So every extra platform is simply
+                another shot at your maximum.
+              </p>
+              <div className="lq-chips">
+                {platforms.map((p) => (
+                  <span key={p.key} className="lq-chip">{p.label}</span>
+                ))}
+              </div>
+            </Reveal>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="lq-questy" src={questy(6)} alt="" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      {/* ============ HOW IT WORKS ============ */}
       <section className="q-section">
         <div className="rd-shell">
           <Reveal>
-            <div className="q-section-head">
-              <span className="q-tag">The fine print</span>
-              <h2>How the numbers behind your tier and payout work.</h2>
-              <p>Open what you need. Everything here is confirmed again in your individual offer.</p>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="lq-acc">
-              {finePrint.map((f, i) => (
-                <details key={f.q} className="lq-acc-item" open={i === 0}>
-                  <summary>{f.q}</summary>
-                  <div className="lq-acc-body">{f.body}</div>
-                </details>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ============ HOW TO APPLY ============ */}
-      <section className="q-section q-section-strip">
-        <div className="rd-shell">
-          <Reveal>
             <div className="q-section-head q-section-head-center">
-              <span className="q-tag">How to apply</span>
+              <span className="q-tag">How it works</span>
               <h2>Apply, get your offer, then create.</h2>
               <p>
-                Apply through StreamQuest and submit the short-form accounts you want reviewed. We may
-                request native analytics from your recent content. StreamQuest then confirms your
-                platform, tier, guaranteed base, CPM, maximum payout and deliverables before you
-                create anything.
+                We confirm your tier and what it pays before you make anything. Nothing goes live
+                without approval.
               </p>
             </div>
           </Reveal>
@@ -597,6 +350,45 @@ export default function LudeoQuestPage() {
         </div>
       </section>
 
+      {/* ============ GROUND RULES + GUIDE ============ */}
+      <section className="q-section q-section-strip">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="q-section-head">
+              <span className="q-tag">Ground rules</span>
+              <h2>Five things, in one line each.</h2>
+            </div>
+            <ul className="lq-rules">
+              {groundRules.map((r) => (
+                <li key={r.lead}>
+                  <strong>{r.lead}</strong> {r.body}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal>
+            <div className="lq-guide">
+              <div className="lq-guide-text">
+                <span className="q-tag">Want the detail?</span>
+                <h2>Read the short-form quest guide.</h2>
+                <p>
+                  How tiers are set on each platform, how your payout is calculated, what we verify
+                  and the full version of every rule. It also has a tier checker, so you can see
+                  where you would land before you apply.
+                </p>
+                <div className="lq-guide-actions">
+                  <Link href={GUIDE} className="btn btn-primary btn-xl">How it works, in depth</Link>
+                  <Link href={TIER_CHECK} className="btn btn-secondary btn-xl">Check your tier</Link>
+                </div>
+              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="lq-questy lq-guide-questy is-late" src={questy(3)} alt="" loading="lazy" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ============ READY ============ */}
       <section className="q-final lq-final-wrap">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -605,22 +397,14 @@ export default function LudeoQuestPage() {
           <Reveal>
             <span className="q-tag">Ready?</span>
             <h2>
-              Pick your platform. <span className="grad">Make the video.</span>
+              Make the video. <span className="grad">Post it everywhere.</span>
             </h2>
-            <div className="lq-ready">
-              {rewards.map((r) => (
-                <div key={r.tier} className="lq-ready-row">
-                  <span className={`lq-tier is-${r.tier.toLowerCase()}`}>{r.tier}</span>
-                  <span className="lq-ready-base">{eur(r.base)} guaranteed</span>
-                  <span className="lq-ready-max">up to {eur(r.max)}</span>
-                </div>
-              ))}
-            </div>
+            <p className="lq-final-sum">
+              {eur(Math.min(...base))} to {eur(Math.max(...base))} guaranteed, up to {eur(topPayout)} with
+              performance.{spotsText ? ` ${spotsText}.` : ""}
+            </p>
             <div className="q-final-actions">
               <a href={APPLY} className="btn btn-primary btn-xl">Apply for Ludeo</a>
-              <a href={LUDEO} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
-                Explore Ludeo
-              </a>
               <a href={LUDEO_DISCORD} target="_blank" rel="noopener noreferrer" className="btn btn-secondary btn-xl">
                 Join the Ludeo Discord
               </a>
@@ -634,7 +418,7 @@ export default function LudeoQuestPage() {
         </div>
       </section>
 
-      <ApplyBar href={APPLY} />
+      <ApplyBar href={APPLY} note={spotsText} />
     </div>
   );
 }

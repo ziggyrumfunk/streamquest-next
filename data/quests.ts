@@ -163,6 +163,13 @@ export type Quest = {
    * /quests/<slug> as usual.
    */
   customPage?: boolean;
+  /**
+   * The quest has a limited number of places. Gives it a row under "Limited
+   * spots" in /admin, where the team keeps the "X of Y left" counter up to
+   * date (see lib/questSpots.ts). The brief shows the counter only while a
+   * value is saved there.
+   */
+  limitedSpots?: boolean;
   duration?: string;                    // "2 weeks"
 };
 
@@ -175,6 +182,7 @@ const allQuests: Quest[] = [
     slug: "ludeo",
     unlisted: true,
     customPage: true,
+    limitedSpots: true,
     title: "Ludeo",
     status: "active",
     studio: "Ludeo",
@@ -183,7 +191,7 @@ const allQuests: Quest[] = [
     cover: "/media/ludeo/quest/cover.webp",
     portrait: "/media/ludeo/quest/portrait.webp",
     description:
-      "Paid short-form creator mission for Ludeo. Make one original 20 to 45 second vertical video for TikTok, Instagram Reels or YouTube Shorts that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Guaranteed base plus performance rewards, up to EUR 250.",
+      "Paid short-form creator mission for Ludeo. Make one edited vertical video, 45 seconds or longer, that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Post it on TikTok, Instagram Reels and YouTube Shorts and get paid on your best-performing post. Guaranteed base plus performance rewards, up to EUR 250.",
     about:
       "Ludeo turns memorable gameplay moments into experiences people can play directly from their desktop browser. Instead of only watching a clip, someone opens the Ludeo link and jumps into that playable moment themselves.",
   },

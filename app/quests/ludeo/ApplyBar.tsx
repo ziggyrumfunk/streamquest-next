@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 
-/* Slim apply bar for a long brief. Slides in once the hero has scrolled
+/* Slim apply bar for the brief. Slides in once the hero has scrolled
    out of view, and steps aside again when the closing call to action or
    the site footer is on screen, so the same button is never shown twice
-   and the footer is never covered. */
-export default function ApplyBar({ href }: { href: string }) {
+   and the footer is never covered. `note` carries the live spots count
+   when one is set in /admin. */
+export default function ApplyBar({ href, note }: { href: string; note?: string | null }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -32,7 +33,10 @@ export default function ApplyBar({ href }: { href: string }) {
       <div className="lq-applybar-inner">
         <div className="lq-applybar-text">
           <strong>Ludeo short-form mission</strong>
-          <span>€25 to €100 guaranteed, up to €250 with performance</span>
+          <span>
+            €25 to €100 guaranteed, up to €250 with performance
+            {note ? ` · ${note}` : ""}
+          </span>
         </div>
         <a href={href} className="btn btn-primary" tabIndex={show ? 0 : -1}>
           Apply for the quest

@@ -10,6 +10,7 @@ import {
   isAdmin,
 } from "@/lib/auth";
 import { setQuestStatus } from "@/lib/questStatus";
+import { setQuestSpots, isValidSpots } from "@/lib/questSpots";
 import { getQuestBySlug, type QuestStatus } from "@/data/quests";
 
 /** Sign-in form action. */
@@ -52,4 +53,44 @@ export async function toggleQuestStatusAction(formData: FormData) {
   revalidatePath(`/quests/${slug}`);
 
   redirect("/admin?ok=1");
+}
+
+/**
+ * Save or remove a quest's "X of Y spots left" counter. The form has two
+ * submit buttons; the one that was pressed arrives as `intent`.
+ */
+export async function setQuestSpotsAction(formData: FormData) {
+  if (!isAdmin()) redirect("/admin/login");
+
+  const slug = String(formData.get("slug") ?? "");
+  const intent = String(formData.get("intent") ?? "save");
+  if (!getQuestBySlug(slug)?.limitedSpots) {
+    redirect("/admin?err=missing");
+  }
+
+  let ok: boolean;
+  if (intent === "clear") {
+    ok = await setQuestSpots(slug, null);
+  } else {
+    // Digits only. A blank "left" must never be read as 0, or a half-filled
+    // form would tell creators every spot is gone.
+    const digits = (name: string) => {
+      const raw = String(formData.get(name) ?? "").trim();
+      return /^\d{1,5}$/.test(raw) ? Number(raw) : NaN;
+    };
+    const total = digits("total");
+    const left = digits("left");
+    if (!isValidSpots(total, left)) {
+      redirect("/admin?err=spots");
+    }
+    ok = await setQuestSpots(slug, { total, left });
+  }
+  if (!ok) {
+    redirect("/admin?err=kv");
+  }
+
+  revalidatePath("/admin");
+  revalidatePath(`/quests/${slug}`);
+
+  redirect(intent === "clear" ? "/admin?ok=spots-hidden" : "/admin?ok=spots");
 }

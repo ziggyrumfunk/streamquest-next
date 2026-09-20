@@ -3,8 +3,10 @@ import Link from "next/link";
 
 import { isAdmin } from "@/lib/auth";
 import { getQuestsWithLiveStatus } from "@/lib/questStatus";
+import { getSpotsMap, formatSpotsDate, isValidSpots, type SpotsMap } from "@/lib/questSpots";
 import { getPosts } from "@/lib/news";
-import { signOutAction, toggleQuestStatusAction } from "./actions";
+import { routableQuests, type Quest } from "@/data/quests";
+import { signOutAction, toggleQuestStatusAction, setQuestSpotsAction } from "./actions";
 import { deletePostAction } from "./news/actions";
 import "./admin.css";
 
@@ -22,6 +24,8 @@ function formatDate(iso: string): string {
 
 const OK_MESSAGES: Record<string, string> = {
   "1": "Quest status updated.",
+  spots: "Spots updated. The quest brief shows the new count within a minute.",
+  "spots-hidden": "Counter hidden. The quest brief is back to plain \"limited spots\" wording.",
   created: "News post created.",
   updated: "News post updated.",
   deleted: "News post deleted.",
@@ -30,6 +34,7 @@ const OK_MESSAGES: Record<string, string> = {
 const ERR_MESSAGES: Record<string, string> = {
   invalid: "Invalid request.",
   missing: "Unknown quest slug.",
+  spots: "Spots not saved. Fill in both fields with whole numbers, and keep \"spots left\" between 0 and the total.",
   kv: "Could not save (KV unreachable). Check Vercel KV is linked to this project.",
   blob: "Image upload failed. Make sure a Vercel Blob store is connected to this project.",
 };
@@ -37,12 +42,15 @@ const ERR_MESSAGES: Record<string, string> = {
 export default async function AdminDashboard({ searchParams }: Props) {
   if (!isAdmin()) redirect("/admin/login");
 
-  const [quests, posts] = await Promise.all([
+  const [quests, posts, spotsMap] = await Promise.all([
     getQuestsWithLiveStatus(),
     getPosts(),
+    getSpotsMap(),
   ]);
   const active = quests.filter((q) => q.status === "active");
   const completed = quests.filter((q) => q.status === "completed");
+  // routableQuests, not the listed set: unlisted briefs need a counter too.
+  const limited = routableQuests.filter((q) => q.limitedSpots);
 
   return (
     <main className="admin-page">
@@ -87,6 +95,20 @@ export default async function AdminDashboard({ searchParams }: Props) {
         <QuestList quests={completed} />
       </section>
 
+      {limited.length > 0 && (
+        <section className="admin-section">
+          <h2 className="admin-section-title">
+            Limited spots <span className="admin-count">{limited.length}</span>
+          </h2>
+          <p className="admin-section-note">
+            Shows &quot;X of Y spots left&quot; on the quest brief, with the date you last saved. Update it
+            whenever a creator is accepted. If nobody is keeping it current, hide it: an out-of-date
+            count is worse than none.
+          </p>
+          <SpotsList quests={limited} spotsMap={spotsMap} />
+        </section>
+      )}
+
       <section className="admin-section">
         <h2 className="admin-section-title admin-section-title-row">
           <span>
@@ -127,6 +149,75 @@ export default async function AdminDashboard({ searchParams }: Props) {
         )}
       </section>
     </main>
+  );
+}
+
+function SpotsList({ quests, spotsMap }: { quests: Quest[]; spotsMap: SpotsMap }) {
+  return (
+    <ul className="admin-quests">
+      {quests.map((q) => {
+        const saved = spotsMap[q.slug];
+        const s = saved && isValidSpots(saved.total, saved.left) ? saved : null;
+        return (
+          <li key={q.slug} className="admin-quest admin-spots">
+            <div className="admin-quest-thumb">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={q.portrait || q.cover} alt={q.title} loading="lazy" />
+            </div>
+            <div className="admin-quest-meta">
+              <Link href={`/quests/${q.slug}`} className="admin-quest-title">{q.title}</Link>
+              <p className="admin-quest-studio">
+                {s
+                  ? `Showing ${s.left} of ${s.total} left, saved ${formatSpotsDate(s.updatedAt)}`
+                  : "Counter hidden. The brief says \"limited spots\"."}
+              </p>
+              {q.unlisted && <p className="admin-quest-cat">Unlisted</p>}
+            </div>
+            <form action={setQuestSpotsAction} className="admin-spots-form">
+              <input type="hidden" name="slug" value={q.slug} />
+              <label className="admin-spots-field">
+                <span className="admin-label">Spots left</span>
+                <input
+                  className="admin-input"
+                  name="left"
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  step={1}
+                  defaultValue={s?.left ?? ""}
+                />
+              </label>
+              <label className="admin-spots-field">
+                <span className="admin-label">Total spots</span>
+                <input
+                  className="admin-input"
+                  name="total"
+                  type="number"
+                  inputMode="numeric"
+                  min={1}
+                  step={1}
+                  defaultValue={s?.total ?? ""}
+                />
+              </label>
+              <button type="submit" name="intent" value="save" className="admin-btn admin-btn-toggle">
+                Save
+              </button>
+              {s && (
+                <button
+                  type="submit"
+                  name="intent"
+                  value="clear"
+                  formNoValidate
+                  className="admin-btn admin-btn-ghost admin-btn-toggle"
+                >
+                  Hide counter
+                </button>
+              )}
+            </form>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
