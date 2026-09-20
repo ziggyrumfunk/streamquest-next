@@ -180,7 +180,6 @@ export type Quest = {
 const allQuests: Quest[] = [
   {
     slug: "ludeo",
-    unlisted: true,
     customPage: true,
     limitedSpots: true,
     title: "Ludeo",
@@ -188,7 +187,12 @@ const allQuests: Quest[] = [
     studio: "Ludeo",
     tagline: "Paid short-form mission. Show the moment, explain Ludeo, invite players in.",
     category: "Short-form",
-    cover: "/media/ludeo/quest/cover.webp",
+    // Plain collage plus a separate logo layer, like Ground Zero Hero: the
+    // homepage card darkens the cover and centres `logo` on it. A cover with
+    // the logo baked in would print the name twice there. (The baked version,
+    // cover.webp, is still the page's social share image.)
+    cover: "/media/ludeo/quest/cover-plain.webp",
+    logo: "/media/ludeo/ludeo-logo-color.svg",
     portrait: "/media/ludeo/quest/portrait.webp",
     description:
       "Paid short-form creator mission for Ludeo. Make one edited vertical video, 45 seconds or longer, that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Post it on TikTok, Instagram Reels and YouTube Shorts and get paid on your best-performing post. Guaranteed base plus performance rewards, up to EUR 250.",

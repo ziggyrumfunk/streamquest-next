@@ -25,10 +25,11 @@ import "./ludeo-quest.css";
 
    Hand-built brief (see ludeo-quest.css for why). The matching entry
    in data/quests.ts carries `customPage: true`, which keeps the
-   generic [slug] template from generating this path, `unlisted: true`
-   until launch, which keeps it out of listings and marks it noindex
-   here, and `limitedSpots: true`, which gives it a spots counter in
-   /admin.
+   generic [slug] template from generating this path, and
+   `limitedSpots: true`, which gives it a spots counter in /admin.
+   Listed since 20 Sep 2026. To pull it from the listings again without
+   taking the page down, put `unlisted: true` back on the entry: that
+   also marks this page noindex (see the metadata below).
    ============================================================ */
 
 const SLUG = "ludeo";

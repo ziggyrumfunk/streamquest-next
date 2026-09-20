@@ -260,7 +260,7 @@
 .rd .tc--compact .tc-need { padding: 12px 12px 11px; }
 .rd .tc--compact .tc-need strong { font-size: 1.7rem; }
 .rd .tc--compact .tc-need span { font-size: 0.95rem; }
-.rd .tc--compact .tc-payout { padding: 11px 14px; }
+.rd .tc--compact .tc-payout { margin-top: 12px; padding: 11px 14px; }
 .rd .tc--compact .tc-payout strong { font-size: 1.6rem; }
 .rd .tc--compact .tc-note { margin-top: 10px; font-size: 0.95rem; line-height: 1.5; }
 .rd .tc--compact .tc-note.is-first { margin-top: 0; }
