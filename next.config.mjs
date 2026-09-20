@@ -38,6 +38,12 @@ const nextConfig = {
       { source: "/GroundZeroHero",   destination: "/quests/groundzerohero", permanent: true },
       { source: "/ground-zero-hero", destination: "/quests/groundzerohero", permanent: true },
 
+      // Friendly short URL for the Ludeo short-form quest brief. Temporary
+      // redirects while the brief is unlisted; make them permanent at launch.
+      { source: "/ludeo", destination: "/quests/ludeo", permanent: false },
+      { source: "/LUDEO", destination: "/quests/ludeo", permanent: false },
+      { source: "/Ludeo", destination: "/quests/ludeo", permanent: false },
+
       // Friendly short URL for the RIFTFALL quest brief.
       { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },
       { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: true },

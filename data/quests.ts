@@ -157,6 +157,12 @@ export type Quest = {
    * noindex. For briefs shared by direct link only.
    */
   unlisted?: boolean;
+  /**
+   * The brief has its own hand-built route at app/quests/<slug>/page.tsx, so
+   * the generic [slug] template must not generate it. Listings still link to
+   * /quests/<slug> as usual.
+   */
+  customPage?: boolean;
   duration?: string;                    // "2 weeks"
 };
 
@@ -165,6 +171,22 @@ export type Quest = {
    ============================================================ */
 
 const allQuests: Quest[] = [
+  {
+    slug: "ludeo",
+    unlisted: true,
+    customPage: true,
+    title: "Ludeo",
+    status: "active",
+    studio: "Ludeo",
+    tagline: "Paid short-form mission. Show the moment, explain Ludeo, invite players in.",
+    category: "Short-form",
+    cover: "/media/ludeo/quest/cover.webp",
+    portrait: "/media/ludeo/quest/portrait.webp",
+    description:
+      "Paid short-form creator mission for Ludeo. Make one original 20 to 45 second vertical video for TikTok, Instagram Reels or YouTube Shorts that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Guaranteed base plus performance rewards, up to EUR 250.",
+    about:
+      "Ludeo turns memorable gameplay moments into experiences people can play directly from their desktop browser. Instead of only watching a clip, someone opens the Ludeo link and jumps into that playable moment themselves.",
+  },
   {
     slug: "riftfall",
     title: "RIFTFALL",
@@ -1916,4 +1938,5 @@ export const completedQuests = quests.filter((q) => q.status === "completed");
 export const getQuestBySlug = (slug: string): Quest | undefined =>
   routableQuests.find((q) => q.slug === slug);
 
-export const allQuestSlugs = (): string[] => routableQuests.map((q) => q.slug);
+export const allQuestSlugs = (): string[] =>
+  routableQuests.filter((q) => !q.customPage).map((q) => q.slug);

@@ -8,15 +8,15 @@
    ============================================================ */
 
 .ludeo-wrap {
-  --ld-yellow: #ffd23f;
-  --ld-yellow-soft: rgba(255, 210, 63, 0.14);
-  --ld-yellow-line: rgba(255, 210, 63, 0.42);
+  --ld-yellow: #ffba00;
+  --ld-yellow-soft: rgba(255, 186, 0, 0.14);
+  --ld-yellow-line: rgba(255, 186, 0, 0.42);
 }
 
 /* ---------- Hero ---------- */
 .ld-hero-bg::after {
   background:
-    radial-gradient(ellipse 70% 60% at 20% 20%, rgba(255, 210, 63, 0.14), transparent 65%),
+    radial-gradient(ellipse 70% 60% at 20% 20%, rgba(255, 186, 0, 0.14), transparent 65%),
     linear-gradient(180deg, rgba(5, 9, 19, 0.55) 0%, rgba(5, 9, 19, 0.92) 100%) !important;
 }
 .ld-lockup {
@@ -161,7 +161,7 @@
 }
 .ld-budget-head {
   padding: 34px 30px;
-  background: linear-gradient(160deg, rgba(255, 210, 63, 0.16), rgba(255, 210, 63, 0.04));
+  background: linear-gradient(160deg, rgba(255, 186, 0, 0.16), rgba(255, 186, 0, 0.04));
   border-right: 1px solid var(--ld-yellow-line);
   display: flex;
   flex-direction: column;
@@ -173,7 +173,7 @@
   letter-spacing: -0.04em;
   line-height: 1;
   color: var(--ld-yellow);
-  text-shadow: 0 0 30px rgba(255, 210, 63, 0.25);
+  text-shadow: 0 0 30px rgba(255, 186, 0, 0.25);
 }
 .ld-budget-lbl {
   margin-top: 12px;
@@ -339,7 +339,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 70% at 80% 50%, rgba(255, 210, 63, 0.12), transparent 65%),
+    radial-gradient(ellipse 60% 70% at 80% 50%, rgba(255, 186, 0, 0.12), transparent 65%),
     linear-gradient(90deg, rgba(5, 9, 19, 0.96) 0%, rgba(5, 9, 19, 0.82) 50%, rgba(5, 9, 19, 0.6) 100%);
 }
 .ld-close-inner { position: relative; z-index: 1; padding: 96px 0; }
