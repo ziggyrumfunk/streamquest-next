@@ -194,6 +194,9 @@ const allQuests: Quest[] = [
     cover: "/media/ludeo/quest/cover-plain.webp",
     logo: "/media/ludeo/ludeo-logo-color.svg",
     portrait: "/media/ludeo/quest/portrait.webp",
+    // End date not announced yet. The brief shows the start from its own
+    // CAMPAIGN_START constant (app/quests/ludeo/page.tsx); keep the two in step.
+    dates: { start: "2026-09-25" },
     description:
       "Paid short-form creator mission for Ludeo. Make one edited vertical video, 45 seconds or longer, that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Post it on TikTok, Instagram Reels and YouTube Shorts and get paid on your best-performing post. Guaranteed base plus performance rewards, up to EUR 250.",
     about:

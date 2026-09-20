@@ -138,7 +138,35 @@
   100% { transform: scale(1); }
 }
 
-.lq-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.lq-badges { display: flex; align-items: center; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+
+/* Platform logos, on the badge line. Round, like the platform buttons in the
+   tier checker. On a phone they drop to their own centred line. */
+.lq-logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 0 6px;
+  padding: 0 0 0 16px;
+  list-style: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.24);
+}
+.lq-logos li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: rgba(8, 16, 28, 0.64);
+  color: #fff;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+@media (max-width: 560px) {
+  .lq-logos { flex-basis: 100%; justify-content: center; margin: 4px 0 0; padding: 0; border-left: none; }
+}
 .lq-kicker {
   font-size: 13px;
   font-weight: 700;
@@ -304,32 +332,60 @@
 
 /* ---------- Tier cards: what each tier pays ---------- */
 .lq-tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 36px; }
+/* Each card carries its metal: a light and a deep shade for the amount, and
+   a glow. Bronze is the default, Silver and Gold override below. */
 .lq-tier-card {
+  --tier-a: #ffd7a6;
+  --tier-b: #cd7f32;
+  --tier-glow: rgba(224, 150, 84, 0.45);
+  --tier-wash: rgba(205, 127, 50, 0.13);
   display: flex;
   flex-direction: column;
   padding: 24px 24px 22px;
   border: 1px solid var(--rd-line);
-  border-top: 2px solid rgba(205, 127, 50, 0.75);
-  background: rgba(10, 19, 34, 0.78);
+  border-top: 2px solid var(--tier-b);
+  background:
+    radial-gradient(ellipse 95% 55% at 12% 0%, var(--tier-wash), transparent 72%),
+    rgba(10, 19, 34, 0.78);
 }
-.lq-tier-card.is-silver { border-top-color: rgba(201, 214, 230, 0.75); }
-.lq-tier-card.is-gold { border-top-color: rgba(241, 210, 113, 0.85); }
+.lq-tier-card.is-silver {
+  --tier-a: #ffffff;
+  --tier-b: #a3b7cf;
+  --tier-glow: rgba(186, 204, 226, 0.4);
+  --tier-wash: rgba(163, 183, 207, 0.12);
+}
+.lq-tier-card.is-gold {
+  --tier-a: #fff1b5;
+  --tier-b: #f2b52a;
+  --tier-glow: rgba(242, 186, 56, 0.5);
+  --tier-wash: rgba(242, 181, 42, 0.14);
+}
 .lq-tier-card .lq-tier { align-self: flex-start; }
+/* The guaranteed amount is the number creators look for, so it gets the
+   metal: a top-to-bottom gradient clipped to the digits, plus a glow.
+   align-self keeps the gradient box as wide as the text, not the card. */
 .lq-tier-base {
+  align-self: flex-start;
   margin-top: 18px;
-  font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+  padding-bottom: 0.06em;
+  font-size: clamp(3.2rem, 5.4vw, 4.6rem);
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--tier-b);
+  background: linear-gradient(180deg, var(--tier-a) 8%, var(--tier-b) 96%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 22px var(--tier-glow));
 }
 .lq-tier-base-label {
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--tier-b);
 }
 .lq-tier-lines {
   list-style: none;
@@ -357,7 +413,7 @@
   .lq-tier-card { display: grid; grid-template-columns: minmax(0, 1fr) auto; padding: 18px 20px; }
   .lq-tier-card > * { grid-column: 1 / -1; }
   .lq-tier-card .lq-tier { grid-column: 2; grid-row: 1; align-self: start; }
-  .lq-tier-card .lq-tier-base { grid-column: 1; grid-row: 1; margin-top: 0; font-size: 2.5rem; }
+  .lq-tier-card .lq-tier-base { grid-column: 1; grid-row: 1; justify-self: start; margin-top: 0; font-size: 3.1rem; }
   .lq-tier-base-label { margin-top: 6px; }
   .lq-tier-lines { margin-top: 14px; padding-top: 12px; gap: 6px; }
   .lq-page .lq-tier-fit { margin-top: 12px; padding-top: 10px; }

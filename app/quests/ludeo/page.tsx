@@ -4,7 +4,7 @@ import Reveal from "@/app/components/Reveal";
 import { getQuestBySlug } from "@/data/quests";
 import { shortformQuests, platforms, viewsBand, guideHref, eur } from "@/data/shortform";
 import { getQuestSpots, formatSpotsDate } from "@/lib/questSpots";
-import PlatformIcon from "@/app/components/shortform/PlatformIcon";
+import PlatformIcon, { type PlatformIconName } from "@/app/components/shortform/PlatformIcon";
 import TierCheckWidget from "@/app/components/shortform/TierCheckWidget";
 import OpenTierCheck from "@/app/components/shortform/OpenTierCheck";
 import LudeoHero from "./LudeoHero";
@@ -59,6 +59,18 @@ const TIER_CHECK = guideHref(SLUG, "tier-check");
 
 const Q = "/firebase-public/Questy%20New%20Folder/Questy%20Regular%20Size%20";
 const questy = (n: number) => `${Q}(${n}).webp`;
+
+/** Shown in the banner and again at the closing call to action. */
+const CAMPAIGN_START = { full: "25 September 2026", short: "25 September" };
+
+/* Platform logos in the banner. They stand alone there, without a name beside
+   them, so YouTube gets its classic play-button logo and not the Shorts mark.
+   The Platforms tile right below spells the three names out. */
+const bannerLogos: { icon: PlatformIconName; label: string }[] = [
+  { icon: "tiktok", label: "TikTok" },
+  { icon: "reels", label: "Instagram Reels" },
+  { icon: "youtube", label: "YouTube Shorts" },
+];
 
 /** Three rising bars, for Bronze, Silver and Gold. Sits in the "Check your tier" buttons. */
 const tierIcon = (
@@ -126,6 +138,14 @@ export default async function LudeoQuestPage() {
             Paid creator mission
           </span>
           <span className="q-category">Short-form</span>
+          <ul className="lq-logos" aria-label="Platforms">
+            {bannerLogos.map((l) => (
+              <li key={l.icon} title={l.label}>
+                <PlatformIcon name={l.icon} size={25} />
+                <span className="sr-only">{l.label}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <p className="lq-kicker">StreamQuest x Ludeo</p>
         <h1>
@@ -152,8 +172,8 @@ export default async function LudeoQuestPage() {
             <span className="lq-meta-value">Edited vertical video, 45 seconds or longer</span>
           </div>
           <div className="lq-meta-item">
-            <span className="lq-meta-label">Campaign window</span>
-            <span className="lq-meta-value">Dates announced soon</span>
+            <span className="lq-meta-label">Campaign starts</span>
+            <span className="lq-meta-value">{CAMPAIGN_START.full}</span>
           </div>
           <div className="lq-meta-item">
             <span className="lq-meta-label">Guaranteed</span>
@@ -427,7 +447,7 @@ export default async function LudeoQuestPage() {
             </h2>
             <p className="lq-final-sum">
               {eur(Math.min(...base))} to {eur(Math.max(...base))} guaranteed, up to {eur(topPayout)} with
-              performance.{spotsText ? ` ${spotsText}.` : ""}
+              performance. Campaign starts {CAMPAIGN_START.short}.{spotsText ? ` ${spotsText}.` : ""}
             </p>
             <div className="q-final-actions">
               <a href={APPLY} className="btn btn-primary btn-xl">Apply for Ludeo</a>
