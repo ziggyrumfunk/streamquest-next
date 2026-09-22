@@ -209,19 +209,26 @@ const allQuests: Quest[] = [
       {
         name: "Bronze",
         payout: "€10",
+        rate: "5+ average CCV",
         requirement:
-          "Complete the main mission: stream the Meadgard demo on Twitch during the campaign window, for the gameplay duration and requirements shown in your accepted Quest.",
+          "Complete the main mission: stream the Meadgard demo on Twitch during the campaign window, for the gameplay duration and requirements shown in your accepted Quest, at 5 or more average concurrent viewers.",
       },
       {
         name: "Silver",
         payout: "€20",
-        requirement: "The main mission plus at least one side quest.",
+        rate: "15+ average CCV",
+        rateNote: "StreamQuest Silver tier unlocked",
+        requirement:
+          "The main mission plus at least one side quest, at 15 or more average concurrent viewers, with the StreamQuest Silver tier unlocked on your account.",
         sideQuestsRequired: true,
       },
       {
         name: "Gold",
         payout: "€50",
-        requirement: "The main mission plus at least three side quests.",
+        rate: "50+ average CCV",
+        rateNote: "StreamQuest Gold tier unlocked",
+        requirement:
+          "The main mission plus at least three side quests, at 50 or more average concurrent viewers, with the StreamQuest Gold tier unlocked on your account.",
       },
     ],
     sideQuestDetails: [
@@ -260,19 +267,20 @@ const allQuests: Quest[] = [
 
     heroMeta: [
       { label: "Campaign window", value: "7 to 26 October 2026" },
-      { label: "Tiers", value: "Bronze, Silver and Gold" },
+      { label: "Tiers", value: "Bronze 5+, Silver 15+, Gold 50+ average CCV" },
       { label: "Game access", value: "Demo key via Discord" },
       { label: "Co-op", value: "1 to 4 players, bonus keys for friends" },
     ],
 
     tldr: [
-      { stat: "€10", label: "Bronze", sub: "The main mission" },
-      { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest" },
-      { stat: "€50", label: "Gold", sub: "Main mission plus 3 side quests" },
+      { stat: "€10", label: "Bronze", sub: "Main mission, 5+ average CCV" },
+      { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest, 15+ CCV" },
+      { stat: "€50", label: "Gold", sub: "Main mission plus 3 side quests, 50+ CCV" },
       { stat: "4", label: "Side quests", sub: "Co-op, the wishlist link, a clip, an extra hour" },
     ],
     tldrFootnotes: [
       "Curated activation: applying does not confirm a place. Your tier, exact requirements, access instructions and tracked link arrive with your approval.",
+      "Silver and Gold also need the matching StreamQuest tier unlocked on your account. If you are a bigger creator and do not have that tier yet, get in touch with the mods in the StreamQuest Discord.",
       "Your Meadgard access key and bonus keys for friends come through the StreamQuest Discord.",
       "Side quests count toward Silver and Gold. They carry no separate payment.",
     ],
@@ -380,6 +388,12 @@ const allQuests: Quest[] = [
         icon: "steam",
       },
       {
+        name: "Press kit",
+        sub: "Key art, screenshots, logos and B-roll on Google Drive",
+        href: "https://drive.google.com/drive/folders/1AAuWONte45Co-Xcs6n2biI4aZnbydeiE",
+        icon: "website",
+      },
+      {
         name: "Oddiko",
         sub: "oddiko.com",
         href: "https://www.oddiko.com/",
@@ -403,6 +417,10 @@ const allQuests: Quest[] = [
       {
         heading: "Curated, not first come first served",
         body: "This is a curated creator activation. Completing an application does not confirm a place. Selected creators receive their individual tier, exact requirements, access instructions and tracked link in the Creator Dashboard before accepting. Wait for approval before you plan a stream.",
+      },
+      {
+        heading: "Viewers and tiers",
+        body: "Your tier follows your recent average concurrent viewers (CCV) across your last streams: Bronze from 5, Silver from 15, Gold from 50. Silver and Gold also need the matching StreamQuest tier unlocked on your account, the rank you build up by completing quests. If you are a bigger creator and do not have that tier unlocked yet, get in touch with the mods in the StreamQuest Discord before you apply.",
       },
       {
         heading: "Keys come through Discord",
