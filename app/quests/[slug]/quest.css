@@ -1009,115 +1009,131 @@
   .q-gallery-wide { aspect-ratio: 16 / 9; }
 }
 
-/* ----- Official accounts ----- */
-.q-accounts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--rd-line);
-  border-left: 1px solid var(--rd-line);
-}
+/* ----- Official accounts: one row per brand, handle chips on the right -----
+   A chip prints the handle itself (that is what a creator needs when tagging
+   a post) with a 28px icon in a 52px ring. Rows are separated by lines, not
+   boxed, so the chips carry the section. ----- */
+.q-accounts { border-top: 1px solid var(--rd-line); }
 .q-account {
-  padding: 24px 26px;
-  border-right: 1px solid var(--rd-line);
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: 18px 44px;
+  align-items: center;
+  padding: 28px 0;
   border-bottom: 1px solid var(--rd-line);
-  text-align: left;
-  transition: background 0.25s;
 }
-.q-account:hover { background: rgba(178, 240, 72, 0.04); }
 .q-account-name {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--rd-lime);
   margin-bottom: 8px;
 }
 .q-account-hint {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.55);
-  line-height: 1.5;
-  margin: 0 0 14px;
+  margin: 0;
   max-width: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.74);
 }
-.q-account-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+.q-account-handles { display: flex; flex-wrap: wrap; gap: 10px; }
+.q-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 22px 7px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(13, 23, 36, 0.86);
+  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
-.q-account-icon {
-  width: 40px;
-  height: 40px;
+.q-handle:hover {
+  border-color: rgba(178, 240, 72, 0.6);
+  background: rgba(178, 240, 72, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42);
+}
+.q-handle:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: 3px; }
+.q-handle-ico {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(225, 223, 217, 0.14);
-  transition: transform 0.18s, border-color 0.18s, background 0.18s;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: rgba(5, 11, 21, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.q-account-icon:hover {
-  transform: translateY(-2px);
-  border-color: rgba(178, 240, 72, 0.45);
-  background: rgba(178, 240, 72, 0.06);
-}
-.q-account-icon img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
+.q-handle-ico img { width: 28px; height: 28px; display: block; object-fit: contain; }
+.q-handle-text { display: flex; flex-direction: column; gap: 3px; line-height: 1.15; }
+.q-handle-text strong { font-size: 1rem; font-weight: 800; color: #fff; letter-spacing: -0.005em; }
+.q-handle-text span {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
 }
 @media (max-width: 800px) {
-  .q-accounts { grid-template-columns: 1fr; }
+  .q-account { grid-template-columns: 1fr; gap: 14px; padding: 22px 0; }
 }
 
-/* ----- Store / resource links ----- */
+/* ----- Store / resource links: tiles with a 40px icon and a corner arrow ----- */
 .q-stores {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
   margin-top: 8px;
 }
 .q-store {
+  position: relative;
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 16px 18px;
+  flex-direction: column;
+  gap: 18px;
+  padding: 22px 22px 24px;
   border: 1px solid var(--rd-line);
-  background: rgba(8, 31, 52, 0.5);
-  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  background:
+    linear-gradient(160deg, rgba(178, 240, 72, 0.07), transparent 55%),
+    rgba(10, 19, 34, 0.78);
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .q-store:hover {
-  border-color: rgba(178, 240, 72, 0.4);
-  transform: translateY(-2px);
-  background: rgba(8, 31, 52, 0.7);
+  border-color: rgba(178, 240, 72, 0.55);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
+.q-store:focus-visible { outline: 2px solid var(--rd-lime); outline-offset: 3px; }
 .q-store-ico {
-  width: 40px;
-  height: 40px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: rgba(5, 11, 21, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
 }
-.q-store-ico img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-.q-store-txt strong {
-  display: block;
-  font-size: 14px;
+.q-store-ico img { width: 40px; height: 40px; object-fit: contain; }
+.q-store-txt { display: flex; flex-direction: column; gap: 5px; }
+.q-store-txt strong { font-size: 1.12rem; font-weight: 800; color: #fff; line-height: 1.2; }
+.q-store-txt span { font-size: 0.95rem; line-height: 1.45; color: rgba(255, 255, 255, 0.62); }
+.q-store-arrow {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 1.4rem;
   font-weight: 800;
-  color: #fff;
-  margin-bottom: 2px;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s, color 0.2s;
 }
-.q-store-txt span {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.55);
-}
-@media (max-width: 600px) {
-  .q-stores { grid-template-columns: 1fr; }
+.q-store:hover .q-store-arrow { color: var(--rd-lime); transform: translate(3px, -3px); }
+@media (prefers-reduced-motion: reduce) {
+  .q-handle, .q-store, .q-store-arrow { transition: none; }
+  .q-handle:hover, .q-store:hover, .q-store:hover .q-store-arrow { transform: none; }
 }
 
 /* ----- Rules / expectations ----- */
@@ -1710,28 +1726,6 @@
   line-height: 1.68;
   color: rgba(255, 255, 255, 0.76);
 }
-
-/* ============================================================
-   OFFICIAL ACCOUNTS — larger, more tappable tokens
-   ============================================================ */
-.q-account { padding: 30px 30px 32px; }
-.q-account-name {
-  font-size: 15px;
-  letter-spacing: 0.14em;
-  margin-bottom: 10px;
-}
-.q-account-hint {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.76);
-  line-height: 1.6;
-}
-.q-account-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-}
-.q-account-icon img { width: 26px; height: 26px; }
-.q-account-icons { gap: 12px; }
 
 /* ============================================================
    KEY FEATURES — a touch more presence

@@ -11,6 +11,7 @@ import {
   getQuestBySlug,
   allQuestSlugs,
   type QuestSocialType,
+  type QuestSocialLink,
 } from "@/data/quests";
 import "@/app/redesign.css";
 import "./quest.css";
@@ -52,13 +53,69 @@ const ICON_MAP: Record<QuestSocialType, string> = {
   twitch: "/firebase-public/Social Icons PNG/twitch.png",
 };
 
+/* Store marks first, then the social set, so a resource tile that points at
+   a YouTube trailer or a TikTok account shows that platform's icon. */
 const STORE_ICON_MAP: Record<string, string> = {
+  ...ICON_MAP,
   steam: "/firebase-public/Social Icons PNG/steam.png",
   xbox: "/firebase-public/Social Icons PNG/website.png",
   website: "/firebase-public/Social Icons PNG/website.png",
   epic: "/firebase-public/Social Icons PNG/website.png",
   gog: "/firebase-public/Social Icons PNG/website.png",
 };
+
+const PLATFORM_NAME: Record<QuestSocialType, string> = {
+  instagram: "Instagram",
+  tiktok: "TikTok",
+  youtube: "YouTube",
+  discord: "Discord",
+  x: "X",
+  twitter: "X",
+  website: "Website",
+  bluesky: "Bluesky",
+  twitch: "Twitch",
+};
+
+/**
+ * What a handle chip prints. The data only stores the URL, so the handle is
+ * read off it: "@meadgard" from tiktok.com/@meadgard, "@name.bsky.social"
+ * from a Bluesky profile, the bare host for a website. A creator tagging a
+ * post needs the handle itself, which is why the chip shows it.
+ */
+function handleFor(l: QuestSocialLink): { label: string; platform: string; icon: string } {
+  const platform = PLATFORM_NAME[l.type] ?? l.type;
+  const icon = ICON_MAP[l.type];
+  let u: URL;
+  try {
+    u = new URL(l.href);
+  } catch {
+    return { label: l.href, platform, icon };
+  }
+  const parts = u.pathname.split("/").filter(Boolean);
+  const first = parts[0] ?? "";
+  const host = u.hostname.replace(/^www\./, "");
+  switch (l.type) {
+    case "discord":
+      return { label: "Join the server", platform, icon };
+    case "bluesky":
+      return { label: first === "profile" && parts[1] ? `@${parts[1]}` : host, platform, icon };
+    case "youtube":
+      if (first.startsWith("@")) return { label: first, platform, icon };
+      if ((first === "c" || first === "user") && parts[1]) return { label: parts[1], platform, icon };
+      return { label: "YouTube channel", platform, icon };
+    case "twitch":
+      return { label: first && first !== "directory" ? first : "Twitch", platform, icon };
+    case "instagram":
+    case "tiktok":
+    case "x":
+    case "twitter":
+      return { label: first ? `@${first.replace(/^@/, "")}` : host, platform, icon };
+    default:
+      return host.endsWith("steampowered.com")
+        ? { label: "Steam page", platform: "Steam", icon: STORE_ICON_MAP.steam }
+        : { label: host, platform, icon };
+  }
+}
 
 export default function QuestPage({ params }: Params) {
   const quest = getQuestBySlug(params.slug);
@@ -513,29 +570,40 @@ export default function QuestPage({ params }: Params) {
               <div className="q-section-head q-section-head-center">
                 <span className="q-tag">Official accounts</span>
                 <h2>Tag, follow, and share</h2>
-                <p>Use these for Social Agent and Growing Together side quests.</p>
+                <p>The handles to tag in your side quest posts, and where the campaign lives.</p>
               </div>
             </Reveal>
             <Reveal>
               <div className="q-accounts">
                 {quest.officialAccounts.map((acct) => (
                   <div key={acct.name} className="q-account">
-                    <div className="q-account-name">{acct.name}</div>
-                    <p className="q-account-hint">{acct.hint}</p>
-                    <div className="q-account-icons">
-                      {acct.links.map((l) => (
-                        <a
-                          key={l.type + l.href}
-                          href={l.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${acct.name} ${l.type}`}
-                          className="q-account-icon"
-                        >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={ICON_MAP[l.type]} alt="" loading="lazy" width={20} height={20} />
-                        </a>
-                      ))}
+                    <div className="q-account-head">
+                      <div className="q-account-name">{acct.name}</div>
+                      <p className="q-account-hint">{acct.hint}</p>
+                    </div>
+                    <div className="q-account-handles">
+                      {acct.links.map((l) => {
+                        const h = handleFor(l);
+                        return (
+                          <a
+                            key={l.type + l.href}
+                            href={l.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${acct.name} on ${h.platform}: ${h.label}`}
+                            className="q-handle"
+                          >
+                            <span className="q-handle-ico">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={h.icon} alt="" loading="lazy" width={28} height={28} />
+                            </span>
+                            <span className="q-handle-text">
+                              <strong>{h.label}</strong>
+                              <span>{h.platform}</span>
+                            </span>
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
@@ -576,6 +644,7 @@ export default function QuestPage({ params }: Params) {
                       <strong>{s.name}</strong>
                       <span>{s.sub}</span>
                     </span>
+                    <span className="q-store-arrow" aria-hidden="true">↗</span>
                   </a>
                 ))}
               </div>

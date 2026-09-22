@@ -57,7 +57,8 @@ export type QuestStoreLink = {
   name: string;
   sub: string;
   href: string;
-  icon?: "steam" | "xbox" | "website" | "epic" | "gog";
+  /** Store marks, or any social platform so a tile can carry its own icon. */
+  icon?: "steam" | "xbox" | "website" | "epic" | "gog" | QuestSocialType;
 };
 
 /** One rules paragraph with a header. */
@@ -283,7 +284,6 @@ const allQuests: Quest[] = [
       "/media/meadgard/screenshot-tavern-2.webp",
       "/media/meadgard/screenshot-brokkr.webp",
       "/media/meadgard/screenshot-mimer.webp",
-      "/media/meadgard/screenshot-collage-2.webp",
     ],
 
     /* Villagers, a flock of sheep and tavern fare drifting down both margins.
@@ -332,8 +332,8 @@ const allQuests: Quest[] = [
       thumbs: [
         "/media/meadgard/key-art-titled.webp",
         "/media/meadgard/key-art-variant.webp",
-        "/media/meadgard/collage-wide.webp",
-        "/media/meadgard/screenshot-collage-2.webp",
+        "/media/meadgard/screenshot-tavern-1.webp",
+        "/media/meadgard/screenshot-tavern-2.webp",
         "/media/meadgard/screenshot-explore.webp",
         "/media/meadgard/screenshot-farm.webp",
         "/media/meadgard/screenshot-brokkr.webp",
@@ -389,13 +389,13 @@ const allQuests: Quest[] = [
         name: "Demo announcement trailer",
         sub: "The MIX Summer Showcase 2026",
         href: "https://www.youtube.com/watch?v=aTUeoWEy69g",
-        icon: "website",
+        icon: "youtube",
       },
       {
         name: "Meadgard on TikTok",
         sub: "@meadgard",
         href: "https://www.tiktok.com/@meadgard",
-        icon: "website",
+        icon: "tiktok",
       },
     ],
 
