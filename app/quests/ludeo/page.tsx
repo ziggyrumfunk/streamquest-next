@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal from "@/app/components/Reveal";
+import QuestVideoTabs from "@/app/components/QuestVideoTabs";
 import { getQuestBySlug } from "@/data/quests";
 import { shortformQuests, platforms, viewsBand, guideHref, eur } from "@/data/shortform";
 import { getQuestSpots, formatSpotsDate } from "@/lib/questSpots";
@@ -202,6 +203,32 @@ export default async function LudeoQuestPage() {
           )}
         </div>
       </LudeoHero>
+
+      {/* ============ MISSION BRIEF VIDEO ============ */}
+      {quest?.videos?.brief && (
+        <section className="q-section">
+          <div className="rd-shell">
+            <div className="lq-split is-video">
+              <Reveal>
+                <span className="q-tag">Mission brief video</span>
+                <h2>Everything on this page, in one short video.</h2>
+                <p>
+                  What Ludeo is, what your video needs, how you get paid and where to post it. Watch
+                  it first, then read on for the detail.
+                </p>
+                <div className="lq-inline-actions">
+                  <a href={APPLY} className="btn btn-primary">Apply for the quest</a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <div className="lq-video">
+                  <QuestVideoTabs brief={quest.videos.brief} briefPortrait={quest.videos.briefPortrait} />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ============ WHAT IS LUDEO ============ */}
       <section className="q-section">

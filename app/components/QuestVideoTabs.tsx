@@ -29,7 +29,8 @@ type Tab = {
  *
  * The Mission Brief tab resolves in priority order: a self-hosted
  * `briefVideo`, then a YouTube `brief` ID, then a "coming soon" card when
- * `briefComingSoon` is set.
+ * `briefComingSoon` is set. `briefPortrait` makes the stage 9:16 for either
+ * source, so a YouTube Short or a vertical upload renders phone-shaped.
  */
 export default function QuestVideoTabs({
   trailer,
@@ -50,7 +51,7 @@ export default function QuestVideoTabs({
           portrait: briefPortrait,
         }
       : brief
-      ? { id: "brief", label: "Mission Brief Video", youtube: brief }
+      ? { id: "brief", label: "Mission Brief Video", youtube: brief, portrait: briefPortrait }
       : briefComingSoon
       ? { id: "brief", label: "Mission Brief Video", placeholder: true }
       : null,

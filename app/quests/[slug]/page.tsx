@@ -592,8 +592,9 @@ export default function QuestPage({ params }: Params) {
               <div className="q-section-head">
                 <span className="q-tag">Expectations and selection</span>
                 <h2>
-                  {quest.slots ? `${quest.slots} slots, ` : ""}
-                  right of refusal, keys on Discord
+                  {quest.slots
+                    ? `${quest.slots} slots, right of refusal, keys on Discord`
+                    : "Right of refusal, keys on Discord"}
                 </h2>
               </div>
             </Reveal>

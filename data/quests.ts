@@ -26,8 +26,9 @@ export type SideQuestDetail = { name: string; desc: string; xp?: number };
 /**
  * Videos driving the tabbed player on the brief.
  * `trailer` and `brief` are YouTube IDs. `briefVideo` is a self-hosted file
- * and takes precedence over `brief`; set `briefPortrait` for 9:16 uploads so
- * the player renders phone-shaped instead of pillarboxed in a 16:9 stage.
+ * and takes precedence over `brief`. Set `briefPortrait` for 9:16 material
+ * (a YouTube Short or a vertical upload) so the player renders phone-shaped
+ * instead of pillarboxed in a 16:9 stage.
  */
 export type QuestVideos = {
   trailer?: string;
@@ -179,6 +180,262 @@ export type Quest = {
 
 const allQuests: Quest[] = [
   {
+    slug: "meadgard",
+    title: "Meadgard",
+    status: "active",
+    studio: "Oddiko",
+    tagline: "Run a Viking tavern with your crew. Hunt, cook, brew, and survive the rush.",
+    category: "Co-op adventure",
+    // Key art without the painted title, plus the logo as its own layer: the
+    // homepage card darkens the cover and centres `logo` on it, so a titled
+    // cover would print the name twice there. The titled art is in the gallery.
+    cover: "/media/meadgard/cover-plain.webp",
+    logo: "/media/meadgard/logo.webp",
+    portrait: "/media/meadgard/key-art-vertical.webp",
+    description:
+      "Paid creator campaign for the Meadgard demo by Oddiko. Stream the demo live on Twitch between 7 and 26 October 2026, run the tavern with your crew, and send interested viewers to the Steam wishlist.",
+    about:
+      "Meadgard is a chaotic co-op tavern adventure for 1 to 4 players. Battle mythological creatures by day, serve rowdy tavern customers by night, and hunt, cook, brew and fight your way to the grandest feast Valhalla has ever seen. Coming to PC on Steam.",
+    keyFeatures: [
+      "Chaotic co-op for 1 to 4 players. Work together to run the tavern, or scream at each other while everything catches fire.",
+      "Hunt monsters for ingredients. Fight mythical creatures and drag your hard-earned supplies back home before nightfall.",
+      "Run a Viking tavern under pressure. Cook meals, pour mead, entertain guests, and survive increasingly demanding customers.",
+      "Face the Norse gods themselves. Impress legendary visitors or suffer the consequences of divine disappointment.",
+      "Upgrade Valhalla. Customise your tavern and unlock new weapons, shops, cosmetics, crops and recipes.",
+      "A Norse mythology adventure with heart. Bizarre creatures, eccentric villagers, and gods with surprisingly personal problems.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        requirement:
+          "Complete the main mission: stream the Meadgard demo on Twitch during the campaign window, for the gameplay duration and requirements shown in your accepted Quest.",
+      },
+      {
+        name: "Silver",
+        payout: "€20",
+        requirement: "The main mission plus at least one side quest.",
+        sideQuestsRequired: true,
+      },
+      {
+        name: "Gold",
+        payout: "€50",
+        requirement: "The main mission plus at least three side quests.",
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Assemble the Longtable",
+        desc: "Play Meadgard with a friend or your co-op crew. Bring them along with the bonus keys supplied through Discord and show how you work together to run the tavern. Proof: VOD link and timestamps showing co-op gameplay. Include teammate handles where you can; friends do not need a Twitch channel.",
+      },
+      {
+        name: "Raise a Mug for Meadgard",
+        desc: "Place the StreamQuest tracked Steam wishlist link in your Twitch panel, stream description or a chat command. Give Meadgard a shoutout during your stream and let interested viewers know where they can wishlist the game. Proof: a screenshot of the link placement and a VOD timestamp for your mention.",
+      },
+      {
+        name: "Tavern Tale",
+        desc: "Post a short clip from your Meadgard stream on your own social channel: a funny co-op moment, a mistake, a recovery or a highlight. Mention Meadgard and tag the official account. On Instagram you can invite @oddikogames as a Reel collaborator; on TikTok tag @meadgard; on Bluesky tag @oddikogames.bsky.social. That gives the team the chance to share your clip and shout out your channel, though collaboration acceptance and reposting are up to them. Proof: the public post link.",
+      },
+      {
+        name: "Keep the Fires Burning",
+        desc: "Stream one extra hour of active Meadgard gameplay beyond your main Quest's required duration. Keep playing, explore more of the demo and give your community more time with the game. Breaks, starting-soon screens and unrelated content do not count as gameplay time. This completes a side quest within your tier reward; it is not a separate hourly payment. Proof: VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
+      },
+    ],
+    links: {
+      steam: "https://store.steampowered.com/app/2433560/Meadgard/?utm_source=streamquest&utm_medium=creator&utm_campaign=meadgard_demo_2026",
+      official: "https://www.oddiko.com/",
+      trailer: "https://www.youtube.com/watch?v=aTUeoWEy69g",
+    },
+    dates: { start: "2026-10-07", end: "2026-10-26" },
+
+    /* -------- Rich brief content -------- */
+    duration: "Oct 7 to 26, 2026",
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "aTUeoWEy69g",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Campaign window", value: "7 to 26 October 2026" },
+      { label: "Tiers", value: "Bronze, Silver and Gold" },
+      { label: "Game access", value: "Demo key via Discord" },
+      { label: "Co-op", value: "1 to 4 players, bonus keys for friends" },
+    ],
+
+    tldr: [
+      { stat: "€10", label: "Bronze", sub: "The main mission" },
+      { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest" },
+      { stat: "€50", label: "Gold", sub: "Main mission plus 3 side quests" },
+      { stat: "4", label: "Side quests", sub: "Co-op, the wishlist link, a clip, an extra hour" },
+    ],
+    tldrFootnotes: [
+      "Curated activation: applying does not confirm a place. Your tier, exact requirements, access instructions and tracked link arrive with your approval.",
+      "Your Meadgard access key and bonus keys for friends come through the StreamQuest Discord.",
+      "Side quests count toward Silver and Gold. They carry no separate payment.",
+    ],
+
+    screenshots: [
+      "/media/meadgard/screenshot-tavern-1.webp",
+      "/media/meadgard/screenshot-explore.webp",
+      "/media/meadgard/screenshot-farm.webp",
+      "/media/meadgard/screenshot-tavern-2.webp",
+      "/media/meadgard/screenshot-brokkr.webp",
+      "/media/meadgard/screenshot-mimer.webp",
+      "/media/meadgard/screenshot-collage-2.webp",
+    ],
+
+    /* Villagers, livestock and tavern fare drifting down both margins. */
+    swarm: {
+      items: [
+        { src: "/media/meadgard/art/brokkr.webp", alt: "Brokkr the blacksmith", x: 77, y: 7, size: 230, depth: 0.72 },
+        { src: "/media/meadgard/art/chickens.webp", alt: "Chickens", x: 4, y: 12, size: 170, depth: 0.55 },
+        { src: "/media/meadgard/art/tankard.webp", alt: "Tankard of mead", x: 79, y: 22, size: 130, depth: 0.5 },
+        { src: "/media/meadgard/art/eitra.webp", alt: "Eitra the witch", x: 3, y: 26, size: 210, depth: 0.7 },
+        { src: "/media/meadgard/art/platter.webp", alt: "Viking platter", x: 78, y: 36, size: 150, depth: 0.45 },
+        { src: "/media/meadgard/art/sheep.webp", alt: "Sheep", x: 4, y: 42, size: 190, depth: 0.6 },
+        { src: "/media/meadgard/art/ernst.webp", alt: "Ernst the carpenter", x: 77, y: 50, size: 220, depth: 0.75, flip: true },
+        { src: "/media/meadgard/art/honey.webp", alt: "Jar of honey", x: 5, y: 57, size: 120, depth: 0.45 },
+        { src: "/media/meadgard/art/ducks.webp", alt: "Ducks", x: 79, y: 66, size: 165, depth: 0.55 },
+        { src: "/media/meadgard/art/fryingpan.webp", alt: "Frying pan", x: 3, y: 70, size: 140, depth: 0.5 },
+        { src: "/media/meadgard/art/mushroom.webp", alt: "Fly agaric mushroom", x: 78, y: 80, size: 125, depth: 0.42 },
+        { src: "/media/meadgard/art/perch.webp", alt: "Perch", x: 4, y: 84, size: 150, depth: 0.58, flip: true },
+      ],
+    },
+
+    storyParagraphs: [
+      "Raise the longtable. StreamQuest and Oddiko are running a curated paid campaign around the Meadgard demo, and we are looking for creators who can carry a co-op tavern stream: hunting for ingredients by day, cooking, brewing and serving a rowdy crowd by night, and keeping their crew laughing while everything catches fire.",
+      "Your job is to make the gameplay the focus. Bring friends in with the bonus keys, react naturally, pull chat into the calls, and turn the mistakes and recoveries into the moments people clip. The demo has plenty to explore, so keep playing, try new recipes and let the chaos build.",
+      "Your honest opinion stays yours. We want an entertaining tavern stream, not an ad read. The requirements are strict so that every verified completion is measured the same way.",
+    ],
+    storyPull:
+      "If running a Viking tavern with your friends sounds like your kind of chaos, wishlist Meadgard through my link.",
+    storyAsideVideo: "/media/meadgard/tavern-loop.mp4",
+    storyAsidePoster: "/media/meadgard/tavern-loop-poster.webp",
+    storyAsideCaption: "Dinner rush in the tavern",
+    shortDescription:
+      "Meadgard is a chaotic co-op tavern adventure for 1 to 4 players from Oddiko, coming to PC on Steam. A strong fit for creators whose audiences enjoy co-op chaos, cosy management games, cooking sims, and Norse mythology with a sense of humour.",
+
+    sideQuestIntro:
+      "Four side quests on this campaign. Bronze needs none, Silver needs at least one and Gold needs at least three. Each comes with the proof you submit alongside your VOD.",
+    sideQuestOutro:
+      "Side quests count toward your tier. They do not carry a separate payment, and the extra hour in Keep the Fires Burning is not an hourly rate.",
+
+    trackedWishlistUrl:
+      "https://store.steampowered.com/app/2433560/Meadgard/?utm_source=streamquest&utm_medium=creator&utm_campaign=meadgard_demo_2026",
+    trackedWishlistNote:
+      "This is the shared campaign link. It identifies the Meadgard campaign, not individual creators, so it is not a personal referral link. Use the tracked link provided in your Quest exactly as given, in your panel, description, chat command or social post, and keep all tracking parameters intact.",
+
+    gallery: {
+      wide: "/media/meadgard/odin.webp",
+      thumbs: [
+        "/media/meadgard/key-art-titled.webp",
+        "/media/meadgard/key-art-variant.webp",
+        "/media/meadgard/collage-wide.webp",
+        "/media/meadgard/screenshot-collage-2.webp",
+        "/media/meadgard/screenshot-explore.webp",
+        "/media/meadgard/screenshot-farm.webp",
+        "/media/meadgard/screenshot-brokkr.webp",
+        "/media/meadgard/screenshot-mimer.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Keys, bonus keys for friends and campaign support, all on Discord.",
+        links: [
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+        ],
+      },
+      {
+        name: "Meadgard",
+        hint: "Tag @meadgard on TikTok for your Tavern Tale clip.",
+        links: [
+          { type: "tiktok", href: "https://www.tiktok.com/@meadgard" },
+          { type: "website", href: "https://store.steampowered.com/app/2433560/Meadgard/" },
+        ],
+      },
+      {
+        name: "Oddiko",
+        hint: "Developer of Meadgard. Invite @oddikogames as a Reel collaborator, tag @oddikogames.bsky.social on Bluesky.",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/oddikogames/" },
+          { type: "bluesky", href: "https://bsky.app/profile/oddikogames.bsky.social" },
+          { type: "youtube", href: "https://www.youtube.com/@OddikoGames" },
+          { type: "website", href: "https://www.oddiko.com/" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Wishlist Meadgard, campaign link",
+        href: "https://store.steampowered.com/app/2433560/Meadgard/?utm_source=streamquest&utm_medium=creator&utm_campaign=meadgard_demo_2026",
+        icon: "steam",
+      },
+      {
+        name: "Oddiko",
+        sub: "oddiko.com",
+        href: "https://www.oddiko.com/",
+        icon: "website",
+      },
+      {
+        name: "Demo announcement trailer",
+        sub: "The MIX Summer Showcase 2026",
+        href: "https://www.youtube.com/watch?v=aTUeoWEy69g",
+        icon: "website",
+      },
+      {
+        name: "Meadgard on TikTok",
+        sub: "@meadgard",
+        href: "https://www.tiktok.com/@meadgard",
+        icon: "website",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Curated, not first come first served",
+        body: "This is a curated creator activation. Completing an application does not confirm a place. Selected creators receive their individual tier, exact requirements, access instructions and tracked link in the Creator Dashboard before accepting. Wait for approval before you plan a stream.",
+      },
+      {
+        heading: "Keys come through Discord",
+        body: "Approved creators receive their Meadgard access key through the StreamQuest Discord, plus bonus keys so you can play with your friends. Join before you go live. The Discord is also where campaign support happens.",
+      },
+      {
+        heading: "Embargo",
+        body: "Follow the embargo instructions supplied with your access. Early access does not permit early streaming or posting. Qualifying streams happen inside the campaign window, 7 to 26 October 2026.",
+      },
+      {
+        heading: "The main mission",
+        body: "Stream the Meadgard demo on Twitch during the campaign window, meeting the gameplay duration and requirements shown in your accepted Quest. Show your community the game: hunt for ingredients, cook, brew, serve and deal with the tavern's co-op chaos. Keep your commentary natural and make the experience your own.",
+      },
+      {
+        heading: "Disclosure and the tracked link",
+        body: "Use the required sponsorship disclosure. Use the tracked Steam link provided in your Quest and keep all tracking parameters intact. Do not shorten it or swap it for a plain store link.",
+      },
+      {
+        heading: "Proof",
+        body: "Submit your Twitch VOD, stream date and proof for each completed side quest through the Creator Dashboard by the deadline shown in your Quest. Keep your VOD and any required social posts accessible for verification.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "For the Meadgard Quest in the Creator Dashboard" },
+      { title: "Wait for approval", sub: "Curated. Check your tier and requirements once accepted" },
+      { title: "Join Discord", sub: "Your access key and bonus keys for friends arrive there" },
+      { title: "Stream the demo", sub: "7 to 26 October, with the tracked link and disclosure" },
+      { title: "Submit", sub: "VOD, stream date and side quest proof, before the deadline" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
+  {
     slug: "ludeo",
     customPage: true,
     limitedSpots: true,
@@ -197,6 +454,7 @@ const allQuests: Quest[] = [
     // End date not announced yet. The brief shows the start from its own
     // CAMPAIGN_START constant (app/quests/ludeo/page.tsx); keep the two in step.
     dates: { start: "2026-09-25" },
+    videos: { brief: "oL77d6mEJxU", briefPortrait: true },
     description:
       "Paid short-form creator mission for Ludeo. Make one edited vertical video, 45 seconds or longer, that introduces Ludeo, shows a few Playables and invites your audience into the Ludeo Discord. Post it on TikTok, Instagram Reels and YouTube Shorts and get paid on your best-performing post. Guaranteed base plus performance rewards, up to EUR 250.",
     about:

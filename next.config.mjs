@@ -39,10 +39,15 @@ const nextConfig = {
       { source: "/ground-zero-hero", destination: "/quests/groundzerohero", permanent: true },
 
       // Friendly short URL for the Ludeo short-form quest brief. Temporary
-      // redirects while the brief is unlisted; make them permanent at launch.
-      { source: "/ludeo", destination: "/quests/ludeo", permanent: false },
-      { source: "/LUDEO", destination: "/quests/ludeo", permanent: false },
-      { source: "/Ludeo", destination: "/quests/ludeo", permanent: false },
+      // Ludeo launched on 20 Sep 2026, so these are permanent now.
+      { source: "/ludeo", destination: "/quests/ludeo", permanent: true },
+      { source: "/LUDEO", destination: "/quests/ludeo", permanent: true },
+      { source: "/Ludeo", destination: "/quests/ludeo", permanent: true },
+
+      // Friendly short URL for the Meadgard quest brief.
+      { source: "/meadgard", destination: "/quests/meadgard", permanent: true },
+      { source: "/MEADGARD", destination: "/quests/meadgard", permanent: true },
+      { source: "/Meadgard", destination: "/quests/meadgard", permanent: true },
 
       // Friendly short URL for the RIFTFALL quest brief.
       { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },

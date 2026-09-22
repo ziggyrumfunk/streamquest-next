@@ -299,6 +299,16 @@
   .lq-logo.is-pulse .lq-logo-inner { animation: none; }
 }
 
+/* ---------- Mission brief video: text beside a phone-shaped player ---------- */
+/* A fixed second column, not auto: the player's width is a percentage, which
+   an auto column cannot resolve. On a phone the two stack, heading first. */
+.lq-page .lq-split.is-video { grid-template-columns: minmax(0, 1fr) 380px; gap: 56px; }
+.lq-page .lq-video .q-video-stage.is-portrait { margin: 0; }
+@media (max-width: 900px) {
+  .lq-page .lq-split.is-video { grid-template-columns: 1fr; gap: 26px; }
+  .lq-page .lq-video .q-video-stage.is-portrait { margin: 0 auto; }
+}
+
 /* ---------- Chips ---------- */
 .lq-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; }
 .lq-chip {
