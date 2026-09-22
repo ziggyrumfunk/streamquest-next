@@ -64,9 +64,9 @@ const questy = (n: number) => `${Q}(${n}).webp`;
 /** Shown in the banner and again at the closing call to action. */
 const CAMPAIGN_START = { full: "25 September 2026", short: "25 September" };
 
-/* Platform logos in the banner. They stand alone there, without a name beside
-   them, so YouTube gets its classic play-button logo and not the Shorts mark.
-   The Platforms tile right below spells the three names out. */
+/* Platform logos under the Platforms tile in the banner. YouTube gets its
+   classic play-button logo rather than the Shorts mark: the tile's text names
+   the platforms, so the logos only need to be recognised at a glance. */
 const bannerLogos: { icon: PlatformIconName; label: string }[] = [
   { icon: "tiktok", label: "TikTok" },
   { icon: "reels", label: "Instagram Reels" },
@@ -139,14 +139,6 @@ export default async function LudeoQuestPage() {
             Paid creator mission
           </span>
           <span className="q-category">Short-form</span>
-          <ul className="lq-logos" aria-label="Platforms">
-            {bannerLogos.map((l) => (
-              <li key={l.icon} title={l.label}>
-                <PlatformIcon name={l.icon} size={25} />
-                <span className="sr-only">{l.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
         <p className="lq-kicker">StreamQuest x Ludeo</p>
         <h1>
@@ -164,9 +156,17 @@ export default async function LudeoQuestPage() {
           </a>
         </div>
         <div className="lq-meta">
-          <div className="lq-meta-item">
+          <div className="lq-meta-item is-platforms">
             <span className="lq-meta-label">Platforms</span>
             <span className="lq-meta-value">{platforms.map((p) => p.label).join(" · ")}</span>
+            {/* The names are right above, so the logos are decorative here. */}
+            <ul className="lq-logos" aria-hidden="true">
+              {bannerLogos.map((l) => (
+                <li key={l.icon} title={l.label}>
+                  <PlatformIcon name={l.icon} size={20} />
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="lq-meta-item">
             <span className="lq-meta-label">Format</span>

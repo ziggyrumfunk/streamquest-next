@@ -286,20 +286,20 @@ const allQuests: Quest[] = [
       "/media/meadgard/screenshot-collage-2.webp",
     ],
 
-    /* Villagers, livestock and tavern fare drifting down both margins. */
+    /* Villagers, a flock of sheep and tavern fare drifting down both margins.
+       The press kit's chicken and duck files are sprite sheets (eight birds in
+       a grid), which read as a texture rather than a character, so they stay out. */
     swarm: {
       items: [
         { src: "/media/meadgard/art/brokkr.webp", alt: "Brokkr the blacksmith", x: 77, y: 7, size: 230, depth: 0.72 },
-        { src: "/media/meadgard/art/chickens.webp", alt: "Chickens", x: 4, y: 12, size: 170, depth: 0.55 },
         { src: "/media/meadgard/art/tankard.webp", alt: "Tankard of mead", x: 79, y: 22, size: 130, depth: 0.5 },
-        { src: "/media/meadgard/art/eitra.webp", alt: "Eitra the witch", x: 3, y: 26, size: 210, depth: 0.7 },
+        { src: "/media/meadgard/art/eitra.webp", alt: "Eitra the witch", x: 3, y: 16, size: 210, depth: 0.7 },
         { src: "/media/meadgard/art/platter.webp", alt: "Viking platter", x: 78, y: 36, size: 150, depth: 0.45 },
         { src: "/media/meadgard/art/sheep.webp", alt: "Sheep", x: 4, y: 42, size: 190, depth: 0.6 },
         { src: "/media/meadgard/art/ernst.webp", alt: "Ernst the carpenter", x: 77, y: 50, size: 220, depth: 0.75, flip: true },
         { src: "/media/meadgard/art/honey.webp", alt: "Jar of honey", x: 5, y: 57, size: 120, depth: 0.45 },
-        { src: "/media/meadgard/art/ducks.webp", alt: "Ducks", x: 79, y: 66, size: 165, depth: 0.55 },
         { src: "/media/meadgard/art/fryingpan.webp", alt: "Frying pan", x: 3, y: 70, size: 140, depth: 0.5 },
-        { src: "/media/meadgard/art/mushroom.webp", alt: "Fly agaric mushroom", x: 78, y: 80, size: 125, depth: 0.42 },
+        { src: "/media/meadgard/art/mushroom.webp", alt: "Fly agaric mushroom", x: 78, y: 68, size: 125, depth: 0.42 },
         { src: "/media/meadgard/art/perch.webp", alt: "Perch", x: 4, y: 84, size: 150, depth: 0.58, flip: true },
       ],
     },
