@@ -20,8 +20,19 @@ export type QuestTier = {
 
 export type QuestStatus = "active" | "completed";
 
-/** Named side quest with description, optional XP value for rich active-quest cards. */
-export type SideQuestDetail = { name: string; desc: string; xp?: number };
+/**
+ * Named side quest for the rich active-quest cards. `objective` is the one
+ * bold line saying what to do, `desc` the details, `proof` what to submit
+ * (shown in its own strip), `tag` a short label such as "Required for Gold".
+ */
+export type SideQuestDetail = {
+  name: string;
+  desc: string;
+  xp?: number;
+  objective?: string;
+  proof?: string;
+  tag?: string;
+};
 
 /**
  * Videos driving the tabbed player on the brief.
@@ -195,7 +206,7 @@ const allQuests: Quest[] = [
     logo: "/media/pixelwasher/logo.webp",
     portrait: "/media/pixelwasher/portrait.webp",
     description:
-      "Paid creator campaign for the Early Access launch of Pixel Washer, published by Acclaim. Stream it live on Twitch around the 15 October 2026 launch, show off the wash, reveal and upgrade loop, and send interested viewers to Steam.",
+      "Paid creator campaign for the Early Access launch of Pixel Washer, published by Acclaim. The campaign starts on launch day, 15 October 2026, and runs for two weeks: stream it live on Twitch, show off the wash, reveal and upgrade loop, and send interested viewers to Steam.",
     about:
       "In Pixel Washer you play Pigxel, a plucky pig with a powerful power washer, cleaning up a messy town: from hosing down pixel-art masterpieces in a filthy museum to turning a muddy pigsty into a shimmering pixelated paradise. Satisfying spray-and-play gameplay, clever mini-games and light business-sim upgrades as you take on ever dirtier jobs.",
     keyFeatures: [
@@ -235,19 +246,32 @@ const allQuests: Quest[] = [
     sideQuestDetails: [
       {
         name: "Put It on Your Washlist",
-        desc: "Place the StreamQuest tracked Steam link in your Twitch panel, stream description or a chat command. Give Pixel Washer a mention during your stream and show interested viewers where to find it. Before launch, invite them to wishlist it; once it is out, let them know the game is available. The free demo is an easy way for viewers to try it themselves. Proof: a screenshot of the link placement and a VOD timestamp for your mention.",
+        xp: 25,
+        objective: "Put the tracked Steam link on your channel and give Pixel Washer a mention on stream.",
+        desc: "Add the link to your Twitch panel, stream description or a chat command, and show interested viewers where to find the game. Before launch, invite them to wishlist it; once it is out, let them know it is available. The free demo is an easy way for viewers to try it themselves.",
+        proof: "A screenshot of the link placement and a VOD timestamp for your mention.",
       },
       {
         name: "A Clean Clip",
-        desc: "Post a short clip from your Pixel Washer stream on your own social channel: a satisfying before and after, an upgrade that makes a huge difference, a puzzle discovery, or the moment you accidentally make a fresh mess of your clean floor. Mention Pixel Washer and tag the Valadria and Acclaim accounts listed on this page. Keep the post public for verification. Strong clips may be reposted with creator credit; that choice is up to the team. Required for Gold. Proof: the public post link.",
+        xp: 25,
+        tag: "Required for Gold",
+        objective: "Post a short clip from your Pixel Washer stream on your own social channel.",
+        desc: "A satisfying before and after, an upgrade that makes a huge difference, a puzzle discovery, or the moment you accidentally make a fresh mess of your clean floor. Mention Pixel Washer, tag the Valadria and Acclaim accounts listed on this page, and keep the post public. Strong clips may be reposted with creator credit; that choice is up to the team.",
+        proof: "The public post link.",
       },
       {
         name: "First on the Scene, First to Clean",
-        desc: "Complete your required stream during the launch-priority dates shown in your Quest, so our communities discover the game together while it is fresh on Steam. Follow the confirmed embargo time before streaming or posting footage from your launch access: receiving a key early does not mean you can publish early. Proof: VOD link, stream date and timestamps showing the qualifying gameplay.",
+        xp: 25,
+        objective: "Do your required stream during the launch-priority dates shown in your Quest.",
+        desc: "Discover the game together with your community while it is fresh on Steam. Follow the confirmed embargo time before streaming or posting footage from your launch access: receiving a key early does not mean you can publish early.",
+        proof: "VOD link, stream date and timestamps showing the qualifying gameplay.",
       },
       {
         name: "One More Puddle",
-        desc: "Not ready to put the hose down? Stream one extra hour of active Pixel Washer gameplay beyond your main Quest's required duration. Tackle more levels, upgrade your washer and give your community another round of satisfying clean-ups. Breaks, starting-soon screens and unrelated content do not count. This completes a side quest within your tier reward; it is not a separate hourly payment. Proof: VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
+        xp: 25,
+        objective: "Stream one extra hour of active Pixel Washer gameplay beyond your main Quest's required duration.",
+        desc: "Not ready to put the hose down? Tackle more levels, upgrade your washer and give your community another round of satisfying clean-ups. Breaks, starting-soon screens and unrelated content do not count. This completes a side quest within your tier reward; it is not a separate hourly payment.",
+        proof: "VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
       },
     ],
     links: {
@@ -255,11 +279,11 @@ const allQuests: Quest[] = [
       official: "https://playacclaim.com/pixel-washer/",
       trailer: "https://www.youtube.com/watch?v=Ejk1-glNxi0",
     },
-    // Launch date only. The campaign end and submission deadline are not set yet.
+    // Starts on launch day and runs for two weeks. The submission deadline is not set yet.
     dates: { start: "2026-10-15" },
 
     /* -------- Rich brief content -------- */
-    duration: "Launch window",
+    duration: "2 weeks",
     platforms: ["PC (Steam)"],
 
     videos: {
@@ -268,23 +292,23 @@ const allQuests: Quest[] = [
     },
 
     heroMeta: [
-      { label: "Steam launch", value: "15 October 2026, Early Access" },
+      { label: "Campaign", value: "Starts 15 October 2026, runs 2 weeks" },
+      { label: "Launch", value: "Steam Early Access, 15 October" },
       { label: "Tiers", value: "Bronze 5+, Silver 15+, Gold 50+ average CCV" },
       { label: "Free demo", value: "On Steam now" },
-      { label: "Game access", value: "Details with your approval" },
     ],
 
     tldr: [
       { stat: "€10", label: "Bronze", sub: "Main mission, 5+ average CCV" },
       { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest, 15+ CCV" },
       { stat: "€50", label: "Gold", sub: "Main mission plus 3 side quests with the clip, 50+ CCV" },
-      { stat: "15 Oct", label: "Launch day", sub: "Launch-day streams are a priority" },
+      { stat: "15 Oct", label: "Campaign start", sub: "Runs for two weeks from launch day" },
     ],
     tldrFootnotes: [
       "Limited, curated slots: applying does not guarantee a place. Your tier, exact requirements and access instructions arrive with your approval.",
       "Silver and Gold also need the matching StreamQuest tier unlocked on your account. If you are a bigger creator and do not have that tier yet, get in touch with the mods in the StreamQuest Discord.",
       "Want to get on our radar? Try the free demo and send Murat a short DM on Discord about why it suits your channel. It helps us assess fit, but it does not guarantee a slot, and demo play is not a paid completion.",
-      "Side quests count toward Silver and Gold. They carry no separate payment.",
+      "Side quests count toward Silver and Gold and earn 25 XP each. They carry no separate payment.",
     ],
 
     screenshots: [
@@ -298,7 +322,7 @@ const allQuests: Quest[] = [
     ],
 
     storyParagraphs: [
-      "Don't you just hate dirty pixels? Good news: now you can wash them. StreamQuest and Acclaim are recruiting Twitch creators for a paid campaign around Pixel Washer's launch on Steam on 15 October 2026.",
+      "Don't you just hate dirty pixels? Good news: now you can wash them. StreamQuest and Acclaim are recruiting Twitch creators for a paid two-week campaign that starts on Pixel Washer's launch day on Steam, 15 October 2026.",
       "You are Pigxel, a little pig with a power washer and a surprisingly long to-do list. Mud puddles, fossils, filthy houses: something always needs a rinse. Clear the grime, earn coins and upgrade your washer. Then try not to undo all that work by tracking dirt through the area you just cleaned.",
       "It starts with the satisfaction of a spotless surface. Keep going and you will find trickier clean-up jobs, water-efficient routes and puzzles, including a memory game hidden under the dirt. Give it time to get going. You might finish a level and start looking at your own driveway like an unfinished side quest.",
     ],
@@ -311,9 +335,9 @@ const allQuests: Quest[] = [
       "Pixel Washer is a cozy pixel-art cleaning game from Valadria, published by Acclaim. It launches in Early Access on Steam on 15 October 2026, with a free demo available now and full Steam Deck support. A strong fit for creators whose audiences enjoy cozy games, satisfying before-and-after moments, and puzzles that chat can solve with you.",
 
     sideQuestIntro:
-      "Four side quests on this campaign. Bronze needs none, Silver needs at least one and Gold needs at least three, including A Clean Clip. Each comes with the proof you submit alongside your VOD.",
+      "Four side quests, each worth 25 StreamQuest XP. Bronze needs none, Silver needs at least one and Gold needs at least three, including A Clean Clip.",
     sideQuestOutro:
-      "Side quests count toward your tier. They do not carry a separate payment, and the extra hour in One More Puddle is not an hourly rate.",
+      "Side quests count toward your tier and earn XP. They carry no separate payment, and the extra hour in One More Puddle is not an hourly rate.",
 
     trackedWishlistUrl: "https://store.steampowered.com/app/2572060/Pixel_Washer/?utm_source=StreamQuest&utm_medium=creator&utm_campaign=PixelWasher",
     trackedWishlistNote:
@@ -411,7 +435,7 @@ const allQuests: Quest[] = [
       },
       {
         heading: "Launch timing and embargo",
-        body: "Stream during your approved campaign window around the 15 October launch. Launch-day availability is a priority when selecting creators. Your accepted Quest specifies the eligible game build and dates, and early demo play does not count toward this launch campaign. Follow the confirmed embargo time before streaming or posting footage from your launch access.",
+        body: "The campaign starts on launch day, 15 October 2026, and runs for two weeks. Launch-day availability is a priority when selecting creators. Your accepted Quest specifies the eligible game build and dates, and early demo play does not count toward this launch campaign. Follow the confirmed embargo time before streaming or posting footage from your launch access.",
       },
       {
         heading: "Access and keys",
@@ -431,7 +455,7 @@ const allQuests: Quest[] = [
       { title: "Apply", sub: "For the Pixel Washer Quest in the Creator Dashboard" },
       { title: "Wait for approval", sub: "Curated. Read your tier, dates and requirements once accepted" },
       { title: "Join Discord", sub: "Confirm your channel and handle so we can reach you" },
-      { title: "Stream the launch", sub: "Around 15 October, with the tracked link and disclosure" },
+      { title: "Stream the launch", sub: "From 15 October, inside the two-week window" },
       { title: "Submit", sub: "VOD, stream date, timestamps and side quest proof" },
       { title: "Get paid", sub: "After verification" },
     ],
@@ -490,19 +514,27 @@ const allQuests: Quest[] = [
     sideQuestDetails: [
       {
         name: "Assemble the Longtable",
-        desc: "Play Meadgard with a friend or your co-op crew. Bring them along with the bonus keys supplied through Discord and show how you work together to run the tavern. Proof: VOD link and timestamps showing co-op gameplay. Include teammate handles where you can; friends do not need a Twitch channel.",
+        objective: "Play Meadgard on stream with a friend or your co-op crew.",
+        desc: "Bring them along with the bonus keys supplied through Discord and show how you work together to run the tavern.",
+        proof: "VOD link and timestamps showing co-op gameplay. Include teammate handles where you can; friends do not need a Twitch channel.",
       },
       {
         name: "Raise a Mug for Meadgard",
-        desc: "Place the StreamQuest tracked Steam wishlist link in your Twitch panel, stream description or a chat command. Give Meadgard a shoutout during your stream and let interested viewers know where they can wishlist the game. Proof: a screenshot of the link placement and a VOD timestamp for your mention.",
+        objective: "Put the tracked Steam wishlist link on your channel and give Meadgard a shoutout on stream.",
+        desc: "Place the link in your Twitch panel, stream description or a chat command, and let interested viewers know where they can wishlist the game.",
+        proof: "A screenshot of the link placement and a VOD timestamp for your mention.",
       },
       {
         name: "Tavern Tale",
-        desc: "Post a short clip from your Meadgard stream on your own social channel: a funny co-op moment, a mistake, a recovery or a highlight. Mention Meadgard and tag the official account. On Instagram you can invite @oddikogames as a Reel collaborator; on TikTok tag @meadgard; on Bluesky tag @oddikogames.bsky.social. That gives the team the chance to share your clip and shout out your channel, though collaboration acceptance and reposting are up to them. Proof: the public post link.",
+        objective: "Post a short clip from your Meadgard stream on your own social channel.",
+        desc: "A funny co-op moment, a mistake, a recovery or a highlight. Mention Meadgard and tag the official account: on Instagram you can invite @oddikogames as a Reel collaborator, on TikTok tag @meadgard, on Bluesky tag @oddikogames.bsky.social. That gives the team the chance to share your clip and shout out your channel, though collaboration acceptance and reposting are up to them.",
+        proof: "The public post link.",
       },
       {
         name: "Keep the Fires Burning",
-        desc: "Stream one extra hour of active Meadgard gameplay beyond your main Quest's required duration. Keep playing, explore more of the demo and give your community more time with the game. Breaks, starting-soon screens and unrelated content do not count as gameplay time. This completes a side quest within your tier reward; it is not a separate hourly payment. Proof: VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
+        objective: "Stream one extra hour of active Meadgard gameplay beyond your main Quest's required duration.",
+        desc: "Keep playing, explore more of the demo and give your community more time with the game. Breaks, starting-soon screens and unrelated content do not count as gameplay time. This completes a side quest within your tier reward; it is not a separate hourly payment.",
+        proof: "VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
       },
     ],
     links: {

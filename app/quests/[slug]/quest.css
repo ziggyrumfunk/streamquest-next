@@ -122,6 +122,29 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+/* The game in one paragraph, under the hero buttons (quest.shortDescription). */
+.q-hero-about {
+  max-width: 700px;
+  margin: 36px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+.q-hero-about-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
+}
+.q-hero .q-hero-about p {
+  margin: 0;
+  font-size: clamp(1rem, 0.3vw + 0.92rem, 1.1rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
 
 /* ============ MISSION BRIEF / DESCRIPTION ============ */
 .q-section {
@@ -716,47 +739,145 @@
   .q-features-grid { grid-template-columns: 1fr; }
 }
 
-/* ============ SIDE QUEST RICH CARDS ============ */
+/* ============ SIDE QUESTS: QUEST-LOG OBJECTIVES ============
+   Each side quest reads as an objective: a diamond marker, the name, a
+   prominent XP badge, one bold objective line, the details, and a Proof
+   strip along the bottom. --sq-cols comes from the template: 2 for four
+   quests, 3 for three or six. */
 .q-sq-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--rd-line);
-  border-left: 1px solid var(--rd-line);
+  grid-template-columns: repeat(var(--sq-cols, 2), minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .q-sq-card {
-  padding: 32px 30px 36px;
-  border-right: 1px solid var(--rd-line);
-  border-bottom: 1px solid var(--rd-line);
   position: relative;
-  transition: background 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 26px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--rd-lime);
+  background:
+    linear-gradient(120deg, rgba(178, 240, 72, 0.07), transparent 42%),
+    rgba(10, 19, 34, 0.84);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 .q-sq-card:hover {
-  background: rgba(178, 240, 72, 0.04);
+  border-color: rgba(178, 240, 72, 0.32);
+  border-left-color: var(--rd-lime);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.4);
 }
-.q-sq-name {
+.q-sq-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+/* An open objective marker, like a quest log. It fills on hover. */
+.q-sq-marker {
+  flex-shrink: 0;
+  width: 15px;
+  height: 15px;
+  margin: 0 3px;
+  border: 2px solid var(--rd-lime);
+  transform: rotate(45deg);
+  box-shadow: 0 0 12px rgba(178, 240, 72, 0.35);
+  transition: background 0.25s ease;
+}
+.q-sq-card:hover .q-sq-marker { background: rgba(178, 240, 72, 0.4); }
+/* Two classes deep, to outrank `.rd h3` and `.q-section p`. */
+.q-sq-card .q-sq-name {
+  flex: 1;
+  margin: 0;
+  font-size: 1.32rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #fff;
+}
+.q-sq-xp {
+  flex-shrink: 0;
+  padding: 7px 13px;
+  border: 1px solid rgba(178, 240, 72, 0.55);
+  border-radius: 999px;
+  background: rgba(178, 240, 72, 0.14);
+  color: var(--rd-lime);
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  box-shadow: 0 0 18px rgba(178, 240, 72, 0.18);
+}
+.q-sq-tag {
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 5px 11px;
+  border: 1px solid rgba(245, 197, 66, 0.55);
+  border-radius: 999px;
+  background: rgba(245, 197, 66, 0.1);
+  color: #f5c542;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.q-sq-card .q-sq-objective {
+  margin: 16px 0 0;
+  max-width: none;
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #fff;
+}
+.q-sq-card .q-sq-desc {
+  margin: 16px 0 0;
+  max-width: none;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+}
+.q-sq-card .q-sq-objective + .q-sq-desc { margin-top: 10px; }
+.q-sq-card .q-sq-desc:not(:last-child) { margin-bottom: 20px; }
+.q-sq-proof {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: auto -26px -24px;
+  padding: 15px 26px 17px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.16);
+  background: rgba(5, 11, 21, 0.55);
+}
+.q-sq-proof > span {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--rd-lime);
-  margin-bottom: 18px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--rd-line);
 }
-.q-sq-desc {
-  font-size: 0.96rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.78);
+.q-sq-card .q-sq-proof p {
   margin: 0;
   max-width: none;
-  font-weight: 400;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.86);
 }
-@media (max-width: 900px) {
-  .q-sq-grid { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 1000px) {
+  .q-sq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .q-sq-grid { grid-template-columns: 1fr; }
+  .q-sq-card { padding: 22px 20px 20px; }
+  .q-sq-proof { flex-direction: column; gap: 6px; margin: auto -20px -20px; padding: 14px 20px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .q-sq-card, .q-sq-marker { transition: none; }
+  .q-sq-card:hover { transform: none; }
 }
 
 /* ============ STEAM BUTTON ============ */
@@ -1064,54 +1185,15 @@
   text-transform: uppercase;
   color: rgba(225, 223, 217, 0.78);
 }
-.q-short-desc {
-  margin-top: 40px;
-  padding-top: 32px;
-  border-top: 1px solid var(--rd-line);
-}
-.q-short-desc h3 {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--rd-lime);
-  margin-bottom: 14px;
-}
-.q-short-desc p {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.75;
-  max-width: 78ch;
-  margin: 0;
-}
 @media (max-width: 900px) {
   .q-story-split { grid-template-columns: 1fr; gap: 32px; }
 }
 
-/* ----- Side quest enhancements (XP badge) ----- */
-.q-sq-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 14px;
-}
-.q-sq-name { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
-.q-sq-xp {
-  flex-shrink: 0;
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--rd-lime);
-  background: rgba(178, 240, 72, 0.1);
-  border: 1px solid rgba(178, 240, 72, 0.32);
-  padding: 5px 9px;
-}
+/* ----- Side quest closing line ----- */
 .q-sq-outro {
   margin-top: 28px;
   text-align: center;
-  font-size: 14px;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.72);
   max-width: 64ch;
   margin-left: auto;
@@ -1764,11 +1846,6 @@
   font-size: clamp(1.08rem, 0.6vw + 0.95rem, 1.3rem);
   line-height: 1.6;
 }
-.q-short-desc p {
-  font-size: clamp(1.05rem, 0.55vw + 0.95rem, 1.25rem);
-  line-height: 1.75;
-  max-width: 78ch;
-}
 
 /* TL;DR sub copy is also a bit cramped at 4K. */
 .q-tldr-sub {
@@ -1950,25 +2027,6 @@
   font-size: 13.5px;
   color: rgba(255, 255, 255, 0.82);
   line-height: 1.55;
-}
-
-/* ============================================================
-   SIDE QUESTS — name was 13px while the body ran the card.
-   Give the name real heading weight and calm the description.
-   ============================================================ */
-.q-sq-name {
-  font-size: 1.32rem;
-  font-weight: 800;
-  letter-spacing: -0.005em;
-  text-transform: none;
-  color: #fff;
-  margin-bottom: 16px;
-  padding-bottom: 14px;
-}
-.q-sq-desc {
-  font-size: 0.95rem;
-  line-height: 1.68;
-  color: rgba(255, 255, 255, 0.76);
 }
 
 /* ============================================================

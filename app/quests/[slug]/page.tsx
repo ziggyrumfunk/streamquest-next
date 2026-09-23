@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 
 import Reveal from "@/app/components/Reveal";
 import QuestVideoTabs from "@/app/components/QuestVideoTabs";
@@ -223,6 +224,15 @@ export default function QuestPage({ params }: Params) {
               </div>
             </Reveal>
           )}
+
+          {quest.shortDescription && (
+            <Reveal delay={0.4}>
+              <div className="q-hero-about">
+                <span className="q-hero-about-label">About the game</span>
+                <p>{quest.shortDescription}</p>
+              </div>
+            </Reveal>
+          )}
         </div>
       </section>
 
@@ -423,14 +433,6 @@ export default function QuestPage({ params }: Params) {
               )}
             </div>
 
-            {quest.shortDescription && (
-              <Reveal>
-                <div className="q-short-desc">
-                  <h3>Short description</h3>
-                  <p>{quest.shortDescription}</p>
-                </div>
-              </Reveal>
-            )}
           </div>
         </section>
       )}
@@ -474,19 +476,31 @@ export default function QuestPage({ params }: Params) {
               </div>
             </Reveal>
             <Reveal>
-              <div className="q-sq-grid">
+              <ol
+                className="q-sq-grid"
+                style={{ "--sq-cols": quest.sideQuestDetails.length % 3 === 0 ? 3 : 2 } as CSSProperties}
+              >
                 {quest.sideQuestDetails.map((sq) => (
-                  <div key={sq.name} className="q-sq-card">
+                  <li key={sq.name} className="q-sq-card">
                     <div className="q-sq-head">
-                      <div className="q-sq-name">{sq.name}</div>
+                      <span className="q-sq-marker" aria-hidden="true" />
+                      <h3 className="q-sq-name">{sq.name}</h3>
                       {typeof sq.xp === "number" && (
                         <span className="q-sq-xp">+{sq.xp} XP</span>
                       )}
                     </div>
+                    {sq.tag && <span className="q-sq-tag">{sq.tag}</span>}
+                    {sq.objective && <p className="q-sq-objective">{sq.objective}</p>}
                     <p className="q-sq-desc">{sq.desc}</p>
-                  </div>
+                    {sq.proof && (
+                      <div className="q-sq-proof">
+                        <span>Proof</span>
+                        <p>{sq.proof}</p>
+                      </div>
+                    )}
+                  </li>
                 ))}
-              </div>
+              </ol>
             </Reveal>
             {quest.sideQuestOutro && (
               <Reveal>
