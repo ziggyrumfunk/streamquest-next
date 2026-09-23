@@ -6,6 +6,7 @@ import Reveal from "@/app/components/Reveal";
 import QuestVideoTabs from "@/app/components/QuestVideoTabs";
 import CopyLink from "@/app/components/CopyLink";
 import MutantSwarm from "@/app/components/MutantSwarm";
+import RankLadder from "@/app/components/RankLadder";
 import {
   quests,
   getQuestBySlug,
@@ -341,23 +342,8 @@ export default function QuestPage({ params }: Params) {
               </div>
             </Reveal>
 
-            <Reveal>
-              <div className="q-tiers">
-                {quest.tiers.map((t) => (
-                  <div key={t.name} className="q-tier">
-                    <div className="q-tier-badge">{t.name.toUpperCase()}</div>
-                    <div className="q-tier-payout">{t.payout}</div>
-                    {t.rate && <div className="q-tier-rate">{t.rate}</div>}
-                    {t.rateNote && <div className="q-tier-rate">{t.rateNote}</div>}
-                    <p className="q-tier-req">{t.requirement}</p>
-                    <div className="q-tier-flags">
-                      {t.sideQuestsRequired && <span>At least 1 side quest required</span>}
-                      {t.freeCopy && <span>Free game copy included</span>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
+            {/* Animates itself on scroll, so no Reveal wrapper. */}
+            <RankLadder tiers={quest.tiers} />
           </div>
         </section>
       )}

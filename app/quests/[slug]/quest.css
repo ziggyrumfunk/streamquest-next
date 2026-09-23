@@ -200,79 +200,328 @@
   .q-about-aside { border-left: none; padding-left: 0; padding-top: 32px; border-top: 1px solid var(--rd-line); }
 }
 
-/* ============ TIERS LADDER ============ */
-.q-tiers {
+/* ============ TIERS: RANK LADDER ============
+   Markup in app/components/RankLadder.tsx. Medals climb from the first
+   tier to the top one on a glowing track, each standing on a light beam
+   like a podium step. Every tier carries its metal through the medal,
+   the card edge, the amount and the pills. --band, --n, --i, --size and
+   --lift come from the component.
+
+   Site rule: no rounded boxes. Cards are square; pills and the medals'
+   light rays are round. */
+.q-ranks-wrap {
+  position: relative;
+  margin: 8px -9px 0;
+}
+.q-ranks {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
-  position: relative;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.q-tier {
+
+/* Metals: light, mid and deep shade, plus glow, line and wash colours. */
+.q-rank {
+  --m-a: #e9ffc2;
+  --m-b: var(--rd-lime);
+  --m-c: #5d8a1c;
+  --m-glow: rgba(178, 240, 72, 0.4);
+  --m-line: rgba(178, 240, 72, 0.5);
+  --m-soft: rgba(178, 240, 72, 0.1);
   position: relative;
-  padding: 36px 0;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 9px;
 }
-.q-tier:not(:last-child)::after {
+.q-rank.is-bronze {
+  --m-a: #ffd6ab;
+  --m-b: #d98a4a;
+  --m-c: #7e4418;
+  --m-glow: rgba(217, 138, 74, 0.45);
+  --m-line: rgba(217, 138, 74, 0.55);
+  --m-soft: rgba(217, 138, 74, 0.12);
+}
+.q-rank.is-silver {
+  --m-a: #ffffff;
+  --m-b: #c9d6e6;
+  --m-c: #6c7e96;
+  --m-glow: rgba(201, 214, 230, 0.38);
+  --m-line: rgba(201, 214, 230, 0.5);
+  --m-soft: rgba(201, 214, 230, 0.1);
+}
+.q-rank.is-gold {
+  --m-a: #fff4bd;
+  --m-b: #f5c542;
+  --m-c: #9c6a12;
+  --m-glow: rgba(245, 197, 66, 0.5);
+  --m-line: rgba(245, 197, 66, 0.6);
+  --m-soft: rgba(245, 197, 66, 0.13);
+}
+
+/* The climbing track, drawn behind the medals. */
+.q-rank-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--band);
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 0 7px rgba(245, 214, 140, 0.35));
+}
+.q-rank-track polyline {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.q-rank-track-base { stroke: rgba(255, 255, 255, 0.07); stroke-width: 12; }
+.q-rank-track-line { stroke-width: 3; }
+
+/* Medal band: each medal stands on a beam of its own light, higher per rank. */
+.q-rank-band {
+  position: relative;
+  flex-shrink: 0;
+  height: var(--band);
+}
+.q-rank-beam {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: calc(var(--size) * 0.72);
+  height: calc(var(--lift) + var(--size) * 0.5);
+  transform: translateX(-50%);
+  background: linear-gradient(to top, var(--m-soft), transparent);
+  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+}
+.q-rank-beam::after {
   content: "";
   position: absolute;
-  top: 50%;
-  right: -14px;
-  width: 1px;
-  height: 70%;
-  transform: translateY(-50%);
-  background: var(--rd-line);
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, var(--m-b), transparent);
+  opacity: 0.8;
 }
-.q-tier-badge {
-  display: inline-flex;
+.q-rank-emblem {
+  position: absolute;
+  left: 50%;
+  bottom: var(--lift);
+  z-index: 2;
+  width: var(--size);
+  height: var(--size);
+  transform: translateX(-50%);
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 16px var(--m-glow));
+}
+.q-rank-hex {
+  position: absolute;
+  inset: 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 78px;
-  height: 78px;
-  border-radius: 999px;
-  background: var(--rd-deep);
-  border: 2px solid var(--rd-lime);
-  color: var(--rd-lime);
+  clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  background: linear-gradient(160deg, var(--m-a) 0%, var(--m-b) 40%, var(--m-c) 78%, var(--m-b) 100%);
+}
+.q-rank-hex::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  background: radial-gradient(circle at 50% 30%, #1d2c46 0%, #0a1120 72%);
+}
+.q-rank-star {
+  position: relative;
+  width: 46%;
+  height: 46%;
+  fill: var(--m-b);
+  filter: drop-shadow(0 0 6px var(--m-glow));
+}
+
+/* Top tier: a crown, and slow light rays behind the medal. */
+.q-rank-crown {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 4px);
+  width: 46%;
+  transform: translateX(-50%);
+  fill: var(--m-b);
+  filter: drop-shadow(0 0 8px var(--m-glow));
+}
+.q-rank-rays {
+  position: absolute;
+  inset: -62%;
+  z-index: -1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, var(--m-glow) 0deg 6deg, transparent 6deg 20deg);
+  -webkit-mask: radial-gradient(circle, #000 20%, transparent 66%);
+  mask: radial-gradient(circle, #000 20%, transparent 66%);
+  animation: q-rank-spin 30s linear infinite;
+}
+@keyframes q-rank-spin { to { transform: rotate(1turn); } }
+
+/* Cards. Equal heights, so the flags line up at the bottom. */
+.q-rank-card {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 24px 30px;
+  text-align: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid var(--m-b);
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 0%, var(--m-soft), transparent 72%),
+    rgba(10, 19, 34, 0.84);
+}
+.q-rank.is-top .q-rank-card {
+  border-color: var(--m-line);
+  border-top-color: var(--m-b);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45), 0 0 44px var(--m-soft);
+}
+/* A slow shine across the top tier's card. */
+.q-rank.is-top .q-rank-card::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -70%;
+  width: 45%;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 244, 205, 0.13) 50%, transparent 80%);
+  transform: skewX(-16deg);
+  animation: q-rank-shine 7s ease-in-out 2s infinite;
+  pointer-events: none;
+}
+@keyframes q-rank-shine {
+  0% { left: -70%; }
+  26%, 100% { left: 140%; }
+}
+.q-rank-name {
   font-size: 13px;
   font-weight: 800;
-  letter-spacing: 0.2em;
-  margin: 0 auto 24px;
-  box-shadow: 0 0 28px rgba(178, 240, 72, 0.35);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--m-b);
 }
-.q-tier-payout {
-  font-size: clamp(2.6rem, 4.6vw, 4rem);
+.q-rank-payout {
+  margin-top: 10px;
+  padding-bottom: 0.06em;
+  font-size: clamp(2.8rem, 4.8vw, 4.3rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
   line-height: 1;
-  background: linear-gradient(180deg, #fff 0%, var(--rd-lime) 100%);
+  letter-spacing: -0.035em;
+  background: linear-gradient(180deg, var(--m-a) 8%, var(--m-b) 60%, var(--m-c) 125%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 4px;
+  filter: drop-shadow(0 0 22px var(--m-glow));
 }
-.q-tier-rate {
-  font-size: 13px;
-  font-weight: 700;
-  color: rgba(255, 200, 87, 0.95);
-  letter-spacing: 0.04em;
-  margin-bottom: 18px;
-}
-.q-tier-req {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.6;
-  padding: 0 16px;
-  margin-bottom: 12px;
-}
-.q-tier-flags {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.q-rank-rate {
   margin-top: 16px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  padding: 8px 16px;
+  border: 1px solid var(--m-line);
+  border-radius: 999px;
+  background: var(--m-soft);
+  color: var(--m-a);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(178, 240, 72, 0.9);
+}
+/* Two classes deep, to outrank `.q-section p`. */
+.q-rank-card .q-rank-note {
+  margin: 12px 0 0;
+  max-width: 32ch;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.86);
+}
+.q-rank-card .q-rank-req {
+  margin: 16px 0 0;
+  max-width: 36ch;
+  font-size: clamp(1rem, 0.3vw + 0.9rem, 1.1rem);
+  font-weight: 400;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.76);
+}
+.q-rank-flags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+.q-rank-flags span {
+  padding: 6px 12px;
+  border: 1px solid rgba(178, 240, 72, 0.35);
+  border-radius: 999px;
+  background: rgba(178, 240, 72, 0.06);
+  color: var(--rd-lime);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Rank-up entrance, only when the ladder scrolls into view: the track
+   draws from the first tier to the top one and the medals pop in turn. */
+.q-ranks-wrap[data-anim="wait"] .q-rank-track { clip-path: inset(0 100% 0 0); }
+.q-ranks-wrap[data-anim="wait"] .q-rank-emblem { opacity: 0; transform: translateX(-50%) translateY(22px) scale(0.5); }
+.q-ranks-wrap[data-anim="wait"] .q-rank-beam { opacity: 0; }
+.q-ranks-wrap[data-anim="wait"] .q-rank-card { opacity: 0; transform: translateY(28px); }
+.q-ranks-wrap[data-anim="go"] .q-rank-track {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.3s;
+}
+.q-ranks-wrap[data-anim="go"] .q-rank-card {
+  transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  transition-delay: calc(var(--i) * 0.14s);
+}
+.q-ranks-wrap[data-anim="go"] .q-rank-beam {
+  transition: opacity 0.6s ease;
+  transition-delay: calc(0.35s + var(--i) * 0.36s);
+}
+.q-ranks-wrap[data-anim="go"] .q-rank-emblem {
+  transition: opacity 0.4s ease, transform 0.75s cubic-bezier(0.2, 1.5, 0.35, 1);
+  transition-delay: calc(0.35s + var(--i) * 0.36s);
+}
+
+/* Phones: one column, medal on top of each card, no track. */
+@media (max-width: 860px) {
+  .q-ranks-wrap { margin: 0; }
+  .q-rank-track { display: none; }
+  .q-ranks { grid-template-columns: 1fr; row-gap: 26px; }
+  .q-rank { padding: 0; }
+  .q-rank-band {
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    padding-top: 18px;
+    margin-bottom: -30px;
+  }
+  .q-rank-beam { display: none; }
+  .q-rank-emblem {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    width: calc(var(--size) * 0.82);
+    height: calc(var(--size) * 0.82);
+    transform: none;
+  }
+  .q-rank-card { padding-top: 44px; }
+  .q-ranks-wrap[data-anim="wait"] .q-rank-emblem { transform: translateY(22px) scale(0.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q-rank-rays,
+  .q-rank.is-top .q-rank-card::after { animation: none; }
 }
 
 /* ============ LISTS (side quests, rules) ============ */
@@ -1521,13 +1770,9 @@
   max-width: 78ch;
 }
 
-/* TL;DR sub copy + tier requirement are also a bit cramped at 4K. */
+/* TL;DR sub copy is also a bit cramped at 4K. */
 .q-tldr-sub {
   font-size: clamp(0.95rem, 0.4vw + 0.85rem, 1.1rem);
-}
-.q-tier-req {
-  font-size: clamp(1rem, 0.4vw + 0.9rem, 1.15rem);
-  line-height: 1.55;
 }
 
 /* Hero tagline + meta items also feel small at 2K. */
@@ -1658,7 +1903,6 @@
   letter-spacing: 0.24em;
 }
 .q-story-body p { color: rgba(255, 255, 255, 0.86); }
-.q-tier-req { color: rgba(255, 255, 255, 0.84); font-size: 15px; }
 .q-list li { color: rgba(255, 255, 255, 0.88); font-size: 15.5px; }
 .q-first-timer p { color: rgba(255, 255, 255, 0.86); font-size: 16px; }
 
