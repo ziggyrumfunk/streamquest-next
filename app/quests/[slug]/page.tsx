@@ -771,15 +771,27 @@ export default function QuestPage({ params }: Params) {
             </h2>
             <p>
               {isActive
-                ? "Join Discord to apply, ask questions, and get briefed by a real human."
+                ? "Apply in the Creator Dashboard, then join Discord for access, questions, and a briefing from a real human."
                 : "Join Discord to catch the next paid quest before anyone else."
               }
             </p>
+            {/* Active briefs close with the same two actions they open with. */}
             <div className="q-final-actions">
-              <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
-                Join Discord
-              </a>
-              <Link href="/" className="btn btn-secondary btn-xl">
+              {isActive ? (
+                <>
+                  <a href="https://app.streamquest.io" className="btn btn-primary btn-xl">
+                    Apply for the quest
+                  </a>
+                  <a href="https://discord.gg/NhqfucYDXD" className="btn btn-secondary btn-xl">
+                    Join Discord
+                  </a>
+                </>
+              ) : (
+                <a href="https://discord.gg/NhqfucYDXD" className="btn btn-primary btn-xl">
+                  Join Discord
+                </a>
+              )}
+              <Link href="/" className={`btn ${isActive ? "btn-ghost" : "btn-secondary"} btn-xl`}>
                 Back to all quests
               </Link>
             </div>

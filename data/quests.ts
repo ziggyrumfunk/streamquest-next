@@ -181,6 +181,262 @@ export type Quest = {
 
 const allQuests: Quest[] = [
   {
+    slug: "pixelwasher",
+    title: "Pixel Washer",
+    status: "active",
+    studio: "Acclaim x Valadria",
+    tagline: "Blast the grime off a pixel-art town as a pig with a power washer.",
+    category: "Cozy cleaning sim",
+    // No logo or press kit was supplied, so the art comes from Acclaim's public
+    // press kit (playacclaim.com/pixel-washer-presskit) and Steam: the diorama
+    // photo without a title as the cover, Steam's transparent library logo as
+    // the homepage card overlay, and the titled key art in the gallery.
+    cover: "/media/pixelwasher/cover.webp",
+    logo: "/media/pixelwasher/logo.webp",
+    portrait: "/media/pixelwasher/portrait.webp",
+    description:
+      "Paid creator campaign for the Early Access launch of Pixel Washer, published by Acclaim. Stream it live on Twitch around the 15 October 2026 launch, show off the wash, reveal and upgrade loop, and send interested viewers to Steam.",
+    about:
+      "In Pixel Washer you play Pigxel, a plucky pig with a powerful power washer, cleaning up a messy town: from hosing down pixel-art masterpieces in a filthy museum to turning a muddy pigsty into a shimmering pixelated paradise. Satisfying spray-and-play gameplay, clever mini-games and light business-sim upgrades as you take on ever dirtier jobs.",
+    keyFeatures: [
+      "Give it time to build. The opening teaches the cleaning loop, and later jobs add more to think about: tougher grime, water-efficient routes and puzzles hidden under the dirt.",
+      "Make the transformation visible. Show the mess before you start, then give the clean result a moment on screen.",
+      "Show what an upgrade changes. More pressure, a wider spray or a longer reach: compare it on the next job so chat sees the difference.",
+      "Puzzles chat can solve with you. Murat's demo highlight was the memory level, where washing uncovers face-down cards and your chat gets to play along.",
+      "Watch your footsteps and your water. An efficient clear, or accidentally tracking dirt across the floor you just cleaned, makes a good shared challenge.",
+      "Clips that explain themselves. A perfect sweep, a last dirty corner or a sudden puzzle realisation works without a long explanation.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        rate: "5+ average CCV",
+        requirement:
+          "Complete the main mission: stream Pixel Washer on Twitch during your approved campaign window, for the gameplay duration and requirements shown in your accepted Quest, at 5 or more average concurrent viewers.",
+      },
+      {
+        name: "Silver",
+        payout: "€20",
+        rate: "15+ average CCV",
+        rateNote: "StreamQuest Silver tier unlocked",
+        requirement:
+          "The main mission plus at least one side quest, at 15 or more average concurrent viewers, with the StreamQuest Silver tier unlocked on your account.",
+        sideQuestsRequired: true,
+      },
+      {
+        name: "Gold",
+        payout: "€50",
+        rate: "50+ average CCV",
+        rateNote: "StreamQuest Gold tier unlocked",
+        requirement:
+          "The main mission plus at least three side quests, including A Clean Clip, at 50 or more average concurrent viewers, with the StreamQuest Gold tier unlocked on your account. Gold places are limited and individually selected.",
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "Put It on Your Washlist",
+        desc: "Place the StreamQuest tracked Steam link in your Twitch panel, stream description or a chat command. Give Pixel Washer a mention during your stream and show interested viewers where to find it. Before launch, invite them to wishlist it; once it is out, let them know the game is available. The free demo is an easy way for viewers to try it themselves. Proof: a screenshot of the link placement and a VOD timestamp for your mention.",
+      },
+      {
+        name: "A Clean Clip",
+        desc: "Post a short clip from your Pixel Washer stream on your own social channel: a satisfying before and after, an upgrade that makes a huge difference, a puzzle discovery, or the moment you accidentally make a fresh mess of your clean floor. Mention Pixel Washer and tag the Valadria and Acclaim accounts listed on this page. Keep the post public for verification. Strong clips may be reposted with creator credit; that choice is up to the team. Required for Gold. Proof: the public post link.",
+      },
+      {
+        name: "First on the Scene, First to Clean",
+        desc: "Complete your required stream during the launch-priority dates shown in your Quest, so our communities discover the game together while it is fresh on Steam. Follow the confirmed embargo time before streaming or posting footage from your launch access: receiving a key early does not mean you can publish early. Proof: VOD link, stream date and timestamps showing the qualifying gameplay.",
+      },
+      {
+        name: "One More Puddle",
+        desc: "Not ready to put the hose down? Stream one extra hour of active Pixel Washer gameplay beyond your main Quest's required duration. Tackle more levels, upgrade your washer and give your community another round of satisfying clean-ups. Breaks, starting-soon screens and unrelated content do not count. This completes a side quest within your tier reward; it is not a separate hourly payment. Proof: VOD link and timestamps showing your total qualifying gameplay time, including the extra hour.",
+      },
+    ],
+    links: {
+      steam: "https://store.steampowered.com/app/2572060/Pixel_Washer/?utm_source=StreamQuest&utm_medium=creator&utm_campaign=PixelWasher",
+      official: "https://playacclaim.com/pixel-washer/",
+      trailer: "https://www.youtube.com/watch?v=Ejk1-glNxi0",
+    },
+    // Launch date only. The campaign end and submission deadline are not set yet.
+    dates: { start: "2026-10-15" },
+
+    /* -------- Rich brief content -------- */
+    duration: "Launch window",
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "Ejk1-glNxi0",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Steam launch", value: "15 October 2026, Early Access" },
+      { label: "Tiers", value: "Bronze 5+, Silver 15+, Gold 50+ average CCV" },
+      { label: "Free demo", value: "On Steam now" },
+      { label: "Game access", value: "Details with your approval" },
+    ],
+
+    tldr: [
+      { stat: "€10", label: "Bronze", sub: "Main mission, 5+ average CCV" },
+      { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest, 15+ CCV" },
+      { stat: "€50", label: "Gold", sub: "Main mission plus 3 side quests with the clip, 50+ CCV" },
+      { stat: "15 Oct", label: "Launch day", sub: "Launch-day streams are a priority" },
+    ],
+    tldrFootnotes: [
+      "Limited, curated slots: applying does not guarantee a place. Your tier, exact requirements and access instructions arrive with your approval.",
+      "Silver and Gold also need the matching StreamQuest tier unlocked on your account. If you are a bigger creator and do not have that tier yet, get in touch with the mods in the StreamQuest Discord.",
+      "Want to get on our radar? Try the free demo and send Murat a short DM on Discord about why it suits your channel. It helps us assess fit, but it does not guarantee a slot, and demo play is not a paid completion.",
+      "Side quests count toward Silver and Gold. They carry no separate payment.",
+    ],
+
+    screenshots: [
+      "/media/pixelwasher/screenshot-train.webp",
+      "/media/pixelwasher/screenshot-cards.webp",
+      "/media/pixelwasher/screenshot-lighthouse.webp",
+      "/media/pixelwasher/screenshot-museum.webp",
+      "/media/pixelwasher/screenshot-foodtruck.webp",
+      "/media/pixelwasher/screenshot-boss.webp",
+      "/media/pixelwasher/screenshot-monster.webp",
+    ],
+
+    storyParagraphs: [
+      "Don't you just hate dirty pixels? Good news: now you can wash them. StreamQuest and Acclaim are recruiting Twitch creators for a paid campaign around Pixel Washer's launch on Steam on 15 October 2026.",
+      "You are Pigxel, a little pig with a power washer and a surprisingly long to-do list. Mud puddles, fossils, filthy houses: something always needs a rinse. Clear the grime, earn coins and upgrade your washer. Then try not to undo all that work by tracking dirt through the area you just cleaned.",
+      "It starts with the satisfaction of a spotless surface. Keep going and you will find trickier clean-up jobs, water-efficient routes and puzzles, including a memory game hidden under the dirt. Give it time to get going. You might finish a level and start looking at your own driveway like an unfinished side quest.",
+    ],
+    storyPull:
+      "If watching the grime come off was as satisfying for you as it was for me, Pixel Washer is on Steam. The link is in my panel.",
+    storyAsideVideo: "/media/pixelwasher/fossil-loop.mp4",
+    storyAsidePoster: "/media/pixelwasher/fossil-loop-poster.webp",
+    storyAsideCaption: "A fossil under the grime",
+    shortDescription:
+      "Pixel Washer is a cozy pixel-art cleaning game from Valadria, published by Acclaim. It launches in Early Access on Steam on 15 October 2026, with a free demo available now and full Steam Deck support. A strong fit for creators whose audiences enjoy cozy games, satisfying before-and-after moments, and puzzles that chat can solve with you.",
+
+    sideQuestIntro:
+      "Four side quests on this campaign. Bronze needs none, Silver needs at least one and Gold needs at least three, including A Clean Clip. Each comes with the proof you submit alongside your VOD.",
+    sideQuestOutro:
+      "Side quests count toward your tier. They do not carry a separate payment, and the extra hour in One More Puddle is not an hourly rate.",
+
+    trackedWishlistUrl: "https://store.steampowered.com/app/2572060/Pixel_Washer/?utm_source=StreamQuest&utm_medium=creator&utm_campaign=PixelWasher",
+    trackedWishlistNote:
+      "This is the shared campaign link. It identifies the Pixel Washer campaign, not individual creators, so it is not a personal referral link. Use the tracked link supplied in your accepted Quest, in your panel, description or chat command, and keep its tracking parameters intact.",
+
+    gallery: {
+      wide: "/media/pixelwasher/screenshot-billboard.webp",
+      thumbs: [
+        "/media/pixelwasher/key-art.webp",
+        "/media/pixelwasher/screenshot-cards.webp",
+        "/media/pixelwasher/screenshot-train.webp",
+        "/media/pixelwasher/screenshot-museum.webp",
+        "/media/pixelwasher/screenshot-lighthouse.webp",
+        "/media/pixelwasher/screenshot-boss.webp",
+        "/media/pixelwasher/screenshot-foodtruck.webp",
+        "/media/pixelwasher/screenshot-town.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Campaign access, embargo instructions and support, all on Discord.",
+        links: [
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+        ],
+      },
+      {
+        name: "Valadria",
+        hint: "Developer of Pixel Washer. Their Discord is the game's community server. Tag @richtaur on your Clean Clip.",
+        links: [
+          { type: "x", href: "https://x.com/richtaur" },
+          { type: "tiktok", href: "https://www.tiktok.com/@richtaur" },
+          { type: "instagram", href: "https://www.instagram.com/richtaur/" },
+          { type: "bluesky", href: "https://bsky.app/profile/richtaur.bsky.social" },
+          { type: "youtube", href: "https://www.youtube.com/@Valadria" },
+          { type: "discord", href: "https://discord.com/invite/ZmSNkuPDfu" },
+        ],
+      },
+      {
+        name: "Acclaim",
+        hint: "Publisher of Pixel Washer. Tag @PlayAcclaim on your Clean Clip.",
+        links: [
+          { type: "x", href: "https://x.com/PlayAcclaim" },
+          { type: "tiktok", href: "https://www.tiktok.com/@playacclaim" },
+          { type: "youtube", href: "https://www.youtube.com/@PlayAcclaim" },
+          { type: "twitch", href: "https://www.twitch.tv/playacclaim" },
+          { type: "website", href: "https://playacclaim.com/pixel-washer/" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Pixel Washer, campaign link",
+        href: "https://store.steampowered.com/app/2572060/Pixel_Washer/?utm_source=StreamQuest&utm_medium=creator&utm_campaign=PixelWasher",
+        icon: "steam",
+      },
+      {
+        name: "Free demo",
+        sub: "Pixel Washer Demo on Steam, play it now",
+        href: "https://store.steampowered.com/app/3145410/Pixel_Washer_Demo/",
+        icon: "steam",
+      },
+      {
+        name: "Press kit",
+        sub: "Logos, key art, screenshots and GIFs from Acclaim",
+        href: "https://playacclaim.com/pixel-washer-presskit/",
+        icon: "website",
+      },
+      {
+        name: "Gameplay trailer",
+        sub: "Official, on Acclaim's YouTube",
+        href: "https://www.youtube.com/watch?v=Ejk1-glNxi0",
+        icon: "youtube",
+      },
+    ],
+
+    rulesContent: [
+      {
+        heading: "Curated, limited slots",
+        body: "This campaign has limited, curated slots. Applying does not guarantee a place. Selected creators receive their tier, exact requirements and access instructions in the Creator Dashboard before accepting. Gold places are limited and individually selected, and your approval confirms your tier and qualifying gameplay duration.",
+      },
+      {
+        heading: "Viewers and tiers",
+        body: "Your tier follows your recent average concurrent viewers (CCV) across your last streams: Bronze from 5, Silver from 15, Gold from 50. Silver and Gold also need the matching StreamQuest tier unlocked on your account, the rank you build up by completing quests. If you are a bigger creator and do not have that tier unlocked yet, get in touch with the mods in the StreamQuest Discord before you apply.",
+      },
+      {
+        heading: "Get on our radar",
+        body: "Try the free demo and send Murat a short DM on the StreamQuest Discord explaining why Pixel Washer suits your channel: what you enjoyed, what your community would respond to, or what you would do with it on stream. Demo playtime and anything you share help us assess fit and earn priority consideration. They do not guarantee a slot, and playing the demo before approval is not a paid Quest completion.",
+      },
+      {
+        heading: "Launch timing and embargo",
+        body: "Stream during your approved campaign window around the 15 October launch. Launch-day availability is a priority when selecting creators. Your accepted Quest specifies the eligible game build and dates, and early demo play does not count toward this launch campaign. Follow the confirmed embargo time before streaming or posting footage from your launch access.",
+      },
+      {
+        heading: "Access and keys",
+        body: "The free demo is available now. Full-game key delivery details will be shared with approved creators once confirmed. We coordinate access, embargo instructions and submissions in the StreamQuest Discord, so confirm your channel and Discord handle there so we can reach you.",
+      },
+      {
+        heading: "Disclosure and the tracked link",
+        body: "Use the required sponsorship disclosure. Add the tracked Steam link supplied in your accepted Quest, keep its tracking parameters intact, and do not shorten it or swap it for a plain store link.",
+      },
+      {
+        heading: "Proof",
+        body: "Submit your Twitch VOD, stream date and proof for each completed side quest through the Creator Dashboard by the deadline shown in your Quest. Add timestamps so we can find your gameplay and side-quest moments. Only active Pixel Washer gameplay counts toward the required duration. Keep your VOD and required social posts accessible for verification. Need help with your submission? Our Discord DMs are open.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "For the Pixel Washer Quest in the Creator Dashboard" },
+      { title: "Wait for approval", sub: "Curated. Read your tier, dates and requirements once accepted" },
+      { title: "Join Discord", sub: "Confirm your channel and handle so we can reach you" },
+      { title: "Stream the launch", sub: "Around 15 October, with the tracked link and disclosure" },
+      { title: "Submit", sub: "VOD, stream date, timestamps and side quest proof" },
+      { title: "Get paid", sub: "After verification" },
+    ],
+  },
+  {
     slug: "meadgard",
     title: "Meadgard",
     status: "active",

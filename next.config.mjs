@@ -49,6 +49,13 @@ const nextConfig = {
       { source: "/MEADGARD", destination: "/quests/meadgard", permanent: true },
       { source: "/Meadgard", destination: "/quests/meadgard", permanent: true },
 
+      // Friendly short URL for the Pixel Washer quest brief.
+      { source: "/pixelwasher", destination: "/quests/pixelwasher", permanent: true },
+      { source: "/PixelWasher", destination: "/quests/pixelwasher", permanent: true },
+      { source: "/Pixelwasher", destination: "/quests/pixelwasher", permanent: true },
+      { source: "/PIXELWASHER", destination: "/quests/pixelwasher", permanent: true },
+      { source: "/pixel-washer", destination: "/quests/pixelwasher", permanent: true },
+
       // Friendly short URL for the RIFTFALL quest brief.
       { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },
       { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: true },
