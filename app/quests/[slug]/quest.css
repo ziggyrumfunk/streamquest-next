@@ -2178,6 +2178,8 @@
 }
 a.q-run-chip { text-decoration: none; transition: background 0.2s, border-color 0.2s; }
 a.q-run-chip:hover { background: rgba(178, 240, 72, 0.2); border-color: var(--rd-lime); }
+/* A chip still waiting for its link. */
+.q-run-chip.is-pending { border-style: dashed; color: rgba(255, 255, 255, 0.62); }
 .q-run-sr {
   position: absolute;
   width: 1px;
@@ -2239,4 +2241,168 @@ a.q-run-chip:hover { background: rgba(178, 240, 72, 0.2); border-color: var(--rd
   .q-run-label { font-size: 12px; text-align: left; }
   .q-run-chip { text-align: center; font-size: 12px; padding: 6px 10px; }
   .q-run .q-run-cap { padding: 12px 0 14px 16px; }
+}
+
+/* ============================================================
+   KEY FEATURES WITH CLIPS
+   A feature given a `video` becomes a card with the loop on top
+   (press kit GIFs are 5:2) and the text below. The clip is the
+   marker, so the square bullet steps aside.
+   ============================================================ */
+.q-feature.has-media { display: flex; flex-direction: column; padding: 0 0 28px; }
+.q-feature.has-media::before { display: none; }
+.q-feature.has-media p { padding: 22px 28px 0; }
+.q-feature-media {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 2;
+  object-fit: cover;
+  background: var(--rd-deep-2);
+  border-bottom: 1px solid var(--rd-line);
+}
+
+/* ============================================================
+   QUOTE: A PAGE FROM THE JOURNAL
+   Markup in the brief template (quest.quote). Ruled paper with a
+   red margin line, a drawing taped in, the quote in dark ink. A
+   deliberate break from the dark page, so the quote carries weight.
+   ============================================================ */
+.q-quote {
+  position: relative;
+  z-index: 1;
+  padding: 110px 0;
+  color: #2b2620;
+  background:
+    linear-gradient(90deg, transparent calc(7% - 1px), rgba(206, 84, 84, 0.4) calc(7% - 1px), rgba(206, 84, 84, 0.4) calc(7% + 1px), transparent calc(7% + 1px)),
+    repeating-linear-gradient(180deg, transparent 0 39px, rgba(86, 124, 186, 0.2) 39px 40px),
+    #f7f2e8;
+}
+.q-quote-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  gap: 72px;
+  align-items: center;
+  max-width: 1080px;
+}
+.q-quote-art {
+  position: relative;
+  padding: 18px;
+  background: #fffdf8;
+  box-shadow: 0 14px 34px rgba(70, 50, 30, 0.16);
+  transform: rotate(-3deg);
+}
+/* A strip of tape holding the drawing in. */
+.q-quote-art::before {
+  content: "";
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 118px;
+  height: 30px;
+  transform: translateX(-50%) rotate(2deg);
+  background: rgba(247, 233, 176, 0.78);
+  box-shadow: 0 1px 3px rgba(70, 50, 30, 0.12);
+}
+.q-quote-art img { display: block; width: 100%; height: auto; }
+/* The next section normally sits flush (paddingTop 0 inline); give it air after the paper. */
+.q-quote + .q-section { padding-top: 110px !important; }
+.q-quote-fig { margin: 0; }
+.q-quote-fig blockquote { margin: 0; }
+.q-quote-fig blockquote::before {
+  content: "\201C";
+  display: block;
+  height: 0.5em;
+  margin-bottom: 18px;
+  font-size: 7rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #567cba;
+}
+/* Two classes deep, to outrank the global `p` weight. */
+.q-quote-fig blockquote p {
+  margin: 0;
+  max-width: 32ch;
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: -0.005em;
+  color: #2b2620;
+}
+.q-quote-fig figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 2px solid #2b2620;
+  max-width: 420px;
+}
+.q-quote-fig figcaption strong { font-size: 1.1rem; font-weight: 700; color: #2b2620; }
+.q-quote-fig figcaption span { font-size: 1rem; color: #6b6258; }
+@media (max-width: 860px) {
+  /* No red margin line here: on a phone it would run through the text. */
+  .q-quote {
+    padding: 72px 0;
+    background: repeating-linear-gradient(180deg, transparent 0 39px, rgba(86, 124, 186, 0.2) 39px 40px), #f7f2e8;
+  }
+  .q-quote-inner { grid-template-columns: 1fr; gap: 44px; }
+  .q-quote-art { max-width: 260px; margin: 0 auto; }
+  .q-quote-fig blockquote::before { font-size: 5rem; }
+}
+
+/* ============================================================
+   COMPANIONS: A PAIR THAT SCROLLS ALONG
+   Markup in app/components/ScrollCompanions.tsx. Fixed in the
+   bottom-right corner, in the page margin where there is room.
+   --lean comes from scroll speed: the floater lifts and tilts,
+   the stander sways from her feet. Never takes clicks.
+   ============================================================ */
+.q-companions {
+  position: fixed;
+  right: max(10px, calc((100vw - 1280px) / 2 - 210px));
+  bottom: 0;
+  z-index: 60;
+  width: 200px;
+  height: 250px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(70px);
+  transform-origin: 100% 100%;
+  transition: opacity 0.5s ease, transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.q-companions.is-on { opacity: 1; transform: none; }
+.q-companions.is-on.is-shy { opacity: 0.12; }
+.q-companion { position: absolute; }
+.q-companion img { display: block; width: 100%; height: auto; }
+.q-companion.is-stand {
+  right: 0;
+  bottom: -8px;
+  width: 112px;
+  transform-origin: 50% 100%;
+  transform: rotate(calc(var(--lean, 0) * 0.3deg));
+}
+.q-companion.is-stand img { transform-origin: 50% 100%; animation: q-comp-sway 6s ease-in-out infinite; }
+.q-companion.is-float {
+  left: 0;
+  bottom: 118px;
+  width: 92px;
+  transform: translateY(calc(var(--lean, 0) * -2px)) rotate(calc(var(--lean, 0) * 1deg));
+}
+.q-companion.is-float img { animation: q-comp-float 3.6s ease-in-out infinite; }
+.q-companion.has-glow img { filter: drop-shadow(0 0 16px rgba(130, 215, 255, 0.55)); }
+@keyframes q-comp-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+@keyframes q-comp-sway {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50% { transform: rotate(1.2deg); }
+}
+/* Smaller where the margin is narrow; gone where it would sit on the copy. */
+@media (max-width: 1600px) { .q-companions { scale: 0.84; } }
+@media (max-width: 1500px) { .q-companions { scale: 0.72; } }
+@media (max-width: 1100px) { .q-companions { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .q-companion img { animation: none; }
+  .q-companions { transform: none; transition: opacity 0.3s ease; }
 }

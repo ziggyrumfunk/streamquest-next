@@ -16,7 +16,32 @@ export type QuestTier = {
   requirement: string;           // "Stream 1 hour, 5 CCV"
   sideQuestsRequired?: boolean;
   freeCopy?: boolean;
+  /** Extra pills on the tier card, e.g. "All 3 side quests required". */
+  flags?: string[];
 };
+
+/**
+ * A key feature on the brief. A plain string is text only; the object form
+ * adds a looping clip (`video`, mp4) with a `still` shown before it plays
+ * and to anyone with reduced motion switched on.
+ */
+export type QuestFeature = string | { text: string; video?: string; still?: string };
+
+/** A quote given its own section, with an optional drawing beside it. */
+export type QuestQuote = {
+  text: string;
+  name: string;
+  role?: string;
+  image?: string;
+  imageAlt?: string;
+};
+
+/**
+ * Characters that keep the reader company once the hero is passed: a pair
+ * in the bottom-right corner that leans and bobs as you scroll. `stand`
+ * rests on the bottom edge, `float` hovers beside it (a ghost, say).
+ */
+export type QuestCompanion = { src: string; kind: "stand" | "float"; glow?: boolean };
 
 export type QuestStatus = "active" | "completed";
 
@@ -140,7 +165,7 @@ export type Quest = {
   ogImage?: string;              // link preview image when shared (defaults to cover), e.g. titled key art
   description?: string;          // 2-3 sentence paragraph
   about?: string;                // longer "about the game" paragraph
-  keyFeatures?: string[];        // game-feature bullets shown on the brief
+  keyFeatures?: QuestFeature[];  // game-feature bullets shown on the brief, optionally with a clip
   tiers?: QuestTier[];
   /** Simple side quests for completed/legacy quests. */
   sideQuests?: string[];
@@ -182,6 +207,8 @@ export type Quest = {
   rulesContent?: QuestRuleBlock[];      // richer than `rules: string[]`
   rulesHeading?: string;                // overrides the rules heading ("Right of refusal, keys on Discord")
   mainMission?: QuestMainMission;       // run-of-show section for a main mission with several parts
+  quote?: QuestQuote;                   // a quote in its own section, after the story
+  companions?: QuestCompanion[];        // characters that scroll along in the corner
   howToJoin?: QuestStep[];              // optional override; defaults to standard six
   rating?: string;                      // "ESRB M (17+) / PEGI 16"
   slots?: number;
@@ -237,13 +264,39 @@ const allQuests: Quest[] = [
     ogImage: "/media/dancing-with-ghosts/key-art-titled.webp",
     description:
       "Paid Twitch campaign for Dancing with Ghosts, the new game from ToeJam & Earl creator Greg Johnson. Play three Ludeo moments live, then the free Steam demo, and bring your chat along to a Thai river village.",
+    // Clips are the press kit GIFs (05 GIFs) as small mp4 loops, with the
+    // first frame as the still.
     keyFeatures: [
-      "Let chat choose Mai's words. Every conversation gives you two ways to answer, and there are no wrong picks.",
-      "Thai dance is a real rhythm game, with proper timing and several difficulties. Let chat pick one and cheer you through the song.",
-      "Play as both girls. As Pim you drift into villagers' thoughts and hear what they quietly wish for, then bring it back to Mai so she can help.",
-      "Small, calm minigames to talk over: rolling roti, making som tum, fishing, ferrying neighbors down the river, scooter deliveries.",
-      "Funny first, with real feeling underneath. Let the jokes land and give the quieter scenes a moment of room.",
-      "A village with real roots, drawn by Thai artists. Expect questions from chat about the food, the dance and the traditions.",
+      {
+        text: "Let chat choose Mai's words. Every conversation gives you two ways to answer, and there are no wrong picks.",
+        video: "/media/dancing-with-ghosts/features/dialogue-b.mp4",
+        still: "/media/dancing-with-ghosts/features/dialogue-b-still.webp",
+      },
+      {
+        text: "Thai dance is a real rhythm game, with proper timing and several difficulties. Let chat pick one and cheer you through the song.",
+        video: "/media/dancing-with-ghosts/features/dance-2.mp4",
+        still: "/media/dancing-with-ghosts/features/dance-2-still.webp",
+      },
+      {
+        text: "Play as both girls. As Pim you drift into villagers' thoughts and hear what they quietly wish for, then bring it back to Mai so she can help.",
+        video: "/media/dancing-with-ghosts/features/fishing.mp4",
+        still: "/media/dancing-with-ghosts/features/fishing-still.webp",
+      },
+      {
+        text: "Small, calm minigames to talk over: rolling roti, making som tum, fishing, ferrying neighbors down the river, scooter deliveries.",
+        video: "/media/dancing-with-ghosts/features/cooking-1.mp4",
+        still: "/media/dancing-with-ghosts/features/cooking-1-still.webp",
+      },
+      {
+        text: "Funny first, with real feeling underneath. Let the jokes land and give the quieter scenes a moment of room.",
+        video: "/media/dancing-with-ghosts/features/journal.mp4",
+        still: "/media/dancing-with-ghosts/features/journal-still.webp",
+      },
+      {
+        text: "A village with real roots, drawn by Thai artists. Expect questions from chat about the food, the dance and the traditions.",
+        video: "/media/dancing-with-ghosts/features/riverboat-1.mp4",
+        still: "/media/dancing-with-ghosts/features/riverboat-1-still.webp",
+      },
     ],
     tiers: [
       {
@@ -269,6 +322,7 @@ const allQuests: Quest[] = [
         rateNote: "StreamQuest Gold tier unlocked",
         requirement:
           "The main mission in one stream of at least 2 hours, plus all three side quests, at 50 or more average concurrent viewers.",
+        flags: ["All 3 side quests required", "T1 regions only"],
       },
     ],
     sideQuestDetails: [
@@ -315,7 +369,7 @@ const allQuests: Quest[] = [
     tldr: [
       { stat: "€10", label: "Bronze", sub: "Main mission, 1 hour, 5+ average CCV" },
       { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest, 2 hours, 15+ CCV" },
-      { stat: "€50", label: "Gold", sub: "Main mission plus all 3 side quests, 2 hours, 50+ CCV" },
+      { stat: "€50", label: "Gold", sub: "Main mission plus all 3 side quests, 2 hours, 50+ CCV, T1 regions only" },
       { stat: "3", label: "Ludeo moments", sub: "Played live, then the Steam demo, in the same stream" },
     ],
     tldrFootnotes: [
@@ -346,7 +400,7 @@ const allQuests: Quest[] = [
         },
       ],
       notes: [
-        "Your three Ludeo links arrive with your accepted Quest. Keep them exactly as supplied, tracking included. Viewers playing along is a bonus, not a requirement.",
+        "Play the three Ludeo moments from the links above. Keep each link exactly as it is, tracking included. Viewers playing along is a bonus, not a requirement.",
         "Only active campaign gameplay counts toward the time. Breaks, starting-soon screens and other games do not.",
         "The Ludeo moments belong to the main mission, not to the side quests. If a link fails, tell us in Discord before you play something else instead.",
       ],
@@ -367,11 +421,22 @@ const allQuests: Quest[] = [
       "Created by Greg Johnson, the designer behind ToeJam & Earl, Dancing with Ghosts draws on his experience of loss and his family's connection to Thailand. It is a warm, often funny story about friendship and finding your way back to happiness.",
       "We are looking for hosts who enjoy stories and bring their community along: creators who follow the dialogue, react honestly and give chat a say. You do not need to be a dedicated cozy creator.",
     ],
-    // Greg Johnson, quoted from the press kit's "In Greg's own words".
-    storyPull:
-      "“At times I felt like I wanted this game to feel like a reassuring hug for people who need it... For everyone else, I hope they just enjoy a sweet funny ghost story and some great mini-games.” Greg Johnson",
     storyAside: "/media/dancing-with-ghosts/story-mai-and-pim.webp",
     storyAsideCaption: "Mai and Pim",
+    // Greg Johnson, quoted from the press kit's "In Greg's own words", beside
+    // the sketchbook drawing of Mai and Pim dancing (07 Other Art).
+    quote: {
+      text: "At times I felt like I wanted this game to feel like a reassuring hug for people who need it... For everyone else, I hope they just enjoy a sweet funny ghost story and some great mini-games.",
+      name: "Greg Johnson",
+      role: "Creator of Dancing with Ghosts and ToeJam & Earl",
+      image: "/media/dancing-with-ghosts/sketch-ray-of-sun.webp",
+      imageAlt: "Sketchbook drawing of Mai and Pim dancing hand in hand: You're a ray of sun",
+    },
+    // Pim floats beside Mai in the corner as the page scrolls (07 Other Art).
+    companions: [
+      { src: "/media/dancing-with-ghosts/char-pim.webp", kind: "float", glow: true },
+      { src: "/media/dancing-with-ghosts/char-mai.webp", kind: "stand" },
+    ],
     shortDescription:
       "Dancing with Ghosts is a cozy narrative life-sim from HumaNature Studios, written by Greg Johnson of ToeJam & Earl. A gentle ghost story about learning to live after loss, with a Thai dance rhythm game and small cultural minigames along the way. Early Access on Steam from 8 October 2026, and the free demo is out now.",
 
@@ -443,7 +508,7 @@ const allQuests: Quest[] = [
       },
       {
         heading: "Viewers and tiers",
-        body: "Your tier follows your recent average concurrent viewers (CCV) across your last streams: Bronze from 5, Silver from 15, Gold from 50. Silver and Gold also need the matching StreamQuest tier unlocked on your account, the rank you build up by completing quests. If you are a bigger creator and do not have that tier unlocked yet, get in touch with the mods in the StreamQuest Discord before you apply.",
+        body: "Your tier follows your recent average concurrent viewers (CCV) across your last streams: Bronze from 5, Silver from 15, Gold from 50. Silver and Gold also need the matching StreamQuest tier unlocked on your account, the rank you build up by completing quests. If you are a bigger creator and do not have that tier unlocked yet, get in touch with the mods in the StreamQuest Discord before you apply. Gold is for T1 regions only: the European Union, the United States, Canada, the United Kingdom, Norway, Switzerland, Iceland, Australia and New Zealand.",
       },
       {
         heading: "Before you go live",

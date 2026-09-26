@@ -48,6 +48,13 @@ const sizeOf = (i: number, n: number) => 104 - 16 * (n - 1 - i);
 /** Distance from the band's bottom edge to the medal: each rank climbs 36px. */
 const liftOf = (i: number) => 16 + 36 * i;
 
+/** The pills under a tier card: the built-in flags, then any custom ones. */
+const flagsOf = (t: QuestTier): string[] => [
+  ...(t.sideQuestsRequired ? ["At least 1 side quest required"] : []),
+  ...(t.freeCopy ? ["Free game copy included"] : []),
+  ...(t.flags ?? []),
+];
+
 const STAR = "M12 2.4l2.83 6.13 6.7.72-5 4.53 1.41 6.6L12 17.02l-5.94 3.36 1.41-6.6-5-4.53 6.7-.72z";
 const CROWN = "M2.5 19.5 1 6.5l6.2 5.2L12 3l4.8 8.7L23 6.5l-1.5 13z";
 
@@ -141,10 +148,11 @@ export default function RankLadder({ tiers }: { tiers: QuestTier[] }) {
                 {t.rate && <div className="q-rank-rate">{t.rate}</div>}
                 {t.rateNote && <p className="q-rank-note">{t.rateNote}</p>}
                 <p className="q-rank-req">{t.requirement}</p>
-                {(t.sideQuestsRequired || t.freeCopy) && (
+                {flagsOf(t).length > 0 && (
                   <div className="q-rank-flags">
-                    {t.sideQuestsRequired && <span>At least 1 side quest required</span>}
-                    {t.freeCopy && <span>Free game copy included</span>}
+                    {flagsOf(t).map((f) => (
+                      <span key={f}>{f}</span>
+                    ))}
                   </div>
                 )}
               </div>

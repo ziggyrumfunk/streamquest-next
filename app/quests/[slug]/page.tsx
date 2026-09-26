@@ -8,6 +8,8 @@ import QuestVideoTabs from "@/app/components/QuestVideoTabs";
 import CopyLink from "@/app/components/CopyLink";
 import MutantSwarm from "@/app/components/MutantSwarm";
 import RankLadder from "@/app/components/RankLadder";
+import FeatureLoop from "@/app/components/FeatureLoop";
+import ScrollCompanions from "@/app/components/ScrollCompanions";
 import {
   quests,
   getQuestBySlug,
@@ -141,6 +143,11 @@ export default function QuestPage({ params }: Params) {
       {/* Ambient character layer, drifts behind the whole brief. */}
       {quest.swarm && quest.swarm.items.length > 0 && (
         <MutantSwarm items={quest.swarm.items} />
+      )}
+
+      {/* Characters that scroll along in the corner once the hero is passed. */}
+      {quest.companions && quest.companions.length > 0 && (
+        <ScrollCompanions items={quest.companions} />
       )}
 
       {quest.slug === "goodheavens" && (
@@ -388,7 +395,7 @@ export default function QuestPage({ params }: Params) {
                                   {c.label} <span aria-hidden="true">↗</span>
                                 </a>
                               ) : (
-                                <span key={c.label} className="q-run-chip">{c.label}</span>
+                                <span key={c.label} className="q-run-chip is-pending" title="Link coming">{c.label}</span>
                               )
                             )}
                           </>
@@ -462,7 +469,6 @@ export default function QuestPage({ params }: Params) {
               <div className="q-section-head">
                 <span className="q-tag">The campaign</span>
                 <h2>StreamQuest x {quest.studio}</h2>
-                <p>Paid creator campaign for {quest.title}.</p>
               </div>
             </Reveal>
 
@@ -515,6 +521,34 @@ export default function QuestPage({ params }: Params) {
         </section>
       )}
 
+      {/* ============ QUOTE ============ */}
+      {/* A page from a journal: ruled paper, a drawing taped in, the quote. */}
+      {quest.quote && (
+        <section className="q-quote" aria-label={`A note from ${quest.quote.name}`}>
+          <div className="rd-shell q-quote-inner">
+            {quest.quote.image && (
+              <Reveal>
+                <div className="q-quote-art">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={quest.quote.image} alt={quest.quote.imageAlt || ""} loading="lazy" />
+                </div>
+              </Reveal>
+            )}
+            <Reveal delay={0.1}>
+              <figure className="q-quote-fig">
+                <blockquote>
+                  <p>{quest.quote.text}</p>
+                </blockquote>
+                <figcaption>
+                  <strong>{quest.quote.name}</strong>
+                  {quest.quote.role && <span>{quest.quote.role}</span>}
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       {/* ============ KEY FEATURES ============ */}
       {quest.keyFeatures && quest.keyFeatures.length > 0 && (
         <section className="q-section q-features" style={{ paddingTop: 0 }}>
@@ -527,11 +561,15 @@ export default function QuestPage({ params }: Params) {
             </Reveal>
             <Reveal>
               <div className="q-features-grid">
-                {quest.keyFeatures.map((feat) => (
-                  <div key={feat} className="q-feature">
-                    <p>{feat}</p>
-                  </div>
-                ))}
+                {quest.keyFeatures.map((feat) => {
+                  const f = typeof feat === "string" ? { text: feat, video: undefined, still: undefined } : feat;
+                  return (
+                    <div key={f.text} className={`q-feature${f.video ? " has-media" : ""}`}>
+                      {f.video && <FeatureLoop video={f.video} still={f.still} />}
+                      <p>{f.text}</p>
+                    </div>
+                  );
+                })}
               </div>
             </Reveal>
           </div>
