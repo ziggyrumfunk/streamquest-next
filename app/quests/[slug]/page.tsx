@@ -344,6 +344,77 @@ export default function QuestPage({ params }: Params) {
         </section>
       )}
 
+      {/* ============ MAIN MISSION ============ */}
+      {/* A run of show for one stream: the parts in order along a bar, each
+          sized by its weight, with the minimum stream time at the end. */}
+      {quest.mainMission && quest.mainMission.segments.length > 0 && (
+        <section className="q-section" style={{ paddingTop: 0 }}>
+          <div className="rd-shell">
+            <Reveal>
+              <div className="q-section-head">
+                <span className="q-tag">All tiers</span>
+                <h2>Your main mission</h2>
+                <p>{quest.mainMission.intro}</p>
+              </div>
+            </Reveal>
+            <Reveal>
+              <div className="q-run">
+                <div className="q-run-scale">
+                  <span>Go live</span>
+                  <span className="q-run-line" aria-hidden="true" />
+                  {quest.mainMission.end && <span>{quest.mainMission.end}</span>}
+                </div>
+                <ol
+                  className="q-run-track"
+                  style={{
+                    "--run-cols": quest.mainMission.segments.map((s) => `${s.weight ?? 1}fr`).join(" "),
+                  } as CSSProperties}
+                >
+                  {quest.mainMission.segments.map((s) => (
+                    <li key={s.label} className="q-run-seg">
+                      <div className="q-run-bar">
+                        {s.chips && s.chips.length > 0 ? (
+                          <>
+                            <span className="q-run-sr">{s.label}</span>
+                            {s.chips.map((c) =>
+                              c.href ? (
+                                <a
+                                  key={c.label}
+                                  href={c.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="q-run-chip is-link"
+                                >
+                                  {c.label} <span aria-hidden="true">↗</span>
+                                </a>
+                              ) : (
+                                <span key={c.label} className="q-run-chip">{c.label}</span>
+                              )
+                            )}
+                          </>
+                        ) : (
+                          <span className="q-run-label">{s.label}</span>
+                        )}
+                      </div>
+                      <p className="q-run-cap">{s.sub}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Reveal>
+            {quest.mainMission.notes && quest.mainMission.notes.length > 0 && (
+              <Reveal>
+                <ul className="q-run-notes">
+                  {quest.mainMission.notes.map((n) => (
+                    <li key={n}>{n}</li>
+                  ))}
+                </ul>
+              </Reveal>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* ============ TIER LADDER ============ */}
       {quest.tiers && quest.tiers.length > 0 && (
         <section className="q-section" style={{ paddingTop: 0 }}>
@@ -668,9 +739,10 @@ export default function QuestPage({ params }: Params) {
               <div className="q-section-head">
                 <span className="q-tag">Expectations and selection</span>
                 <h2>
-                  {quest.slots
-                    ? `${quest.slots} slots, right of refusal, keys on Discord`
-                    : "Right of refusal, keys on Discord"}
+                  {quest.rulesHeading ??
+                    (quest.slots
+                      ? `${quest.slots} slots, right of refusal, keys on Discord`
+                      : "Right of refusal, keys on Discord")}
                 </h2>
               </div>
             </Reveal>
@@ -707,7 +779,7 @@ export default function QuestPage({ params }: Params) {
               <div className="q-section-head q-section-head-center">
                 <span className="q-tag">Steps</span>
                 <h2>How to join</h2>
-                <p>From application to payout in six steps. Discord is required for keys and coordination.</p>
+                <p>From application to payout in six steps. Discord is required for access and coordination.</p>
               </div>
             </Reveal>
             <Reveal>
@@ -723,7 +795,7 @@ export default function QuestPage({ params }: Params) {
             <Reveal>
               <div className="q-discord-banner">
                 <p>
-                  <strong>Discord required.</strong> Keys and campaign support are
+                  <strong>Discord required.</strong> Access and campaign support are
                   coordinated there. Join before you go live.
                 </p>
                 <a

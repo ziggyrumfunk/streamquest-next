@@ -2096,3 +2096,147 @@
   /* No real margin left to live in, so retire the side art. */
   .q-slug-riftfall .q-swarm-ambient { display: none; }
 }
+
+/* ============================================================
+   MAIN MISSION: RUN OF SHOW
+   Markup in the brief template (quest.mainMission). One stream,
+   drawn as a bar split into its parts in order, each sized by its
+   weight (--run-cols), so the demo reads as the longest stretch.
+   The lime deepens with every part. Captions sit under their part.
+   Square bar, round chips (site rule: only pills are round).
+   ============================================================ */
+.q-run { margin-top: 4px; }
+.q-run-scale {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+.q-run-line {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(178, 240, 72, 0.2), rgba(178, 240, 72, 0.75));
+}
+.q-run-line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  width: 8px;
+  height: 9px;
+  background: rgba(178, 240, 72, 0.75);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.q-run-track {
+  display: grid;
+  grid-template-columns: var(--run-cols);
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.q-run-seg { display: flex; flex-direction: column; min-width: 0; }
+.q-run-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 68px;
+  padding: 12px 14px;
+  border-top: 2px solid rgba(178, 240, 72, 0.45);
+  background: rgba(178, 240, 72, 0.07);
+}
+.q-run-seg:nth-child(2) .q-run-bar { background: rgba(178, 240, 72, 0.14); border-top-color: rgba(178, 240, 72, 0.65); }
+.q-run-seg:nth-child(3) .q-run-bar { background: rgba(178, 240, 72, 0.24); border-top-color: rgba(178, 240, 72, 0.85); }
+.q-run-seg:nth-child(n + 4) .q-run-bar { background: rgba(178, 240, 72, 0.32); border-top-color: var(--rd-lime); }
+.q-run-label {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+.q-run-chip {
+  padding: 7px 14px;
+  border: 1px solid rgba(178, 240, 72, 0.5);
+  border-radius: 999px;
+  background: rgba(5, 9, 19, 0.45);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+a.q-run-chip { text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+a.q-run-chip:hover { background: rgba(178, 240, 72, 0.2); border-color: var(--rd-lime); }
+.q-run-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+/* Two classes deep, to outrank `.q-section p`. */
+.q-run .q-run-cap {
+  margin: 0;
+  padding: 16px 18px 0 2px;
+  max-width: 40ch;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+.q-run-notes {
+  display: grid;
+  gap: 10px;
+  margin: 32px 0 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--rd-line);
+  list-style: none;
+}
+.q-run-notes li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+.q-run-notes li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  background: var(--rd-lime);
+}
+
+/* Phones: the bar turns into a vertical timeline, part on the left,
+   caption on the right. */
+@media (max-width: 720px) {
+  .q-run-scale { flex-wrap: wrap; row-gap: 6px; font-size: 12px; }
+  .q-run-track { grid-template-columns: 1fr; gap: 4px; }
+  .q-run-seg { display: grid; grid-template-columns: minmax(0, 118px) 1fr; }
+  .q-run-bar {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    border-top: 0;
+    border-left: 2px solid rgba(178, 240, 72, 0.45);
+  }
+  .q-run-seg:nth-child(2) .q-run-bar { border-left-color: rgba(178, 240, 72, 0.65); }
+  .q-run-seg:nth-child(3) .q-run-bar { border-left-color: rgba(178, 240, 72, 0.85); }
+  .q-run-seg:nth-child(n + 4) .q-run-bar { border-left-color: var(--rd-lime); }
+  .q-run-label { font-size: 12px; text-align: left; }
+  .q-run-chip { text-align: center; font-size: 12px; padding: 6px 10px; }
+  .q-run .q-run-cap { padding: 12px 0 14px 16px; }
+}

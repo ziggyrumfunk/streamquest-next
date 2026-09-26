@@ -78,6 +78,26 @@ export type QuestRuleBlock = { heading: string; body: string };
 /** A How To Join step. Numbering is dropped per design system, only title + sub render. */
 export type QuestStep = { title: string; sub: string };
 
+/**
+ * The main mission as a run of show for one stream, drawn as a bar split into
+ * segments in order. `weight` is a segment's share of the bar (default 1).
+ * `chips` split a segment into parts, such as three Ludeo links; a chip with
+ * an `href` becomes a link. `end` labels the end of the bar, for example the
+ * minimum stream time per tier.
+ */
+export type QuestMissionSegment = {
+  label: string;
+  sub: string;
+  weight?: number;
+  chips?: { label: string; href?: string }[];
+};
+export type QuestMainMission = {
+  intro: string;
+  segments: QuestMissionSegment[];
+  end?: string;
+  notes?: string[];
+};
+
 /** Generic key/value pair shown in the hero meta strip ("Duration · 2 weeks"). */
 export type QuestHeroMetaItem = { label: string; value: string };
 
@@ -160,6 +180,8 @@ export type Quest = {
   platforms?: string[];
   swarm?: QuestSwarm;                   // interactive floating character band
   rulesContent?: QuestRuleBlock[];      // richer than `rules: string[]`
+  rulesHeading?: string;                // overrides the rules heading ("Right of refusal, keys on Discord")
+  mainMission?: QuestMainMission;       // run-of-show section for a main mission with several parts
   howToJoin?: QuestStep[];              // optional override; defaults to standard six
   rating?: string;                      // "ESRB M (17+) / PEGI 16"
   slots?: number;
@@ -192,6 +214,256 @@ export type Quest = {
    ============================================================ */
 
 const allQuests: Quest[] = [
+  {
+    slug: "dancing-with-ghosts",
+    title: "Dancing with Ghosts",
+    status: "active",
+    // Shared by direct link until the campaign page is greenlit and the
+    // campaign dates and the three Ludeo links are in. Delete this line to
+    // list it on the homepage, in the header and in the sitemap.
+    unlisted: true,
+    studio: "HumaNature Studios",
+    tagline: "A gentle ghost story set in a Thai river village, from the creator of ToeJam & Earl.",
+    category: "Cozy narrative life-sim",
+    // Art from HumaNature's Early Access press kit (media assets/Dancing With
+    // Ghosts - Early Access Press Kit): the key art without a title as the
+    // cover, the wordmark as the homepage card overlay, the titled key art for
+    // link previews. The kit's Bang Pa-In comparison photos are marked
+    // unpublished and press-first, and its behind-the-scenes photos are of
+    // Greg Johnson's family, so neither is used here.
+    cover: "/media/dancing-with-ghosts/cover.webp",
+    logo: "/media/dancing-with-ghosts/logo.webp",
+    portrait: "/media/dancing-with-ghosts/portrait.webp",
+    ogImage: "/media/dancing-with-ghosts/key-art-titled.webp",
+    description:
+      "Paid Twitch campaign for Dancing with Ghosts, the new game from ToeJam & Earl creator Greg Johnson. Play three Ludeo moments live, then the free Steam demo, and bring your chat along to a Thai river village.",
+    keyFeatures: [
+      "Let chat choose Mai's words. Every conversation gives you two ways to answer, and there are no wrong picks.",
+      "Thai dance is a real rhythm game, with proper timing and several difficulties. Let chat pick one and cheer you through the song.",
+      "Play as both girls. As Pim you drift into villagers' thoughts and hear what they quietly wish for, then bring it back to Mai so she can help.",
+      "Small, calm minigames to talk over: rolling roti, making som tum, fishing, ferrying neighbors down the river, scooter deliveries.",
+      "Funny first, with real feeling underneath. Let the jokes land and give the quieter scenes a moment of room.",
+      "A village with real roots, drawn by Thai artists. Expect questions from chat about the food, the dance and the traditions.",
+    ],
+    tiers: [
+      {
+        name: "Bronze",
+        payout: "€10",
+        rate: "5+ average CCV",
+        requirement:
+          "The main mission in one stream of at least 1 hour: all three Ludeo moments, then the Steam demo, at 5 or more average concurrent viewers.",
+      },
+      {
+        name: "Silver",
+        payout: "€20",
+        rate: "15+ average CCV",
+        rateNote: "StreamQuest Silver tier unlocked",
+        requirement:
+          "The main mission in one stream of at least 2 hours, plus one side quest, at 15 or more average concurrent viewers.",
+        sideQuestsRequired: true,
+      },
+      {
+        name: "Gold",
+        payout: "€50",
+        rate: "50+ average CCV",
+        rateNote: "StreamQuest Gold tier unlocked",
+        requirement:
+          "The main mission in one stream of at least 2 hours, plus all three side quests, at 50 or more average concurrent viewers.",
+      },
+    ],
+    sideQuestDetails: [
+      {
+        name: "A Moment Worth Sharing",
+        objective: "Post a short clip from your stream on your own social channel.",
+        desc: "A funny Pim exchange, an act of kindness, a dance attempt or a genuine reaction: something that gives people a reason to meet Mai and Pim. Avoid major story spoilers. Mention Dancing with Ghosts and tag @dancingwithghostsgame on Instagram or TikTok, or @DancingWithGhostsGame on YouTube.",
+        proof: "The public URL of your post.",
+      },
+      {
+        name: "Invite Chat to the Village",
+        objective: "Put the tracked Steam wishlist link on your channel and give the game a shoutout.",
+        desc: "Add the link from your accepted Quest to your Twitch panel, stream description or a chat command. Then mention the game naturally on stream and invite interested viewers to wishlist it. There is no minimum number of wishlists.",
+        proof: "A screenshot of the link placement and a VOD timestamp for your shoutout.",
+      },
+      {
+        name: "Take the Dance Floor",
+        objective: "Play one full Thai dance song in the Steam demo.",
+        desc: "Let chat help choose the difficulty, give it a proper go and tell them how it went. If chat is quiet, pick the difficulty yourself. You do not need a perfect score. It has to be in the demo, on top of any dance moment you played through Ludeo.",
+        proof: "A VOD timestamp showing the full song and your invitation to chat.",
+      },
+    ],
+    links: {
+      steam: "https://store.steampowered.com/app/1352700/Dancing_with_Ghosts/",
+      official: "https://dancingwithghosts.com",
+      trailer: "https://www.youtube.com/watch?v=TSVLU0TPmck",
+    },
+    // Campaign dates come from the Quest settings and are not set yet, so no
+    // `dates` here. Early Access itself is public: 8 October 2026 on Steam.
+    platforms: ["PC (Steam)"],
+
+    videos: {
+      trailer: "TSVLU0TPmck",
+      briefComingSoon: true,
+    },
+
+    heroMeta: [
+      { label: "Early Access", value: "8 October 2026 on Steam" },
+      { label: "Main mission", value: "3 Ludeo moments, then the Steam demo" },
+      { label: "Tiers", value: "Bronze 5+, Silver 15+, Gold 50+ average CCV" },
+      { label: "Stream time", value: "1 hour Bronze, 2 hours Silver and Gold" },
+    ],
+
+    tldr: [
+      { stat: "€10", label: "Bronze", sub: "Main mission, 1 hour, 5+ average CCV" },
+      { stat: "€20", label: "Silver", sub: "Main mission plus 1 side quest, 2 hours, 15+ CCV" },
+      { stat: "€50", label: "Gold", sub: "Main mission plus all 3 side quests, 2 hours, 50+ CCV" },
+      { stat: "3", label: "Ludeo moments", sub: "Played live, then the Steam demo, in the same stream" },
+    ],
+    tldrFootnotes: [
+      "Limited, curated slots: applying does not guarantee a place. Your tier, dates, links and exact requirements arrive with your approval.",
+      "Silver and Gold also need the matching StreamQuest tier unlocked on your account. Bigger creator without that tier yet? Contact the mods in the StreamQuest Discord.",
+      "Content note: the story deals with grief and loss, including a brief, non-graphic reference to suicide. Give your viewers a short heads-up. Nobody needs to share personal experiences.",
+    ],
+
+    mainMission: {
+      intro: "One stream, in this order: the three Ludeo moments, then the Steam demo. Both parts are required for Bronze, Silver and Gold.",
+      end: "1 hour Bronze · 2 hours Silver and Gold",
+      segments: [
+        {
+          label: "Intro",
+          sub: "Tell chat what Dancing with Ghosts is, and that Ludeo lets them play moments from it in a desktop browser.",
+          weight: 1.3,
+        },
+        {
+          label: "Three Ludeo moments",
+          sub: "Play all three live and react. Share each link in chat so viewers on desktop can try it too. Opening a page alone does not count.",
+          weight: 2.2,
+          chips: [{ label: "Ludeo 1" }, { label: "Ludeo 2" }, { label: "Ludeo 3" }],
+        },
+        {
+          label: "Steam demo",
+          sub: "Follow Mai and Pim's story, explore the village and show how helping neighbors earns the karma that brings Pim's memories back.",
+          weight: 2.6,
+        },
+      ],
+      notes: [
+        "Your three Ludeo links arrive with your accepted Quest. Keep them exactly as supplied, tracking included. Viewers playing along is a bonus, not a requirement.",
+        "Only active campaign gameplay counts toward the time. Breaks, starting-soon screens and other games do not.",
+        "The Ludeo moments belong to the main mission, not to the side quests. If a link fails, tell us in Discord before you play something else instead.",
+      ],
+    },
+
+    screenshots: [
+      "/media/dancing-with-ghosts/screenshot-riverside-village-life.webp",
+      "/media/dancing-with-ghosts/screenshot-cooking-minigame.webp",
+      "/media/dancing-with-ghosts/screenshot-sacred-tree-mai-and-pim.webp",
+      "/media/dancing-with-ghosts/screenshot-pim-dialogue-closeup.webp",
+      "/media/dancing-with-ghosts/screenshot-scooter-minigame.webp",
+      "/media/dancing-with-ghosts/screenshot-night-dock-scene.webp",
+      "/media/dancing-with-ghosts/screenshot-floating-market.webp",
+    ],
+
+    storyParagraphs: [
+      "Meet Mai, a grieving girl, and Pim, a little ghost who has lost her memories but none of her joy. Explore a Thai river village, help your neighbors, cook, dance and earn the good karma that brings Pim's memories back.",
+      "Created by Greg Johnson, the designer behind ToeJam & Earl, Dancing with Ghosts draws on his experience of loss and his family's connection to Thailand. It is a warm, often funny story about friendship and finding your way back to happiness.",
+      "We are looking for hosts who enjoy stories and bring their community along: creators who follow the dialogue, react honestly and give chat a say. You do not need to be a dedicated cozy creator.",
+    ],
+    // Greg Johnson, quoted from the press kit's "In Greg's own words".
+    storyPull:
+      "“At times I felt like I wanted this game to feel like a reassuring hug for people who need it... For everyone else, I hope they just enjoy a sweet funny ghost story and some great mini-games.” Greg Johnson",
+    storyAside: "/media/dancing-with-ghosts/story-mai-and-pim.webp",
+    storyAsideCaption: "Mai and Pim",
+    shortDescription:
+      "Dancing with Ghosts is a cozy narrative life-sim from HumaNature Studios, written by Greg Johnson of ToeJam & Earl. A gentle ghost story about learning to live after loss, with a Thai dance rhythm game and small cultural minigames along the way. Early Access on Steam from 8 October 2026, and the free demo is out now.",
+
+    sideQuestIntro:
+      "Silver needs one side quest, Gold needs all three. The Ludeo moments belong to the main mission, so they do not count here.",
+
+    gallery: {
+      wide: "/media/dancing-with-ghosts/screenshot-waterfront-wide.webp",
+      thumbs: [
+        "/media/dancing-with-ghosts/screenshot-rhythm-dance-perfect-2.webp",
+        "/media/dancing-with-ghosts/screenshot-home-interior-mai-and-pim.webp",
+        "/media/dancing-with-ghosts/screenshot-village-night-panorama.webp",
+        "/media/dancing-with-ghosts/screenshot-journal-blessing-page.webp",
+        "/media/dancing-with-ghosts/screenshot-mai-dialogue-closeup-2.webp",
+        "/media/dancing-with-ghosts/screenshot-mai-and-pim-playful.webp",
+      ],
+    },
+
+    officialAccounts: [
+      {
+        name: "StreamQuest",
+        hint: "Campaign links, access and support, all on Discord.",
+        links: [
+          { type: "discord", href: "https://discord.gg/NhqfucYDXD" },
+          { type: "instagram", href: "https://www.instagram.com/streamquest.io/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@streamquest.io" },
+          { type: "youtube", href: "https://www.youtube.com/@StreamQuest_io" },
+        ],
+      },
+      {
+        name: "Dancing with Ghosts",
+        hint: "The game's official accounts. Tag @dancingwithghostsgame in your clip for A Moment Worth Sharing.",
+        links: [
+          { type: "instagram", href: "https://www.instagram.com/dancingwithghostsgame/" },
+          { type: "tiktok", href: "https://www.tiktok.com/@dancingwithghostsgame" },
+          { type: "youtube", href: "https://www.youtube.com/@DancingWithGhostsGame" },
+          { type: "discord", href: "https://discord.gg/XqKmx7qj4F" },
+          { type: "website", href: "https://dancingwithghosts.com" },
+        ],
+      },
+    ],
+
+    storeLinks: [
+      {
+        name: "Steam",
+        sub: "Dancing with Ghosts, Early Access from 8 October",
+        href: "https://store.steampowered.com/app/1352700/Dancing_with_Ghosts/",
+        icon: "steam",
+      },
+      {
+        name: "Free demo",
+        sub: "Dancing with Ghosts Demo on Steam, play it now",
+        href: "https://store.steampowered.com/app/3986240/Dancing_with_Ghosts_Demo/",
+        icon: "steam",
+      },
+      {
+        name: "Gameplay trailer",
+        sub: "Official, on the game's YouTube",
+        href: "https://www.youtube.com/watch?v=9v_y8bGCqmM",
+        icon: "youtube",
+      },
+    ],
+
+    rulesHeading: "Right of refusal, support on Discord",
+    rulesContent: [
+      {
+        heading: "Who we approve",
+        body: "Engaged hosts who enjoy stories and bring their community along: story, cozy, adventure and variety creators who follow the dialogue, react naturally, give emotional scenes room to land and handle grief with care while enjoying the humor. Enjoyed Venba, Spiritfarer or A Space for the Unbound? Say so in your application. We look at recent broadcasts and community fit alongside your tier, not follower count alone. Silent gameplay, routinely skipping dialogue or using sensitive scenes for shock content are poor fits.",
+      },
+      {
+        heading: "Viewers and tiers",
+        body: "Your tier follows your recent average concurrent viewers (CCV) across your last streams: Bronze from 5, Silver from 15, Gold from 50. Silver and Gold also need the matching StreamQuest tier unlocked on your account, the rank you build up by completing quests. If you are a bigger creator and do not have that tier unlocked yet, get in touch with the mods in the StreamQuest Discord before you apply.",
+      },
+      {
+        heading: "Before you go live",
+        body: "Wait for approval, then check your accepted Quest for the dates, links, duration and tier requirements. Test all three Ludeo links on desktop and install the Steam demo before you stream. Use the required sponsorship disclosure, and give viewers the short content heads-up about grief and loss.",
+      },
+      {
+        heading: "Proof",
+        body: "Submit your Twitch VOD in the Creator Dashboard with timestamps for Ludeo 1, Ludeo 2, Ludeo 3 and the Steam demo segment, showing at least 1 hour of active campaign gameplay for Bronze or 2 hours for Silver and Gold. Include proof that you shared the three links in chat, plus the proof for each side quest. Keep your VOD available until it is verified.",
+      },
+    ],
+
+    howToJoin: [
+      { title: "Apply", sub: "In the Creator Dashboard, with your channel, a recent VOD and why the game suits your community" },
+      { title: "Wait for approval", sub: "Curated. Check your tier, dates and links once accepted" },
+      { title: "Join Discord", sub: "Campaign links and support live there" },
+      { title: "Test first", sub: "Try the three Ludeo links on desktop and install the Steam demo" },
+      { title: "Go live", sub: "Three Ludeo moments, then the demo, in one stream" },
+      { title: "Submit", sub: "VOD with timestamps and side quest proof, paid after verification" },
+    ],
+  },
   {
     slug: "pixelwasher",
     title: "Pixel Washer",

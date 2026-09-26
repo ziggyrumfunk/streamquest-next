@@ -56,6 +56,13 @@ const nextConfig = {
       { source: "/PIXELWASHER", destination: "/quests/pixelwasher", permanent: true },
       { source: "/pixel-washer", destination: "/quests/pixelwasher", permanent: true },
 
+      // Friendly short URLs for the Dancing with Ghosts quest brief.
+      { source: "/dancingwithghosts", destination: "/quests/dancing-with-ghosts", permanent: true },
+      { source: "/DancingWithGhosts", destination: "/quests/dancing-with-ghosts", permanent: true },
+      { source: "/dancing-with-ghosts", destination: "/quests/dancing-with-ghosts", permanent: true },
+      { source: "/dwg", destination: "/quests/dancing-with-ghosts", permanent: true },
+      { source: "/DWG", destination: "/quests/dancing-with-ghosts", permanent: true },
+
       // Friendly short URL for the RIFTFALL quest brief.
       { source: "/riftfall",  destination: "/quests/riftfall", permanent: true },
       { source: "/RIFTFALL",  destination: "/quests/riftfall", permanent: true },
