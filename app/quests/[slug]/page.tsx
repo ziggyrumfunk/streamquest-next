@@ -38,7 +38,14 @@ export function generateMetadata({ params }: Params): Metadata {
     openGraph: {
       title: `${q.title} — StreamQuest mission brief`,
       description: q.description || q.tagline,
-      images: [q.cover],
+      images: [q.ogImage || q.cover],
+    },
+    // Without this, X shows the site-wide card (generic title, text and image)
+    // for every brief. Title and description fill in from openGraph.
+    twitter: {
+      card: "summary_large_image",
+      site: "@StreamQuest_io",
+      images: [q.ogImage || q.cover],
     },
   };
 }

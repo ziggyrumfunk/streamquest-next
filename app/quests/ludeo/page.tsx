@@ -49,6 +49,12 @@ export const metadata: Metadata = {
       "One edited short-form video introducing Ludeo. Guaranteed base plus performance rewards, up to €250.",
     images: ["/media/ludeo/quest/cover.webp"],
   },
+  // Otherwise X shows the site-wide card. Title and description fill in from openGraph.
+  twitter: {
+    card: "summary_large_image",
+    site: "@StreamQuest_io",
+    images: ["/media/ludeo/quest/cover.webp"],
+  },
 };
 
 const APPLY = "https://app.streamquest.io";

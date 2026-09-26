@@ -117,6 +117,7 @@ export type Quest = {
   cover: string;                 // landscape hero image
   portrait?: string;             // 3:4 library-grid image (defaults to cover)
   logo?: string;                 // optional game logo (transparent PNG) for hero-card overlay
+  ogImage?: string;              // link preview image when shared (defaults to cover), e.g. titled key art
   description?: string;          // 2-3 sentence paragraph
   about?: string;                // longer "about the game" paragraph
   keyFeatures?: string[];        // game-feature bullets shown on the brief
@@ -201,10 +202,14 @@ const allQuests: Quest[] = [
     // No logo or press kit was supplied, so the art comes from Acclaim's public
     // press kit (playacclaim.com/pixel-washer-presskit) and Steam: the diorama
     // photo without a title as the cover, Steam's transparent library logo as
-    // the homepage card overlay, and the titled key art in the gallery.
+    // the homepage card overlay. The launch key art (sent later, logo painted
+    // in, no clean version) leads the gallery and is the link preview. It is
+    // also the release date trailer's YouTube thumbnail, which is why it stays
+    // out of the hero: the trailer sits right under it.
     cover: "/media/pixelwasher/cover.webp",
     logo: "/media/pixelwasher/logo.webp",
     portrait: "/media/pixelwasher/portrait.webp",
+    ogImage: "/media/pixelwasher/key-art-launch.webp",
     description:
       "Paid creator campaign for the Early Access launch of Pixel Washer, published by Acclaim. The campaign starts on launch day, 15 October 2026, and runs for two weeks: stream it live on Twitch, show off the wash, reveal and upgrade loop, and send interested viewers to Steam.",
     about:
@@ -277,7 +282,7 @@ const allQuests: Quest[] = [
     links: {
       steam: "https://store.steampowered.com/app/2572060/Pixel_Washer/?utm_source=StreamQuest&utm_medium=creator&utm_campaign=PixelWasher",
       official: "https://playacclaim.com/pixel-washer/",
-      trailer: "https://www.youtube.com/watch?v=Ejk1-glNxi0",
+      trailer: "https://www.youtube.com/watch?v=Opd1dNK9O7w",
     },
     // Starts on launch day and runs for two weeks. The submission deadline is not set yet.
     dates: { start: "2026-10-15" },
@@ -287,7 +292,7 @@ const allQuests: Quest[] = [
     platforms: ["PC (Steam)"],
 
     videos: {
-      trailer: "Ejk1-glNxi0",
+      trailer: "Opd1dNK9O7w",
       briefComingSoon: true,
     },
 
@@ -346,7 +351,7 @@ const allQuests: Quest[] = [
     gallery: {
       wide: "/media/pixelwasher/screenshot-billboard.webp",
       thumbs: [
-        "/media/pixelwasher/key-art.webp",
+        "/media/pixelwasher/key-art-launch.webp",
         "/media/pixelwasher/screenshot-cards.webp",
         "/media/pixelwasher/screenshot-train.webp",
         "/media/pixelwasher/screenshot-museum.webp",
