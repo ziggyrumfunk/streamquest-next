@@ -80,13 +80,13 @@ const channels = [
 const month = [
   { title: "Calendar", body: "Next month's content planned and approved in one go, not message by message." },
   { title: "Shoot day", body: "Ziggy films interviews, War Stories and behind the scenes at the studio." },
-  { title: "Publishing", body: "2 posts and 3 to 5 stories a week, plus support for Ralph's and Guy's own LinkedIn posts." },
+  { title: "Publishing", body: "2 posts and 3 to 5 stories a week. On Growth, also support for Ralph's and Guy's own LinkedIn posts." },
   { title: "Report", body: "What went out, what worked, and what we suggest next." },
 ];
 
 const promises = [
   { title: "Embargo-safe", body: "We never name clients or titles, and nothing technical goes out without your sign-off." },
-  { title: "Your own profiles", body: "Ralph's and Guy's LinkedIn matters as much as the company page, so we back their own posts with whatever they need: photos, clips and graphics." },
+  { title: "Your own profiles", body: "Ralph's and Guy's LinkedIn matters as much as the company page. On Growth, we back their own posts with whatever they need: photos, clips and graphics." },
   { title: "Your brand", body: "We build on Beyond Boundaries and check anything brand-related with Guy, so nothing is duplicated." },
 ];
 
@@ -94,7 +94,6 @@ const brandItems = [
   "1 photo and video shoot at the studio every month",
   "2 social posts a week across LinkedIn, Reddit, X, Instagram/Meta and TikTok",
   "3 to 5 stories a week",
-  "Support for Ralph's and Guy's own LinkedIn posts: photos, clips and graphic design whenever they need them",
   "Thought leadership and War Stories videos from the monthly shoot",
   "Website news and article updates",
   "Merchandise and graphic design",
@@ -103,6 +102,7 @@ const brandItems = [
 
 const growthItems = [
   "In-depth website management, source code access required",
+  "Support for Ralph's and Guy's own LinkedIn posts: photos, clips and graphic design whenever they need them",
   "Paid advertising on social channels",
   "Ad analytics and tracking",
   "Lead attribution, from ad click to intro request",
@@ -134,7 +134,7 @@ const growthFacts = [
 const road = [
   { date: "November 2026", body: "Merch concepts presented to Guy: premium pieces in the spirit of the leather varsity jacket we showed." },
   { date: "11 December 2026", body: "Merch designs and quantities approved. Apparel of this quality needs 6 to 10 weeks." },
-  { date: "1 January 2027", body: "Step up to Growth. Paid campaigns build awareness in the run-up to GDC." },
+  { date: "January 2027", body: "Paid campaigns move from testing to what works, in the run-up to GDC." },
   { date: "February 2027", body: "“Meet us at GDC” posts from Ralph and Guy, with a link to book time, for example in the Business Hall." },
   { date: "12 February 2027", body: "Merch delivered, with two weeks of buffer." },
   { date: "1 to 5 March 2027", body: "GDC Festival of Gaming, Moscone Center, San Francisco. Optional on-site coverage, priced in consultation.", gdc: true },
@@ -227,9 +227,9 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
       <section className="abx-glance" aria-label="At a glance">
         <div className="abx-shell abx-glance-grid">
           <div className="abx-glance-tile">
-            <strong>€3,850</strong>
-            <span>A month to start</span>
-            <em>Brand &amp; Presence, ex VAT</em>
+            <strong>€6,000</strong>
+            <span>A month on Growth</span>
+            <em>Our recommendation. Brand &amp; Presence from €3,850. Ex VAT.</em>
           </div>
           <div className="abx-glance-tile">
             <strong>1 shoot</strong>
@@ -435,7 +435,7 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
               </ul>
             </div>
             <div className="abx-package is-growth">
-              <span className="abx-package-badge">Suggested from 1 January 2027</span>
+              <span className="abx-package-badge">Recommended from day one</span>
               <div className="abx-package-top">
                 <h3>Growth</h3>
                 <p className="abx-price">
@@ -451,9 +451,8 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
             </div>
           </div>
           <p className="abx-statement">
-            Our suggestion: start on Brand &amp; Presence now and step up to Growth on 1 January 2027.
-            That gives paid campaigns eight weeks before GDC opens and three full months of data by
-            the end of March. After GDC, stay on Growth or step back, month by month.
+            Our suggestion: Growth from day one. Paid campaigns spend their first three months
+            testing, so starting now gets that done before GDC opens on 1 March, when it counts.
           </p>
           <div className="abx-extras">
             <span className="abx-eyebrow">Not in the monthly fee</span>
