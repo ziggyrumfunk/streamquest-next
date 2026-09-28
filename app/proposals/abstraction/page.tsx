@@ -56,7 +56,7 @@ const heard = [
 const goals = [
   { title: "Active on socials", body: "A steady, recognisable presence where studio decision makers spend their time." },
   { title: "Brand and story", body: "The bold identity in everything, from a LinkedIn post to a jacket at GDC." },
-  { title: "Thought leadership", body: "Ralph, Guy and the engineers become the people others quote on hard technical problems." },
+  { title: "Thought leadership", body: "Ralph, Guy and your engineers become the voices studios trust on hard technical problems." },
 ];
 
 const pillars = [
@@ -80,13 +80,13 @@ const channels = [
 const month = [
   { title: "Calendar", body: "Next month's content planned and approved in one go, not message by message." },
   { title: "Shoot day", body: "Ziggy films interviews, War Stories and behind the scenes at the studio." },
-  { title: "Publishing", body: "2 posts and 3 to 5 stories a week, plus LinkedIn posts for Ralph and Guy in their own tone." },
+  { title: "Publishing", body: "2 posts and 3 to 5 stories a week, plus support for Ralph's and Guy's own LinkedIn posts." },
   { title: "Report", body: "What went out, what worked, and what we suggest next." },
 ];
 
 const promises = [
   { title: "Embargo-safe", body: "We never name clients or titles, and nothing technical goes out without your sign-off." },
-  { title: "Your voices", body: "We draft for Ralph and Guy, supply the photos and clips, and coach what works. They review and post." },
+  { title: "Your own profiles", body: "Ralph's and Guy's LinkedIn matters as much as the company page, so we back their own posts with whatever they need: photos, clips and graphics." },
   { title: "Your brand", body: "We build on Beyond Boundaries and check anything brand-related with Guy, so nothing is duplicated." },
 ];
 
@@ -94,7 +94,7 @@ const brandItems = [
   "1 photo and video shoot at the studio every month",
   "2 social posts a week across LinkedIn, Reddit, X, Instagram/Meta and TikTok",
   "3 to 5 stories a week",
-  "About 1 LinkedIn post a week each for Ralph and Guy: drafted, with photos and clips, plus coaching",
+  "Support for Ralph's and Guy's own LinkedIn posts: photos, clips and graphic design whenever they need them",
   "Thought leadership and War Stories videos from the monthly shoot",
   "Website news and article updates",
   "Merchandise and graphic design",
@@ -102,10 +102,10 @@ const brandItems = [
 ];
 
 const growthItems = [
-  "In-depth website management, source code provided",
+  "In-depth website management, source code access required",
   "Paid advertising on social channels",
   "Ad analytics and tracking",
-  "Intro calls booked from ads, with attribution",
+  "Lead attribution, from ad click to intro request",
 ];
 
 const extras = [
@@ -114,27 +114,27 @@ const extras = [
   { title: "Ad spend", body: "Paid by Abstraction directly to the platforms, on top of the Growth fee." },
 ];
 
-const funnel = ["LinkedIn ads", "Booking page", "Intro call with Guy", "Logged in your CRM", "Cost per qualified call"];
+const funnel = ["Targeted LinkedIn ads", "Your landing page", "Intro requests", "Tracked in your CRM", "Cost per qualified lead"];
 
 const growthFacts = [
   {
-    title: "Qualified means",
-    body: "A decision maker with a concrete technical challenge, a realistic budget and a timeline. We agree the exact definition with Guy before launch.",
+    title: "What counts",
+    body: "A qualified lead is a decision maker with a concrete technical challenge, a realistic budget and a timeline. We agree the exact definition with Guy before launch.",
   },
   {
     title: "Numbers, honestly",
-    body: "Months 1 to 3 test audiences, messages and formats. From month 4 we report cost per qualified call, then cost per client as deals close.",
+    body: "Months 1 to 3 test audiences, messages and formats. From month 4 we report cost per qualified lead, then cost per client as deals close.",
   },
   {
     title: "Ad budget",
-    body: "Start with €500 to €700 a month, paid directly to LinkedIn, and raise it only when campaigns bring in qualified calls.",
+    body: "Start with €500 to €700 a month, paid directly to LinkedIn, and raise it only when campaigns bring in qualified leads.",
   },
 ];
 
 const road = [
   { date: "November 2026", body: "Merch concepts presented to Guy: premium pieces in the spirit of the leather varsity jacket we showed." },
   { date: "11 December 2026", body: "Merch designs and quantities approved. Apparel of this quality needs 6 to 10 weeks." },
-  { date: "1 January 2027", body: "Step up to Growth. Paid campaigns start promoting meetings with Guy at GDC." },
+  { date: "1 January 2027", body: "Step up to Growth. Paid campaigns build awareness in the run-up to GDC." },
   { date: "February 2027", body: "“Meet us at GDC” posts from Ralph and Guy, with a link to book time, for example in the Business Hall." },
   { date: "12 February 2027", body: "Merch delivered, with two weeks of buffer." },
   { date: "1 to 5 March 2027", body: "GDC Festival of Gaming, Moscone Center, San Francisco. Optional on-site coverage, priced in consultation.", gdc: true },
@@ -145,7 +145,6 @@ const terms = [
   "Invoiced monthly in advance. All prices ex VAT.",
   "Two rounds of feedback per piece of content.",
   "Abstraction owns everything published. Raw footage on request.",
-  "Switch between packages from any new month.",
 ];
 
 const nextSteps = [
@@ -418,7 +417,7 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
         <div className="abx-shell">
           <div className="abx-head">
             <span className="abx-eyebrow">Packages</span>
-            <h2>Two packages. Switch any month.</h2>
+            <h2>Two packages, both month to month.</h2>
           </div>
           <div className="abx-packages">
             <div className="abx-package">
@@ -440,7 +439,7 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
               <div className="abx-package-top">
                 <h3>Growth</h3>
                 <p className="abx-price">
-                  €5,500 <span>/ month</span>
+                  €6,000 <span>/ month</span>
                 </p>
                 <p className="abx-package-tag">Everything in Brand &amp; Presence, plus:</p>
               </div>
@@ -476,10 +475,10 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
         <div className="abx-shell">
           <div className="abx-head">
             <span className="abx-eyebrow">Growth package</span>
-            <h2>Ads that fill Guy&apos;s calendar.</h2>
+            <h2>Paid campaigns, measured honestly.</h2>
             <p>
-              Engineering deals are large and sales cycles long, so we measure honestly instead of
-              promising a number up front.
+              Growth adds paid LinkedIn campaigns aimed at studio decision makers. We build, run and
+              measure them; every conversation they start stays with Guy.
             </p>
           </div>
           <ol className="abx-funnel">
