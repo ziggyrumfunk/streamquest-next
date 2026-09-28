@@ -146,19 +146,35 @@
   overflow: hidden;
   isolation: isolate;
 }
-/* The Abstraction mark, huge and faint, as a watermark. */
-.abx-hero::after {
+/* Blurred, darkened gameplay loop from Abstraction's own homepage reel,
+   behind the hero and the lock screen (AbxBackdrop). The gradients keep the
+   copy readable and fade the footage into the black page below. */
+.abx-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #0a0a0a;
+  pointer-events: none;
+}
+.abx-backdrop {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.06);
+}
+.abx-media::after {
   content: "";
   position: absolute;
-  z-index: -1;
-  right: 3%;
-  top: 50%;
-  width: min(52vw, 700px);
-  aspect-ratio: 128 / 70;
-  transform: translateY(-46%);
-  background: url("/media/proposals/abstraction/abstraction-logo.svg") no-repeat center / contain;
-  opacity: 0.05;
-  pointer-events: none;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.7) 45%, rgba(10, 10, 10, 0.32) 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.4) 0%, rgba(10, 10, 10, 0) 28%, rgba(10, 10, 10, 0) 62%, #0a0a0a 100%);
+}
+.abx-lock { position: relative; isolation: isolate; overflow: hidden; }
+.abx-lock .abx-media::after {
+  background: radial-gradient(ellipse 65% 75% at 50% 55%, rgba(10, 10, 10, 0.5), rgba(10, 10, 10, 0.9) 100%);
 }
 .abx-hero h1 {
   max-width: none;
@@ -707,7 +723,7 @@
   .abx-browser-tabs { gap: 0; }
   .abx-browser-tab { padding: 0 8px; font-size: 13px; letter-spacing: 0.03em; }
   .abx-browser-open { font-size: 13px; letter-spacing: 0.04em; }
-  .abx-hero::after { display: none; }
+  .abx-media::after { background: linear-gradient(180deg, rgba(10, 10, 10, 0.62) 0%, rgba(10, 10, 10, 0.8) 65%, #0a0a0a 100%); }
   .abx-browser-view { height: 72vh; }
   .abx-lock-card { padding: 34px 22px 28px; }
   .abx-lock-form { flex-direction: column; }

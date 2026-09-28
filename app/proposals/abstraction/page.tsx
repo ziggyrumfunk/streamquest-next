@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { isUnlocked } from "./session";
 import { signInAction, signOutAction } from "./actions";
 import RumfunkFrame from "./RumfunkFrame";
+import AbxBackdrop from "./AbxBackdrop";
 import "./abstraction.css";
 
 /* ============================================================
@@ -25,6 +26,9 @@ type Props = { searchParams: { err?: string } };
 
 const SQ_LOGO = "/firebase-public/Logos%20Partner/streamquest%20logo.webp";
 const ABX_LOGO = "/media/proposals/abstraction/abstraction-logo.svg";
+/** Blurred, darkened gameplay loop cut from Abstraction's homepage reel. */
+const REEL = "/media/proposals/abstraction/reel-bg.mp4";
+const REEL_POSTER = "/media/proposals/abstraction/reel-bg-poster.webp";
 
 /** GDC Festival of Gaming 2027 opens on 1 March 2027. */
 const GDC_START = Date.UTC(2027, 2, 1);
@@ -169,6 +173,9 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
   if (!isUnlocked()) {
     return (
       <div className="abx abx-lock">
+        <div className="abx-media" aria-hidden="true">
+          <AbxBackdrop src={REEL} poster={REEL_POSTER} />
+        </div>
         <div className="abx-lock-card">
           <Lockup />
           <span className="abx-eyebrow">Private proposal</span>
@@ -200,6 +207,9 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
     <div className="abx">
       {/* =============== HERO =============== */}
       <header className="abx-hero">
+        <div className="abx-media" aria-hidden="true">
+          <AbxBackdrop src={REEL} poster={REEL_POSTER} />
+        </div>
         <div className="abx-shell">
           <Lockup />
           <span className="abx-eyebrow">Marketing partnership proposal</span>
