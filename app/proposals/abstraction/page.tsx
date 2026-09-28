@@ -239,7 +239,7 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
           <div className="abx-glance-tile">
             <strong>€6,000</strong>
             <span>A month on Growth</span>
-            <em>Our recommendation. Brand &amp; Presence from €3,850. Ex VAT.</em>
+            <em>Our recommendation. Brand &amp; Presence from €4,000. Ex VAT.</em>
           </div>
           <div className="abx-glance-tile">
             <strong>1 shoot</strong>
@@ -434,7 +434,7 @@ export default function AbstractionProposalPage({ searchParams }: Props) {
               <div className="abx-package-top">
                 <h3>Brand &amp; Presence</h3>
                 <p className="abx-price">
-                  €3,850 <span>/ month</span>
+                  €4,000 <span>/ month</span>
                 </p>
                 <p className="abx-package-tag">Visibility and voice</p>
               </div>
