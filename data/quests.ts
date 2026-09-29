@@ -1368,7 +1368,7 @@ const allQuests: Quest[] = [
   {
     slug: "groundzerohero",
     title: "Ground Zero Hero",
-    status: "active",
+    status: "completed",
     studio: "Acclaim x Rowan Edmondson",
     tagline: "Bullet-heaven roguelite. Kill mutants, absorb them, become the problem.",
     category: "Bullet-heaven roguelite",
@@ -2064,7 +2064,7 @@ const allQuests: Quest[] = [
   {
     slug: "replaced",
     title: "REPLACED",
-    status: "active",
+    status: "completed",
     studio: "Thunderful × Sad Cat Studios",
     tagline: "Cinematic 2.5D cyberpunk action-platformer launch window.",
     category: "Cyberpunk action platformer",
@@ -2298,7 +2298,7 @@ const allQuests: Quest[] = [
   {
     slug: "endix",
     title: "Endix May Showcase",
-    status: "active",
+    status: "completed",
     studio: "Endix Expo",
     tagline: "Special StreamQuest event quest inside the Endix virtual expo.",
     category: "Event quest · virtual expo",
@@ -2516,7 +2516,7 @@ const allQuests: Quest[] = [
   {
     slug: "aska",
     title: "ASKA",
-    status: "active",
+    status: "completed",
     studio: "Sand Sailor Studio × Thunderful",
     tagline: "Hearth & Honey update push. Steam Medieval Fest discount window.",
     category: "Viking village builder · survival",
@@ -2578,7 +2578,7 @@ const allQuests: Quest[] = [
   {
     slug: "temtem",
     title: "Temtem: Swarm",
-    status: "active",
+    status: "completed",
     studio: "Crema",
     tagline: "Full-release launch quest built for co-op visibility and storefront traffic.",
     category: "Co-op survivor",
@@ -2633,7 +2633,7 @@ const allQuests: Quest[] = [
   {
     slug: "gridbeat",
     title: "GRIDbeat",
-    status: "active",
+    status: "completed",
     studio: "Acclaim x Ridiculous Games",
     tagline: "Demo-to-launch quest focused on awareness and wishlist lift.",
     category: "Rhythm action",
@@ -2677,7 +2677,7 @@ const allQuests: Quest[] = [
   {
     slug: "astroburn",
     title: "Astro Burn",
-    status: "active",
+    status: "completed",
     studio: "Pixel Doors × Beyond The Pixels",
     tagline: "Score-chasing bullet-hell cute-em-up. Physical-copy prize for top score.",
     category: "Bullet-hell co-op",

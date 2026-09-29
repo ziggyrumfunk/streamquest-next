@@ -58,6 +58,16 @@ export async function getQuestsWithLiveStatus(): Promise<Quest[]> {
   });
 }
 
+/**
+ * One quest's live status: the admin override when set, otherwise the status
+ * in data/quests.ts. Quest pages use this, so marking a quest completed in
+ * /admin also changes the badge and buttons on its own page.
+ */
+export async function getLiveStatus(slug: string, fallback: QuestStatus): Promise<QuestStatus> {
+  const overrides = await getStatusOverridesCached();
+  return overrides[slug] ?? fallback;
+}
+
 export async function getActiveQuestsLive(): Promise<Quest[]> {
   return (await getQuestsWithLiveStatus()).filter((q) => q.status === "active");
 }

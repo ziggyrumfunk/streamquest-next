@@ -8,6 +8,7 @@ import QuestVideoTabs from "@/app/components/QuestVideoTabs";
 import CopyLink from "@/app/components/CopyLink";
 import MutantSwarm from "@/app/components/MutantSwarm";
 import RankLadder from "@/app/components/RankLadder";
+import { getLiveStatus } from "@/lib/questStatus";
 import FeatureLoop from "@/app/components/FeatureLoop";
 import ScrollCompanions from "@/app/components/ScrollCompanions";
 import {
@@ -128,7 +129,7 @@ function handleFor(l: QuestSocialLink): { label: string; platform: string; icon:
   }
 }
 
-export default function QuestPage({ params }: Params) {
+export default async function QuestPage({ params }: Params) {
   const quest = getQuestBySlug(params.slug);
   if (!quest) notFound();
 
@@ -136,7 +137,8 @@ export default function QuestPage({ params }: Params) {
     .filter((q) => q.slug !== quest.slug)
     .slice(0, 8);
 
-  const isActive = quest.status === "active";
+  // Live status, so a quest marked completed in /admin stops showing as active here.
+  const isActive = (await getLiveStatus(quest.slug, quest.status)) === "active";
 
   return (
     <div className={`rd q-slug-${quest.slug}`}>
