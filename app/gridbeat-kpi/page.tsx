@@ -112,7 +112,7 @@ export default function GridbeatKpiPage({ searchParams }: Props) {
           style={{ backgroundImage: `url('${HERO_BG}')` }}
         />
         <div className="cs-shell cs-hero-inner">
-          <span className="cs-eyebrow">KPI Report · Amber Studios</span>
+          <span className="cs-eyebrow">KPI Report · Acclaim x Ridiculous Games</span>
           <h1>
             GRIDbeat demo-to-launch quest.{" "}
             <span className="grad">Repeat coverage, visible support</span>.
@@ -194,7 +194,7 @@ export default function GridbeatKpiPage({ searchParams }: Props) {
               <span className="cs-tag">The quest</span>
               <h2>Two phases, three side quests, one wishlist push.</h2>
               <p>
-                GRIDbeat is a rhythm action game by Amber Studios. The quest was built around the
+                GRIDbeat is a rhythm action game by Ridiculous Games, published by Acclaim. The quest was built around the
                 demo and the launch: Bronze creators streamed one hour and Silver creators two,
                 with three optional side quests on top. Link Sync asked creators to bring a friend
                 into the game and prove the session, Signal Boost asked for a GRIDbeat clip on
@@ -408,7 +408,7 @@ export default function GridbeatKpiPage({ searchParams }: Props) {
             </ul>
           </div>
           <div className="gb-foot">
-            <span>Prepared by StreamQuest for Amber Studios · Confidential</span>
+            <span>Prepared by StreamQuest for Acclaim x Ridiculous Games · Confidential</span>
             <form action={signOutAction}>
               <button type="submit" className="gb-foot-signout">Sign out</button>
             </form>
