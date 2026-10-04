@@ -245,10 +245,6 @@ const allQuests: Quest[] = [
     slug: "dancing-with-ghosts",
     title: "Dancing with Ghosts",
     status: "active",
-    // Shared by direct link until the campaign page is greenlit and the
-    // campaign dates and the three Ludeo links are in. Delete this line to
-    // list it on the homepage, in the header and in the sitemap.
-    unlisted: true,
     studio: "HumaNature Studios",
     tagline: "A gentle ghost story set in a Thai river village, from the creator of ToeJam & Earl.",
     category: "Cozy narrative life-sim",
@@ -335,7 +331,7 @@ const allQuests: Quest[] = [
       {
         name: "Invite Chat to the Village",
         objective: "Put the tracked Steam wishlist link on your channel and give the game a shoutout.",
-        desc: "Add the link from your accepted Quest to your Twitch panel, stream description or a chat command. Then mention the game naturally on stream and invite interested viewers to wishlist it. There is no minimum number of wishlists.",
+        desc: "Add the tracked wishlist link from this page to your Twitch panel, stream description or a chat command. Then mention the game naturally on stream and invite interested viewers to wishlist it. There is no minimum number of wishlists.",
         proof: "A screenshot of the link placement and a VOD timestamp for your shoutout.",
       },
       {
@@ -346,7 +342,7 @@ const allQuests: Quest[] = [
       },
     ],
     links: {
-      steam: "https://store.steampowered.com/app/1352700/Dancing_with_Ghosts/",
+      steam: "https://store.steampowered.com/app/1352700/?utm_source=streamquest",
       official: "https://dancingwithghosts.com",
       trailer: "https://www.youtube.com/watch?v=TSVLU0TPmck",
     },
@@ -356,7 +352,9 @@ const allQuests: Quest[] = [
 
     videos: {
       trailer: "TSVLU0TPmck",
-      briefComingSoon: true,
+      // StreamQuest's recruitment Short for this campaign.
+      brief: "JD0kB6YC9Fg",
+      briefPortrait: true,
     },
 
     heroMeta: [
@@ -373,7 +371,7 @@ const allQuests: Quest[] = [
       { stat: "3", label: "Ludeo moments", sub: "Played live, then the Steam demo, in the same stream" },
     ],
     tldrFootnotes: [
-      "Limited, curated slots: applying does not guarantee a place. Your tier, dates, links and exact requirements arrive with your approval.",
+      "Limited, curated slots: applying does not guarantee a place. Your tier, dates and exact requirements arrive with your approval.",
       "Silver and Gold also need the matching StreamQuest tier unlocked on your account. Bigger creator without that tier yet? Contact the mods in the StreamQuest Discord.",
       "Content note: the story deals with grief and loss, including a brief, non-graphic reference to suicide. Give your viewers a short heads-up. Nobody needs to share personal experiences.",
     ],
@@ -391,7 +389,12 @@ const allQuests: Quest[] = [
           label: "Three Ludeo moments",
           sub: "Play all three live and react. Share each link in chat so viewers on desktop can try it too. Opening a page alone does not count.",
           weight: 2.2,
-          chips: [{ label: "Ludeo 1" }, { label: "Ludeo 2" }, { label: "Ludeo 3" }],
+          // The three campaign Ludeos, in the order supplied. Keep the utm_source parameter.
+          chips: [
+            { label: "Demo playable", href: "https://campaign.ludeo.com/28a25667-ee9d-4853-8f2f-f06d94262196?utm_source=platform" },
+            { label: "Dancing", href: "https://campaign.ludeo.com/bdfc7fb2-2c7d-4bdb-9c8f-a236815ebc42?utm_source=platform" },
+            { label: "Roti making", href: "https://campaign.ludeo.com/f7bf9a1c-270c-486c-a39b-a1a090091118?utm_source=platform" },
+          ],
         },
         {
           label: "Steam demo",
@@ -443,6 +446,10 @@ const allQuests: Quest[] = [
     sideQuestIntro:
       "Silver needs one side quest, Gold needs all three. The Ludeo moments belong to the main mission, so they do not count here.",
 
+    trackedWishlistUrl: "https://store.steampowered.com/app/1352700/?utm_source=streamquest",
+    trackedWishlistNote:
+      "This is the shared campaign link for Invite Chat to the Village. It identifies the Dancing with Ghosts campaign, not individual creators, so it is not a personal referral link. Keep its tracking parameter intact and do not swap it for a plain store link.",
+
     gallery: {
       wide: "/media/dancing-with-ghosts/screenshot-waterfront-wide.webp",
       thumbs: [
@@ -482,8 +489,8 @@ const allQuests: Quest[] = [
     storeLinks: [
       {
         name: "Steam",
-        sub: "Dancing with Ghosts, Early Access from 8 October",
-        href: "https://store.steampowered.com/app/1352700/Dancing_with_Ghosts/",
+        sub: "Dancing with Ghosts, campaign link",
+        href: "https://store.steampowered.com/app/1352700/?utm_source=streamquest",
         icon: "steam",
       },
       {
@@ -512,18 +519,18 @@ const allQuests: Quest[] = [
       },
       {
         heading: "Before you go live",
-        body: "Wait for approval, then check your accepted Quest for the dates, links, duration and tier requirements. Test all three Ludeo links on desktop and install the Steam demo before you stream. Use the required sponsorship disclosure, and give viewers the short content heads-up about grief and loss.",
+        body: "Wait for approval, then check your accepted Quest for the dates, duration and tier requirements. Test all three Ludeo links on desktop and install the Steam demo before you stream. Use the required sponsorship disclosure, and give viewers the short content heads-up about grief and loss.",
       },
       {
         heading: "Proof",
-        body: "Submit your Twitch VOD in the Creator Dashboard with timestamps for Ludeo 1, Ludeo 2, Ludeo 3 and the Steam demo segment, showing at least 1 hour of active campaign gameplay for Bronze or 2 hours for Silver and Gold. Include proof that you shared the three links in chat, plus the proof for each side quest. Keep your VOD available until it is verified.",
+        body: "Submit your Twitch VOD in the Creator Dashboard with timestamps for each of the three Ludeo moments and the Steam demo segment, showing at least 1 hour of active campaign gameplay for Bronze or 2 hours for Silver and Gold. Include proof that you shared the three links in chat, plus the proof for each side quest. Keep your VOD available until it is verified.",
       },
     ],
 
     howToJoin: [
       { title: "Apply", sub: "In the Creator Dashboard, with your channel, a recent VOD and why the game suits your community" },
       { title: "Wait for approval", sub: "Curated. Check your tier, dates and links once accepted" },
-      { title: "Join Discord", sub: "Campaign links and support live there" },
+      { title: "Join Discord", sub: "Questions and campaign support live there" },
       { title: "Test first", sub: "Try the three Ludeo links on desktop and install the Steam demo" },
       { title: "Go live", sub: "Three Ludeo moments, then the demo, in one stream" },
       { title: "Submit", sub: "VOD with timestamps and side quest proof, paid after verification" },

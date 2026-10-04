@@ -379,13 +379,16 @@ export default async function QuestPage({ params }: Params) {
                     "--run-cols": quest.mainMission.segments.map((s) => `${s.weight ?? 1}fr`).join(" "),
                   } as CSSProperties}
                 >
-                  {quest.mainMission.segments.map((s) => (
-                    <li key={s.label} className="q-run-seg">
-                      <div className="q-run-bar">
-                        {s.chips && s.chips.length > 0 ? (
-                          <>
-                            <span className="q-run-sr">{s.label}</span>
-                            {s.chips.map((c) =>
+                  {quest.mainMission.segments.map((s) => {
+                    const chips = s.chips ?? [];
+                    return (
+                      <li key={s.label} className={chips.length > 0 ? "q-run-seg has-chips" : "q-run-seg"}>
+                        <div className="q-run-bar">
+                          <span className="q-run-label">{s.label}</span>
+                        </div>
+                        {chips.length > 0 && (
+                          <div className="q-run-chips">
+                            {chips.map((c) =>
                               c.href ? (
                                 <a
                                   key={c.label}
@@ -400,14 +403,12 @@ export default async function QuestPage({ params }: Params) {
                                 <span key={c.label} className="q-run-chip is-pending" title="Link coming">{c.label}</span>
                               )
                             )}
-                          </>
-                        ) : (
-                          <span className="q-run-label">{s.label}</span>
+                          </div>
                         )}
-                      </div>
-                      <p className="q-run-cap">{s.sub}</p>
-                    </li>
-                  ))}
+                        <p className="q-run-cap">{s.sub}</p>
+                      </li>
+                    );
+                  })}
                 </ol>
               </div>
             </Reveal>
