@@ -17,6 +17,7 @@ import {
   allQuestSlugs,
   type QuestSocialType,
   type QuestSocialLink,
+  type QuestVideos,
 } from "@/data/quests";
 import "@/app/redesign.css";
 import "./quest.css";
@@ -140,6 +141,13 @@ export default async function QuestPage({ params }: Params) {
   // Live status, so a quest marked completed in /admin stops showing as active here.
   const isActive = (await getLiveStatus(quest.slug, quest.status)) === "active";
 
+  // On an open quest the mission brief video gets its own section beside a
+  // short intro, as on the Ludeo brief, instead of waiting behind a tab; the
+  // player under it then shows only the trailer. Finished quests keep the tabs.
+  const videos = quest.videos;
+  const briefOnSide = isActive && !!(videos?.brief || videos?.briefVideo);
+  const tabVideos: QuestVideos | undefined = briefOnSide ? { trailer: videos?.trailer } : videos;
+
   return (
     <div className={`rd q-slug-${quest.slug}`}>
       {/* Ambient character layer, drifts behind the whole brief. */}
@@ -252,21 +260,52 @@ export default async function QuestPage({ params }: Params) {
         </div>
       </section>
 
+      {/* ============ MISSION BRIEF VIDEO ============ */}
+      {briefOnSide && videos && (
+        <section className="q-section">
+          <div className="rd-shell">
+            <div className={`q-brief${videos.briefPortrait ? " is-portrait" : ""}`}>
+              <Reveal>
+                <span className="q-tag">Mission brief video</span>
+                <h2>The quest in one short video.</h2>
+                <p>
+                  A quick intro to {quest.title} and the quest. Watch it first, then read on for
+                  the details.
+                </p>
+                <div className="q-brief-actions">
+                  <a href="https://app.streamquest.io" className="btn btn-primary">
+                    Start the quest
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <QuestVideoTabs
+                  brief={videos.brief}
+                  briefVideo={videos.briefVideo}
+                  briefPoster={videos.briefPoster}
+                  briefPortrait={videos.briefPortrait}
+                />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ============ VIDEO TABS ============ */}
-      {(quest.videos?.trailer ||
-        quest.videos?.brief ||
-        quest.videos?.briefVideo ||
-        quest.videos?.briefComingSoon) && (
-        <section className="q-section q-section-tight">
+      {(tabVideos?.trailer ||
+        tabVideos?.brief ||
+        tabVideos?.briefVideo ||
+        tabVideos?.briefComingSoon) && (
+        <section className="q-section q-section-tight" style={briefOnSide ? { paddingTop: 0 } : undefined}>
           <div className="rd-shell">
             <Reveal>
               <QuestVideoTabs
-                trailer={quest.videos.trailer}
-                brief={quest.videos.brief}
-                briefComingSoon={quest.videos.briefComingSoon}
-                briefVideo={quest.videos.briefVideo}
-                briefPoster={quest.videos.briefPoster}
-                briefPortrait={quest.videos.briefPortrait}
+                trailer={tabVideos.trailer}
+                brief={tabVideos.brief}
+                briefComingSoon={tabVideos.briefComingSoon}
+                briefVideo={tabVideos.briefVideo}
+                briefPoster={tabVideos.briefPoster}
+                briefPortrait={tabVideos.briefPortrait}
               />
             </Reveal>
           </div>

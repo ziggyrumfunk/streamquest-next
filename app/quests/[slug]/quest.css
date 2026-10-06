@@ -2075,6 +2075,30 @@
 }
 
 /* ============================================================
+   MISSION BRIEF VIDEO
+   On an open quest the brief has its own section: the intro beside
+   the player, as on the Ludeo brief. A phone-shaped Short gets a
+   fixed 380px column (the stage's width is a percentage, which an
+   auto column cannot resolve); a landscape brief gets the wider
+   share. On phones the two stack, heading first.
+   ============================================================ */
+.q-brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 56px;
+  align-items: center;
+}
+.q-brief.is-portrait { grid-template-columns: minmax(0, 1fr) 380px; }
+.q-brief .q-video-stage.is-portrait { margin: 0; }
+.q-brief p { text-wrap: pretty; }
+.q-brief-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+@media (max-width: 900px) {
+  .q-brief,
+  .q-brief.is-portrait { grid-template-columns: 1fr; gap: 26px; }
+  .q-brief .q-video-stage.is-portrait { margin: 0 auto; }
+}
+
+/* ============================================================
    RIFTFALL side art
    Reuses the ambient swarm layer, but the RIFTFALL pack is
    rectangular key art rather than transparent cutouts, so the

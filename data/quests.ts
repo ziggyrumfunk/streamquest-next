@@ -899,7 +899,9 @@ const allQuests: Quest[] = [
 
     videos: {
       trailer: "aTUeoWEy69g",
-      briefComingSoon: true,
+      // StreamQuest's recruitment Short for this campaign.
+      brief: "2TdaQW3UP64",
+      briefPortrait: true,
     },
 
     heroMeta: [
