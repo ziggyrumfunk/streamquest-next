@@ -2075,27 +2075,56 @@
 }
 
 /* ============================================================
-   MISSION BRIEF VIDEO
-   On an open quest the brief has its own section: the intro beside
-   the player, as on the Ludeo brief. A phone-shaped Short gets a
-   fixed 380px column (the stage's width is a percentage, which an
-   auto column cannot resolve); a landscape brief gets the wider
-   share. On phones the two stack, heading first.
+   MISSION BRIEF VIDEO RAIL
+   On an open quest with a brief video, the body of the page (from
+   the trailer to "How to join") gives up a column on the right and
+   the video rides down it, sticky under the header, so it stays in
+   view without a section of its own. Its width follows the window
+   height so the whole player always fits, and on a page with scroll
+   companions it stops short of them. Below 1101px there is no room
+   for a rail: the video sits at the top of the body instead.
    ============================================================ */
-.q-brief {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  gap: 56px;
-  align-items: center;
+.q-body { position: relative; }
+/* The page root hides sideways overflow; clip does that without turning the
+   root into its own scroll box, which would stop the video from sticking. */
+.rd.has-brief-rail { overflow-x: clip; }
+.q-brief-float .q-tag {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rd-lime);
 }
-.q-brief.is-portrait { grid-template-columns: minmax(0, 1fr) 380px; }
-.q-brief .q-video-stage.is-portrait { margin: 0; }
-.q-brief p { text-wrap: pretty; }
-.q-brief-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-@media (max-width: 900px) {
-  .q-brief,
-  .q-brief.is-portrait { grid-template-columns: 1fr; gap: 26px; }
-  .q-brief .q-video-stage.is-portrait { margin: 0 auto; }
+.q-brief-float .q-video-stage.is-portrait { width: 100%; margin: 0; }
+
+@media (min-width: 1101px) {
+  .has-brief-rail { --rail-w: clamp(220px, calc((100vh - 170px) * 0.5625), 280px); }
+  .has-brief-rail.has-companions { --rail-w: clamp(190px, calc((100vh - 360px) * 0.5625), 280px); }
+  /* Every shell in the body leaves the rail its column. */
+  .has-brief-rail .q-body .rd-shell { padding-right: 320px; }
+  .q-brief-rail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* Right edge lines up with the shells' right edge. */
+    right: calc((100% - min(100% - 32px, 1280px)) / 2);
+    z-index: 10;
+    width: 280px;
+    /* The tag sits above the line, so the player starts level with the trailer. */
+    padding-top: 26px;
+  }
+  .q-brief-float {
+    position: sticky;
+    top: calc(var(--header-h) + 16px);
+    width: var(--rail-w);
+    margin-left: auto;
+  }
+}
+@media (max-width: 1100px) {
+  .q-brief-rail { padding: 56px 16px 0; }
+  .q-brief-float { width: min(100%, 320px); margin: 0 auto; text-align: center; }
 }
 
 /* ============================================================

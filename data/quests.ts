@@ -637,7 +637,9 @@ const allQuests: Quest[] = [
 
     videos: {
       trailer: "Opd1dNK9O7w",
-      briefComingSoon: true,
+      // StreamQuest's recruitment Short for this campaign.
+      brief: "rW9bfUilv34",
+      briefPortrait: true,
     },
 
     heroMeta: [
@@ -899,8 +901,9 @@ const allQuests: Quest[] = [
 
     videos: {
       trailer: "aTUeoWEy69g",
-      // StreamQuest's recruitment Short for this campaign.
-      brief: "2TdaQW3UP64",
+      // StreamQuest's recruitment Short for this campaign (re-uploaded; the
+      // first upload, 2TdaQW3UP64, was deleted).
+      brief: "Kxkx1kZQ8LE",
       briefPortrait: true,
     },
 

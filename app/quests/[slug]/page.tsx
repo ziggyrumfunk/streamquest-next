@@ -141,15 +141,18 @@ export default async function QuestPage({ params }: Params) {
   // Live status, so a quest marked completed in /admin stops showing as active here.
   const isActive = (await getLiveStatus(quest.slug, quest.status)) === "active";
 
-  // On an open quest the mission brief video gets its own section beside a
-  // short intro, as on the Ludeo brief, instead of waiting behind a tab; the
-  // player under it then shows only the trailer. Finished quests keep the tabs.
+  // On an open quest the mission brief video rides down a rail on the right
+  // while the brief scrolls, instead of waiting behind a tab; the player at
+  // the top then shows only the trailer. Finished quests keep the tabs.
   const videos = quest.videos;
-  const briefOnSide = isActive && !!(videos?.brief || videos?.briefVideo);
-  const tabVideos: QuestVideos | undefined = briefOnSide ? { trailer: videos?.trailer } : videos;
+  const briefRail = isActive && !!(videos?.brief || videos?.briefVideo);
+  const tabVideos: QuestVideos | undefined = briefRail ? { trailer: videos?.trailer } : videos;
+  const hasCompanions = !!quest.companions && quest.companions.length > 0;
 
   return (
-    <div className={`rd q-slug-${quest.slug}`}>
+    <div
+      className={`rd q-slug-${quest.slug}${briefRail ? " has-brief-rail" : ""}${hasCompanions ? " has-companions" : ""}`}
+    >
       {/* Ambient character layer, drifts behind the whole brief. */}
       {quest.swarm && quest.swarm.items.length > 0 && (
         <MutantSwarm items={quest.swarm.items} />
@@ -260,637 +263,625 @@ export default async function QuestPage({ params }: Params) {
         </div>
       </section>
 
-      {/* ============ MISSION BRIEF VIDEO ============ */}
-      {briefOnSide && videos && (
-        <section className="q-section">
-          <div className="rd-shell">
-            <div className={`q-brief${videos.briefPortrait ? " is-portrait" : ""}`}>
+      {/* Everything from the trailer to "How to join". With a mission brief
+          video, that video rides down a rail on the right of this part. */}
+      <div className="q-body">
+        {/* ============ MISSION BRIEF VIDEO ============ */}
+        {briefRail && videos && (
+          <aside className="q-brief-rail" aria-label="Mission brief video">
+            <div className="q-brief-float">
+              <span className="q-tag">Mission brief video</span>
+              <QuestVideoTabs
+                brief={videos.brief}
+                briefVideo={videos.briefVideo}
+                briefPoster={videos.briefPoster}
+                briefPortrait={videos.briefPortrait}
+              />
+            </div>
+          </aside>
+        )}
+
+        {/* ============ VIDEO TABS ============ */}
+        {(tabVideos?.trailer ||
+          tabVideos?.brief ||
+          tabVideos?.briefVideo ||
+          tabVideos?.briefComingSoon) && (
+          <section className="q-section q-section-tight">
+            <div className="rd-shell">
               <Reveal>
-                <span className="q-tag">Mission brief video</span>
-                <h2>The quest in one short video.</h2>
-                <p>
-                  A quick intro to {quest.title} and the quest. Watch it first, then read on for
-                  the details.
-                </p>
-                <div className="q-brief-actions">
-                  <a href="https://app.streamquest.io" className="btn btn-primary">
-                    Start the quest
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={0.1}>
                 <QuestVideoTabs
-                  brief={videos.brief}
-                  briefVideo={videos.briefVideo}
-                  briefPoster={videos.briefPoster}
-                  briefPortrait={videos.briefPortrait}
+                  trailer={tabVideos.trailer}
+                  brief={tabVideos.brief}
+                  briefComingSoon={tabVideos.briefComingSoon}
+                  briefVideo={tabVideos.briefVideo}
+                  briefPoster={tabVideos.briefPoster}
+                  briefPortrait={tabVideos.briefPortrait}
                 />
               </Reveal>
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
 
-      {/* ============ VIDEO TABS ============ */}
-      {(tabVideos?.trailer ||
-        tabVideos?.brief ||
-        tabVideos?.briefVideo ||
-        tabVideos?.briefComingSoon) && (
-        <section className="q-section q-section-tight" style={briefOnSide ? { paddingTop: 0 } : undefined}>
-          <div className="rd-shell">
-            <Reveal>
-              <QuestVideoTabs
-                trailer={tabVideos.trailer}
-                brief={tabVideos.brief}
-                briefComingSoon={tabVideos.briefComingSoon}
-                briefVideo={tabVideos.briefVideo}
-                briefPoster={tabVideos.briefPoster}
-                briefPortrait={tabVideos.briefPortrait}
-              />
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ FIRST TIMER CALLOUT ============ */}
-      {isActive && (
-        <section className="q-section q-section-tight">
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-first-timer">
-                <span className="q-tag">First time streamer?</span>
-                <p>
-                  Read the Quests Guide before you go live. It covers setup, proof,
-                  and the exact dos and don&apos;ts so your run counts. The FAQ answers
-                  the rest: tiers, XP, payouts, and what happens after you submit.
-                </p>
-                <div className="q-first-timer-actions">
-                  <Link href="/quests-guide" className="btn btn-primary">
-                    Open Quests Guide
-                  </Link>
-                  <Link href="/faq" className="btn btn-secondary">
-                    Read the FAQ
-                  </Link>
-                  <a href="https://app.streamquest.io" className="btn btn-ghost">
-                    Creator Dashboard
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ TL;DR ============ */}
-      {quest.tldr && quest.tldr.length > 0 && (
-        <section className="q-section">
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">At a glance</span>
-                <h2>TL;DR</h2>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-tldr-grid">
-                {quest.tldr.map((t) => (
-                  <div key={t.label} className="q-tldr-card">
-                    <div className="q-tldr-stat">{t.stat}</div>
-                    <div className="q-tldr-label">{t.label}</div>
-                    {t.sub && <div className="q-tldr-sub">{t.sub}</div>}
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-            {quest.tldrFootnotes && quest.tldrFootnotes.length > 0 && (
+        {/* ============ FIRST TIMER CALLOUT ============ */}
+        {isActive && (
+          <section className="q-section q-section-tight">
+            <div className="rd-shell">
               <Reveal>
-                <div className="q-tldr-foot">
-                  {quest.tldrFootnotes.map((f) => (
-                    <p key={f}>{f}</p>
+                <div className="q-first-timer">
+                  <span className="q-tag">First time streamer?</span>
+                  <p>
+                    Read the Quests Guide before you go live. It covers setup, proof,
+                    and the exact dos and don&apos;ts so your run counts. The FAQ answers
+                    the rest: tiers, XP, payouts, and what happens after you submit.
+                  </p>
+                  <div className="q-first-timer-actions">
+                    <Link href="/quests-guide" className="btn btn-primary">
+                      Open Quests Guide
+                    </Link>
+                    <Link href="/faq" className="btn btn-secondary">
+                      Read the FAQ
+                    </Link>
+                    <a href="https://app.streamquest.io" className="btn btn-ghost">
+                      Creator Dashboard
+                    </a>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ TL;DR ============ */}
+        {quest.tldr && quest.tldr.length > 0 && (
+          <section className="q-section">
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">At a glance</span>
+                  <h2>TL;DR</h2>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-tldr-grid">
+                  {quest.tldr.map((t) => (
+                    <div key={t.label} className="q-tldr-card">
+                      <div className="q-tldr-stat">{t.stat}</div>
+                      <div className="q-tldr-label">{t.label}</div>
+                      {t.sub && <div className="q-tldr-sub">{t.sub}</div>}
+                    </div>
                   ))}
                 </div>
               </Reveal>
-            )}
-            {isActive && (
+              {quest.tldrFootnotes && quest.tldrFootnotes.length > 0 && (
+                <Reveal>
+                  <div className="q-tldr-foot">
+                    {quest.tldrFootnotes.map((f) => (
+                      <p key={f}>{f}</p>
+                    ))}
+                  </div>
+                </Reveal>
+              )}
+              {isActive && (
+                <Reveal>
+                  <div className="q-cta-center">
+                    <a href="https://app.streamquest.io" className="btn btn-primary">
+                      Apply via Creator Dashboard
+                    </a>
+                    <a
+                      href="https://discord.gg/NhqfucYDXD"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary"
+                    >
+                      Join Discord
+                    </a>
+                  </div>
+                </Reveal>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ============ MAIN MISSION ============ */}
+        {/* A run of show for one stream: the parts in order along a bar, each
+            sized by its weight, with the minimum stream time at the end. */}
+        {quest.mainMission && quest.mainMission.segments.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
               <Reveal>
-                <div className="q-cta-center">
-                  <a href="https://app.streamquest.io" className="btn btn-primary">
-                    Apply via Creator Dashboard
-                  </a>
+                <div className="q-section-head">
+                  <span className="q-tag">All tiers</span>
+                  <h2>Your main mission</h2>
+                  <p>{quest.mainMission.intro}</p>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-run">
+                  <div className="q-run-scale">
+                    <span>Go live</span>
+                    <span className="q-run-line" aria-hidden="true" />
+                    {quest.mainMission.end && <span>{quest.mainMission.end}</span>}
+                  </div>
+                  <ol
+                    className="q-run-track"
+                    style={{
+                      "--run-cols": quest.mainMission.segments.map((s) => `${s.weight ?? 1}fr`).join(" "),
+                    } as CSSProperties}
+                  >
+                    {quest.mainMission.segments.map((s) => {
+                      const chips = s.chips ?? [];
+                      return (
+                        <li key={s.label} className={chips.length > 0 ? "q-run-seg has-chips" : "q-run-seg"}>
+                          <div className="q-run-bar">
+                            <span className="q-run-label">{s.label}</span>
+                          </div>
+                          {chips.length > 0 && (
+                            <div className="q-run-chips">
+                              {chips.map((c) =>
+                                c.href ? (
+                                  <a
+                                    key={c.label}
+                                    href={c.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="q-run-chip is-link"
+                                  >
+                                    {c.label} <span aria-hidden="true">↗</span>
+                                  </a>
+                                ) : (
+                                  <span key={c.label} className="q-run-chip is-pending" title="Link coming">{c.label}</span>
+                                )
+                              )}
+                            </div>
+                          )}
+                          <p className="q-run-cap">{s.sub}</p>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
+              </Reveal>
+              {quest.mainMission.notes && quest.mainMission.notes.length > 0 && (
+                <Reveal>
+                  <ul className="q-run-notes">
+                    {quest.mainMission.notes.map((n) => (
+                      <li key={n}>{n}</li>
+                    ))}
+                  </ul>
+                </Reveal>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ============ TIER LADDER ============ */}
+        {quest.tiers && quest.tiers.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head">
+                  <span className="q-tag">Payouts</span>
+                  <h2>Stream. Verify. Get paid.</h2>
+                  <p>
+                    Hit a tier&apos;s requirements, submit your VOD, a human reviews
+                    it, payout lands within five business days.
+                  </p>
+                </div>
+              </Reveal>
+
+              {/* Animates itself on scroll, so no Reveal wrapper. */}
+              <RankLadder tiers={quest.tiers} />
+            </div>
+          </section>
+        )}
+
+        {/* ============ SCREENSHOT STRIP ============ */}
+        {quest.screenshots && quest.screenshots.length > 0 && (
+          <section className="q-section q-section-strip">
+            <div className="q-strip-wrap">
+              <Reveal>
+                <div className="q-strip">
+                  {quest.screenshots.map((src, i) => (
+                    <div key={src + i} className="q-strip-item">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt={`${quest.title} screenshot ${i + 1}`} loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ STORY ============ */}
+        {(quest.storyParagraphs?.length || quest.about || quest.description) && (
+          <section className="q-section">
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head">
+                  <span className="q-tag">The campaign</span>
+                  <h2>StreamQuest x {quest.studio}</h2>
+                </div>
+              </Reveal>
+
+              <div className="q-story-split">
+                <Reveal>
+                  <div className="q-story-body">
+                    {quest.storyParagraphs && quest.storyParagraphs.length > 0
+                      ? quest.storyParagraphs.map((p, i) => <p key={i}>{p}</p>)
+                      : (
+                        <>
+                          {quest.description && <p>{quest.description}</p>}
+                          {quest.about && <p>{quest.about}</p>}
+                        </>
+                      )}
+                    {quest.storyPull && (
+                      <div className="q-story-pull">{quest.storyPull}</div>
+                    )}
+                  </div>
+                </Reveal>
+
+                {(quest.storyAsideVideo || quest.storyAside) && (
+                  <Reveal delay={0.15}>
+                    <div className="q-story-aside">
+                      {quest.storyAsideVideo ? (
+                        <video
+                          className="q-story-aside-video"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="metadata"
+                          poster={quest.storyAsidePoster}
+                          aria-label={quest.storyAsideCaption || "Gameplay clip"}
+                        >
+                          <source src={quest.storyAsideVideo} type="video/mp4" />
+                        </video>
+                      ) : (
+                        /* eslint-disable-next-line @next/next/no-img-element */
+                        <img src={quest.storyAside} alt={quest.storyAsideCaption || ""} loading="lazy" />
+                      )}
+                      {quest.storyAsideCaption && (
+                        <span className="q-story-aside-cap">{quest.storyAsideCaption}</span>
+                      )}
+                    </div>
+                  </Reveal>
+                )}
+              </div>
+
+            </div>
+          </section>
+        )}
+
+        {/* ============ QUOTE ============ */}
+        {/* A page from a journal: ruled paper, a drawing taped in, the quote. */}
+        {quest.quote && (
+          <section className="q-quote" aria-label={`A note from ${quest.quote.name}`}>
+            <div className="rd-shell q-quote-inner">
+              {quest.quote.image && (
+                <Reveal>
+                  <div className="q-quote-art">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={quest.quote.image} alt={quest.quote.imageAlt || ""} loading="lazy" />
+                  </div>
+                </Reveal>
+              )}
+              <Reveal delay={0.1}>
+                <figure className="q-quote-fig">
+                  <blockquote>
+                    <p>{quest.quote.text}</p>
+                  </blockquote>
+                  <figcaption>
+                    <strong>{quest.quote.name}</strong>
+                    {quest.quote.role && <span>{quest.quote.role}</span>}
+                  </figcaption>
+                </figure>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ KEY FEATURES ============ */}
+        {quest.keyFeatures && quest.keyFeatures.length > 0 && (
+          <section className="q-section q-features" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-features-head">
+                  <span className="q-tag">Why it streams</span>
+                  <h2>Key features</h2>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-features-grid">
+                  {quest.keyFeatures.map((feat) => {
+                    const f = typeof feat === "string" ? { text: feat, video: undefined, still: undefined } : feat;
+                    return (
+                      <div key={f.text} className={`q-feature${f.video ? " has-media" : ""}`}>
+                        {f.video && <FeatureLoop video={f.video} still={f.still} />}
+                        <p>{f.text}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ SIDE QUESTS ============ */}
+        {quest.sideQuestDetails && quest.sideQuestDetails.length > 0 && (
+          <section className="q-section q-sq" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-features-head">
+                  <span className="q-tag">Optional bonuses</span>
+                  <h2>Side quests</h2>
+                  {quest.sideQuestIntro ? (
+                    <p>{quest.sideQuestIntro}</p>
+                  ) : (
+                    <p>Stackable extras that bump Bronze to Silver and unlock the bigger payouts.</p>
+                  )}
+                </div>
+              </Reveal>
+              <Reveal>
+                <ol
+                  className="q-sq-grid"
+                  style={{ "--sq-cols": quest.sideQuestDetails.length % 3 === 0 ? 3 : 2 } as CSSProperties}
+                >
+                  {quest.sideQuestDetails.map((sq) => (
+                    <li key={sq.name} className="q-sq-card">
+                      <div className="q-sq-head">
+                        <span className="q-sq-marker" aria-hidden="true" />
+                        <h3 className="q-sq-name">{sq.name}</h3>
+                        {typeof sq.xp === "number" && (
+                          <span className="q-sq-xp">+{sq.xp} XP</span>
+                        )}
+                      </div>
+                      {sq.tag && <span className="q-sq-tag">{sq.tag}</span>}
+                      {sq.objective && <p className="q-sq-objective">{sq.objective}</p>}
+                      <p className="q-sq-desc">{sq.desc}</p>
+                      {sq.proof && (
+                        <div className="q-sq-proof">
+                          <span>Proof</span>
+                          <p>{sq.proof}</p>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </Reveal>
+              {quest.sideQuestOutro && (
+                <Reveal>
+                  <p className="q-sq-outro">{quest.sideQuestOutro}</p>
+                </Reveal>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ============ TRACKED WISHLIST ============ */}
+        {quest.trackedWishlistUrl && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">Your link</span>
+                  <h2>Tracked wishlist link</h2>
+                </div>
+              </Reveal>
+              <Reveal>
+                <CopyLink
+                  url={quest.trackedWishlistUrl}
+                  note={quest.trackedWishlistNote}
+                />
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ GALLERY ============ */}
+        {quest.gallery && quest.gallery.thumbs.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">In-campaign art</span>
+                  <h2>Screenshots and key art</h2>
+                  <p>Use these for thumbnails, overlays, social posts, and short-form content.</p>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-gallery">
+                  {quest.gallery.wide && (
+                    <div className="q-gallery-item q-gallery-wide">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={quest.gallery.wide} alt={`${quest.title} key art`} loading="lazy" />
+                    </div>
+                  )}
+                  {quest.gallery.thumbs.map((src, i) => (
+                    <div key={src + i} className="q-gallery-item">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={src} alt={`${quest.title} screenshot ${i + 1}`} loading="lazy" />
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ OFFICIAL ACCOUNTS ============ */}
+        {quest.officialAccounts && quest.officialAccounts.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">Official accounts</span>
+                  <h2>Tag, follow, and share</h2>
+                  <p>The handles to tag in your side quest posts, and where the campaign lives.</p>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-accounts">
+                  {quest.officialAccounts.map((acct) => (
+                    <div key={acct.name} className="q-account">
+                      <div className="q-account-head">
+                        <div className="q-account-name">{acct.name}</div>
+                        <p className="q-account-hint">{acct.hint}</p>
+                      </div>
+                      <div className="q-account-handles">
+                        {acct.links.map((l) => {
+                          const h = handleFor(l);
+                          return (
+                            <a
+                              key={l.type + l.href}
+                              href={l.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${acct.name} on ${h.platform}: ${h.label}`}
+                              className="q-handle"
+                            >
+                              <span className="q-handle-ico">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={h.icon} alt="" loading="lazy" width={28} height={28} />
+                              </span>
+                              <span className="q-handle-text">
+                                <strong>{h.label}</strong>
+                                <span>{h.platform}</span>
+                              </span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ STORE LINKS ============ */}
+        {quest.storeLinks && quest.storeLinks.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">Links</span>
+                  <h2>Store and resources</h2>
+                  {quest.platforms && quest.platforms.length > 0 && (
+                    <p>Platforms: {quest.platforms.join(", ")}.</p>
+                  )}
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-stores">
+                  {quest.storeLinks.map((s) => (
+                    <a
+                      key={s.href + s.name}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="q-store"
+                    >
+                      <span className="q-store-ico">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={STORE_ICON_MAP[s.icon || "website"]} alt="" loading="lazy" />
+                      </span>
+                      <span className="q-store-txt">
+                        <strong>{s.name}</strong>
+                        <span>{s.sub}</span>
+                      </span>
+                      <span className="q-store-arrow" aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </div>
+              </Reveal>
+            </div>
+          </section>
+        )}
+
+        {/* ============ RULES / EXPECTATIONS ============ */}
+        {(quest.rulesContent?.length || quest.rules?.length) && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head">
+                  <span className="q-tag">Expectations and selection</span>
+                  <h2>
+                    {quest.rulesHeading ??
+                      (quest.slots
+                        ? `${quest.slots} slots, right of refusal, keys on Discord`
+                        : "Right of refusal, keys on Discord")}
+                  </h2>
+                </div>
+              </Reveal>
+
+              {quest.rulesContent && quest.rulesContent.length > 0 ? (
+                <Reveal>
+                  <div className="q-rules">
+                    {quest.rulesContent.map((r) => (
+                      <div key={r.heading} className="q-rules-block">
+                        <h3>{r.heading}</h3>
+                        <p>{r.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Reveal>
+              ) : (
+                quest.rules && (
+                  <Reveal>
+                    <ul className="q-list rules">
+                      {quest.rules.map((r) => <li key={r}>{r}</li>)}
+                    </ul>
+                  </Reveal>
+                )
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* ============ HOW TO JOIN ============ */}
+        {isActive && quest.howToJoin && quest.howToJoin.length > 0 && (
+          <section className="q-section" style={{ paddingTop: 0 }}>
+            <div className="rd-shell">
+              <Reveal>
+                <div className="q-section-head q-section-head-center">
+                  <span className="q-tag">Steps</span>
+                  <h2>How to join</h2>
+                  <p>From application to payout in six steps. Discord is required for access and coordination.</p>
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-steps">
+                  {quest.howToJoin.map((s) => (
+                    <div key={s.title} className="q-step">
+                      <div className="q-step-title">{s.title}</div>
+                      <div className="q-step-sub">{s.sub}</div>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
+              <Reveal>
+                <div className="q-discord-banner">
+                  <p>
+                    <strong>Discord required.</strong> Access and campaign support are
+                    coordinated there. Join before you go live.
+                  </p>
                   <a
                     href="https://discord.gg/NhqfucYDXD"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-secondary"
+                    className="btn btn-discord"
                   >
                     Join Discord
                   </a>
                 </div>
               </Reveal>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* ============ MAIN MISSION ============ */}
-      {/* A run of show for one stream: the parts in order along a bar, each
-          sized by its weight, with the minimum stream time at the end. */}
-      {quest.mainMission && quest.mainMission.segments.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head">
-                <span className="q-tag">All tiers</span>
-                <h2>Your main mission</h2>
-                <p>{quest.mainMission.intro}</p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-run">
-                <div className="q-run-scale">
-                  <span>Go live</span>
-                  <span className="q-run-line" aria-hidden="true" />
-                  {quest.mainMission.end && <span>{quest.mainMission.end}</span>}
-                </div>
-                <ol
-                  className="q-run-track"
-                  style={{
-                    "--run-cols": quest.mainMission.segments.map((s) => `${s.weight ?? 1}fr`).join(" "),
-                  } as CSSProperties}
-                >
-                  {quest.mainMission.segments.map((s) => {
-                    const chips = s.chips ?? [];
-                    return (
-                      <li key={s.label} className={chips.length > 0 ? "q-run-seg has-chips" : "q-run-seg"}>
-                        <div className="q-run-bar">
-                          <span className="q-run-label">{s.label}</span>
-                        </div>
-                        {chips.length > 0 && (
-                          <div className="q-run-chips">
-                            {chips.map((c) =>
-                              c.href ? (
-                                <a
-                                  key={c.label}
-                                  href={c.href}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="q-run-chip is-link"
-                                >
-                                  {c.label} <span aria-hidden="true">↗</span>
-                                </a>
-                              ) : (
-                                <span key={c.label} className="q-run-chip is-pending" title="Link coming">{c.label}</span>
-                              )
-                            )}
-                          </div>
-                        )}
-                        <p className="q-run-cap">{s.sub}</p>
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
-            </Reveal>
-            {quest.mainMission.notes && quest.mainMission.notes.length > 0 && (
-              <Reveal>
-                <ul className="q-run-notes">
-                  {quest.mainMission.notes.map((n) => (
-                    <li key={n}>{n}</li>
-                  ))}
-                </ul>
-              </Reveal>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* ============ TIER LADDER ============ */}
-      {quest.tiers && quest.tiers.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head">
-                <span className="q-tag">Payouts</span>
-                <h2>Stream. Verify. Get paid.</h2>
-                <p>
-                  Hit a tier&apos;s requirements, submit your VOD, a human reviews
-                  it, payout lands within five business days.
-                </p>
-              </div>
-            </Reveal>
-
-            {/* Animates itself on scroll, so no Reveal wrapper. */}
-            <RankLadder tiers={quest.tiers} />
-          </div>
-        </section>
-      )}
-
-      {/* ============ SCREENSHOT STRIP ============ */}
-      {quest.screenshots && quest.screenshots.length > 0 && (
-        <section className="q-section q-section-strip">
-          <div className="q-strip-wrap">
-            <Reveal>
-              <div className="q-strip">
-                {quest.screenshots.map((src, i) => (
-                  <div key={src + i} className="q-strip-item">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt={`${quest.title} screenshot ${i + 1}`} loading="lazy" />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ STORY ============ */}
-      {(quest.storyParagraphs?.length || quest.about || quest.description) && (
-        <section className="q-section">
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head">
-                <span className="q-tag">The campaign</span>
-                <h2>StreamQuest x {quest.studio}</h2>
-              </div>
-            </Reveal>
-
-            <div className="q-story-split">
-              <Reveal>
-                <div className="q-story-body">
-                  {quest.storyParagraphs && quest.storyParagraphs.length > 0
-                    ? quest.storyParagraphs.map((p, i) => <p key={i}>{p}</p>)
-                    : (
-                      <>
-                        {quest.description && <p>{quest.description}</p>}
-                        {quest.about && <p>{quest.about}</p>}
-                      </>
-                    )}
-                  {quest.storyPull && (
-                    <div className="q-story-pull">{quest.storyPull}</div>
-                  )}
-                </div>
-              </Reveal>
-
-              {(quest.storyAsideVideo || quest.storyAside) && (
-                <Reveal delay={0.15}>
-                  <div className="q-story-aside">
-                    {quest.storyAsideVideo ? (
-                      <video
-                        className="q-story-aside-video"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        poster={quest.storyAsidePoster}
-                        aria-label={quest.storyAsideCaption || "Gameplay clip"}
-                      >
-                        <source src={quest.storyAsideVideo} type="video/mp4" />
-                      </video>
-                    ) : (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={quest.storyAside} alt={quest.storyAsideCaption || ""} loading="lazy" />
-                    )}
-                    {quest.storyAsideCaption && (
-                      <span className="q-story-aside-cap">{quest.storyAsideCaption}</span>
-                    )}
-                  </div>
-                </Reveal>
-              )}
             </div>
-
-          </div>
-        </section>
-      )}
-
-      {/* ============ QUOTE ============ */}
-      {/* A page from a journal: ruled paper, a drawing taped in, the quote. */}
-      {quest.quote && (
-        <section className="q-quote" aria-label={`A note from ${quest.quote.name}`}>
-          <div className="rd-shell q-quote-inner">
-            {quest.quote.image && (
-              <Reveal>
-                <div className="q-quote-art">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={quest.quote.image} alt={quest.quote.imageAlt || ""} loading="lazy" />
-                </div>
-              </Reveal>
-            )}
-            <Reveal delay={0.1}>
-              <figure className="q-quote-fig">
-                <blockquote>
-                  <p>{quest.quote.text}</p>
-                </blockquote>
-                <figcaption>
-                  <strong>{quest.quote.name}</strong>
-                  {quest.quote.role && <span>{quest.quote.role}</span>}
-                </figcaption>
-              </figure>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ KEY FEATURES ============ */}
-      {quest.keyFeatures && quest.keyFeatures.length > 0 && (
-        <section className="q-section q-features" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-features-head">
-                <span className="q-tag">Why it streams</span>
-                <h2>Key features</h2>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-features-grid">
-                {quest.keyFeatures.map((feat) => {
-                  const f = typeof feat === "string" ? { text: feat, video: undefined, still: undefined } : feat;
-                  return (
-                    <div key={f.text} className={`q-feature${f.video ? " has-media" : ""}`}>
-                      {f.video && <FeatureLoop video={f.video} still={f.still} />}
-                      <p>{f.text}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ SIDE QUESTS ============ */}
-      {quest.sideQuestDetails && quest.sideQuestDetails.length > 0 && (
-        <section className="q-section q-sq" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-features-head">
-                <span className="q-tag">Optional bonuses</span>
-                <h2>Side quests</h2>
-                {quest.sideQuestIntro ? (
-                  <p>{quest.sideQuestIntro}</p>
-                ) : (
-                  <p>Stackable extras that bump Bronze to Silver and unlock the bigger payouts.</p>
-                )}
-              </div>
-            </Reveal>
-            <Reveal>
-              <ol
-                className="q-sq-grid"
-                style={{ "--sq-cols": quest.sideQuestDetails.length % 3 === 0 ? 3 : 2 } as CSSProperties}
-              >
-                {quest.sideQuestDetails.map((sq) => (
-                  <li key={sq.name} className="q-sq-card">
-                    <div className="q-sq-head">
-                      <span className="q-sq-marker" aria-hidden="true" />
-                      <h3 className="q-sq-name">{sq.name}</h3>
-                      {typeof sq.xp === "number" && (
-                        <span className="q-sq-xp">+{sq.xp} XP</span>
-                      )}
-                    </div>
-                    {sq.tag && <span className="q-sq-tag">{sq.tag}</span>}
-                    {sq.objective && <p className="q-sq-objective">{sq.objective}</p>}
-                    <p className="q-sq-desc">{sq.desc}</p>
-                    {sq.proof && (
-                      <div className="q-sq-proof">
-                        <span>Proof</span>
-                        <p>{sq.proof}</p>
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ol>
-            </Reveal>
-            {quest.sideQuestOutro && (
-              <Reveal>
-                <p className="q-sq-outro">{quest.sideQuestOutro}</p>
-              </Reveal>
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* ============ TRACKED WISHLIST ============ */}
-      {quest.trackedWishlistUrl && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">Your link</span>
-                <h2>Tracked wishlist link</h2>
-              </div>
-            </Reveal>
-            <Reveal>
-              <CopyLink
-                url={quest.trackedWishlistUrl}
-                note={quest.trackedWishlistNote}
-              />
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ GALLERY ============ */}
-      {quest.gallery && quest.gallery.thumbs.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">In-campaign art</span>
-                <h2>Screenshots and key art</h2>
-                <p>Use these for thumbnails, overlays, social posts, and short-form content.</p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-gallery">
-                {quest.gallery.wide && (
-                  <div className="q-gallery-item q-gallery-wide">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={quest.gallery.wide} alt={`${quest.title} key art`} loading="lazy" />
-                  </div>
-                )}
-                {quest.gallery.thumbs.map((src, i) => (
-                  <div key={src + i} className="q-gallery-item">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={src} alt={`${quest.title} screenshot ${i + 1}`} loading="lazy" />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ OFFICIAL ACCOUNTS ============ */}
-      {quest.officialAccounts && quest.officialAccounts.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">Official accounts</span>
-                <h2>Tag, follow, and share</h2>
-                <p>The handles to tag in your side quest posts, and where the campaign lives.</p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-accounts">
-                {quest.officialAccounts.map((acct) => (
-                  <div key={acct.name} className="q-account">
-                    <div className="q-account-head">
-                      <div className="q-account-name">{acct.name}</div>
-                      <p className="q-account-hint">{acct.hint}</p>
-                    </div>
-                    <div className="q-account-handles">
-                      {acct.links.map((l) => {
-                        const h = handleFor(l);
-                        return (
-                          <a
-                            key={l.type + l.href}
-                            href={l.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${acct.name} on ${h.platform}: ${h.label}`}
-                            className="q-handle"
-                          >
-                            <span className="q-handle-ico">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={h.icon} alt="" loading="lazy" width={28} height={28} />
-                            </span>
-                            <span className="q-handle-text">
-                              <strong>{h.label}</strong>
-                              <span>{h.platform}</span>
-                            </span>
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ STORE LINKS ============ */}
-      {quest.storeLinks && quest.storeLinks.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">Links</span>
-                <h2>Store and resources</h2>
-                {quest.platforms && quest.platforms.length > 0 && (
-                  <p>Platforms: {quest.platforms.join(", ")}.</p>
-                )}
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-stores">
-                {quest.storeLinks.map((s) => (
-                  <a
-                    key={s.href + s.name}
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="q-store"
-                  >
-                    <span className="q-store-ico">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={STORE_ICON_MAP[s.icon || "website"]} alt="" loading="lazy" />
-                    </span>
-                    <span className="q-store-txt">
-                      <strong>{s.name}</strong>
-                      <span>{s.sub}</span>
-                    </span>
-                    <span className="q-store-arrow" aria-hidden="true">↗</span>
-                  </a>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ============ RULES / EXPECTATIONS ============ */}
-      {(quest.rulesContent?.length || quest.rules?.length) && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head">
-                <span className="q-tag">Expectations and selection</span>
-                <h2>
-                  {quest.rulesHeading ??
-                    (quest.slots
-                      ? `${quest.slots} slots, right of refusal, keys on Discord`
-                      : "Right of refusal, keys on Discord")}
-                </h2>
-              </div>
-            </Reveal>
-
-            {quest.rulesContent && quest.rulesContent.length > 0 ? (
-              <Reveal>
-                <div className="q-rules">
-                  {quest.rulesContent.map((r) => (
-                    <div key={r.heading} className="q-rules-block">
-                      <h3>{r.heading}</h3>
-                      <p>{r.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            ) : (
-              quest.rules && (
-                <Reveal>
-                  <ul className="q-list rules">
-                    {quest.rules.map((r) => <li key={r}>{r}</li>)}
-                  </ul>
-                </Reveal>
-              )
-            )}
-          </div>
-        </section>
-      )}
-
-      {/* ============ HOW TO JOIN ============ */}
-      {isActive && quest.howToJoin && quest.howToJoin.length > 0 && (
-        <section className="q-section" style={{ paddingTop: 0 }}>
-          <div className="rd-shell">
-            <Reveal>
-              <div className="q-section-head q-section-head-center">
-                <span className="q-tag">Steps</span>
-                <h2>How to join</h2>
-                <p>From application to payout in six steps. Discord is required for access and coordination.</p>
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-steps">
-                {quest.howToJoin.map((s) => (
-                  <div key={s.title} className="q-step">
-                    <div className="q-step-title">{s.title}</div>
-                    <div className="q-step-sub">{s.sub}</div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-            <Reveal>
-              <div className="q-discord-banner">
-                <p>
-                  <strong>Discord required.</strong> Access and campaign support are
-                  coordinated there. Join before you go live.
-                </p>
-                <a
-                  href="https://discord.gg/NhqfucYDXD"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-discord"
-                >
-                  Join Discord
-                </a>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
+      </div>
 
       {/* ============ OTHER QUESTS ============ */}
       <section className="q-section" style={{ paddingTop: 0 }}>
