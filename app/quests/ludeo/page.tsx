@@ -97,6 +97,43 @@ const topPayout = Math.max(...rewards.map((r) => r.max));
 
 const art = ["game-robocop", "game-payday3", "game-lostcastle", "game-cronos", "game-coh3", "game-redacted"];
 
+/* Finished videos from creators already on the quest, one per platform, so a
+   newcomer sees three takes on the same brief. Sumi's leads: it is performing
+   best so far. Embedded from the creators' own posts. */
+const creatorClips: {
+  handle: string;
+  icon: PlatformIconName;
+  platform: string;
+  site: string;
+  url: string;
+  embed: string;
+}[] = [
+  {
+    handle: "sumi.bubbles",
+    icon: "reels",
+    platform: "Instagram Reels",
+    site: "Instagram",
+    url: "https://www.instagram.com/p/DeUdqPbq0q7/",
+    embed: "https://www.instagram.com/p/DeUdqPbq0q7/embed/",
+  },
+  {
+    handle: "undoubtedlylink",
+    icon: "tiktok",
+    platform: "TikTok",
+    site: "TikTok",
+    url: "https://www.tiktok.com/@undoubtedlylink/video/7693262839682747670",
+    embed: "https://www.tiktok.com/player/v1/7693262839682747670?description=0&music_info=0&rel=0",
+  },
+  {
+    handle: "zunigab",
+    icon: "shorts",
+    platform: "YouTube Shorts",
+    site: "YouTube",
+    url: "https://www.youtube.com/shorts/YwzI2EPIJ28",
+    embed: "https://www.youtube-nocookie.com/embed/YwzI2EPIJ28?rel=0&modestbranding=1",
+  },
+];
+
 const mission = [
   "Be edited. A raw clip or an unedited screen recording does not count.",
   "Run 45 seconds or longer.",
@@ -299,6 +336,50 @@ export default async function LudeoQuestPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="lq-questy" src={questy(2)} alt="" loading="lazy" />
           </div>
+        </div>
+      </section>
+
+      {/* ============ CREATORS WHO WENT FIRST ============ */}
+      <section className="q-section">
+        <div className="rd-shell">
+          <Reveal>
+            <div className="q-section-head">
+              <span className="q-tag">Already posted</span>
+              <h2>Creators who went before you.</h2>
+              <p>
+                Three Ludeo videos already live, one on each platform. Same mission, three different
+                takes. Watch them for ideas, then do it your way.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="lq-clips">
+              {creatorClips.map((c) => (
+                <article key={c.handle} className="lq-clip">
+                  <div className={`lq-clip-frame${c.icon === "reels" ? " is-instagram" : ""}`}>
+                    <iframe
+                      src={c.embed}
+                      title={`Ludeo video by @${c.handle} on ${c.platform}`}
+                      loading="lazy"
+                      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+                      allowFullScreen
+                      scrolling="no"
+                    />
+                  </div>
+                  <div className="lq-clip-meta">
+                    <span className="lq-clip-platform">
+                      <PlatformIcon name={c.icon} size={16} />
+                      {c.platform}
+                    </span>
+                    <strong className="lq-clip-handle">@{c.handle}</strong>
+                    <a className="lq-clip-link" href={c.url} target="_blank" rel="noopener noreferrer">
+                      Watch on {c.site} <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 

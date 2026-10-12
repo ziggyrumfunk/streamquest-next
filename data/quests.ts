@@ -825,7 +825,7 @@ const allQuests: Quest[] = [
     logo: "/media/meadgard/logo.webp",
     portrait: "/media/meadgard/key-art-vertical.webp",
     description:
-      "Paid creator campaign for the Meadgard demo by Oddiko. Stream the demo live on Twitch between 7 and 26 October 2026, run the tavern with your crew, and send interested viewers to the Steam wishlist.",
+      "Paid creator campaign for the Meadgard demo by Oddiko. Stream the demo live on Twitch between 12 and 26 October 2026, run the tavern with your crew, and send interested viewers to the Steam wishlist.",
     about:
       "Meadgard is a chaotic co-op tavern adventure for 1 to 4 players. Battle mythological creatures by day, serve rowdy tavern customers by night, and hunt, cook, brew and fight your way to the grandest feast Valhalla has ever seen. Coming to PC on Steam.",
     keyFeatures: [
@@ -893,10 +893,10 @@ const allQuests: Quest[] = [
       official: "https://www.oddiko.com/",
       trailer: "https://www.youtube.com/watch?v=aTUeoWEy69g",
     },
-    dates: { start: "2026-10-07", end: "2026-10-26" },
+    dates: { start: "2026-10-12", end: "2026-10-26" },
 
     /* -------- Rich brief content -------- */
-    duration: "Oct 7 to 26, 2026",
+    duration: "Oct 12 to 26, 2026",
     platforms: ["PC (Steam)"],
 
     videos: {
@@ -908,7 +908,7 @@ const allQuests: Quest[] = [
     },
 
     heroMeta: [
-      { label: "Campaign window", value: "7 to 26 October 2026" },
+      { label: "Campaign window", value: "12 to 26 October 2026" },
       { label: "Tiers", value: "Bronze 5+, Silver 15+, Gold 50+ average CCV" },
       { label: "Game access", value: "Demo key via Discord" },
       { label: "Co-op", value: "1 to 4 players, bonus keys for friends" },
@@ -1070,7 +1070,7 @@ const allQuests: Quest[] = [
       },
       {
         heading: "Embargo",
-        body: "Follow the embargo instructions supplied with your access. Early access does not permit early streaming or posting. Qualifying streams happen inside the campaign window, 7 to 26 October 2026.",
+        body: "Follow the embargo instructions supplied with your access. Early access does not permit early streaming or posting. Qualifying streams happen inside the campaign window, 12 to 26 October 2026.",
       },
       {
         heading: "The main mission",
@@ -1090,7 +1090,7 @@ const allQuests: Quest[] = [
       { title: "Apply", sub: "For the Meadgard Quest in the Creator Dashboard" },
       { title: "Wait for approval", sub: "Curated. Check your tier and requirements once accepted" },
       { title: "Join Discord", sub: "Your access key and bonus keys for friends arrive there" },
-      { title: "Stream the demo", sub: "7 to 26 October, with the tracked link and disclosure" },
+      { title: "Stream the demo", sub: "12 to 26 October, with the tracked link and disclosure" },
       { title: "Submit", sub: "VOD, stream date and side quest proof, before the deadline" },
       { title: "Get paid", sub: "After verification" },
     ],
